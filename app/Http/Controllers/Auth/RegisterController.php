@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -43,8 +44,17 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        $imageName = "a";
-        Storage::disk('public')->put($imageName, base64_decode($data['profile']));
+        $image_64 = $data['profile'];
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+        $image = str_replace($replace, '', $image_64);
+        $image = str_replace(' ', '+', $image);
+        $imageName = Str::random(100).time().'.'.$extension;
+        Storage::disk('profiles')->put($imageName, base64_decode($image));
+
+        $agreementName = Str::random(100).time();
+        Storage::putFileAs('agreements', $data['agreement'], $agreementName.'.pdf');
+        //Storage::disk('profiles')->;
         return User::create([
             'name' => $data['firstname'].$data['lastname'],
             'email' => $data['email'],
@@ -53,7 +63,8 @@ class RegisterController extends Controller
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'gender' => $data['gender'],
-            'photo_src' => 'src',
+            'photo_src' => '/profiles/'.$imageName,
+            'agreement_src' => '/agreements/'.$agreementName.'.pdf',
         ]);
     }
 }
