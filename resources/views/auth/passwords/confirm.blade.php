@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('Confirm password') }}
+{{ __('index.password.confirm.title') }}
 @endsection
 
 @section('style')
@@ -31,15 +31,15 @@ class="bg-gradient-primary"
                         <div class="col-lg-6">
                             <div class="p-4">
                                 <div class="text-center">
-                                    <img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center">
-                                  <h1 class="h4 text-gray-900 mb-3 mt-3">{{ __('Reset password') }}</h1>
+                                    <a href="{{ route('login') }}"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
+                                  <h1 class="h4 text-gray-900 mb-3 mt-3">{{ __('index.password.confirm.title') }}</h1>
                                 </div>
                                 <div class="my-4">
-                                    {{ __('Please confirm your password before continuing.') }}
+                                    {{ __('index.password.confirm.text') }}
                                 </div>
                                 <form method="POST" action="{{ route('password.confirm') }}">
                                     @csrf
-                                    <label for="password">{{ __('Password') }}</label>
+                                    <label for="password">{{ __('index.password.confirm.password') }}</label>
                                     <div class="form-group">
                                         <input id="password" type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                         @error('password')
@@ -50,11 +50,11 @@ class="bg-gradient-primary"
                                     </div>
 
                                         <div>
-                                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('Confirm Password') }}</button>
+                                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('index.password.confirm.button') }}</button>
 
                                             @if (Route::has('password.request'))
                                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                    {{ __('Forgot Your Password?') }}
+                                                    {{ __('index.footer.rememberpwd') }}
                                                 </a>
                                             @endif
                                         </div>

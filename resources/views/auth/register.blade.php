@@ -103,14 +103,14 @@ class="bg-gradient-primary"
                             <div class="p-4">
                                 <div class="text-center">
                                     <a href="{{ route('login') }}"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center w-50"></a>
-                                  <h1 class="h4 text-gray-900 mb-3 mt-3">Rejestracja</h1>
+                                  <h1 class="h4 text-gray-900 mb-3 mt-3">{{ __('index.register.title') }}</h1>
                                 </div>
                                 <form class="user" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
 
                                     @csrf
 
                                     <div class="form-group">
-                                        <input id="firstname" type="text" class="form-control form-control-user @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" placeholder="Imię" autofocus>
+                                        <input id="firstname" type="text" class="form-control form-control-user @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" placeholder="{{ __('index.register.firstname') }}" autofocus>
 
                                         @error('firstname')
                                             <span class="invalid-feedback" role="alert">
@@ -120,7 +120,7 @@ class="bg-gradient-primary"
                                     </div>
 
                                     <div class="form-group">
-                                        <input id="lastname" type="text" class="form-control form-control-user @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" placeholder="Nazwisko">
+                                        <input id="lastname" type="text" class="form-control form-control-user @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="{{ __('index.register.lastname') }}" placeholder="Nazwisko">
 
                                         @error('lastname')
                                             <span class="invalid-feedback" role="alert">
@@ -130,7 +130,7 @@ class="bg-gradient-primary"
                                     </div>
 
                                     <div class="form-group">
-                                            <input id="email" type="email" placeholder="{{ __('E-Mail Address') }}" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <input id="email" type="email" placeholder="{{ __('index.register.email') }}" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -140,7 +140,7 @@ class="bg-gradient-primary"
                                     </div>
 
                                     <div class="form-group">
-                                        <input id="phone" type="tel" placeholder="Numer telefonu" class="form-control form-control-user @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required autocomplete="telephone">
+                                        <input id="phone" type="tel" placeholder="{{ __('index.register.phone') }}" class="form-control form-control-user @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required autocomplete="telephone">
                                         <input type="hidden" name="prefix" id="prefix" value="">
                                         <p id="prefix-old">{{ old('prefix') }}</p>
                                         @error('telephone')
@@ -151,7 +151,7 @@ class="bg-gradient-primary"
                                 </div>
 
                                     <div class="form-group">
-                                            <input id="password" type="password" placeholder="{{ __('Password') }}" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <input id="password" type="password" placeholder="{{ __('index.register.password') }}" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -161,11 +161,11 @@ class="bg-gradient-primary"
                                     </div>
 
                                     <div class="form-group">
-                                            <input id="password-confirm" type="password" class="form-control form-control-user" placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required autocomplete="new-password">
+                                            <input id="password-confirm" type="password" class="form-control form-control-user" placeholder="{{ __('index.register.c-password') }}" name="password_confirmation" required autocomplete="new-password">
                                     </div>
 
                                     <div class="form-group">
-                                        <input id="address" type="text" class="form-control form-control-user @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" placeholder="Adres Zamieszkania (Ulica, numer domu/mieszkania, miasto)">
+                                        <input id="address" type="text" class="form-control form-control-user @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" placeholder="{{ __('index.register.address') }}">
 
                                         @error('address')
                                             <span class="invalid-feedback" role="alert">
@@ -175,27 +175,18 @@ class="bg-gradient-primary"
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user @error('school') is-invalid @enderror" id="school" name="school" placeholder="Nazwa szkoły" value='{{ old('school') }}' autocomplete="school">
+                                        <input type="text" class="form-control form-control-user @error('school') is-invalid @enderror" id="school" name="school" placeholder="{{ __('index.register.school') }}" value='{{ old('school') }}' autocomplete="school">
                                         @error('school')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
-                                        <p class="pt-2 text-center text-secondary" style="font-size: 0.7rem;">Jeśli jesteś osobą pracującą/niepracującą, to pozostaw puste pole</p>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user @error('ice_number') is-invalid @enderror" id="address" name="address" placeholder="Adres zamieszkania" value='{{ old('address') }}' required>
-                                        @error('address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                        <p class="pt-2 text-center text-secondary" style="font-size: 0.7rem;">{{ __('index.register.i-school') }}</p>
                                     </div>
 
                                       <div class="form-group">
-                                        <input type="tel" class="form-control form-control-user @error('ice_number') is-invalid @enderror" id="ice_number" name="ice_number" placeholder="ice_number" value='{{ old('ice_number') }}'>
-                                        <p class="pt-2 text-center text-secondary" style="font-size: 0.7rem;">ICE to skrót informujący, do kogo powinno się zadzwonić w razie nagłego wypadku.</p>
+                                        <input type="tel" class="form-control form-control-user @error('ice_number') is-invalid @enderror" id="ice_number" name="ice_number" placeholder="{{ __('index.register.ice') }}" value='{{ old('ice_number') }}'>
+                                        <p class="pt-2 text-center text-secondary" style="font-size: 0.7rem;">{{ __('index.register.i-ice') }}</p>
                                         @error('ice_number')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -204,7 +195,7 @@ class="bg-gradient-primary"
                                       </div>
 
                                     <div class="form-group">
-                                        <label for="tshirt_size">Rozmiar koszulki</label>
+                                        <label for="tshirt_size">{{ __('index.register.tshirt') }}</label>
                                         <select name="tshirt_size" id="sthirt_size" class="form-control @error('tshirt_size') is-invalid @enderror" required>
                                             <option value="XS">XS</option>
                                             <option value="S">S</option>
@@ -216,7 +207,7 @@ class="bg-gradient-primary"
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="birth">Data urodzenia</label>
+                                        <label for="birth">{{ __('index.register.birth') }}</label>
                                         <input id="birth" type="date" class="form-control @error('birth') is-invalid @enderror" name="birth" value="{{ old('birth') }}" required autocomplete="birth"
                                         style="border-top: none; border-left: none; border-right: none; background-color: transparent; font-size: 1.2rem; line-height: 1.9; outline: transparent;">
 
@@ -228,12 +219,12 @@ class="bg-gradient-primary"
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="agreement">Zgoda na uczestnicwo w wolontariacie (plik PDF) <br> Znajdziesz je tutaj:
-                                            <a href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_pelnoletni.pdf" target="_blank">pełnoletni</a> |
-                                            <a href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_niepelnoletni.pdf" target="_blank">niepełnoletni</a>
+                                        <label for="agreement">{{ __('index.register.agreement.text1') }} <br> {{ __('index.register.agreement.text2') }}:
+                                            <a href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_pelnoletni.pdf" target="_blank">{{ __('index.register.agreement.adult') }}</a> |
+                                            <a href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_niepelnoletni.pdf" target="_blank">{{ __('index.register.agreement.minor') }}</a>
                                         </label>
                                         <input type="file" name="agreement" id="agreement" accept=".pdf" class="form-control-file border" required/>
-                                        <p style="padding-top:1vh; font-size: 0.8rem; color: #888888;">Maksymalny rozmiar pliku: 5MB</p>
+                                        <p style="padding-top:1vh; font-size: 0.8rem; color: #888888;">{{ __('index.register.agreement.size') }}: 7MB</p>
 
                                         @error('agreement')
                                             <span class="invalid-feedback" role="alert">
@@ -243,15 +234,15 @@ class="bg-gradient-primary"
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="plec">Płeć</label><br>
+                                        <label for="plec">{{ __('index.register.gender') }}</label><br>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="gender" value="k" required>Kobieta
+                                            <input type="radio" class="form-check-input" name="gender" value="k" required>{{ __('index.register.gender-f') }}
                                         </label>
                                         </div>
                                         <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="gender" value="m" required>Mężczyzna
+                                            <input type="radio" class="form-check-input" name="gender" value="m" required>{{ __('index.register.gender-m') }}
                                         </label>
                                         </div>
 
@@ -265,7 +256,7 @@ class="bg-gradient-primary"
                                     <div class="form-group mx-3">
                                         <div class="image_area">
                                             <label for="upload_image" class="w-100">
-                                                <a class="btn btn-secondary w-100" style="color:white">Dodaj Zdjęcie profilowe</a>
+                                                <a class="btn btn-secondary w-100" style="color:white">{{ __('index.register.profile.button') }}</a>
                                                 <input type="file" name="image" class="image" id="upload_image" style="display:none" accept="image/*"/>
                                                 <input type="hidden" name="profile" id="profile" value="">
                                             </label>
@@ -281,9 +272,9 @@ class="bg-gradient-primary"
                                     <div class="form-group">
                                         <label style="margin-left:1.5rem;" class="form-check-label" for="terms">
                                         <input class="form-check-input" type="checkbox" name="terms" id="terms" required>
-                                        Akceptuję
-                                        <a href="" target="_blank">Regulamin</a> i
-                                        <a href="" target="_blank">Politykę prywatności</a>
+                                        {{ __('index.register.accept') }}
+                                        <a href="" target="_blank">{{ __('index.register.accept-r') }}</a> {{ __('index.register.accept-a') }}
+                                        <a href="" target="_blank">{{ __('index.register.accept-c') }}</a>
 
                                         @error('terms')
                                             <span class="invalid-feedback" role="alert">
@@ -292,21 +283,21 @@ class="bg-gradient-primary"
                                         @enderror
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">Zarejestuj się</button>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('index.register.register') }}</button>
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="{{ route('login') }}">Masz już konto? Zaloguj się</a> |
+                                    <a class="small" href="{{ route('login') }}">{{ __('index.footer.login') }}</a> |
                                     @if (Route::has('password.request'))
-                                    <a class="small" href="{{ route('password.request') }}">{{ __('index.login.rememberpwd') }}</a>
+                                    <a class="small" href="{{ route('password.request') }}">{{ __('index.footer.rememberpwd') }}</a>
                                     @endif
 
 
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" target="_blank" href="">{{ __('index.login.regulations') }}</a> |
-                                    <a class="small" target="_blank" href="">{{ __('index.login.terms') }}</a> |
-                                    <a class="small" target="_blank" href="">{{ __('index.login.privacypolicy') }}</a>
+                                    <a class="small" target="_blank" href="https://wolontariat.rybnik.pl/pliki/regulamin_wolontariatu_MOSiR_Rybnik.pdf">{{ __('index.footer.regulations') }}</a> |
+                                    <a class="small" target="_blank" href="https://wolontariat.rybnik.pl/pliki/kodeks_wolontariuszy_MOSiR_Rybnik.pdf">{{ __('index.footer.codex') }}</a> |
+                                    <a class="small" target="_blank" href="https://wolontariat.rybnik.pl/pliki/polityka_prywatnosci.pdf">{{ __('index.footer.privacypolicy') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -321,7 +312,7 @@ class="bg-gradient-primary"
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Wytnij zdjęcie</h5>
+              <h5 class="modal-title">{{ __('index.register.profile.modal-h') }}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
               </button>
@@ -339,8 +330,8 @@ class="bg-gradient-primary"
               </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="crop" class="btn btn-primary">Wytnij</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                <button type="button" id="crop" class="btn btn-primary">{{ __('index.register.profile.modal-crop') }}</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('index.register.profile.modal-c') }}</button>
             </div>
       </div>
     </div>

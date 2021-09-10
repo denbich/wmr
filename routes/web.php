@@ -5,8 +5,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\volunteer\VHomeController;
+use Illuminate\Support\Facades\Artisan;
 
 App::setLocale(session('locale'));
+
+Route::get('/command', function () {
+
+    //$code = Artisan::call('storage:link');
+    //echo $code;
+});
 
 Route::get('language/{locale}', function($locale) {
     session(['locale' => $locale]);
@@ -15,17 +23,14 @@ Route::get('language/{locale}', function($locale) {
 });
 
 Route::middleware('setlocale')->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
+    Route::prefix('test')->group(function () {
+        Route::get('/', [HomeController::class, 'test']);
     });
+
+    Route::get('/', [HomeController::class, 'index']);
 
     Auth::routes(['verify' => true]);
     Route::get('/login-auth', [HomeController::class, 'loginauth']);
-
-    Route::get('/test', function () { //mco0dRl3Ih.png
-        Storage::setVisibility('profiles/mco0dRl3Ih.png', 'public');
-        dd(Storage::url('mco0dRl3Ih.png'));
-    })->middleware('verified');
 
     Route::middleware(['auth', 'admincheck'])->group(function () {
         Route::prefix('admin')->group(function () {
@@ -41,9 +46,7 @@ Route::middleware('setlocale')->group(function () {
 
     Route::middleware(['auth', 'volunteercheck', 'verified'])->group(function () {
         Route::prefix('volunteer')->group(function () {
-            Route::get('/', function () {
-                return "test";
-            })->name('v.dashboard');
+            Route::get('/', [VHomeController::class, 'dashboard'])->name('v.dashboard');
         });
     });
 

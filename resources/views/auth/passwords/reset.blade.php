@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('Reset password') }}
+{{ __('index.password.reset.title') }}
 @endsection
 
 @section('style')
@@ -31,14 +31,14 @@ class="bg-gradient-primary"
                         <div class="col-lg-6">
                             <div class="p-4">
                                 <div class="text-center">
-                                    <img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center">
-                                  <h1 class="h4 text-gray-900 mb-3 mt-3">{{ __('Reset password') }}</h1>
+                                    <a href="{{ route('login') }}"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
+                                  <h1 class="h4 text-gray-900 mb-3 mt-3">{{ __('index.password.reset.title') }}</h1>
                                 </div>
                                 <form class="user mt-3" method="POST" action="{{ route('password.update') }}">
                                     @csrf
 
                                     <input type="hidden" name="token" value="{{ $token }}">
-                                    <label for="email">{{ __('E-Mail Address') }}</label>
+                                    <label for="email">{{ __('index.password.reset.email') }}</label>
                                     <div class="form-group">
                                         <input id="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
@@ -49,7 +49,7 @@ class="bg-gradient-primary"
                                         @enderror
                                     </div>
 
-                                    <label for="password">{{ __('Password') }}</label>
+                                    <label for="password">{{ __('index.password.reset.password') }}</label>
                                     <div class="form-group">
                                         <input id="password" type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
@@ -60,12 +60,12 @@ class="bg-gradient-primary"
                                         @enderror
                                     </div>
 
-                                    <label for="password-confirm">{{ __('Confirm Password') }}</label>
+                                    <label for="password-confirm">{{ __('index.password.reset.c-password') }}</label>
                                     <div class="form-group">
                                         <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required autocomplete="new-password">
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('Reset Password') }}</button>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('index.password.reset.button') }}</button>
                                 </form>
                             </div>
                         </div>

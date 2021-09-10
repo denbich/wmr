@@ -88,18 +88,18 @@ class="bg-gradient-primary"
                                 <hr>
                                 <div class="text-center">
                                     @if (Route::has('password.request'))
-                                    <a class="small" href="{{ route('password.request') }}">{{ __('index.login.rememberpwd') }}</a>
+                                    <a class="small" href="{{ route('password.request') }}">{{ __('index.footer.rememberpwd') }}</a>
                                     @endif
                                      |
-                                    <a class="small" href="{{ route('register') }}">{{ __('index.login.createaccount') }}</a>
+                                    <a class="small" href="{{ route('register') }}">{{ __('index.footer.createaccount') }}</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" target="_blank" href="https://wolontariat.rybnik.pl/pliki/kodeks_wolontariuszy_MOSiR_Rybnik.pdf">{{ __('index.login.regulations') }}</a> |
-                                    <a class="small" target="_blank" href="https://wolontariat.rybnik.pl/pliki/kodeks_wolontariuszy_MOSiR_Rybnik.pdf">{{ __('index.login.terms') }}</a> |
-                                    <a class="small" target="_blank" href="https://wolontariat.rybnik.pl/pliki/polityka_prywatnosci.pdf">{{ __('index.login.privacypolicy') }}</a>
+                                    <a class="small" target="_blank" href="https://wolontariat.rybnik.pl/pliki/regulamin_wolontariatu_MOSiR_Rybnik.pdf">{{ __('index.footer.regulations') }}</a> |
+                                    <a class="small" target="_blank" href="https://wolontariat.rybnik.pl/pliki/kodeks_wolontariuszy_MOSiR_Rybnik.pdf">{{ __('index.footer.codex') }}</a> |
+                                    <a class="small" target="_blank" href="https://wolontariat.rybnik.pl/pliki/polityka_prywatnosci.pdf">{{ __('index.footer.privacypolicy') }}</a>
                                 </div>
                                 <div class="text-center pt-1">
-                                    <h6>{{ __('index.login.pick-lang') }}</h6>
+                                    <h6>{{ __('index.footer.pick-lang') }}</h6>
                                     <div class="row mb-3">
                                         <div class="col">
                                             <a href="/language/pl"><img src="{{ URL::asset('lang/165-poland.svg') }}" alt="" class="w-50"></a>
@@ -111,7 +111,7 @@ class="bg-gradient-primary"
                                             <a href="/language/ua"><img src="{{ URL::asset('lang/198-ukraine.svg') }}" alt="" class="w-50"></a>
                                         </div>-->
                                     </div>
-                                    <!--<a href="">{{ __('index.login.more-lang') }}...</a>-->
+                                    <!--<a href="">{{ __('index.footer.more-lang') }}...</a>-->
                                 </div>
                             </div>
                         </div>

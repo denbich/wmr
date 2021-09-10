@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('Reset password') }}
+{{ __('index.password.email.title') }}
 @endsection
 
 @section('style')
@@ -31,8 +31,8 @@ class="bg-gradient-primary"
                         <div class="col-lg-6">
                             <div class="p-4">
                                 <div class="text-center">
-                                    <img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center">
-                                  <h1 class="h4 text-gray-900 mb-3 mt-3">{{ __('Reset password') }}</h1>
+                                    <a href="{{ route('login') }}"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
+                                  <h1 class="h4 text-gray-900 mb-3 mt-3">{{ __('index.password.email.title') }}</h1>
                                 </div>
                                 @if (session('status'))
                                     <div class="alert alert-success" role="alert">
@@ -40,11 +40,11 @@ class="bg-gradient-primary"
                                     </div>
                                 @endif
                                 <div class="my-4">
-                                    {{ __('If you forget password, you can reset it here! Just type your email.') }}
+                                    {{ __('index.password.email.text') }}
                                 </div>
                                 <form class="user mt-3" method="POST" action="{{ route('password.email') }}">
                                     @csrf
-                                    <label for="email">{{ __('E-Mail Address') }}</label>
+                                    <label for="email">{{ __('index.password.email.email') }}</label>
                                     <div class="form-group">
                                         <input id="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -54,7 +54,8 @@ class="bg-gradient-primary"
                                             </span>
                                         @enderror
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('Send Password Reset Link') }}</button>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('index.password.email.button') }}</button>
+                                    <a href="{{ route('login') }}" class="btn btn-outline-primary btn-user btn-block">{{ __('index.password.email.login') }}</a>
                                 </form>
                             </div>
                         </div>

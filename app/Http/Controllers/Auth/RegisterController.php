@@ -10,6 +10,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
@@ -36,6 +37,7 @@ class RegisterController extends Controller
             'address' =>['required', 'string', 'max:255'],
             'school' => ['required', 'string', 'max:255'],
             'birth' => ['required', 'date'],
+            'agreement' => ['required', 'mimes:pdf', 'file|size:7168'],
             'gender' => ['required'],
             'profile' => ['required'],
             'terms' => ['required'],
@@ -54,7 +56,7 @@ class RegisterController extends Controller
 
         $agreementName = Str::random(100).time();
         Storage::putFileAs('agreements', $data['agreement'], $agreementName.'.pdf');
-        //Storage::disk('profiles')->;
+
         return User::create([
             'name' => $data['firstname'].$data['lastname'],
             'email' => $data['email'],

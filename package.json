@@ -16,6 +16,8 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
+        "@creative-tim-official/argon-dashboard-free": "^1.2.0",
+        "@fortawesome/fontawesome-free": "^5.15.4",
         "startbootstrap-sb-admin-2": "^4.1.4"
     }
 }
