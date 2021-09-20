@@ -13,5 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/sb-admin-2.js', 'public/js')
+    .js('node_modules/fullcalendar/main.js', 'public/js')
+    .js('resources/js/dark-mode.js', 'public/js')
 
+    .css('resources/css/calendar.css', 'public/css')
     .css('resources/css/app.css', 'public/css');

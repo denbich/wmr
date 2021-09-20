@@ -1,18 +1,3 @@
-<!--
-=========================================================
-* Argon Dashboard - v1.2.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-
-
-* Copyright  Creative Tim (http://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
-
-
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html>
 
@@ -22,16 +7,28 @@
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Denis Bichler">
   <title>ISOW Dashboard</title>
-  <!-- Favicon -->
+
   <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
-  <!-- Fonts -->
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-  <!-- Icons -->
+
   <link rel="stylesheet" href="../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-  <!-- Page plugins -->
-  <!-- Argon CSS -->
+
   <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/round-flag-icons/css/round-flag-icons.min.css">
+
+
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "53874050-4d70-4fc0-8007-320a36fca218",
+    });
+  });
+
+</script>
 </head>
 
 <body>
@@ -39,9 +36,9 @@
   <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
-      <div class="sidenav-header  align-items-center">
-        <a class="navbar-brand" href="javascript:void(0)">
-          <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+      <div class="sidenav-header mt-2 align-items-center w-100">
+        <a class="mt-2" href="javascript:void(0)">
+          <img src="https://panel.wolontariat.rybnik.pl/assets/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -100,7 +97,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
-                <input class="form-control" placeholder="Search" type="text">
+                <input class="form-control" placeholder="Szukaj" type="text">
               </div>
             </div>
             <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
@@ -235,43 +232,81 @@
                 <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
               </div>
             </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-globe"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg  dropdown-menu-right  py-0 overflow-hidden">
+                    <div class="w-100 text-center mt-2">
+                        <span class="h4 text-center text-dark w-100">Wybierz język</span>
+                    </div>
+                  <div class="row shortcuts px-4">
+                    <a href="#!" class="col-4 my-2 shortcut-item text-center">
+                      <span class="shortcut-media avatar rounded-circle">
+                        <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/pl.svg" alt="">
+                      </span>
+                      <small>Polish (Polski)</small>
+                    </a>
+                    <a href="#!" class="col-4 my-2 shortcut-item text-center">
+                      <span class="shortcut-media avatar rounded-circle">
+                        <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/gb.svg" alt="">
+                      </span>
+                      <small>English</small>
+                    </a>
+                    <a href="#!" class="col-4 my-2 shortcut-item text-center">
+                        <span class="shortcut-media avatar rounded-circle">
+                            <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/ua.svg" alt="">
+                          </span>
+                      <small>Ukraiński</small>
+                    </a>
+
+
+
+                  </div>
+                </div>
+              </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="ni ni-ungroup"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default  dropdown-menu-right ">
-                <div class="row shortcuts px-4">
-                  <a href="#!" class="col-4 shortcut-item">
+              <div class="dropdown-menu dropdown-menu-lg  dropdown-menu-right  py-0 overflow-hidden">
+                <div class="w-100 text-center mt-2">
+                    <span class="h4 text-center text-dark w-100">Skróty</span>
+                </div>
+                <div class="row shortcuts px-4 py-2">
+                  <a href="#!" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-red">
                       <i class="ni ni-calendar-grid-58"></i>
                     </span>
                     <small>Calendar</small>
                   </a>
-                  <a href="#!" class="col-4 shortcut-item">
+                  <a href="#!" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
                       <i class="ni ni-email-83"></i>
                     </span>
                     <small>Email</small>
                   </a>
-                  <a href="#!" class="col-4 shortcut-item">
+                  <a href="#!" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-info">
                       <i class="ni ni-credit-card"></i>
                     </span>
                     <small>Payments</small>
                   </a>
-                  <a href="#!" class="col-4 shortcut-item">
+                  <a href="#!" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-green">
                       <i class="ni ni-books"></i>
                     </span>
                     <small>Reports</small>
                   </a>
-                  <a href="#!" class="col-4 shortcut-item">
+                  <a href="#!" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
                       <i class="ni ni-pin-3"></i>
                     </span>
                     <small>Maps</small>
                   </a>
-                  <a href="#!" class="col-4 shortcut-item">
+                  <a href="#!" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-yellow">
                       <i class="ni ni-basket"></i>
                     </span>
@@ -289,13 +324,13 @@
                     <img alt="Image placeholder" src="../assets/img/theme/team-4.jpg">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                    <span class="mb-0 text-sm  font-weight-bold">Denis Bichler</span>
                   </div>
                 </div>
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">
                 <div class="dropdown-header noti-title">
-                  <h6 class="text-overflow m-0">Welcome!</h6>
+                  <h6 class="text-overflow m-0">Witaj!</h6>
                 </div>
                 <a href="#!" class="dropdown-item">
                   <i class="ni ni-single-02"></i>
@@ -331,39 +366,34 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Panel koordynatora</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
+                  <li class="breadcrumb-item active" aria-current="page">Panel</li>
                 </ol>
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral">New</a>
-              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+              <a href="#" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
             </div>
           </div>
           <div class="row" style="display: flex;
           flex-wrap: wrap;">
             <div class="col-xl-3 col-md-6 h-100">
               <div class="card card-stats">
-                <div class="card-body">
+                <div class="card-body my-3">
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Twoje ID</h5>
-                      <span class="h2 font-weight-bold mb-0">1</span>
+                      <span class="h2 font-weight-bold mb-0">0</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
                         <i class="fas fa-id-card-alt"></i>
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-nowrap">Twoja funkcja: <b>Koordynator</b></span>
-                  </p>
                 </div>
               </div>
             </div>
@@ -377,34 +407,13 @@
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                        <i class="ni ni-chart-pie-35"></i>
+                        <i class="fas fa-users"></i>
                       </div>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
                     <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Więcej niż w poprzednim miesiącu</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Nagrody</h5>
-                      <span class="h2 font-weight-bold mb-0">10</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-money-coins"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Więcej niż w poprzednim miesiącu</span>
+                    <span class="text-nowrap">Od ostatniego miesiąca</span>
                   </p>
                 </div>
               </div>
@@ -418,11 +427,32 @@
                       <span class="h2 font-weight-bold mb-0">0</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
+                      <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
+                        <i class="fas fa-user-plus"></i>
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 h-100">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Nagrody</h5>
+                      <span class="h2 font-weight-bold mb-0">10</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                        <i class="fas fa-award"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Od ostatniego miesiąca</span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -438,22 +468,12 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                  <h5 class="h3 text-white mb-0">Sales value</h5>
+                  <h5 class="h3 text-white mb-0">Statystyki zamówień</h5>
                 </div>
                 <div class="col">
                   <ul class="nav nav-pills justify-content-end">
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
-                      <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                        <span class="d-none d-md-block">Month</span>
-                        <span class="d-md-none">M</span>
-                      </a>
-                    </li>
-                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
-                      <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                        <span class="d-none d-md-block">Week</span>
-                        <span class="d-md-none">W</span>
-                      </a>
+                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark"
+                    data-update='{"data":{"datasets":[{"data":[0, 20]}]}}' data-suffix="k">
                     </li>
                   </ul>
                 </div>
@@ -473,8 +493,7 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                  <h5 class="h3 mb-0">Total orders</h5>
+                  <h5 class="h3 mb-0">Statystyki rejestracji</h5>
                 </div>
               </div>
             </div>
@@ -488,225 +507,88 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-8">
+        <div class="col-xl-6">
           <div class="card">
-            <div class="card-header border-0">
+            <div class="card-header">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Page visits</h3>
+                  <h3 class="mb-0">Zapełnienie formularzy</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                  <a href="#!" class="btn btn-sm btn-primary">Zobacz formularze</a>
                 </div>
               </div>
             </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Page name</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col">Unique users</th>
-                    <th scope="col">Bounce rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      /argon/
-                    </th>
-                    <td>
-                      4,569
-                    </td>
-                    <td>
-                      340
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/index.html
-                    </th>
-                    <td>
-                      3,985
-                    </td>
-                    <td>
-                      319
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/charts.html
-                    </th>
-                    <td>
-                      3,513
-                    </td>
-                    <td>
-                      294
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/tables.html
-                    </th>
-                    <td>
-                      2,050
-                    </td>
-                    <td>
-                      147
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/profile.html
-                    </th>
-                    <td>
-                      1,795
-                    </td>
-                    <td>
-                      190
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="card-body">
+                <i class="round-flag-icon round-flag-pl"></i>
+                <div class="progress-wrapper pt-0">
+                    <div class="progress-info">
+                    <span class="badge badge-lg badge-pill badge-primary mb-1">Półmaraton księżycowy 2021</span>
+                      <div class="progress-percentage">
+                        <span>60%</span>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                    </div>
+                  </div>
+                  <div class="progress-wrapper pt-0">
+                    <div class="progress-info">
+                    <span class="badge badge-lg badge-pill badge-primary mb-1">Bieg barbórkowy 2021</span>
+                      <div class="progress-percentage">
+                        <span>100%</span>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                    </div>
+                  </div>
             </div>
           </div>
-        </div>
-        <div class="col-xl-4">
+
           <div class="card">
-            <div class="card-header border-0">
+            <div class="card-header">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Social traffic</h3>
-                </div>
-                <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                  <h3 class="mb-0">Powiadomienia</h3>
                 </div>
               </div>
             </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Referral</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      Facebook
-                    </th>
-                    <td>
-                      1,480
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">60%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Facebook
-                    </th>
-                    <td>
-                      5,480
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">70%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Google
-                    </th>
-                    <td>
-                      4,807
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">80%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Instagram
-                    </th>
-                    <td>
-                      3,678
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">75%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      twitter
-                    </th>
-                    <td>
-                      2,645
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">30%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="card-body">
+                <div class='onesignal-customlink-container'></div>
             </div>
           </div>
         </div>
+        <div class="col-xl-6">
+            <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h3 class="mb-0">Pomoc</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                    src="https://panel.wolontariat.rybnik.pl/assets/img/undraw_delivery_address_03n0.svg" alt="">
+                  </div>
+                <p>Jeśli masz probem, propozycję bądź pytanie to śmiało pisz na adres:
+                    <a target="_blank" rel="nofollow" href="mailto:admin@wolontariat.rybnik.pl">admin@wolontariat.rybnik.pl</a>
+                </p>
+                <a target="_blank" rel="nofollow" href="#"><i class="far fa-question-circle"></i> Centrum pomocy</a>
+              </div>
+            </div>
+          </div>
       </div>
-      <!-- Footer -->
+
+      <div class="row">
+        <div class="col-xl-6">
+
+        </div>
+
+      </div>
+
       <footer class="footer pt-0">
         <div class="row align-items-center justify-content-lg-between">
           <div class="col-lg-6">
@@ -746,6 +628,132 @@
   <script src="../assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
+
+  <script>
+      var BarsChart = (function() {
+
+//
+// Variables
+//
+
+var $chart = $('#chart-bars');
+
+
+//
+// Methods
+//
+
+// Init chart
+function initChart($chart) {
+
+    // Create chart
+    var ordersChart = new Chart($chart, {
+        type: 'bar',
+        data: {
+            labels: ['Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz'],
+            datasets: [{
+                label: 'Sales',
+                data: [2, 0, 3, 4, 1, 2]
+            }]
+        }
+    });
+
+    // Save to jQuery object
+    $chart.data('chart', ordersChart);
+}
+
+
+// Init chart
+if ($chart.length) {
+    initChart($chart);
+}
+
+})();
+
+'use strict';
+
+//
+// Sales chart
+//
+
+var SalesChart = (function() {
+
+// Variables
+
+var $chart = $('#chart-sales-dark');
+
+
+// Methods
+
+function init($chart) {
+
+var salesChart = new Chart($chart, {
+  type: 'line',
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: {
+          lineWidth: 1,
+          color: Charts.colors.gray[900],
+          zeroLineColor: Charts.colors.gray[900]
+        },
+        ticks: {
+          callback: function(value) {
+              return value ;
+          }
+        }
+      }]
+    },
+    tooltips: {
+      callbacks: {
+        label: function(item, data) {
+          var label = data.datasets[item.datasetIndex].label || '';
+          var yLabel = item.yLabel;
+          var content = '';
+
+          if (data.datasets.length > 1) {
+            content += '<span class="popover-body-label mr-auto">' + label + ' </span>';
+          }
+
+          if (yLabel == 1)
+          {
+            content +=  yLabel + 'zamówienie';
+          } else if (yLabel > 1 && yLabel < 5)
+          {
+            content += yLabel + ' zamówienia';
+          } else {
+            content += yLabel + ' zamówień';
+          }
+
+          return content;
+        }
+      }
+    }
+  },
+  data: {
+    labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [{
+      label: 'Ilość',
+      data: [0, 2, 1, 3, 1, 4, 2, 6, 6]
+    }]
+  }
+});
+
+// Save to jQuery object
+
+$chart.data('chart', salesChart);
+
+};
+
+
+// Events
+
+if ($chart.length) {
+init($chart);
+}
+
+})();
+  </script>
 </body>
 
 </html>

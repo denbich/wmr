@@ -118,7 +118,7 @@ Chart.elements.Rectangle.prototype.draw = function() {
 		ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
 		ctx.lineTo(x + radius, y + height);
 		ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-		ctx.lineTo(x, y + radius);
+		ctx.lineTo(x, y + radiuschart-sales-dark);
 		ctx.quadraticCurveTo(x, y, x + radius, y);
 
 	}

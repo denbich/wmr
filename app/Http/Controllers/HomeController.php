@@ -15,7 +15,12 @@ class HomeController extends Controller
 
     public function test()
     {
-        return view ('test.dashboard');
+        return view ('coordinator.dashboard');
+    }
+
+    public function chat()
+    {
+        return view ('test.chat');
     }
 
     public function loginauth()

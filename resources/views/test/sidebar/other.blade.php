@@ -4,7 +4,7 @@
                     <span class="nav-link-text">Kalendarz</span>
                 </a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="fas fa-cog text-primary"></i>
