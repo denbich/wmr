@@ -9,6 +9,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\volunteer\VHomeController;
 use App\Http\Controllers\coordinator\CChatController;
 use App\Http\Controllers\coordinator\CHomeController;
+use App\Http\Controllers\coordinator\CFormsController;
+use App\Http\Controllers\coordinator\CPostsController;
+use App\Http\Controllers\coordinator\CPrizesController;
 use App\Http\Controllers\coordinator\CVolunteerController;
 
 App::setLocale(session('locale'));
@@ -48,7 +51,9 @@ Route::middleware('setlocale')->group(function () {
             Route::get('/settings', [CHomeController::class, 'settings'])->name('c.settings');
             Route::get('/profile', [CHomeController::class, 'profile'])->name('c.profile');
             Route::get('/calendar', [CHomeController::class, 'calendar'])->name('c.calendar');
+            Route::get('/load-events', [CHomeController::class, 'load_events'])->name('c.loadevents');
             Route::get('/info', [CHomeController::class, 'info'])->name('c.info');
+            Route::get('/maps', [CHomeController::class, 'maps'])->name('c.maps');
 
             Route::prefix('chat')->group(function() {
                 Route::get('/', [CChatController::class, 'chat'])->name('c.chat');
@@ -61,7 +66,35 @@ Route::middleware('setlocale')->group(function () {
             Route::prefix('volunteer')->group(function() {
                 Route::get('/', [CVolunteerController::class, 'list'])->name('c.v.list');
                 Route::get('/id/{id}', [CVolunteerController::class, 'volunteer']);
+                Route::get('/search', [CVolunteerController::class, 'search'])->name('c.v.search');
+                Route::get('/active', [CVolunteerController::class, 'active'])->name('c.v.active');
+                Route::post('/active', [CVolunteerController::class, 'activation']);
+                Route::post('/dactive', [CVolunteerController::class, 'dactivation'])->name('c.v.dactive');;
+                Route::get('/birthday', [CVolunteerController::class, 'birthday'])->name('c.v.birthday');
             });
+
+            Route::resource('/forms', CFormsController::class, ['names' => [
+                'index' => 'c.form.list', 'create' => 'c.form.create', 'store' => 'c.form.store', 'show' => 'c.form.show',
+                'edit' => 'c.form.edit', 'update' => 'c.form.update', 'destroy' => 'c.form.destroy',
+            ]]);
+            Route::get('/forms/archive', [CFormsController::class, 'archive'])->name('c.form.archive');
+            Route::get('/forms/list/{id}', [CFormsController::class, 'volunteer_list']);
+
+            Route::get('/prizes/search', [CPrizesController::class, 'search'])->name('c.prize.search');
+            Route::get('/prizes/orders', [CPrizesController::class, 'orders'])->name('c.prize.orders');
+            Route::get('/prizes/orders/{id}', [CPrizesController::class, 'order']);
+            Route::post('/prizes/orders/change-status/{id}', [CPrizesController::class, 'change_status']);
+            Route::post('/prizes/update-quantity/{id}', [CPrizesController::class, 'update_quantity'])->name('c.prize.updatequantity');
+            Route::resource('/prizes', CPrizesController::class, ['names' => [
+                'index' => 'c.prize.list', 'create' => 'c.prize.create', 'store' => 'c.prize.store', 'show' => 'c.prize.show',
+                'edit' => 'c.prize.edit', 'update' => 'c.prize.update', 'destroy' => 'c.prize.destroy',
+            ]]);
+
+            Route::resource('/posts', CPostsController::class, ['names' => [
+                'index' => 'c.post.list', 'create' => 'c.post.create', 'store' => 'c.post.store', 'show' => 'c.post.show',
+                'edit' => 'c.post.edit', 'update' => 'c.post.update', 'destroy' => 'c.post.destroy',
+            ]]);
+
         });
     });
 

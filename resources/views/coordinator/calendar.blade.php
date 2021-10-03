@@ -59,7 +59,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('c.info') }}">
                     <i class="fas fa-info-circle text-primary"></i>
                     <span class="nav-link-text">Informacje</span>
                 </a>
@@ -95,7 +95,17 @@
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
+                <button class="fullcalendar-btn-prev btn btn-sm btn-neutral" aria-label="prev">
+                <i class="fas fa-angle-left"></i>
+            </button>
+            <button class="fullcalendar-btn-next btn btn-sm btn-neutral" aria-label="next">
+                <i class="fas fa-angle-right"></i>
+            </button>
+
+            <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="month">Miesiąc</a>
+            <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicWeek">Tydzień</a>
+            <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicDay">Dzień</a>
+
             </div>
           </div>
         </div>
@@ -105,7 +115,7 @@
     <!-- Page content -->
 
     <div class="container-fluid mt--6">
-            <div class="card">
+            <div class="card card-calendar">
               <div class="card-header">
                 <div class="row align-items-center">
                   <div class="col-8">
@@ -114,7 +124,7 @@
                 </div>
               </div>
                 <div class="card-body">
-                    <div id='calendar'></div>
+                    <div id="calendar" class="w-100"></div>
                 </div>
             </div>
 
@@ -122,4 +132,212 @@
       </div>
   </div>
 
+@endsection
+
+@section('style')
+
+<link href='/assets/fullcalendar/packages/core/main.css' rel='stylesheet' />
+    <link href='/assets/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+    <link href='/assets/fullcalendar/packages/timegrid/main.css' rel='stylesheet' />
+    <link href='/assets/fullcalendar/packages/list/main.css' rel='stylesheet' />
+    <script src='/assets/fullcalendar/packages/core/main.js'></script>
+    <script src='/assets/fullcalendar/packages/core/locales-all.js'></script>
+    <script src='/assets/fullcalendar/packages/interaction/main.js'></script>
+    <script src='/assets/fullcalendar/packages/daygrid/main.js'></script>
+    <script src='/assets/fullcalendar/packages/timegrid/main.js'></script>
+    <script src='/assets/fullcalendar/packages/list/main.js'></script>
+
+    <script src='https://unpkg.com/popper.js/dist/umd/popper.min.js'></script>
+    <script src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js'></script>
+<style>
+
+    /*
+    tooltip css
+    */
+
+    .popper,
+    .tooltip {
+        position: absolute;
+        z-index: 9999;
+        background: #FFC107;
+        color: black;
+        width: 150px;
+        border-radius: 3px;
+        box-shadow: 0 0 2px rgba(0,0,0,0.5);
+        padding: 10px;
+        text-align: center;
+    }
+    .style5 .tooltip {
+        background: #1E252B;
+        color: #FFFFFF;
+        max-width: 200px;
+        width: auto;
+        font-size: .8rem;
+        padding: .5em 1em;
+    }
+    .popper .popper__arrow,
+    .tooltip .tooltip-arrow {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        position: absolute;
+        margin: 5px;
+    }
+
+    .tooltip .tooltip-arrow,
+    .popper .popper__arrow {
+        border-color: #FFC107;
+    }
+    .style5 .tooltip .tooltip-arrow {
+        border-color: #1E252B;
+    }
+    .popper[x-placement^="top"],
+    .tooltip[x-placement^="top"] {
+        margin-bottom: 5px;
+    }
+    .popper[x-placement^="top"] .popper__arrow,
+    .tooltip[x-placement^="top"] .tooltip-arrow {
+        border-width: 5px 5px 0 5px;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        bottom: -5px;
+        left: calc(50% - 5px);
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .popper[x-placement^="bottom"],
+    .tooltip[x-placement^="bottom"] {
+        margin-top: 5px;
+    }
+    .tooltip[x-placement^="bottom"] .tooltip-arrow,
+    .popper[x-placement^="bottom"] .popper__arrow {
+        border-width: 0 5px 5px 5px;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        top: -5px;
+        left: calc(50% - 5px);
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .tooltip[x-placement^="right"],
+    .popper[x-placement^="right"] {
+        margin-left: 5px;
+    }
+    .popper[x-placement^="right"] .popper__arrow,
+    .tooltip[x-placement^="right"] .tooltip-arrow {
+        border-width: 5px 5px 5px 0;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        left: -5px;
+        top: calc(50% - 5px);
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .popper[x-placement^="left"],
+    .tooltip[x-placement^="left"] {
+        margin-right: 5px;
+    }
+    .popper[x-placement^="left"] .popper__arrow,
+    .tooltip[x-placement^="left"] .tooltip-arrow {
+        border-width: 5px 0 5px 5px;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        right: -5px;
+        top: calc(50% - 5px);
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+</style>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            editable: false,
+            navLinks: true, // can click day/week names to navigate views
+            eventLimit: true, // allow "more" link when too many events
+            eventRender: function(info) {
+                var tooltip = new Tooltip(info.el, {
+                    title: info.event.extendedProps.description,
+                    placement: 'top',
+                    trigger: 'hover',
+                    container: 'body'
+                });
+            },
+
+
+
+            events: {
+                url: '{{ route('c.loadevents') }}',
+                failure: function() {
+                    console.log('err');
+                }
+            },
+        });
+
+        calendar.setOption('locale', 'pl');
+
+        calendar.render();
+    });
+</script>
+<style>
+
+    #script-warning {
+        display: none;
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        padding: 0 10px;
+        line-height: 40px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12px;
+        color: red;
+    }
+
+    #loading {
+        display: none;
+        top: 10px;
+        right: 10px;
+    }
+
+    #calendar {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 10px;
+    }
+
+    p {
+        color: white;
+    }
+
+    @media (max-width: 576px){
+        #calosc {
+            display: none;
+        }
+        #blad {
+            display: block;
+            text-align:center;
+        }
+    }
+
+     @media (min-width: 577px){
+        #blad {
+            display: none;
+        }
+    }
+
+</style>
 @endsection

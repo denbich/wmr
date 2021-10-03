@@ -5,16 +5,16 @@
               </a>
               <div class="collapse" id="posts" style="">
                 <ul class="nav nav-sm flex-column">
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <span class="sidenav-normal"> Lista </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <span class="sidenav-normal"> Utwórz nowy </span>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="nav-item">
+                      <a href="{{ route('c.post.list') }}" class="nav-link">
+                        <span class="sidenav-normal"> Lista </span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('c.post.create') }}" class="nav-link">
+                        <span class="sidenav-normal"> Utwórz nowy </span>
+                      </a>
+                    </li>
+                  </ul>
               </div>
             </li>

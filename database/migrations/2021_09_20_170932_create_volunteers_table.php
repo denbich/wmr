@@ -17,7 +17,6 @@ class CreateVolunteersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->Integer('points');
-            $table->integer('telephone');
             $table->date('birth');
             $table->string('school');
             $table->string('tshirt_size');

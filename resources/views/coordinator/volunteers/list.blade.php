@@ -31,7 +31,7 @@
                 <div class="collapse show" id="volunteer">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{ route('c.v.search') }}" class="nav-link">
                         <span class="sidenav-normal"> Wyszukaj </span>
                       </a>
                     </li>
@@ -41,12 +41,12 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{ route('c.v.active') }}" class="nav-link">
                         <span class="sidenav-normal"> Aktywuj </span>
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{ route('c.v.birthday') }}" class="nav-link">
                         <span class="sidenav-normal"> Urodziny </span>
                       </a>
                     </li>
@@ -71,32 +71,7 @@
           </h6>
 
           <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ route('c.calendar') }}">
-                    <i class="far fa-calendar text-primary"></i>
-                    <span class="nav-link-text">Kalendarz</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('c.settings') }}">
-                    <i class="fas fa-cog text-primary"></i>
-                    <span class="nav-link-text">Ustawienia</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-info-circle text-primary"></i>
-                    <span class="nav-link-text">Informacje</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt text-primary"></i>
-                    <span class="nav-link-text">Wyloguj się</span>
-                </a>
-            </li>
-
-
+            @include('coordinator.include.other')
           </ul>
         </div>
       </div>
@@ -140,7 +115,7 @@
                 </div>
               </div>
                 <div class="card-body">
-                    <div class="table-responsive" data-toggle="list" data-list-values='["name", "firstlastname", "points"]'>
+                    <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
@@ -166,7 +141,7 @@
                                             </div>
                                         </th>
                                         <td>{{ $volunteer->user->firstname }} {{ $volunteer->user->lastname }}</td>
-                                        <td>{{ $volunteer->telephone }}</td>
+                                        <td>{{ $volunteer->user->telephone }}</td>
                                         <td>
                                             <a href="mailto:{{ $volunteer->user->email }}">{{ $volunteer->user->email }}</a>
                                         </td>
@@ -176,7 +151,7 @@
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            <a class="text-light" href="/coordinator/volunteer/id/{{ $volunteer->id }}">
+                                            <a href="/coordinator/volunteer/id/{{ $volunteer->id }}">
                                                 <i class="fas fa-search"></i>
                                             </a>
                                         </td>
@@ -185,6 +160,7 @@
                                     <h2 class="text-center text-danger">Brak wolontariuszy!</h2>
                                 @endforelse
                             </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

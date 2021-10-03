@@ -31,7 +31,7 @@
                 <div class="collapse show" id="volunteer">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{ route('c.v.search') }}" class="nav-link">
                         <span class="sidenav-normal"> Wyszukaj </span>
                       </a>
                     </li>
@@ -41,12 +41,12 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{ route('c.v.active') }}" class="nav-link">
                         <span class="sidenav-normal"> Aktywuj </span>
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{ route('c.v.birthday') }}" class="nav-link">
                         <span class="sidenav-normal"> Urodziny </span>
                       </a>
                     </li>
@@ -71,32 +71,7 @@
           </h6>
 
           <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ route('c.calendar') }}">
-                    <i class="far fa-calendar text-primary"></i>
-                    <span class="nav-link-text">Kalendarz</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('c.settings') }}">
-                    <i class="fas fa-cog text-primary"></i>
-                    <span class="nav-link-text">Ustawienia</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-info-circle text-primary"></i>
-                    <span class="nav-link-text">Informacje</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt text-primary"></i>
-                    <span class="nav-link-text">Wyloguj się</span>
-                </a>
-            </li>
-
-
+            @include('coordinator.include.other')
           </ul>
         </div>
       </div>
@@ -203,7 +178,7 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label">Numer telefonu</label>
-                          <p>{{ $volunteer->telephone }}</p>
+                          <p>{{ $volunteer->user->telephone }}</p>
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -225,11 +200,11 @@
                           <div class="form-group">
                             <label class="form-control-label">Płeć</label>
                             <p>
-                                @switch($volunteer->gender)
-                                    @case("m")
+                                @switch($volunteer->user->gender)
+                                    @case('m')
                                     {{ "Mężczyzna" }}
                                         @break
-                                    @case("f")
+                                    @case('f')
                                     {{ "Kobieta" }}
                                         @break
 

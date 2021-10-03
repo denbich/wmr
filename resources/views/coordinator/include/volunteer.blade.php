@@ -6,7 +6,7 @@
     <div class="collapse" id="volunteer" style="">
       <ul class="nav nav-sm flex-column">
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('c.v.search') }}" class="nav-link">
             <span class="sidenav-normal"> Wyszukaj </span>
           </a>
         </li>
@@ -16,12 +16,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('c.v.active') }}" class="nav-link">
             <span class="sidenav-normal"> Aktywuj </span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('c.v.birthday') }}" class="nav-link">
             <span class="sidenav-normal"> Urodziny </span>
           </a>
         </li>

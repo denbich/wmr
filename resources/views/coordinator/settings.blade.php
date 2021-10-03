@@ -55,7 +55,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('c.info') }}">
                     <i class="fas fa-info-circle text-primary"></i>
                     <span class="nav-link-text">Informacje</span>
                 </a>

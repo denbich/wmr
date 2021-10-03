@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.coordinator')
 
 @section('title')
 {{ __('index.dashboard.title') }}
@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="">
+              <a class="nav-link active" href="{{ route('c.dashboard') }}">
                 <i class="ni ni-tv-2 "></i>
                 <span class="nav-link-text">Panel</span>
               </a>
@@ -162,11 +162,11 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-8">
-          <div class="card bg-default">
+          <div class="card">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h5 class="h3 text-white mb-0">Statystyki zamówień</h5>
+                  <h5 class="h3 mb-0">Statystyki zamówień</h5>
                 </div>
                 <div class="col">
                   <ul class="nav nav-pills justify-content-end">
@@ -210,34 +210,53 @@
                   <h3 class="mb-0">Zapełnienie formularzy</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">Zobacz formularze</a>
+                  <a href="{{ route('c.form.list') }}" class="btn btn-sm btn-primary">Zobacz formularze</a>
                 </div>
               </div>
             </div>
             <div class="card-body">
-                <i class="round-flag-icon round-flag-pl"></i>
-                <div class="progress-wrapper pt-0">
-                    <div class="progress-info">
-                    <span class="badge badge-lg badge-pill badge-primary mb-1">Półmaraton księżycowy 2021</span>
-                      <div class="progress-percentage">
-                        <span>60%</span>
-                      </div>
+                @forelse ($forms as $form)
+                    <div class="progress-wrapper pt-0">
+                        <div class="progress-info">
+                        <a href="{{ route('c.form.show', [$form->id]) }}"><span class="badge badge-lg badge-pill badge-primary mb-1">{{ $form->form_translate->title }}</span></a>
+                        @php
+                            $p_count = 0;
+                            foreach($form->formposition as $position)
+                            {
+                                $p_count = $p_count + $position->max_volunteer;
+                            }
+                        $a = count($form->signedform)/$p_count;
+                        $b = $a * 100;
+                        $c = ceil($b);
+
+                        if ($c <= 25)
+                        {
+                            $class_bar = "bg-danger";
+
+                        } else if ($c <= 55)
+                        {
+                            $class_bar = "bg-warning";
+
+                        } else if ($c <= 99)
+                        {
+                            $class_bar = "bg-info";
+
+                        } else if ($c >= 100)
+                        {
+                            $class_bar = "bg-success";
+                        }
+                        @endphp
+                        <div class="progress-percentage">
+                            <span>{{ $c }}%</span>
+                        </div>
+                        </div>
+                        <div class="progress">
+                        <div class="progress-bar {{ $class_bar }}" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ $c }}%;"></div>
+                        </div>
                     </div>
-                    <div class="progress">
-                      <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                  <div class="progress-wrapper pt-0">
-                    <div class="progress-info">
-                    <span class="badge badge-lg badge-pill badge-primary mb-1">Bieg barbórkowy 2021</span>
-                      <div class="progress-percentage">
-                        <span>100%</span>
-                      </div>
-                    </div>
-                    <div class="progress">
-                      <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                    </div>
-                  </div>
+                @empty
+                    <h2 class="text-center text-danger">Brak aktywnych formularzy!</h2>
+                @endforelse
             </div>
           </div>
 
@@ -271,7 +290,7 @@
                 <p>Jeśli masz probem, propozycję bądź pytanie to śmiało pisz na adres:
                     <a target="_blank" rel="nofollow" href="mailto:admin@wolontariat.rybnik.pl">admin@wolontariat.rybnik.pl</a>
                 </p>
-                <a target="_blank" rel="nofollow" href="#"><i class="far fa-question-circle"></i> Centrum pomocy</a>
+                <!--<a target="_blank" rel="nofollow" href="#"><i class="far fa-question-circle"></i> Centrum pomocy</a>-->
               </div>
             </div>
           </div>

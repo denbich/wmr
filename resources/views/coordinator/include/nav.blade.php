@@ -7,7 +7,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-search"></i></span>
               </div>
-              <input class="form-control" placeholder="Szukaj" type="text">
+              <input class="form-control" placeholder="Szukaj (szukanie niedostępne)" type="text">
             </div>
           </div>
           <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
@@ -29,7 +29,7 @@
               <i class="ni ni-zoom-split-in"></i>
             </a>
           </li>
-          <li class="nav-item dropdown">
+          <!--<li class="nav-item dropdown">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="ni ni-bell-55"></i>
             </a>
@@ -131,7 +131,7 @@
               </div>
               <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
             </div>
-          </li>
+          </li>-->
 
           <li class="nav-item dropdown">
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -148,13 +148,13 @@
                     </span>
                     <small>Polish (Polski)</small>
                   </a>
-                  <a href="/language/en" class="col-4 my-2 shortcut-item text-center">
+                  <!--<a href="/language/en" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle">
                       <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/gb.svg" alt="">
                     </span>
                     <small>English</small>
                   </a>
-                  <!--<a href="/language/ua" class="col-4 my-2 shortcut-item text-center d-none">
+                  <a href="/language/ua" class="col-4 my-2 shortcut-item text-center d-none">
                       <span class="shortcut-media avatar rounded-circle">
                           <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/ua.svg" alt="">
                         </span>
@@ -176,19 +176,25 @@
                   <span class="h4 text-center text-dark w-100">Skróty</span>
               </div>
               <div class="row shortcuts px-4 py-2">
-                <a href="#!" class="col-4 my-2 shortcut-item text-center">
+                <a href="{{ route('c.calendar') }}" class="col-4 my-2 shortcut-item text-center">
                   <span class="shortcut-media avatar rounded-circle bg-gradient-red">
-                    <i class="ni ni-calendar-grid-58"></i>
+                    <i class="far fa-calendar-alt"></i>
                   </span>
-                  <small>Calendar</small>
+                  <small>Kalendarz</small>
                 </a>
-                <a href="#!" class="col-4 my-2 shortcut-item text-center">
+                <a href="{{ route('c.maps') }}" class="col-4 my-2 shortcut-item text-center">
+                    <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </span>
+                    <small>Mapa</small>
+                  </a>
+                <a href="{{ route('c.chat') }}" class="col-4 my-2 shortcut-item text-center">
                   <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
-                    <i class="ni ni-email-83"></i>
+                    <i class="fas fa-comments"></i>
                   </span>
-                  <small>Email</small>
+                  <small>Czat</small>
                 </a>
-                <a href="#!" class="col-4 my-2 shortcut-item text-center">
+                <!--<a href="#!" class="col-4 my-2 shortcut-item text-center">
                   <span class="shortcut-media avatar rounded-circle bg-gradient-info">
                     <i class="ni ni-credit-card"></i>
                   </span>
@@ -200,18 +206,13 @@
                   </span>
                   <small>Reports</small>
                 </a>
-                <a href="#!" class="col-4 my-2 shortcut-item text-center">
-                  <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
-                    <i class="ni ni-pin-3"></i>
-                  </span>
-                  <small>Maps</small>
-                </a>
+
                 <a href="#!" class="col-4 my-2 shortcut-item text-center">
                   <span class="shortcut-media avatar rounded-circle bg-gradient-yellow">
                     <i class="ni ni-basket"></i>
                   </span>
                   <small>Shop</small>
-                </a>
+                </a>-->
               </div>
             </div>
           </li>
@@ -244,10 +245,10 @@
                 <i class="fas fa-info-circle"></i>
                 <span>Informacje</span>
               </a>
-              <a href="#!" class="dropdown-item">
+              <!--<a href="#!" class="dropdown-item">
                 <i class="ni ni-support-16"></i>
                 <span>Support</span>
-              </a>
+              </a>-->
               <div class="dropdown-divider"></div>
               <a href="" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>

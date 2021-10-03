@@ -2,7 +2,7 @@
     <div class="row align-items-center justify-content-lg-between">
       <div class="col-lg-6">
         <div class="copyright text-center text-lg-left text-muted">
-          &copy; {{ date('Y') }} <a href="https://linktr.ee/denis.bichler" class="font-weight-bold ml-1" target="_blank">Denis Bichler for MOSiR Rybnik</a>
+          &copy; 2019 - {{ date('Y') }} <a href="https://linktr.ee/denis.bichler" class="font-weight-bold ml-1" target="_blank">Denis Bichler for MOSiR Rybnik</a>
         </div>
       </div>
       <div class="col-lg-6">

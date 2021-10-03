@@ -26,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'lastname',
         'gender',
         'photo_src',
+        'telephone',
         'agreement_src',
     ];
 
@@ -56,5 +57,25 @@ class User extends Authenticatable implements MustVerifyEmail
     public function volunteer()
     {
         return $this->hasOne(Volunteer::class);
+    }
+
+    public function author_form()
+    {
+        return $this->hasOne(Form::class);
+    }
+
+    public function signed_form()
+    {
+        return $this->hasMany(Translate_form::class);
+    }
+
+    public function prize_order()
+    {
+        return $this->belongsTo(Order_prize::class);
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
     }
 }

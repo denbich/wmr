@@ -19,7 +19,10 @@ class AddDataToUsersTable extends Migration
             $table->string('lastname');
             $table->string('gender');
             $table->text('photo_src');
+            $table->string('telephone');
             $table->text('agreement_src')->nullable();
+            $table->integer('condition');
+            $table->boolean('marketing_agreement');
         });
     }
 

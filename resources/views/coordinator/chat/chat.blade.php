@@ -71,7 +71,7 @@
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
+              <a href="{{ route('c.form.create') }}" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
             </div>
           </div>
         </div>
@@ -90,7 +90,8 @@
                 </div>
               </div>
                 <div class="card-body">
-                        <div class="row no-gutters">
+                    <h1 class="text-center text-danger">Czat jest nieczynny! Spróbuj później</h1>
+                        <div class="row no-gutters d-none">
                           <div class="col-md-4 border-right" >
                             <div class="settings-tray">
                               <img class="profile-image" src="{{ Auth::user()->photo_src }}" alt="Profile img">
