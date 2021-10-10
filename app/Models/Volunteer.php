@@ -16,7 +16,7 @@ class Volunteer extends Model
         'telephone',
         'birth',
         'school',
-        'thsirt_size',
+        'tshirt_size',
         'street',
         'house_number',
         'city',

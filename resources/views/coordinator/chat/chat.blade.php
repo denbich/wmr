@@ -90,7 +90,7 @@
                 </div>
               </div>
                 <div class="card-body">
-                    <h1 class="text-center text-danger">Czat jest nieczynny! Spróbuj później</h1>
+                    <h1 class="text-center text-danger">Czat jest niedostępny! Spróbuj później</h1>
                         <div class="row no-gutters d-none">
                           <div class="col-md-4 border-right" >
                             <div class="settings-tray">

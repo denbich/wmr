@@ -18,6 +18,34 @@ return [
             'visibility' => 'public',
         ],
 
+        'profiles' => [
+            'driver' => 'local',
+            'root' => storage_path('app/profiles'),
+            'url' => env('APP_URL').'/profiles',
+            'visibility' => 'public',
+        ],
+
+        'forms' => [
+            'driver' => 'local',
+            'root' => storage_path('app/forms'),
+            'url' => env('APP_URL').'/forms',
+            'visibility' => 'public',
+        ],
+
+        'prizes' => [
+            'driver' => 'local',
+            'root' => storage_path('app/prizes'),
+            'url' => env('APP_URL').'/prizes',
+            'visibility' => 'public',
+        ],
+
+        'agreements' => [
+            'driver' => 'local',
+            'root' => storage_path('app/agreements'),
+            'url' => env('APP_URL').'/agreements',
+            'visibility' => 'private',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -44,7 +72,11 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('profiles') => storage_path('app/public/profiles'),
+        public_path('profiles') => storage_path('app/profiles'),
+        public_path('agreements') => storage_path('app/agreements'),
+        public_path('forms') => storage_path('app/forms'),
+        public_path('prizes') => storage_path('app/prizes'),
+        //public_path('profiles') => storage_path('app/public/profiles'),
     ],
 
 ];

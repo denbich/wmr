@@ -5,6 +5,7 @@ namespace App\Http\Controllers\coordinator;
 use App\Models\Form;
 use App\Models\Calendar;
 use App\Models\Signed_form;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Position_form;
 use App\Models\Translate_form;
@@ -12,6 +13,7 @@ use Elibyy\TCPDF\Facades\TCPDF;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Translate_position_form;
+use Illuminate\Support\Facades\Storage;
 
 class CFormsController extends Controller
 {
@@ -72,17 +74,28 @@ class CFormsController extends Controller
             'stop' => 'required|date|after:start',
             'place_longitude_pol' => 'required',
             'place_latitude_pol' => 'required',
+            'icon' => 'required',
         ];
 
         $validator = array_merge($vali_options, $vali_positions);
 
         $validated = $request->validate($validator);
 
+        $image_64 = $request->icon;
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+        $image = str_replace($replace, '', $image_64);
+        $image = str_replace(' ', '+', $image);
+
+        $imageName = Str::random(100).time().'.'.$extension;
+        Storage::disk('forms')->put($imageName, base64_decode($image));
+
+        dd($imageName);
         $form = Form::create([
             'expiration' => $request->expiration,
             'place_longitude' => $request->place_longitude_pol,
             'place_latitude' => $request->place_latitude_pol,
-            'icon_src' => 'src',
+            'icon_src' => '/forms/'.$imageName,
             'tag' => 'MOSiR',
             'author_id' => Auth::id(),
             'condition' => '0',

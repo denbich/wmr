@@ -103,102 +103,102 @@
     <!-- Page content -->
 
     <div class="container-fluid mt--6">
-        <div class="card">
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0">Nowa nagroda </h3>
+            <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col-8">
+                    <h3 class="mb-0">Nowa nagroda </h3>
+                  </div>
                 </div>
               </div>
+                <div class="card-body">
+                    <div id="form">
+                        <form action="{{ route('c.prize.store') }}" method="post" role="form">
+                            @csrf
+                            <input type="hidden" name="locale" value="pl">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <h2 class="w-100 text-center mt-2">Podstawowe informacje</h2>
+                                    <div class="card-body pb-0" id="polish-form">
+                                        <div class="form-group">
+                                            <label class="required" for="title">Tytuł</label>
+                                            <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" maxlength="255" type="text" name="title" id="title" value="{{ old('title', '') }}" required>
+                                            @if($errors->has('title'))
+                                                <div class="text-danger w-100 d-block">
+                                                    {{ $errors->first('title') }}
+                                                </div>
+                                            @endif
+                                            <p id="counter_title" class="text-sm">0 / 255 znaków</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">Opis</label>
+                                            <textarea name="description" id="description"></textarea>
+                                            @if($errors->has('description'))
+                                                <div class="text-danger w-100 d-block">
+                                                    {{ $errors->first('description') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="required" for="category">Kategoria</label>
+                                            <input class="form-control {{ $errors->has('category') ? 'is-invalid' : '' }}" maxlength="255" type="text" name="category" id="category" value="{{ old('category', '') }}" required>
+                                            @if($errors->has('category'))
+                                                <div class="text-danger w-100 d-block">
+                                                    {{ $errors->first('category') }}
+                                                </div>
+                                            @endif
+                                            <p id="counter_category" class="text-sm">0 / 255 znaków</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="required" for="points">Wartość punktowa</label>
+                                            <input class="form-control {{ $errors->has('points') ? 'is-invalid' : '' }}" type="number" name="points" id="points" value="{{ old('points', '') }}" required>
+                                            @if($errors->has('points'))
+                                                <div class="text-danger w-100 d-block">
+                                                    {{ $errors->first('points') }}
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="required" for="quantity">Ilość sztuk</label>
+                                            <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number" name="quantity" id="quantity" value="{{ old('quantity', '') }}" required>
+                                            @if($errors->has('quantity'))
+                                                <div class="text-danger w-100 d-block">
+                                                    {{ $errors->first('quantity') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group px-4">
+                                        <h2 class="w-100 text-center">Ikona</h2>
+                                        <label for="upload_image" class="w-100">
+                                            <a class="btn btn-primary btn-icon w-100 text-white">
+                                                <span class="btn-inner--icon"><i class="far fa-images"></i></span>
+                                                <span class="btn-inner--text">Dodaj ikonę formularza</span>
+                                            </a>
+                                            <input type="file" name="image" class="image d-none" id="upload_image" accept="image/*">
+                                            <input type="hidden" name="icon" id="icon_photo" value="">
+                                        </label>
+                                        <p class="text-success text-center" id="text-photo"></p>
+                                        @if($errors->has('icon'))
+                                            <div class="text-danger w-100 d-block">
+                                                {{ $errors->first('icon') }}
+                                            </div>
+                                         @endif
+
+                                    </div>
+                                    <hr>
+                                    <div class="form-group px-4 w-100">
+                                        <button type="submit" class="btn btn-primary w-100">Stwórz nagrodę</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-              <div class="card-body">
-                  <div id="form">
-                      <form action="{{ route('c.prize.store') }}" method="post" role="form">
-                          @csrf
-                          <input type="hidden" name="locale" value="pl">
-                          <div class="row justify-content-center">
-                              <div class="col-lg-8">
-                                  <h2 class="w-100 text-center mt-2">Podstawowe informacje</h2>
-                                  <div class="card-body pb-0" id="polish-form">
-                                      <div class="form-group">
-                                          <label class="required" for="title">Tytuł</label>
-                                          <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" maxlength="255" type="text" name="title" id="title" value="{{ old('title', '') }}" required>
-                                          @if($errors->has('title'))
-                                              <div class="text-danger w-100 d-block">
-                                                  {{ $errors->first('title') }}
-                                              </div>
-                                          @endif
-                                          <p id="counter_title" class="text-sm">0 / 255 znaków</p>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="description">Opis</label>
-                                          <textarea name="description" id="description"></textarea>
-                                          @if($errors->has('description'))
-                                              <div class="text-danger w-100 d-block">
-                                                  {{ $errors->first('description') }}
-                                              </div>
-                                          @endif
-                                      </div>
-                                      <div class="form-group">
-                                          <label class="required" for="category">Kategoria</label>
-                                          <input class="form-control {{ $errors->has('category') ? 'is-invalid' : '' }}" maxlength="255" type="text" name="category" id="category" value="{{ old('category', '') }}" required>
-                                          @if($errors->has('category'))
-                                              <div class="text-danger w-100 d-block">
-                                                  {{ $errors->first('category') }}
-                                              </div>
-                                          @endif
-                                          <p id="counter_category" class="text-sm">0 / 255 znaków</p>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="required" for="points">Wartość punktowa</label>
-                                          <input class="form-control {{ $errors->has('points') ? 'is-invalid' : '' }}" type="number" name="points" id="points" value="{{ old('points', '') }}" required>
-                                          @if($errors->has('points'))
-                                              <div class="text-danger w-100 d-block">
-                                                  {{ $errors->first('points') }}
-                                              </div>
-                                          @endif
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="required" for="quantity">Ilość sztuk</label>
-                                          <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number" name="quantity" id="quantity" value="{{ old('quantity', '') }}" required>
-                                          @if($errors->has('quantity'))
-                                              <div class="text-danger w-100 d-block">
-                                                  {{ $errors->first('quantity') }}
-                                              </div>
-                                          @endif
-                                      </div>
-                                  </div>
-                                  <hr>
-                                  <div class="form-group px-4">
-                                      <h2 class="w-100 text-center">Ikona</h2>
-                                      <label for="upload_image" class="w-100">
-                                          <a class="btn btn-primary btn-icon w-100 text-white">
-                                              <span class="btn-inner--icon"><i class="far fa-images"></i></span>
-                                              <span class="btn-inner--text">Dodaj ikonę formularza</span>
-                                          </a>
-                                          <input type="file" name="image" class="image d-none" id="upload_image" accept="image/*">
-                                          <input type="hidden" name="icon" id="icon_photo" value="">
-                                      </label>
-                                      <p class="text-success text-center" id="text-photo"></p>
-                                      @if($errors->has('icon'))
-                                          <div class="text-danger w-100 d-block">
-                                              {{ $errors->first('icon') }}
-                                          </div>
-                                       @endif
-
-                                  </div>
-                                  <hr>
-                                  <div class="form-group px-4 w-100">
-                                      <button type="submit" class="btn btn-primary w-100">Stwórz nagrodę</button>
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-              </div>
-          </div>
 
         @yield('coordinator.include.footer')
       </div>
@@ -232,6 +232,33 @@
       </div>
     </div>
 </div>
+
+@endsection
+
+@section('script')
+
+<script>
+
+    var chars = $('#title').val().length;
+    $('#counter_title').html(chars +' / 255 znaków');
+
+    var chars = $('#category').val().length;
+    $('#counter_category').html(chars +' / 255 znaków');
+
+    $(document).ready(function() {
+
+            $('#title').on('keyup propertychange paste', function(){
+                var chars = $('#title').val().length;
+                $('#counter_title').html(chars +' / 255 znaków');
+            });
+
+            $('#category').on('keyup propertychange paste', function(){
+                var chars = $('#category').val().length;
+                $('#counter_category').html(chars +' / 255 znaków');
+            });
+    });
+
+</script>
 
 @endsection
 
@@ -316,35 +343,9 @@
 
   </script>
 
-
 @endsection
 
 @section('script')
-
-<script>
-
-    var chars = $('#title').val().length;
-    $('#counter_title').html(chars +' / 255 znaków');
-
-    var chars = $('#category').val().length;
-    $('#counter_category').html(chars +' / 255 znaków');
-
-    $(document).ready(function() {
-
-            $('#title').on('keyup propertychange paste', function(){
-                var chars = $('#title').val().length;
-                $('#counter_title').html(chars +' / 255 znaków');
-            });
-
-            $('#category').on('keyup propertychange paste', function(){
-                var chars = $('#category').val().length;
-                $('#counter_category').html(chars +' / 255 znaków');
-            });
-    });
-
-</script>
-
-
 <script>
     $(document).ready(function(){
 
@@ -405,8 +406,8 @@
 
 });
 </script>
-
 @endsection
+
 
 
 

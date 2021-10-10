@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\volunteer\VHomeController;
+use App\Http\Controllers\volunteer\VFormsController;
 use App\Http\Controllers\coordinator\CChatController;
 use App\Http\Controllers\coordinator\CHomeController;
 use App\Http\Controllers\coordinator\CFormsController;
@@ -39,11 +40,7 @@ Route::middleware('setlocale')->group(function () {
     Auth::routes(['verify' => true]);
     Route::get('/login-auth', [HomeController::class, 'loginauth']);
 
-    Route::middleware(['auth', 'admincheck'])->group(function () {
-        Route::prefix('admin')->group(function () {
-
-        });
-    });
+    Route::middleware(['auth', 'admincheck'])->group(function () {Route::prefix('admin')->group(function () {});});
 
     Route::middleware(['auth', 'coordinatorcheck', 'verified'])->group(function () {
         Route::prefix('coordinator')->group(function () {
@@ -101,6 +98,34 @@ Route::middleware('setlocale')->group(function () {
     Route::middleware(['auth', 'volunteercheck', 'verified'])->group(function () {
         Route::prefix('volunteer')->group(function () {
             Route::get('/', [VHomeController::class, 'dashboard'])->name('v.dashboard');
+            Route::get('/settings', [VHomeController::class, 'settings'])->name('v.settings');
+            Route::get('/profile', [VHomeController::class, 'profile'])->name('v.profile');
+            Route::get('/calendar', [VHomeController::class, 'calendar'])->name('v.calendar');
+            Route::get('/load-events', [VHomeController::class, 'load_events'])->name('v.loadevents');
+            Route::get('/info', [VHomeController::class, 'info'])->name('v.info');
+            Route::get('/maps', [VHomeController::class, 'maps'])->name('v.maps');
+
+            Route::prefix('/chat')->group(function() {
+
+            });
+
+            Route::prefix('/forms')->group(function() {
+                Route::get('/', [VFormsController::class, 'list'])->name('v.form.list');
+                Route::get('/archive', [VFormsController::class, 'archive'])->name('v.form.archive');
+                Route::get('/id/{id}', [VFormsController::class, 'form'])->name('v.form.show');
+                Route::post('/id/{id}', [VFormsController::class, 'signto']);
+                Route::post('/delete/{id}', [VFormsController::class, 'unsign'])->name('v.form.unsign');
+                Route::post('/certificate', [VFormsController::class, 'certificate'])->name('v.form.certificate');
+            });
+
+            Route::prefix('/prizes')->group(function() {
+
+            });
+
+            Route::prefix('/posts')->group(function() {
+
+            });
+
         });
     });
 

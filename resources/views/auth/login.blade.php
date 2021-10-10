@@ -38,11 +38,11 @@ class="bg-default"
             <div class="row">
                 <div class="col-lg-6 zdjecie-login"></div>
                 <div class="col-lg-6">
-                    <div class="card-header bg-transparent">
-                        <div class="text-center mt-2 h1">Witamy!</div>
-                        <div class="text-center text-muted mt-2 h4">Zaloguj się do ISOW!</div>
+                    <div class="card-header bg-transparent text-center">
+                        <a href="http://wmr.local/login"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
+                        <div class="mt-2 h1">Zaloguj się do ISOW!</div>
                       </div>
-                      <div class="card-body px-lg-5 py-lg-5">
+                      <div class="card-body pt-lg-3 pb-lg-4 px-lg-5">
                         <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf
                           <div class="form-group mb-3">
@@ -80,28 +80,55 @@ class="bg-default"
                           <div class="custom-control custom-control-alternative custom-checkbox">
                             <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label class="custom-control-label" for="remember">
-                              <span class="text-muted">Remember me</span>
+                              <span class="text-muted">Zapamiętaj mnie</span>
                             </label>
                           </div>
                           <div class="text-center">
-                            <button type="submit" class="btn btn-primary my-4">Zaloguj się</button>
+                            <button type="submit" class="btn btn-primary mt-3 mb-1 w-100">Zaloguj się</button>
                           </div>
                         </form>
 
-                        <div class="text-center text-muted">
-                            <table class="w-100">
-                                <tbody><tr>
-                                  <td><hr></td>
-                                  <td style="width:1px; padding: 0 0px; white-space: nowrap;">LUB</td>
-                                  <td><hr></td>
-                                </tr>
-                              </tbody></table>
-                          </div>
-                          <div class="btn-wrapper text-center mt-4">
-                            <a href="#" class="btn btn-neutral btn-icon">
+                        <table class="w-100">
+                            <tbody><tr>
+                              <td><hr></td>
+                              <td style="width:1px; padding: 0 10px; white-space: nowrap;">LUB</td>
+                              <td><hr></td>
+                            </tr>
+                          </tbody></table>
+                          <div class="btn-wrapper text-center pb-3">
+                            <button href="#" class="btn btn-neutral btn-icon"><!--  disabled -->
                               <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
                               <span class="btn-inner--text">Zaloguj się za pomocą Google</span>
-                            </a>
+                            </button>
+                          </div>
+                          <hr class="my-2">
+                          <div class="text-center py-2">
+                            <h2><strong>Wybierz język</strong></h2>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <span class="shortcut-media avatar rounded-circle">
+                                        <a href="/language/pl"><img src="{{ URL::asset('lang/165-poland.svg') }}"></a>
+                                    </span>
+                                    
+                                </div>
+                                <div class="col">
+                                    <span class="shortcut-media avatar rounded-circle">
+                                        <a href="/language/en"><img src="{{ URL::asset('lang/110-united kingdom.svg') }}"></a>
+                                    </span>
+                                    
+                                </div>
+                                <div class="col d-none">
+                                    <a href="/language/de"><img src="{{ URL::asset('lang/208-germany.svg') }}" alt="" class="w-75"></a>
+                                </div>
+                                <div class="col d-none">
+                                    <a href="/language/ua"><img src="{{ URL::asset('lang/198-ukraine.svg') }}" alt="" class="w-75"></a>
+                                </div>
+                            </div>
+                            <a class="text-danger d-none" href="">Więcej języków...</a>
+                        </div>
+                          <div class="text-center text-sm mt-2">
+                            <a href="{{ route('password.request') }}" class="mx-2">Zapomniałeś hasła?</a> |
+                            <a href="{{ route('register') }}" class="mx-2">Utwórz nowe konto</a>
                           </div>
                       </div>
                 </div>
@@ -111,10 +138,10 @@ class="bg-default"
           </div>
           <div class="row mt-3">
             <div class="col-6">
-              <a href="#" class="text-light"><small>Zapomniałeś hasła?</small></a>
+
             </div>
             <div class="col-6 text-right">
-              <a href="#" class="text-light"><small>Utwórz nowe konto</small></a>
+
             </div>
           </div>
       </div>
@@ -126,23 +153,20 @@ class="bg-default"
       <div class="row align-items-center justify-content-xl-between">
         <div class="col-xl-6">
           <div class="copyright text-center text-xl-left text-muted">
-            &copy; {{ date('Y') }} <a href="https://facebook.com/denis.bichler" class="font-weight-bold ml-1" target="_blank">Denis Bichler</a>
+            &copy; 2019 - {{ date('Y') }} <a href="https://facebook.com/denis.bichler" class="font-weight-bold ml-1" target="_blank">Denis Bichler for MOSiR Rybnik</a>
           </div>
         </div>
         <div class="col-xl-6">
           <ul class="nav nav-footer justify-content-center justify-content-xl-end">
             <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-            </li>
+                <a href="" class="nav-link" target="_blank">Regulamin wolontariatu</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link" target="_blank">Kodeks Wolontariuszy</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link" target="_blank">Polityka Prywatności</a>
+              </li>
           </ul>
         </div>
       </div>
@@ -150,5 +174,6 @@ class="bg-default"
   </footer>
 
 @endsection
+
 
 

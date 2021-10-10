@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\coordinator;
 
 use App\Models\Prize;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Order_prize;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Models\Translate_form;
 use App\Models\Translate_prize;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class CPrizesController extends Controller
 {
@@ -31,12 +33,22 @@ class CPrizesController extends Controller
             'category' => 'required|max:255',
             'points' => 'required|numeric',
             'quantity' => 'required|numeric',
+            'icon' => 'required',
         ]);
+
+        $image_64 = $request->icon;
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+        $image = str_replace($replace, '', $image_64);
+        $image = str_replace(' ', '+', $image);
+
+        $imageName = Str::random(100).time().'.'.$extension;
+        Storage::disk('prizes')->put($imageName, base64_decode($image));
 
         $prize = Prize::create([
             'quantity' => $request->quantity,
             'points' => $request->points,
-            'icon_src' => 'https://panel.wolontariat.rybnik.pl/zdjecia/nag/KZpPxSIT0XdFFqII5iEtA0c5PwQUqukbzMkXY9lkGOuZSTVdiBAvkfMfs86kB0Imo6d6Q8pkmyqYYuu1xPEGbTMSkt3WwdCQK92B1612354027.png',
+            'icon_src' => '/prizes/'.$imageName,
         ]);
 
         $prize_t = Translate_prize::create([

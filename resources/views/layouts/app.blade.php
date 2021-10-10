@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="{{ asset('css/calendar.css') }}" type="text/css">
   <script src="/js/maps.js"></script>
   <script src="{{ asset('js/main.js') }}"></script>
+  
 
 <style>
     .zdjecie-login{
@@ -54,6 +55,8 @@
     <script src="/assets/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="/assets/vendor/chart.js/dist/Chart.extension.js"></script>
     <script src="/assets/js/argon.js"></script> <!-- ?v=1.2.0 -->
+    
+
 
     @yield('script')
 
