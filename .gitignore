@@ -1,5 +1,6 @@
 npm-debug.log
 yarn-error.log
+routes/web.php
 
 # Laravel 4 specific
 bootstrap/compiled.php
