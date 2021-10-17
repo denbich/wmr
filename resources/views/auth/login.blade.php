@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('index.login.title') }}
+{{ __('Zaloguj się') }}
 @endsection
 
 @section('body')
@@ -10,11 +10,7 @@ class="bg-default"
 
 @section('content')
 
-<!-- Navbar -->
-
-  <!-- Main content -->
   <div class="main-content">
-    <!-- Header -->
     <div class="header bg-gradient-primary py-5 py-lg-6 pt-lg-7">
       <div class="container">
         <div class="header-body text-center mb-7">
@@ -145,7 +141,7 @@ class="bg-default"
                             </div>
                             <a class="text-danger" href="">Więcej języków...</a>
                         </div>
-                        
+
                           <div class="text-center text-sm mt-2">
                             <a href="{{ route('password.request') }}" class="mx-2">Zapomniałeś hasła?</a> |
                             <a href="{{ route('register') }}" class="mx-2">Utwórz nowe konto</a>
@@ -153,21 +149,10 @@ class="bg-default"
                       </div>
                 </div>
             </div>
-
-
-          </div>
-          <div class="row mt-3">
-            <div class="col-6">
-
-            </div>
-            <div class="col-6 text-right">
-
-            </div>
           </div>
       </div>
     </div>
   </div>
-  <!-- Footer -->
   <footer class="py-5" id="footer-main">
     <div class="container">
       <div class="row align-items-center justify-content-xl-between">
