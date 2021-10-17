@@ -34,24 +34,10 @@ class="bg-default"
         <div class="col-lg-7 col-md-8">
           <div class="card bg-secondary border-0">
             <div class="card-header bg-transparent pb-3 text-center">
-                <a href="http://wmr.local/login"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
+                <a href="{{ route('home') }}"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
                 <div class="mt-2 h1">Zarejestruj się do ISOW!</div>
-              <!--<div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
-              <div class="text-center">
-                <a href="#" class="btn btn-neutral btn-icon mr-4">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
-              </div>-->
             </div>
             <div class="card-body px-lg-5 py-lg-5">
-              <!--<div class="text-center text-muted mb-4">
-                <small>Or sign up with credentials</small>
-              </div>-->
               <form method="post" action="{{ route('register') }}" role="form" id="register-form" enctype="multipart/form-data">
               @csrf
                 <div class="form-group">
@@ -59,7 +45,7 @@ class="bg-default"
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Imię" type="text" name="firstname" value="{{ old('firstname', '') }}" max="255" >
+                    <input class="form-control" placeholder="Imię" type="text" name="firstname" value="{{ old('firstname', '') }}" max="255" required>
                   </div>
                 @error('firstname')
                     <span class="text-danger small" role="alert">
@@ -72,7 +58,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Nazwisko" type="text" name="lastname" value="{{ old('lastname', '') }}" max="255" >
+                      <input class="form-control" placeholder="Nazwisko" type="text" name="lastname" value="{{ old('lastname', '') }}" max="255" required>
                     </div>
                     @error('lastname')
                     <span class="text-danger small" role="alert">
@@ -85,7 +71,7 @@ class="bg-default"
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Hasło" type="password" name="password" max="255" >
+                    <input class="form-control" placeholder="Hasło" type="password" name="password" max="255" required>
                   </div>
                   @error('password')
                     <span class="text-danger small" role="alert">
@@ -101,7 +87,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Powtórz hasło" type="password" name="password_confirmation" max="255" >
+                      <input class="form-control" placeholder="Powtórz hasło" type="password" name="password_confirmation" max="255" required>
                     </div>
                     @error('repeat_password')
                     <span class="text-danger small" role="alert">
@@ -128,7 +114,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Numer telefonu" type="tel" name="telephone" value="{{ old('telephone', '') }}" max="255" >
+                      <input class="form-control" placeholder="Numer telefonu" type="tel" name="telephone" value="{{ old('telephone', '') }}" max="255" required>
                     </div>
                     @error('telephone')
                         <span class="text-danger small" role="alert">
@@ -141,7 +127,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Nazwa szkoły" type="text" name="school" value="{{ old('school', '') }}" max="255" >
+                      <input class="form-control" placeholder="Nazwa szkoły" type="text" name="school" value="{{ old('school', '') }}" max="255" required>
                     </div>
                     <p class="text-center"><small>Jeśli jesteś osobą pracującą/niepracującą wpisz 'Brak'</small></p>
                     @error('school')
@@ -150,12 +136,12 @@ class="bg-default"
                         </span>
                     @enderror
                   </div>
-                  <div class="form-group d-none">
+                  <div class="form-group">
                     <div class="input-group input-group-merge input-group-alternative mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Numer ICE" type="tel">
+                      <input class="form-control" placeholder="Numer ICE" type="tel" name="ice" value="{{ old('ice', '') }}" max="255" >
                     </div>
                     <p class="text-center"><small>ICE to skrót informujący, do kogo powinno się zadzwonić w razie nagłego wypadku.</small></p>
                   </div>
@@ -163,7 +149,7 @@ class="bg-default"
                   <div class="row">
                     <div class="form-group col-lg-6">
                         <div class="input-group input-group-merge input-group-alternative mb-3">
-                          <input class="form-control" placeholder="Ulica" type="text" name="street" value="{{ old('street', '') }}" max="255" >
+                          <input class="form-control" placeholder="Ulica" type="text" name="street" value="{{ old('street', '') }}" max="255" required>
                         </div>
                         @error('street')
                         <span class="text-danger small" role="alert">
@@ -173,7 +159,7 @@ class="bg-default"
                       </div>
                       <div class="form-group col-lg-6">
                         <div class="input-group input-group-merge input-group-alternative mb-3">
-                          <input class="form-control" placeholder="Numer domu / mieszkania" type="text" name="house_number" value="{{ old('house_number', '') }}" max="255" >
+                          <input class="form-control" placeholder="Numer domu / mieszkania" type="text" name="house_number" value="{{ old('house_number', '') }}" max="255" required>
                         </div>
                         @error('house_number')
                         <span class="text-danger small" role="alert">
@@ -187,7 +173,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-home"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Miasto" type="text" name="city" value="{{ old('city', '') }}" max="255" >
+                      <input class="form-control" placeholder="Miasto" type="text" name="city" value="{{ old('city', '') }}" max="255" required>
                     </div>
                     @error('city')
                         <span class="text-danger small" role="alert">
@@ -199,7 +185,7 @@ class="bg-default"
                   <div class="form-group">
                     <label for="tshirt_size">Rozmiar Koszulki</label>
                       <div class="input-group input-group-merge input-group-alternative mb-3">
-                        <select class="form-control" id="tshirt_size" name="tshirt_size">
+                        <select class="form-control" id="tshirt_size" name="tshirt_size" required>
                             <option value="XS">XS</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
@@ -217,7 +203,7 @@ class="bg-default"
                 <div class="form-group">
                     <label for="birth">Data urodzenia</label>
                     <div class="input-group input-group-merge input-group-alternative mb-3">
-                        <input type="date" class="form-control" name="birth" value="{{ old('birth', '') }}" >
+                        <input type="date" class="form-control" name="birth" value="{{ old('birth', '') }}" required>
                       </div>
                       @error('birth')
                         <span class="text-danger small" role="alert">
@@ -228,11 +214,11 @@ class="bg-default"
                 <div class="form-group">
                     <label for="Gender">Płeć</label><br>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="gender_f" name="gender" class="custom-control-input" value="f" >
+                        <input type="radio" id="gender_f" name="gender" class="custom-control-input" value="f" required>
                         <label class="custom-control-label" for="gender_f">Kobieta</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="gender_m" name="gender" class="custom-control-input" value="m" >
+                        <input type="radio" id="gender_m" name="gender" class="custom-control-input" value="m" required>
                         <label class="custom-control-label" for="gender_m">Mężczyzna</label>
                       </div>
                 </div>
@@ -250,7 +236,7 @@ class="bg-default"
                             <span class="btn-inner--text">Dodaj Zdjęcie profilowe</span>
                         </a>
                         <input type="file" name="image" class="image d-none" id="upload_image" accept="image/*">
-                        <input type="hidden" name="profile" id="profile_photo" value="">
+                        <input type="hidden" name="profile" id="profile_photo" value="" required>
                     </label>
                     <p class="text-success text-center" id="text-photo"></p>
                     @error('profile')
@@ -265,8 +251,8 @@ class="bg-default"
                         <a href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_pelnoletni.pdf" target="_blank">pełnoletni</a> |
                         <a href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_niepelnoletni.pdf" target="_blank">niepełnoletni</a>
                     </label>
-                    <input type="file" class="form-control" accept=".pdf" name="agreement">
-                    <small>Maksymalny rozmiar pliku: 5MB</small>
+                    <input type="file" class="form-control" accept=".pdf" name="agreement" required>
+                    <small>Maksymalny rozmiar pliku: 5MB</small><br>
                     @error('agreement')
                         <span class="text-danger small" role="alert">
                             <strong>{{ $message }}</strong>
@@ -276,7 +262,7 @@ class="bg-default"
                 <div class="row mt-3 mb-1">
                   <div class="col-12">
                     <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" name="terms" >
+                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" name="terms" required>
                       <label class="custom-control-label" for="customCheckRegister">
                         <span class="text-muted">Akceptuję <a href="https://wolontariat.rybnik.pl/pliki/regulamin_wolontariatu_MOSiR_Rybnik.pdf" target="_blank">Regulamin</a> i <a href="https://wolontariat.rybnik.pl/pliki/kodeks_wolontariuszy_MOSiR_Rybnik.pdf" target="_blank">Kodeks Wolontariusza</a></span>
                       </label>
@@ -289,9 +275,9 @@ class="bg-default"
                     @enderror
                 </div>
                 <div class="text-center mt-4">
-                    {!! htmlFormSnippet() !!}
+                    <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
                     @error('g-recaptcha-response')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger small text-left" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror

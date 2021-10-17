@@ -34,7 +34,7 @@ Route::get('language/{locale}', function($locale) {
 
 Route::middleware('setlocale')->group(function () {
 
-    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Auth::routes(['verify' => true]);
 
@@ -43,6 +43,8 @@ Route::middleware('setlocale')->group(function () {
         Route::get('/new-agreement', [HomeController::class, 'new_agreement'])->middleware('volunteercheck')->name('new.agreement');
         Route::post('/new-agreement', [HomeController::class, 'update_agreement']);
     });
+
+
 
     Route::middleware(['auth', 'admincheck'])->group(function () {Route::prefix('admin')->group(function () {});});
 
