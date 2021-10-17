@@ -21,6 +21,7 @@ class AddDataToUsersTable extends Migration
             $table->text('photo_src');
             $table->string('telephone');
             $table->text('agreement_src')->nullable();
+            $table->date('agreement_date')->nullable();
             $table->integer('condition');
             $table->boolean('marketing_agreement');
         });

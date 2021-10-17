@@ -14,7 +14,9 @@ class VFormsController extends Controller
 {
     public function list()
     {
-        $forms = Form::with(['form_translate'])->withCount('signed_form')->get();
+        $forms = Form::with(['form_translate', 'calendar'])->whereHas('calendar', function ($query) {
+            return $query->where('end', '<', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' + 7 days')));
+        })->withCount('signed_form')->get();
 
         return view('volunteer.forms.list', ['forms' => $forms]);
 
@@ -30,9 +32,16 @@ class VFormsController extends Controller
             ['form_id', '=', $id],
         ])->with(['post_form', 'trans_position'])->first();
 
-        dd($form);
-
         return view('volunteer.forms.form', ['form' => $form,'form_positions' => $form_positions, 'signed_volunteers' => $signed_volunteers, 'signed_volunteer' => $signed_volunteer]);
+    }
+
+    public function archive()
+    {
+        $forms = Form::with(['form_translate', 'calendar'])->whereHas('calendar', function ($query) {
+            return $query->where('end', '>', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' + 7 days')));
+        })->withCount('signed_form')->get();
+
+        return view('volunteer.forms.archive', ['forms' => $forms]);
     }
 
     public function signto(Request $request, $id)
@@ -93,12 +102,12 @@ class VFormsController extends Controller
                 $p = array("Odbył", "realizował", "mu", "Wykazał", "przyczynił");
             }
 
-        //$pdf::Image('https://panel.wolontariat.rybnik.pl/assets/img/herb-rybnika-k.png', '', '15', '', 17, 'PNG');
+            //$pdf::Image('https://panel.wolontariat.rybnik.pl/assets/img/herb-rybnika-k.png', '', '15', '', 17, 'PNG');
             //$pdf::Image('https://panel.wolontariat.rybnik.pl/assets/img/logo-wmr.png', '', '', '', 23, 'PNG', '', '', false, 300, 'C', false, false, 1, false, false, false);
             //$pdf::Image('https://wolontariat.rybnik.pl/assets/images/4cfc1f8e1d2bd343736a91af28784171_mosirlogo.png', '', '16', '', 13, 'PNG', '', '', false, 300, 'R', false, false, 1, false, false, false);
             $html = '
             <p style="text-align:right;">Rybnik, dnia '.date("d.m.Y", strtotime($form->calendar->end)).'r. </p>
-            <p style="text-align:right">Zaświadczenie nr '.$signed->id.'</p>
+            <p style="text-align:right">Zaświadczenie nr '.base_convert($signed->id, 10, 16).'/2021</p>
             <p></p>
             <p style="text-align:center">Zaświadcza się, że</p>
             <p></p>
@@ -125,7 +134,7 @@ class VFormsController extends Controller
             $pdf::writeHTML($text11, true, false, true, false, '');
             $pdf::writeHTML($text2, true, false, true, false, '');
 
-        $pdf::Output('hello.pdf');
+        $pdf::Output('zaswiadczenie.pdf');
     }
 
 }

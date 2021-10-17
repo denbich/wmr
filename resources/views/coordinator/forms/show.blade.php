@@ -98,10 +98,25 @@
               <div class="card">
                 <div class="card-body">
                     <h3 class="text-center">Opcje</h3>
+                    @if ($form->expiration <= date('Y-m-d H:i:s'))
+                        @if ($count['z'] > 0)
+                            <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#Modalstart">Wznów zapisy</button>
+                            <a href="{{ route('c.form.positions', [$form->id]) }}" class="btn btn-primary w-100 my-2">Przydziel stanowiska</a>
+                        @else
+                            @if ($count['o'] > 0)
+                                <a href="{{ route('c.form.positions', [$form->id]) }}" class="btn btn-primary w-100 my-2">Przydziel stanowiska</a>
+                                <a href="{{ route('c.form.presence', [$form->id]) }}" class="btn btn-primary w-100 my-2">Przydziel obecność</a>
+                            @else
+                            <a href="{{ route('c.form.viewpresence', [$form->id]) }}" class="btn btn-primary w-100 my-2">Sprawdź obecność</a>
+                            @endif
+                        @endif
+                    @else
+                            <button type="submit" class="btn btn-success w-100 my-2" data-toggle="modal" data-target="#stopmodal">Zakończ zapisy</button>
+                    @endif
                     <hr class="my-2">
-                    <button class="btn btn-primary w-100 my-2">Utwórz post</button>
+                    <a href="{{ route('c.post.create') }}" class="btn btn-primary w-100 my-2">Utwórz post</a>
                     <button class="btn btn-primary w-100 my-2" disabled>Generator identyfikatorów</button>
-                    <button class="btn btn-primary w-100 my-2">Lista wolontariuszy</button>
+                    <a href="{{ route('c.form.volunteers', [$form->id]) }}" class="btn btn-primary w-100 my-2">Lista wolontariuszy</a>
                     <hr class="my-2">
                     <a href="{{ url('/coordinator/forms', [$form->id, 'edit']) }}" class="btn btn-success w-100 my-2 text-white">Edytuj formularz</a>
                     <button class="btn btn-danger w-100 my-2" data-toggle="modal" data-target="#deletemodal">Usuń formularz</button>
@@ -118,6 +133,56 @@
                   </div>
                 </div>
                 <div class="card-body">
+                    <div id="alerts">
+                        @error('end')
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span class="alert-text"><strong>Błąd!</strong> {{ $message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @enderror
+                    @if (session('succes_start'))
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="alert-text"><strong>Sukces!</strong> Zapisy zostały wznowione!</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @if (session('succes_stop'))
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="alert-text"><strong>Sukces!</strong> Zapisy zostały zakończone!</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @if (session('succes_presence'))
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="alert-text"><strong>Sukces!</strong> Obecność została zapisana!</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    </div>
                     <div class="row pt-2">
                         <div class="col-md-3 w-100">
                             <img src="{{ $form->icon_src }}" alt="" class="w-100">
@@ -228,6 +293,60 @@
 
         @yield('coordinator.include.footer')
       </div>
+  </div>
+
+  <div class="modal fade" id="Modalstart" tabindex="-1" role="dialog" aria-labelledby="startModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+      <form action="{{ route('c.form.startsign', [$form->id]) }}" method="post">
+        @csrf
+        <div class="modal-header">
+          <h5 class="modal-title" id="startModalLabel">Wznów zapisy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="end">Wybierz datę do kiedy mają trwać zapisy</label>
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <input type="datetime-local" id="end" class="form-control" name="end" required>
+                  </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+          <button type="submit" class="btn btn-primary">Zatwierdź</button>
+        </div>
+
+    </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="stopmodal" tabindex="-1" role="dialog" aria-labelledby="stopModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="stopModalLabel">Kończenie zapisów</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3 class="w-100 text-wrap text-center">Czy jesteś pewnien, że chcesz zakończyć zapisy?</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+          <form action="{{ url('/coordinator/forms/stop-sign', [$form->id]) }}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-danger">Zakończ</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">

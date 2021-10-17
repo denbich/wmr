@@ -96,18 +96,17 @@
     <!-- Page content style="width: 18rem;" -->
 
     <div class="container-fluid mt--6">
-        @if (session('delete_post') == true)
-                    @php session()->forget('delete_post'); @endphp
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <span class="alert-text"><strong>Sukces!</strong> Post został usunięty pomyślnie!</span>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                    @if (session('delete_post') == true)
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="alert-text"><strong>Sukces!</strong> Post został usunięty pomyślnie!</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endif
         <div class="row">
             @forelse ($posts as $post)
@@ -130,9 +129,7 @@
 
         </div>
 
-
-
-        @yield('coordinator.include.footer')
+        @include('volunteer.include.footer')
       </div>
   </div>
 

@@ -96,7 +96,7 @@
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
+              <a href="{{ route('c.form.create') }}" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
             </div>
           </div>
         </div>
@@ -115,14 +115,42 @@
                 </div>
               </div>
                 <div class="card-body">
-                    @isset($activation)
-                    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                        <span class="alert-text"> <strong>Sukces!</strong> {{ $activation->name }} został aktywowany!</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    @endisset
+                    @if (session('activation') == true)
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="alert-text"><strong>Sukces!</strong> Wolontariusz został aktywowany!</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if (session('deactivation') == true)
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="alert-text"><strong>Sukces!</strong> Wolontariusz został odrzucony!</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @error('date')
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span class="alert-text"><strong>Błąd!</strong> {{ $message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @enderror
                     @if (count($volunteers) > 0)
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
@@ -150,28 +178,88 @@
                                             </div>
                                         </th>
                                         <td>{{ $volunteer->user->firstname }} {{ $volunteer->user->lastname }}</td>
-                                        <td>{{ $volunteer->telephone }}</td>
+                                        <td>{{ $volunteer->user->telephone }}</td>
                                         <td>
                                             <a href="mailto:{{ $volunteer->user->email }}">{{ $volunteer->user->email }}</a>
                                         </td>
                                         <td class="text-center">
-                                            <a href=""><i class="fas fa-search"></i></a>
+                                            @php
+                                                $code = substr($volunteer->user->firstname, 0, 1).substr($volunteer->user->lastname, 0, 1).date('dm', strtotime($volunteer->user->created_at)).$volunteer->user->gender.date('dm', strtotime($volunteer->user->agreement_date)).$volunteer->user->id;
+                                            @endphp
+                                            <a href="{{ route('c.v.agreement', [$code]) }}"><i class="fas fa-search"></i></a>
                                         </td>
                                         <td class="text-center">
                                             <div class="row">
                                                 <div class="col">
-                                                    <form action="{{ route('c.v.active') }}" method="post" id="active-form">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{ $volunteer->user->id }}">
-                                                        <a onclick="document.getElementById('active-form').submit();" class="text-success">
-                                                            <i class="fas fa-check"></i>
-                                                        </a>
-                                                    </form>
+                                                    <a href="#activemodal{{ $volunteer->id }}" class="text-success" data-toggle="modal" data-target="#activemodal{{ $volunteer->id }}">
+                                                        <i class="fas fa-check"></i>
+                                                    </a>
+                                                    <div class="modal fade" id="activemodal{{ $volunteer->id }}" tabindex="-1" role="dialog" aria-labelledby="activeModalLabel{{ $volunteer->id }}" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title" id="activeModalLabel{{ $volunteer->id }}">Aktywuj wolontariusza</h5>
+                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                              </button>
+                                                            </div>
+                                                            <form action="{{ route('c.v.active') }}" method="post">
+                                                                @csrf
+                                                                <input type="hidden" name="id" value="{{ $volunteer->user->id }}">
+                                                                <div class="modal-body">
+                                                                    <h3>Uzupełnij datę wygaśnięcia zgody:</h3>
+                                                                    <div class="form-group">
+                                                                        <div class="input-group input-group-merge input-group-alternative">
+                                                                            <input type="date" name="date" id="" class="form-control" required>
+                                                                        </div>
+                                                                      </div>
+                                                                      <a href="{{ route('c.v.agreement', [$code]) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Zobacz zgodę</a>
+                                                                  </div>
+                                                                  <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Zatwierdź</button>
+                                                                  </div>
+                                                            </form>
+                                                          </div>
+                                                        </div>
+                                                      </div>
                                                 </div>
                                                 <div class="col">
-                                                    <a href="#dactive" class="text-danger" data-toggle="modal" data-target="#dactive">
+                                                    <a href="#dactivemodal{{ $volunteer->id }}" class="text-danger" data-toggle="modal" data-target="#dactivemodal{{ $volunteer->id }}">
                                                         <i class="fas fa-times"></i>
                                                     </a>
+                                                    <div class="modal fade" id="dactivemodal{{ $volunteer->id }}" tabindex="-1" role="dialog" aria-labelledby="dactiveModalLabel{{ $volunteer->id }}" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title" id="dactiveModalLabel{{ $volunteer->id }}">Odrzuć wolontariusza</h5>
+                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                              </button>
+                                                            </div>
+                                                            <form action="{{ route('c.v.dactive') }}" method="post">
+                                                                @csrf
+                                                                <input type="hidden" name="id" value="{{ $volunteer->user->id }}">
+                                                                <div class="modal-body">
+                                                                    <h3>Wybierz powód odrzucenia:</h3>
+                                                                    <div class="form-group">
+                                                                        <div class="input-group input-group-merge input-group-alternative">
+                                                                            <select name="reason" id="" class="form-control">
+                                                                                <option value="1">Zła zgoda</option>
+                                                                                <option value="other">Inny...</option>
+                                                                            </select>
+                                                                        </div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                                                                    <button type="submit" class="btn btn-primary">Zatwierdź</button>
+                                                                  </div>
+                                                            </form>
+
+                                                          </div>
+                                                        </div>
+                                                      </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -189,37 +277,6 @@
       </div>
   </div>
 
-@endsection
-
-@section('script')
-<div class="modal fade" id="dactive" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Odrzuć wolontariusza</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form action="{{ route('c.v.active') }}" method="post">
-            @csrf
-            <div class="modal-body">
-                <h3>Wybierz powód odrzucenia:</h3>
-                    <div class="form-group">
-                        <select name="reason" id="" class="form-control">
-                          <option value="1">Zła zgoda</option>
-                        </select>
-                    </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Zatwierdź</button>
-              </div>
-        </form>
-
-      </div>
-    </div>
-  </div>
 @endsection
 
 

@@ -110,7 +110,6 @@
                         <span class="btn-inner--text">Archiwum</span>
                     </a>
                     @if (session('delete_form') == true)
-                    @php session()->forget('delete_form'); @endphp
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">

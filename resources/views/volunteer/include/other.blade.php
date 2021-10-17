@@ -1,18 +1,18 @@
 <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="{{ route('v.calendar') }}">
         <i class="far fa-calendar text-primary"></i>
         <span class="nav-link-text">Kalendarz</span>
     </a>
 </li>
 
 <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="{{ route('v.settings') }}">
         <i class="fas fa-cog text-primary"></i>
         <span class="nav-link-text">Ustawienia</span>
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="{{ route('v.info') }}">
         <i class="fas fa-info-circle text-primary"></i>
         <span class="nav-link-text">Informacje</span>
     </a>

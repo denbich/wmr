@@ -6,10 +6,13 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\volunteer\VChatController;
 use App\Http\Controllers\volunteer\VHomeController;
 use App\Http\Controllers\volunteer\VFormsController;
+use App\Http\Controllers\volunteer\VPostsController;
 use App\Http\Controllers\coordinator\CChatController;
 use App\Http\Controllers\coordinator\CHomeController;
+use App\Http\Controllers\volunteer\VPrizesController;
 use App\Http\Controllers\coordinator\CFormsController;
 use App\Http\Controllers\coordinator\CPostsController;
 use App\Http\Controllers\coordinator\CPrizesController;
@@ -30,15 +33,16 @@ Route::get('language/{locale}', function($locale) {
 });
 
 Route::middleware('setlocale')->group(function () {
-    Route::prefix('test')->group(function () {
-        Route::get('/', [HomeController::class, 'test']);
-        Route::get('/chat', [HomeController::class, 'chat']);
-    });
 
     Route::get('/', [HomeController::class, 'index']);
 
     Auth::routes(['verify' => true]);
-    Route::get('/login-auth', [HomeController::class, 'loginauth']);
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/login-auth', [HomeController::class, 'loginauth']);
+        Route::get('/new-agreement', [HomeController::class, 'new_agreement'])->middleware('volunteercheck')->name('new.agreement');
+        Route::post('/new-agreement', [HomeController::class, 'update_agreement']);
+    });
 
     Route::middleware(['auth', 'admincheck'])->group(function () {Route::prefix('admin')->group(function () {});});
 
@@ -66,16 +70,28 @@ Route::middleware('setlocale')->group(function () {
                 Route::get('/search', [CVolunteerController::class, 'search'])->name('c.v.search');
                 Route::get('/active', [CVolunteerController::class, 'active'])->name('c.v.active');
                 Route::post('/active', [CVolunteerController::class, 'activation']);
-                Route::post('/dactive', [CVolunteerController::class, 'dactivation'])->name('c.v.dactive');;
+                Route::post('/dactive', [CVolunteerController::class, 'dactivation'])->name('c.v.dactive');
+                Route::get('/agreement/{volunteer}', [CVolunteerController::class, 'agreement'])->name('c.v.agreement');
                 Route::get('/birthday', [CVolunteerController::class, 'birthday'])->name('c.v.birthday');
             });
+
+            Route::get('/forms/archive', [CFormsController::class, 'archive'])->name('c.form.archive');
+            Route::get('/forms/list/{id}', [CFormsController::class, 'volunteer_list'])->name('c.form.volunteers');
+
+            Route::post('/forms/stop-sign/{id}', [CFormsController::class, 'stop_sign'])->name('c.form.stopsign');
+            Route::post('/forms/start-sign/{id}', [CFormsController::class, 'start_sign'])->name('c.form.startsign');
+
+            Route::get('/forms/positions/{id}', [CFormsController::class, 'positions'])->name('c.form.positions');
+            Route::post('/forms/positions/{id}', [CFormsController::class, 'set_positions']);
+
+            Route::get('/forms/presence/{id}', [CFormsController::class, 'presence'])->name('c.form.presence');
+            Route::post('/forms/presence/{id}', [CFormsController::class, 'save_presence']);
+            Route::get('/forms/view-presence/{id}', [CFormsController::class, 'view_presence'])->name('c.form.viewpresence');
 
             Route::resource('/forms', CFormsController::class, ['names' => [
                 'index' => 'c.form.list', 'create' => 'c.form.create', 'store' => 'c.form.store', 'show' => 'c.form.show',
                 'edit' => 'c.form.edit', 'update' => 'c.form.update', 'destroy' => 'c.form.destroy',
             ]]);
-            Route::get('/forms/archive', [CFormsController::class, 'archive'])->name('c.form.archive');
-            Route::get('/forms/list/{id}', [CFormsController::class, 'volunteer_list']);
 
             Route::get('/prizes/search', [CPrizesController::class, 'search'])->name('c.prize.search');
             Route::get('/prizes/orders', [CPrizesController::class, 'orders'])->name('c.prize.orders');
@@ -95,7 +111,7 @@ Route::middleware('setlocale')->group(function () {
         });
     });
 
-    Route::middleware(['auth', 'volunteercheck', 'verified'])->group(function () {
+    Route::middleware(['auth', 'volunteercheck', 'verified', 'agreementcheck'])->group(function () {
         Route::prefix('volunteer')->group(function () {
             Route::get('/', [VHomeController::class, 'dashboard'])->name('v.dashboard');
             Route::get('/settings', [VHomeController::class, 'settings'])->name('v.settings');
@@ -103,10 +119,17 @@ Route::middleware('setlocale')->group(function () {
             Route::get('/calendar', [VHomeController::class, 'calendar'])->name('v.calendar');
             Route::get('/load-events', [VHomeController::class, 'load_events'])->name('v.loadevents');
             Route::get('/info', [VHomeController::class, 'info'])->name('v.info');
-            Route::get('/maps', [VHomeController::class, 'maps'])->name('v.maps');
+            Route::get('/id', [VHomeController::class, 'id'])->name('v.id');
+            Route::get('/maps', [VHomeController::class, 'maps'])->name('v.maps');//mailtest
+            //Route::get('/test', [VHomeController::class, 'mailtest']);
 
             Route::prefix('/chat')->group(function() {
+                Route::get('/', [VChatController::class, 'chat'])->name('v.chat');
+            });
 
+            Route::prefix('/posts')->group(function() {
+                Route::get('/', [VPostsController::class, 'list'])->name('v.post.list');
+                Route::get('/{id}', [VPostsController::class, 'post'])->name('v.post');
             });
 
             Route::prefix('/forms')->group(function() {
@@ -119,12 +142,13 @@ Route::middleware('setlocale')->group(function () {
             });
 
             Route::prefix('/prizes')->group(function() {
-
+                Route::get('/', [VPrizesController::class, 'list'])->name('v.prize.list');
+                Route::get('/id/{id}', [VPrizesController::class, 'prize'])->name('v.prize');
+                Route::post('/get-prize/{id}', [VPrizesController::class, 'get_prize'])->name('v.prize.get');
+                Route::get('/orders', [VPrizesController::class, 'orders'])->name('v.prize.orders');
             });
 
-            Route::prefix('/posts')->group(function() {
 
-            });
 
         });
     });

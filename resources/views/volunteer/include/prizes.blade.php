@@ -7,16 +7,15 @@
                 <div class="collapse" id="prizes">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{ route('v.prize.list') }}" class="nav-link">
                         <span class="sidenav-normal"> Lista </span>
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{ route('v.prize.orders') }}" class="nav-link">
                         <span class="sidenav-normal"> Twoje zamówienia </span>
                       </a>
                     </li>
                   </ul>
                 </div>
               </li>
-  

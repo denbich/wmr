@@ -17,11 +17,11 @@ class VolunteerCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role == 'volunteer')
+        if (Auth::user()->role == 'volunteer') // && Auth::user()->condition == 1
         {
             return $next($request);
         }
 
-        return redirect(route('login'));
+        return redirect(route('login'))->with(['activation' => true]);
     }
 }

@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'admincheck' => \App\Http\Middleware\AdminCheck::class,
         'coordinatorcheck' => \App\Http\Middleware\CoordinatorCheck::class,
         'volunteercheck' => \App\Http\Middleware\VolunteerCheck::class,
+        'agreementcheck' => \App\Http\Middleware\AgreementCheck::class,
     ];
 }

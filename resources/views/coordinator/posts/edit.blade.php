@@ -113,7 +113,6 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 @if (session('edited_post') == true)
-                                    @php session()->forget('edited_post'); @endphp
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         <span class="alert-text"><strong>Sukces!</strong> Edycja postu przebiegła pomyślnie!</span>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

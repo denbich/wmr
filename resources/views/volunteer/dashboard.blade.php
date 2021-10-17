@@ -1,7 +1,7 @@
 @extends('layouts.volunteer')
 
 @section('title')
-{{ __('index.dashboard.title') }}
+{{ __('Panel wolontariusza') }}
 @endsection
 
 @section('content')
@@ -149,21 +149,43 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h5 class="h3 mb-0">Statystyki zamówień</h5>
-                </div>
-                <div class="col">
-                  <ul class="nav nav-pills justify-content-end">
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark"
-                    data-update='{"data":{"datasets":[{"data":[0, 20]}]}}' data-suffix="k">
-                    </li>
-                  </ul>
+                  <h5 class="h3 mb-0">Najnowsze posty</h5>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <div class="chart">
-                <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
-              </div>
+                <div class="chart overflow-auto">
+                    @if (count($posts) > 0)
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light text-center">
+                                    <tr>
+                                        <th scope="col">Tytuł posta</th>
+                                        <th scope="col">Data opublikowania</th>
+                                        <th scope="col">Opcje</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="list">
+                                        @foreach ($posts as $post)
+                                        <tr>
+                                            <td class="text-center">{{ $post->post_translate->title }}</td>
+                                            <td class="text-center">{{ $post->created_at }}</td>
+                                            <td class="text-center">
+                                                <h4>
+                                                    <a class="mx-1" href="{{ route('v.post', [$post->id]) }} "> <!--  -->
+                                                        <i class="fas fa-search"></i>
+                                                    </a>
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div class="w-100 text-center"><h2 class="text-danger">Brak postów</h2></div>
+                    @endif
+                </div>
             </div>
           </div>
         </div>
@@ -172,13 +194,21 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h5 class="h3 mb-0">Statystyki rejestracji</h5>
+                  <h5 class="h3 mb-0">Najnowsze imprezy</h5>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <div class="chart">
-                <canvas id="chart-bars" class="chart-canvas"></canvas>
+              <div class="chart overflow-auto">
+                @if (count($events) > 0)
+                    <ul>
+                        @foreach ($events as $event)
+                        <li><a href="{{ route('v.form.show', [$event->form_id]) }}">{{ $event->title.": ".$event->start }}</a></li>
+                        @endforeach
+                    </ul>
+                @else
+                <div class="w-100 text-center"><h2 class="text-danger">Brak najbliższych wydarzeń!</h2></div>
+                @endif
               </div>
             </div>
           </div>
@@ -193,50 +223,53 @@
                   <h3 class="mb-0">Zapełnienie formularzy</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="{{ route('c.form.list') }}" class="btn btn-sm btn-primary">Zobacz formularze</a>
+                  <a href="{{ route('v.form.list') }}" class="btn btn-sm btn-primary">Zobacz formularze</a>
                 </div>
               </div>
             </div>
             <div class="card-body">
                 @forelse ($forms as $form)
-                    <div class="progress-wrapper pt-0">
-                        <div class="progress-info">
-                        <a href="{{ route('c.form.show', [$form->id]) }}"><span class="badge badge-lg badge-pill badge-primary mb-1">{{ $form->form_translate->title }}</span></a>
-                        @php
-                            $p_count = 0;
-                            foreach($form->formposition as $position)
-                            {
-                                $p_count = $p_count + $position->max_volunteer;
-                            }
-                        $a = count($form->signedform)/$p_count;
-                        $b = $a * 100;
-                        $c = ceil($b);
-
-                        if ($c <= 25)
+                @if (date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime($form->calendar->end . " + 2 days")))
+                <div class="progress-wrapper pt-0">
+                    <div class="progress-info">
+                    <a href="{{ route('v.form.show', [$form->id]) }}"><span class="badge badge-lg badge-pill badge-primary mb-1">{{ $form->form_translate->title }}</span></a>
+                    @php
+                        $p_count = 0;
+                        foreach($form->formposition as $position)
                         {
-                            $class_bar = "bg-danger";
-
-                        } else if ($c <= 55)
-                        {
-                            $class_bar = "bg-warning";
-
-                        } else if ($c <= 99)
-                        {
-                            $class_bar = "bg-info";
-
-                        } else if ($c >= 100)
-                        {
-                            $class_bar = "bg-success";
+                            $p_count = $p_count + $position->max_volunteer;
                         }
-                        @endphp
-                        <div class="progress-percentage">
-                            <span>{{ $c }}%</span>
-                        </div>
-                        </div>
-                        <div class="progress">
-                        <div class="progress-bar {{ $class_bar }}" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ $c }}%;"></div>
-                        </div>
+                    $a = count($form->signedform)/$p_count;
+                    $b = $a * 100;
+                    $c = ceil($b);
+
+                    if ($c <= 25)
+                    {
+                        $class_bar = "bg-danger";
+
+                    } else if ($c <= 55)
+                    {
+                        $class_bar = "bg-warning";
+
+                    } else if ($c <= 99)
+                    {
+                        $class_bar = "bg-info";
+
+                    } else if ($c >= 100)
+                    {
+                        $class_bar = "bg-success";
+                    }
+                    @endphp
+                    <div class="progress-percentage">
+                        <span>{{ $c }}%</span>
                     </div>
+                    </div>
+                    <div class="progress">
+                    <div class="progress-bar {{ $class_bar }}" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ $c }}%;"></div>
+                    </div>
+                </div>
+                @endif
+
                 @empty
                     <h2 class="text-center text-danger">Brak aktywnych formularzy!</h2>
                 @endforelse

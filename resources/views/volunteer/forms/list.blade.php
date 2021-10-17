@@ -132,7 +132,7 @@
                                       </td>
                                   </tr>
                               @empty
-                                  <h2 class="text-center text-danger">Brak wolontariuszy!</h2>
+                                  <h2 class="text-center text-danger">Brak formularzy!</h2>
                               @endforelse
                           </tbody>
                       </table>

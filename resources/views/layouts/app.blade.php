@@ -23,14 +23,15 @@
   <link rel="stylesheet" href="{{ asset('css/calendar.css') }}" type="text/css">
   <script src="/js/maps.js"></script>
   <script src="{{ asset('js/main.js') }}"></script>
-  
+
 
 <style>
     .zdjecie-login{
-    background: url("https://panel.wolontariat.rybnik.pl/assets/img/logo-wmr2.svg");
+    background: url("/img/logo.svg");
     background-position: center;
     background-repeat:no-repeat;
     background-size: contain;
+    width: 100%;
     }
 </style>
 
@@ -55,7 +56,7 @@
     <script src="/assets/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="/assets/vendor/chart.js/dist/Chart.extension.js"></script>
     <script src="/assets/js/argon.js"></script> <!-- ?v=1.2.0 -->
-    
+
 
 
     @yield('script')

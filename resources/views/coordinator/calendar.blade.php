@@ -94,19 +94,6 @@
                 </ol>
               </nav>
             </div>
-            <div class="col-lg-6 col-5 text-right">
-                <button class="fullcalendar-btn-prev btn btn-sm btn-neutral" aria-label="prev">
-                <i class="fas fa-angle-left"></i>
-            </button>
-            <button class="fullcalendar-btn-next btn btn-sm btn-neutral" aria-label="next">
-                <i class="fas fa-angle-right"></i>
-            </button>
-
-            <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="month">Miesiąc</a>
-            <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicWeek">Tydzień</a>
-            <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicDay">Dzień</a>
-
-            </div>
           </div>
         </div>
       </div>

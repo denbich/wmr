@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Illuminate\Support\Str;
-use App\Http\Controllers\Controller;
 use App\Models\Volunteer;
+use App\Mail\NewVolunteer;
+use Illuminate\Support\Str;
+use App\Mail\NewVolunteerMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -43,7 +46,7 @@ class RegisterController extends Controller
             'birth' => ['required', 'date'],
             'gender' => ['required'],
             'agreement' => ['required', 'mimes:pdf', 'max:7168'], //, 'mimetypes:application/pdf'  'file',
-            'profile' => ['required'], 
+            'profile' => ['required'],
             'terms' => ['required'],
         ]);
     }
@@ -93,6 +96,12 @@ class RegisterController extends Controller
 
         $username = "wolontariusz".$volunteer->id;
         User::where('id', $user->id)->update(['name' => $username]);
+
+        $datam = array(
+            'name' => $username,
+        );
+
+        Mail::to('denis@mosir.rybnik.pl')->send(new NewVolunteer($datam));
 
         return $user;
     }

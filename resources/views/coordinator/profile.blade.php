@@ -175,50 +175,6 @@
                     </div>
 
                   </div>
-                  <hr class="my-4" />
-                  <!-- Address -->
-                  <h6 class="heading-small text-muted mb-4">Adres zamieszkania</h6>
-                  <div class="pl-lg-4">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-address">Adres (ulica, numer domu/mieszkania)</label>
-                          <input id="input-address" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-city">Miasto</label>
-                          <input type="text" id="input-city" class="form-control" placeholder="City" value="New York">
-                        </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-country">Kraj</label>
-                          <input type="text" id="input-country" class="form-control" placeholder="Country" value="United States">
-                        </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-country">Kod pocztowy</label>
-                          <input type="number" id="input-postal-code" class="form-control" placeholder="Postal code">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="my-4" />
-                  <!-- Description -->
-                  <h6 class="heading-small text-muted mb-4">O mnie</h6>
-                  <div class="pl-lg-4">
-                    <div class="form-group">
-                      <label class="form-control-label">O mnie</label>
-                      <textarea rows="4" class="form-control" placeholder="A few words about you ...">
-
-                      </textarea>
-                    </div>
-                  </div>
                 </form>
               </div>
             </div>

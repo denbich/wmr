@@ -176,19 +176,19 @@
                   <span class="h4 text-center text-dark w-100">Skróty</span>
               </div>
               <div class="row shortcuts px-4 py-2">
-                <a href="{{ route('c.calendar') }}" class="col-4 my-2 shortcut-item text-center">
+                <a href="{{ route('v.calendar') }}" class="col-4 my-2 shortcut-item text-center">
                   <span class="shortcut-media avatar rounded-circle bg-gradient-red">
                     <i class="far fa-calendar-alt"></i>
                   </span>
                   <small>Kalendarz</small>
                 </a>
-                <a href="{{ route('c.maps') }}" class="col-4 my-2 shortcut-item text-center">
+                <a href="{{ route('v.maps') }}" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
                         <i class="fas fa-map-marker-alt"></i>
                     </span>
                     <small>Mapa</small>
                   </a>
-                <a href="{{ route('c.chat') }}" class="col-4 my-2 shortcut-item text-center">
+                <a href="{{ route('v.chat') }}" class="col-4 my-2 shortcut-item text-center">
                   <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
                     <i class="fas fa-comments"></i>
                   </span>
@@ -241,7 +241,7 @@
                 <i class="fas fa-cog"></i>
                 <span>Ustawienia</span>
               </a>
-              <a href="" class="dropdown-item">
+              <a href="{{ route('v.id') }}" class="dropdown-item">
                 <i class="fas fa-id-card"></i>
                 <span>Identyfikator</span>
               </a>

@@ -10,21 +10,16 @@ use Illuminate\Support\Facades\Session;
 
 class SetLocale
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle(Request $request, Closure $next)
     {
         if (session('locale') != null) {
-            App::setLocale(Session::get('locale'));
+            App::setLocale('pl');
+            //App::setLocale(Session::get('locale'));
         } else if (Auth::check()) {
-            App::setLocale(strtolower(Auth::user()->country));
+            App::setLocale('pl');
+            //App::setLocale(strtolower(Auth::user()->country));
         } else {
-            App::setLocale(strtolower("PL"));
+            App::setLocale('pl');
         }
 
         return $next($request);

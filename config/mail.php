@@ -84,8 +84,13 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'automat@wolontariat.rybnik.pl'),
+        'name' => env('MAIL_FROM_NAME', 'Automat WMR'),
+    ],
+
+    'reply_to' => [
+        'address' => 'administrator@wolontariat.rybnik.pl',
+        'name' => 'Administrator WMR'
     ],
 
     /*
