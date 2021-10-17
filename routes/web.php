@@ -20,10 +20,12 @@ use App\Http\Controllers\coordinator\CVolunteerController;
 
 App::setLocale(session('locale'));
 
+Route::get('/test', [VFormsController::class, 'test']);
+
 Route::get('/command', function () {
 
-    //$code = Artisan::call('storage:link');
-    //echo $code;
+    $code = Artisan::call('vendor:publish --provider="Biscolab\ReCaptcha\ReCaptchaServiceProvider"', [ '--force' => true]);
+    echo $code;
 });
 
 Route::get('language/{locale}', function($locale) {
@@ -43,8 +45,6 @@ Route::middleware('setlocale')->group(function () {
         Route::get('/new-agreement', [HomeController::class, 'new_agreement'])->middleware('volunteercheck')->name('new.agreement');
         Route::post('/new-agreement', [HomeController::class, 'update_agreement']);
     });
-
-
 
     Route::middleware(['auth', 'admincheck'])->group(function () {Route::prefix('admin')->group(function () {});});
 

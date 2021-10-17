@@ -36,7 +36,9 @@ class="bg-default"
       <div class=""> <!-- row justify-content-center col-lg-5 col-md-7 -->
           <div class="card bg-secondary border-0 mb-0">
             <div class="row">
-                <div class="col-lg-6 zdjecie-login"></div>
+                <div class="col-lg-6">
+                    <div class="zdjecie-login w-100 h-100" style="margin-left:20px;"></div>
+                </div>
                 <div class="col-lg-6">
                     <div class="card-header bg-transparent text-center">
                         <a href="http://wmr.local/login"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
@@ -64,13 +66,13 @@ class="bg-default"
                                     <span class="shortcut-media avatar rounded-circle">
                                         <a href="/language/pl"><img src="{{ URL::asset('lang/165-poland.svg') }}"></a>
                                     </span>
-                                    
+
                                 </div>
                                 <div class="col">
                                     <span class="shortcut-media avatar rounded-circle">
                                         <a href="/language/en"><img src="{{ URL::asset('lang/110-united kingdom.svg') }}"></a>
                                     </span>
-                                    
+
                                 </div>
                                 <div class="col d-none">
                                     <a href="/language/de"><img src="{{ URL::asset('lang/208-germany.svg') }}" alt="" class="w-75"></a>

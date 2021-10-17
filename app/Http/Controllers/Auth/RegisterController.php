@@ -47,7 +47,7 @@ class RegisterController extends Controller
             'agreement' => ['required', 'mimes:pdf', 'max:7168'], //, 'mimetypes:application/pdf'  'file',
             'profile' => ['required'],
             'terms' => ['required'],
-            'g-recaptcha-response' => ['recaptcha'],
+            'g-recaptcha-response' => ['required'],
         ]);
     }
 
