@@ -238,7 +238,7 @@
 @endsection
 
 @section('script')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Axw_0zQzlqetfe__sATl4CC_cd78B-0&libraries=places&callback=initMap&channel=GMPSB_addressselection_v1_cABC" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap&channel=GMPSB_addressselection_v1_cABC" async defer></script>
 
 <script>
     "use strict";

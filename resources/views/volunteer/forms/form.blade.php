@@ -259,9 +259,52 @@
             </div>
           </div>
 
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Miejsce imprezy </h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+                <div id="map" style="width: 100%; height: 500px"></div>
+            </div>
+          </div>
+
 
         @include('volunteer.include.footer')
       </div>
   </div>
+
+@endsection
+
+@section('script')
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap&channel=GMPSB_addressselection_v1_cABC" async defer></script>
+
+<script>
+    "use strict";
+
+    function initMap() {
+    var myLatlng = new google.maps.LatLng(50.1076061,18.5471027);
+
+var mapOptions = {
+    zoom: 13,
+    center: myLatlng,
+    mapTypeControl: false,
+    fullscreenControl: false,
+    zoomControl: true,
+    streetViewControl: false
+}
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+var marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map,
+    draggable:false, });
+
+}
+</script>
 
 @endsection

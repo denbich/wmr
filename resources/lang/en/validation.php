@@ -135,6 +135,8 @@ return [
     |
     */
 
+    'recaptcha' => 'reCaptcha is required',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

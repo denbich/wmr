@@ -148,8 +148,6 @@ Route::middleware('setlocale')->group(function () {
                 Route::get('/orders', [VPrizesController::class, 'orders'])->name('v.prize.orders');
             });
 
-
-
         });
     });
 

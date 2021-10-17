@@ -27,7 +27,7 @@
 
 <style>
     .zdjecie-login{
-    background: url("/img/logo.svg");
+    background: url("/img/logowmr.svg");
     background-position: center;
     background-repeat:no-repeat;
     background-size: contain;

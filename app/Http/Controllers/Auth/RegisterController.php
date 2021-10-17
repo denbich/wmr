@@ -31,11 +31,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            //'name' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            //'repeat_confirmation' => ['required', 'string', 'min:8', 'confirmed'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'telephone' => ['required'], //, 'numeric', 'digits_between:8,12'
             'school' => ['required', 'string', 'max:255'],
@@ -48,6 +46,7 @@ class RegisterController extends Controller
             'agreement' => ['required', 'mimes:pdf', 'max:7168'], //, 'mimetypes:application/pdf'  'file',
             'profile' => ['required'],
             'terms' => ['required'],
+            'g-recaptcha-response' => ['recaptcha'],
         ]);
     }
 

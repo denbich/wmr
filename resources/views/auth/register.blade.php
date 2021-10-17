@@ -59,7 +59,7 @@ class="bg-default"
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Imię" type="text" name="firstname" value="{{ old('firstname', '') }}" max="255" required>
+                    <input class="form-control" placeholder="Imię" type="text" name="firstname" value="{{ old('firstname', '') }}" max="255" >
                   </div>
                 @error('firstname')
                     <span class="text-danger small" role="alert">
@@ -72,7 +72,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Nazwisko" type="text" name="lastname" value="{{ old('lastname', '') }}" max="255" required>
+                      <input class="form-control" placeholder="Nazwisko" type="text" name="lastname" value="{{ old('lastname', '') }}" max="255" >
                     </div>
                     @error('lastname')
                     <span class="text-danger small" role="alert">
@@ -85,7 +85,7 @@ class="bg-default"
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Hasło" type="password" name="password" max="255" required>
+                    <input class="form-control" placeholder="Hasło" type="password" name="password" max="255" >
                   </div>
                   @error('password')
                     <span class="text-danger small" role="alert">
@@ -101,7 +101,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Powtórz hasło" type="password" name="password_confirmation" max="255" required>
+                      <input class="form-control" placeholder="Powtórz hasło" type="password" name="password_confirmation" max="255" >
                     </div>
                     @error('repeat_password')
                     <span class="text-danger small" role="alert">
@@ -115,7 +115,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Adres email" type="email" name="email" value="{{ old('email', '') }}" max="255" required>
+                      <input class="form-control" placeholder="Adres email" type="email" name="email" value="{{ old('email', '') }}" max="255" >
                     </div>
                     @error('email')
                     <span class="text-danger small" role="alert">
@@ -128,7 +128,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Numer telefonu" type="tel" name="telephone" value="{{ old('telephone', '') }}" max="255" required>
+                      <input class="form-control" placeholder="Numer telefonu" type="tel" name="telephone" value="{{ old('telephone', '') }}" max="255" >
                     </div>
                     @error('telephone')
                         <span class="text-danger small" role="alert">
@@ -141,7 +141,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Nazwa szkoły" type="text" name="school" value="{{ old('school', '') }}" max="255" required>
+                      <input class="form-control" placeholder="Nazwa szkoły" type="text" name="school" value="{{ old('school', '') }}" max="255" >
                     </div>
                     <p class="text-center"><small>Jeśli jesteś osobą pracującą/niepracującą wpisz 'Brak'</small></p>
                     @error('school')
@@ -163,7 +163,7 @@ class="bg-default"
                   <div class="row">
                     <div class="form-group col-lg-6">
                         <div class="input-group input-group-merge input-group-alternative mb-3">
-                          <input class="form-control" placeholder="Ulica" type="text" name="street" value="{{ old('street', '') }}" max="255" required>
+                          <input class="form-control" placeholder="Ulica" type="text" name="street" value="{{ old('street', '') }}" max="255" >
                         </div>
                         @error('street')
                         <span class="text-danger small" role="alert">
@@ -173,7 +173,7 @@ class="bg-default"
                       </div>
                       <div class="form-group col-lg-6">
                         <div class="input-group input-group-merge input-group-alternative mb-3">
-                          <input class="form-control" placeholder="Numer domu / mieszkania" type="text" name="house_number" value="{{ old('house_number', '') }}" max="255" required>
+                          <input class="form-control" placeholder="Numer domu / mieszkania" type="text" name="house_number" value="{{ old('house_number', '') }}" max="255" >
                         </div>
                         @error('house_number')
                         <span class="text-danger small" role="alert">
@@ -187,7 +187,7 @@ class="bg-default"
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-home"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Miasto" type="text" name="city" value="{{ old('city', '') }}" max="255" required>
+                      <input class="form-control" placeholder="Miasto" type="text" name="city" value="{{ old('city', '') }}" max="255" >
                     </div>
                     @error('city')
                         <span class="text-danger small" role="alert">
@@ -217,7 +217,7 @@ class="bg-default"
                 <div class="form-group">
                     <label for="birth">Data urodzenia</label>
                     <div class="input-group input-group-merge input-group-alternative mb-3">
-                        <input type="date" class="form-control" name="birth" value="{{ old('birth', '') }}" required>
+                        <input type="date" class="form-control" name="birth" value="{{ old('birth', '') }}" >
                       </div>
                       @error('birth')
                         <span class="text-danger small" role="alert">
@@ -228,14 +228,16 @@ class="bg-default"
                 <div class="form-group">
                     <label for="Gender">Płeć</label><br>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="gender_f" name="gender" class="custom-control-input" value="f" required>
+                        <input type="radio" id="gender_f" name="gender" class="custom-control-input" value="f" >
                         <label class="custom-control-label" for="gender_f">Kobieta</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="gender_m" name="gender" class="custom-control-input" value="m" required>
+                        <input type="radio" id="gender_m" name="gender" class="custom-control-input" value="m" >
                         <label class="custom-control-label" for="gender_m">Mężczyzna</label>
                       </div>
-                      @error('gender')
+                </div>
+                <div class="form-group">
+                    @error('gender')
                         <span class="text-danger small" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -274,7 +276,7 @@ class="bg-default"
                 <div class="row mt-3 mb-1">
                   <div class="col-12">
                     <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" name="terms" required>
+                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" name="terms" >
                       <label class="custom-control-label" for="customCheckRegister">
                         <span class="text-muted">Akceptuję <a href="https://wolontariat.rybnik.pl/pliki/regulamin_wolontariatu_MOSiR_Rybnik.pdf" target="_blank">Regulamin</a> i <a href="https://wolontariat.rybnik.pl/pliki/kodeks_wolontariuszy_MOSiR_Rybnik.pdf" target="_blank">Kodeks Wolontariusza</a></span>
                       </label>
@@ -286,9 +288,14 @@ class="bg-default"
                         </span>
                     @enderror
                 </div>
-                <div class="text-center">
+                <div class="text-center mt-4">
+                    {!! htmlFormSnippet() !!}
+                    @error('g-recaptcha-response')
+                        <span class="text-danger small" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <button type="submit" class="btn btn-primary mt-4 w-100">Utwórz konto</button>
-                  <button type="button" class="btn btn-primary mt-4 w-100 g-recaptcha"  data-sitekey="6Lci0KscAAAAAAhZMWfziYf3kLDyQPVn3PMrDuh3"  data-callback='onSubmit' data-action='submit'>Utwórz konto</button>
                 </div>
               </form>
             </div>
@@ -355,12 +362,7 @@ class="bg-default"
 @endsection
 
 @section('style')
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
-    //function onSubmit(token) {
-      //document.getElementById("register-form").submit();
-    //}
-  </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
 <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>

@@ -122,6 +122,9 @@ return [
     'uploaded'             => 'Nie udało się wgrać pliku :attribute.',
     'url'                  => 'Format pola :attribute jest nieprawidłowy.',
     'uuid'                 => 'Pole :attribute musi być poprawnym identyfikatorem UUID.',
+
+    'recaptcha' => 'reCaptcha jest wymagane',
+
     'custom'               => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

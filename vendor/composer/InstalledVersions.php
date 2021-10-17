@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '67e3bd640ebd6151d0df1e2d530b896827aef49d',
+    'reference' => '79bb11beecc841cf9417da6c6dcda7e34b44d067',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -43,6 +43,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '9cb795bf30988e8c96dd3c40623c48a877bc6714',
+    ),
+    'biscolab/laravel-recaptcha' => 
+    array (
+      'pretty_version' => '5.0.1',
+      'version' => '5.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '21018b259827e1446ea9d829ae423022a0e1025e',
     ),
     'brick/math' => 
     array (
@@ -469,7 +478,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '67e3bd640ebd6151d0df1e2d530b896827aef49d',
+      'reference' => '79bb11beecc841cf9417da6c6dcda7e34b44d067',
     ),
     'laravel/sail' => 
     array (

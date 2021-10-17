@@ -14,11 +14,11 @@
    style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
    viewBox="0 0 7264.0035 5639.0118"
    id="svg106"
-   sodipodi:docname="logob.svg"
+   sodipodi:docname="logo.svg"
    inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"><metadata
    id="metadata110"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
    borderopacity="1"
@@ -27,17 +27,17 @@
    guidetolerance="10"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-width="1920"
-   inkscape:window-height="1009"
+   inkscape:window-width="1440"
+   inkscape:window-height="829"
    id="namedview108"
    showgrid="false"
-   inkscape:zoom="2.8284271"
-   inkscape:cx="241.00448"
-   inkscape:cy="78.047482"
-   inkscape:window-x="-8"
-   inkscape:window-y="-8"
+   inkscape:zoom="2"
+   inkscape:cx="174.37357"
+   inkscape:cy="133.07277"
+   inkscape:window-x="1912"
+   inkscape:window-y="87"
    inkscape:window-maximized="1"
-   inkscape:current-layer="Warstwa_x0020_1"
+   inkscape:current-layer="svg106"
    inkscape:document-rotation="0" />
  <defs
    id="defs7">
@@ -79,7 +79,8 @@
    <path
    class="fil3"
    d="m 16475,15678 v -90 c -18,-48 -18,-121 -31,-172 -96,-366 -457,-643 -858,-611 -513,34 -873,524 -748,1029 21,80 52,154 89,218 68,116 181,232 300,299 68,36 136,68 219,88 187,43 362,24 525,-44 249,-105 426,-334 482,-586 8,-38 10,-98 22,-131 z"
-   id="path20" />
+   id="path20"
+   style="fill:#fecc07;fill-opacity:0.99186999" />
    <path
    class="fil0"
    d="m 12664,16881 c -113,77 -111,-22 -196,109 l -150,161 c -62,-16 -99,-49 -157,-49 -94,107 -24,211 40,321 18,35 35,70 53,106 155,300 282,236 610,330 94,28 154,69 247,10 70,-46 119,-69 162,-150 39,-78 95,-162 112,-203 30,-83 51,-150 96,-216 42,-57 124,-149 107,-190 -14,-40 -51,-38 -90,-62 -58,-36 -31,-63 -151,-162 -96,-80 -133,-180 -269,-206 -76,-14 -58,0 -107,-43 -177,-152 -284,-144 -324,100 -12,79 23,88 17,144 z"
@@ -95,7 +96,8 @@
    <path
    class="fil0"
    d="m 16475,15588 v -789 h -889 v 6 c 401,-32 762,245 858,611 13,51 13,124 31,172 z"
-   id="path28" />
+   id="path28"
+   style="fill:#fefefe;fill-opacity:0" />
    <path
    class="fil0"
    d="m 12886,15553 c -125,-6 -123,18 -158,122 -44,129 16,140 2,239 -15,98 -33,469 27,521 123,107 98,-243 129,-409 8,-43 54,-337 48,-379 -7,-41 -33,-63 -48,-94 z"

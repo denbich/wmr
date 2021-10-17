@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        return view('home'); //<button type="button" class="btn btn-primary mt-4 w-100 g-recaptcha"  data-sitekey="{{ env('RECAPTCHA_PUBLIC_KEY') }}"  data-callback='onSubmit' data-action='submit'>Utwórz konto</button>
     }
 
     public function loginauth()
