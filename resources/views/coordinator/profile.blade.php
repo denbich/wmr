@@ -91,11 +91,11 @@
               </div>
               <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                 <div class="d-flex justify-content-between">
-                  <a href="#" class="btn btn-sm btn-info mr-4 ">Połącz konta</a>
+                  <a href="#" class="btn btn-sm btn-info mr-4 d-none">Połącz konta</a>
                 </div>
               </div>
               <div class="card-body pt-0">
-                <div class="row">
+                <div class="row d-none">
                   <div class="col">
                     <div class="card-profile-stats d-flex justify-content-center">
                       <div>
@@ -113,9 +113,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="text-center">
+                <div class="text-center mt-4">
                   <h5 class="h3">
-                    {{  Auth::user()->firstname}} {{ Auth::user()->lastname }}<span class="font-weight-light">, 16</span>
+                    {{  Auth::user()->firstname}} {{ Auth::user()->lastname }}<span class="font-weight-light"></span>
                   </h5>
                   <div class="h5 font-weight-300">
                     <i class="ni location_pin mr-2"></i>Rybnik, Polska
@@ -135,7 +135,7 @@
                     <h3 class="mb-0">Edytuj profil </h3>
                   </div>
                   <div class="col-4 text-right">
-                    <a href="#!" class="btn btn-sm btn-primary">Ustawienia</a>
+                    <a href="{{ route('c.settings') }}" class="btn btn-sm btn-primary">Ustawienia</a>
                   </div>
                 </div>
               </div>
@@ -144,17 +144,43 @@
                     @csrf
                   <h6 class="heading-small text-muted mb-4">Podstawowe informacje</h6>
                   <div class="pl-lg-4">
+                    @if (session('change') == true)
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="alert-text"><strong>Sukces!</strong> Edycja profilu zakończyła się pomyślnie!</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     <div class="row">
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label class="form-control-label" for="input-first-name">Imię</label>
-                            <input type="text" id="input-first-name" class="form-control" placeholder="First name" name="firstname" value="{{ Auth::user()->firstname }}">
+                            <div class="input-group-alternative">
+                            <input type="text" id="input-first-name" class="form-control" placeholder="First name" name="firstname" value="{{ Auth::user()->firstname }}" required>
+                          </div>
+                            @error('firstname')
+                                <span class="text-danger small" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label class="form-control-label" for="input-last-name">Nazwisko</label>
-                            <input type="text" id="input-last-name" class="form-control" placeholder="Last name" name="lastname" value="{{ Auth::user()->lastname }}">
+                            <div class="input-group-alternative">
+                            <input type="text" id="input-last-name" class="form-control" placeholder="Last name" name="lastname" value="{{ Auth::user()->lastname }}" required>
+                          </div>
+                            @error('lastname')
+                                <span class="text-danger small" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                           </div>
                         </div>
                       </div>
@@ -162,18 +188,36 @@
                     <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-telephone">Numer telefonu</label>
-                          <input type="text" id="input-telephone" class="form-control" placeholder="telephone" name="telephone" value="">
+                            <label class="form-control-label" for="input-telephone">Numer telefonu</label>
+                        <div class="input-group-alternative">
+                          <input type="text" id="input-telephone" class="form-control" placeholder="telephone" name="telephone" value="{{ Auth::user()->telephone }}" required>
+                        </div>
+                          @error('telephone')
+                                <span class="text-danger small" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="input-email">Adres email</label>
-                          <input type="email" id="input-email" class="form-control" placeholder="{{ Auth::user()->email }}">
+                          <div class="input-group-alternative">
+                          <input type="email" id="input-email" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
+                          </div>
+                          @error('email')
+                                <span class="text-danger small" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                       </div>
                     </div>
-
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <button type="submit" class="btn btn-primary w-100">Zapisz zmiany</button>
+                        </div>
+                    </div>
                   </div>
                 </form>
               </div>

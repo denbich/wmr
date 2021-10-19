@@ -126,7 +126,7 @@
                   <div class="col">
                     <div class="card-profile-stats d-flex justify-content-center">
                       <div>
-                        <span class="heading">0</span>
+                        <span class="heading">{{ $signed }}</span>
                         <span class="description">Ilość akcji</span>
                       </div>
                       <div>
@@ -138,7 +138,7 @@
                 </div>
                 <div class="text-center">
                   <h5 class="h3">
-                    {{ $volunteer->user->firstname }} {{ $volunteer->user->lastname }}<span class="font-weight-light">, 16</span>
+                    {{ $volunteer->user->firstname }} {{ $volunteer->user->lastname }}<span class="font-weight-light"></span>
                   </h5>
                   <div class="h5 font-weight-300">
                     <i class="ni location_pin mr-2"></i>{{ $volunteer->city }}, Polska

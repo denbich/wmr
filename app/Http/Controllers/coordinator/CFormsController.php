@@ -25,7 +25,7 @@ class CFormsController extends Controller
     public function index()
     {
         $forms = Form::with(['form_translate'])->whereHas('calendar', function ($query) {
-            return $query->where('end', '<', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' + 7 days')));
+            return $query->where('end', '>', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' - 7 days')));
         })->withCount('signed_form')->get();
 
         return view('coordinator.forms.list', ['forms' => $forms]);
@@ -92,7 +92,6 @@ class CFormsController extends Controller
         $imageName = Str::random(100).time().'.'.$extension;
         Storage::disk('forms')->put($imageName, base64_decode($image));
 
-        dd($imageName);
         $form = Form::create([
             'expiration' => $request->expiration,
             'place_longitude' => $request->place_longitude_pol,
@@ -185,7 +184,7 @@ class CFormsController extends Controller
         $translate_form = Translate_form::where('form_id', $id)->first();
         $translate_form->fill([
             'title' => $request->title,
-            'description' => $request->description,
+            'description' => str_replace('"', "'", str_replace(PHP_EOL, '', $request->description)),
         ])->save();
 
         for ($i = 1; $i <= $request->positions_number; $i++)
@@ -221,7 +220,7 @@ class CFormsController extends Controller
     {
         $form = Form::where('id', $id)->with('form_translate')->first();
         $form_positions = Position_form::where('form_id', $id)->with('translate_form_position')->withCount('signed_form')->get();
-        $signed_volunteers = Signed_form::where('form_id', $id)->with(['volunteer', 'position'])->get();
+        $signed_volunteers = Signed_form::where('form_id', $id)->with(['volunteer', 'position', 'volun'])->get();
 
         $pdf = new TCPDF();
         $pdf::SetTitle('Lista wolontariuszy');
@@ -254,7 +253,7 @@ class CFormsController extends Controller
             $pdf::cell('45','10', $sign->volunteer->firstname,'1','0','C');
             $pdf::cell('45','10', $sign->volunteer->lastname,'1','0','C');
             $pdf::cell('35','10' ,$sign->volunteer->telephone,'1','0','C');
-            $pdf::cell('20','10', "",'1','0','C');
+            $pdf::cell('20','10', $sign->volun->tshirt_size,'1','0','C');
             $pdf::cell('55','10', $sign->position->title,'1','0','C');
             $pdf::cell('40','10', "",'1','1','C');
         }
@@ -264,7 +263,6 @@ class CFormsController extends Controller
 
     public function stop_sign(Request $request, $id)
     {
-        //dd($request->all());
         $form = Form::find($id);
         $form->expiration = date('Y-m-d H:i');
         $form->save();
@@ -364,6 +362,6 @@ class CFormsController extends Controller
         $form_positions = Position_form::where('form_id', $id)->with('translate_form_position')->withCount('signed_form')->get();
         $signed_volunteers = Signed_form::where('form_id', $id)->with(['volunteer', 'position'])->get();
 
-        return "view presence";
+        return view('coordinator.forms.viewpresence', ['form' => $form,'form_positions' => $form_positions, 'signed_volunteers' => $signed_volunteers]);
     }
 }

@@ -18,6 +18,7 @@ class CreateSignedFormsTable extends Migration
             $table->unsignedBigInteger('volunteer_id');
             $table->unsignedBigInteger('form_id');
             $table->unsignedBigInteger('position_id');
+            $table->string('feedback')->nullable();
             $table->integer('condition');
             $table->timestamps();
 

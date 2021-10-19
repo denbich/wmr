@@ -15,7 +15,7 @@ class VFormsController extends Controller
     public function list()
     {
         $forms = Form::with(['form_translate', 'calendar'])->whereHas('calendar', function ($query) {
-            return $query->where('end', '<', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' + 7 days')));
+            return $query->where('end', '>', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' - 7 days')));
         })->withCount('signed_form')->get();
 
         return view('volunteer.forms.list', ['forms' => $forms]);
@@ -102,9 +102,9 @@ class VFormsController extends Controller
                 $p = array("Odbył", "realizował", "mu", "Wykazał", "przyczynił");
             }
 
-            //$pdf::Image('https://panel.wolontariat.rybnik.pl/assets/img/herb-rybnika-k.png', '', '15', '', 17, 'PNG');
-            //$pdf::Image('https://panel.wolontariat.rybnik.pl/assets/img/logo-wmr.png', '', '', '', 23, 'PNG', '', '', false, 300, 'C', false, false, 1, false, false, false);
-            //$pdf::Image('https://wolontariat.rybnik.pl/assets/images/4cfc1f8e1d2bd343736a91af28784171_mosirlogo.png', '', '16', '', 13, 'PNG', '', '', false, 300, 'R', false, false, 1, false, false, false);
+            $pdf::Image(url('/img/herb.png'), '', '15', '', 17, 'PNG');
+            $pdf::Image(url('/img/logowmr.png'), '', '', '', 35, 'PNG', '', '', false, 300, 'C', false, false, 1, false, false, false);
+            $pdf::Image(url('/img/logomosir.png'), '', '16', '', 13, 'PNG', '', '', false, 300, 'R', false, false, 1, false, false, false);
             $html = '
             <p style="text-align:right;">Rybnik, dnia '.date("d.m.Y", strtotime($form->calendar->end)).'r. </p>
             <p style="text-align:right">Zaświadczenie nr '.base_convert($signed->id, 10, 16).'/2021</p>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('lista nagród') }}
+{{ __('lista postów') }}
 @endsection
 
 @section('content')

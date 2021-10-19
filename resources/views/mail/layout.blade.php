@@ -593,7 +593,7 @@
             <tr>
               <td align="center" style="font-size:0px;padding:0px 35px 0px 35px;word-break:break-word;">
 
-      <div style="font-family:Lato, Tahoma, sans-serif;font-size:11px;line-height:1.5;text-align:center;color:#222222;"><p style="font-size: 11px; font-family: Ubuntu, Helvetica, Arial;"><span style="font-family: Lato, Tahoma, sans-serif;">&copy; 2019 - 2021 <a href="https://linktr.ee/denis.bichler" target="_blank" rel="noopener" style="color: #0000EE;">Denis Bichler for MOSiR Rybnik</a></span></p>
+      <div style="font-family:Lato, Tahoma, sans-serif;font-size:11px;line-height:1.5;text-align:center;color:#222222;"><p style="font-size: 11px; font-family: Ubuntu, Helvetica, Arial;"><span style="font-family: Lato, Tahoma, sans-serif;">&copy; 2019 - {{ date('Y') }} <a href="https://linktr.ee/denis.bichler" target="_blank" rel="noopener" style="color: #0000EE;">Denis Bichler for MOSiR Rybnik</a></span></p>
 <p style="font-size: 11px; font-family: Ubuntu, Helvetica, Arial;">&nbsp;</p></div>
 
               </td>

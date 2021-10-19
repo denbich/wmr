@@ -191,7 +191,7 @@
                             <h4>Opis stanowisk:</h4>
                             @foreach ($form_positions as $position)
 
-                            <p><b>{{ $position->translate_form_position->first()->title }}:</b><br>{{ $position->translate_form_position->first()->description }}</p>
+                            <p><b>{{ $position->translate_form_position->title }}:</b><br>{{ $position->translate_form_position->description }}</p>
 
                             @endforeach
                         </div>
@@ -383,7 +383,7 @@
     "use strict";
 
     function initMap() {
-    var myLatlng = new google.maps.LatLng(50.1076061,18.5471027);
+    var myLatlng = new google.maps.LatLng({!! $form->place_longitude !!}, {!! $form->place_latitude !!});
 
 var mapOptions = {
     zoom: 13,

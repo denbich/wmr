@@ -117,7 +117,6 @@
               </div>
                 <div class="card-body">
                     @if (session('edit_prize') == true)
-                    @php session()->forget('edit_prize'); @endphp
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">

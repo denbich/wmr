@@ -20,14 +20,6 @@ use App\Http\Controllers\coordinator\CVolunteerController;
 
 App::setLocale(session('locale'));
 
-Route::get('/test', [VFormsController::class, 'test']);
-
-Route::get('/command', function () {
-
-    $code = Artisan::call('vendor:publish --provider="Biscolab\ReCaptcha\ReCaptchaServiceProvider"', [ '--force' => true]);
-    echo $code;
-});
-
 Route::get('language/{locale}', function($locale) {
     session(['locale' => $locale]);
         App::setLocale($locale);
@@ -49,10 +41,21 @@ Route::middleware('setlocale')->group(function () {
     Route::middleware(['auth', 'admincheck'])->group(function () {Route::prefix('admin')->group(function () {});});
 
     Route::middleware(['auth', 'coordinatorcheck', 'verified'])->group(function () {
+
+        Route::get('/test', [VFormsController::class, 'test']);
+        
+        Route::prefix('command')->group(function () {
+            Route::get('/migrate', function () { $code = Artisan::call('migrate', [ '--force' => true]); echo $code; });
+            Route::get('/migrate-rollback', function () { $code = Artisan::call('migrate:rollback', [ '--force' => true]); echo $code; });
+            Route::get('/storage-link', function () { $code = Artisan::call('storage:link', [ '--force' => true]); echo $code; });
+        });
+
         Route::prefix('coordinator')->group(function () {
             Route::get('/', [CHomeController::class, 'dashboard'])->name('c.dashboard');
             Route::get('/settings', [CHomeController::class, 'settings'])->name('c.settings');
+            Route::post('/settings', [CHomeController::class, 'save_settings']);
             Route::get('/profile', [CHomeController::class, 'profile'])->name('c.profile');
+            Route::post('/profile', [CHomeController::class, 'update_profile']);
             Route::get('/calendar', [CHomeController::class, 'calendar'])->name('c.calendar');
             Route::get('/load-events', [CHomeController::class, 'load_events'])->name('c.loadevents');
             Route::get('/info', [CHomeController::class, 'info'])->name('c.info');
@@ -68,6 +71,7 @@ Route::middleware('setlocale')->group(function () {
 
             Route::prefix('volunteer')->group(function() {
                 Route::get('/', [CVolunteerController::class, 'list'])->name('c.v.list');
+                Route::get('/list', [CVolunteerController::class, 'pdf_list'])->name('c.v.pdflist');
                 Route::get('/id/{id}', [CVolunteerController::class, 'volunteer']);
                 Route::get('/search', [CVolunteerController::class, 'search'])->name('c.v.search');
                 Route::get('/active', [CVolunteerController::class, 'active'])->name('c.v.active');
@@ -97,7 +101,7 @@ Route::middleware('setlocale')->group(function () {
 
             Route::get('/prizes/search', [CPrizesController::class, 'search'])->name('c.prize.search');
             Route::get('/prizes/orders', [CPrizesController::class, 'orders'])->name('c.prize.orders');
-            Route::get('/prizes/orders/{id}', [CPrizesController::class, 'order']);
+            Route::get('/prizes/orders/{id}', [CPrizesController::class, 'order'])->name('c.prize.order');
             Route::post('/prizes/orders/change-status/{id}', [CPrizesController::class, 'change_status']);
             Route::post('/prizes/update-quantity/{id}', [CPrizesController::class, 'update_quantity'])->name('c.prize.updatequantity');
             Route::resource('/prizes', CPrizesController::class, ['names' => [
@@ -117,7 +121,9 @@ Route::middleware('setlocale')->group(function () {
         Route::prefix('volunteer')->group(function () {
             Route::get('/', [VHomeController::class, 'dashboard'])->name('v.dashboard');
             Route::get('/settings', [VHomeController::class, 'settings'])->name('v.settings');
+            Route::post('/settings', [VHomeController::class, 'save_settings']);
             Route::get('/profile', [VHomeController::class, 'profile'])->name('v.profile');
+            Route::post('/profile', [VHomeController::class, 'save_profile']);
             Route::get('/calendar', [VHomeController::class, 'calendar'])->name('v.calendar');
             Route::get('/load-events', [VHomeController::class, 'load_events'])->name('v.loadevents');
             Route::get('/info', [VHomeController::class, 'info'])->name('v.info');

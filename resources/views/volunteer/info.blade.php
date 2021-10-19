@@ -102,12 +102,14 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h5 class="h3 mb-0">Informacje</h5>
+                  <h5 class="h3 mb-0">COVID-19</h5>
                 </div>
               </div>
             </div>
             <div class="card-body">
-
+                <h2 class="text-danger">W zwiąsku z zagrożeniem epidemiologicznym wywołanemu koronawirusem SARS-CoV-2 prosimy o przestrzeganie zasad reżimu sanitarnego, częste mycie rąk oraz noszenie maseczek w przypadku gdy nie można zachować dystansu od innych osób.</h2>
+                <h3>Każdy wolontariusz musi posiadać oświadczenie COVID-19 (bądź zostanie wypisane na miejscu akcji).</h3>
+                <h3>Wolontariuszu, pamiętaj! Jeśli źle się czujesz, masz objawy COVID-19 zostań w domu! Zdrowie jest najważniejsze!</h3>
             </div>
           </div>
       @include('volunteer.include.footer')

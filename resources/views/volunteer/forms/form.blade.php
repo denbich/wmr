@@ -139,7 +139,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Zapisz się </h3>
+                  <h3 class="mb-0"> @if ($signed_volunteer == null) Zapisz się @else Szczegóły uczestnictwa @endif </h3>
                 </div>
               </div>
             </div>
@@ -287,7 +287,7 @@
     "use strict";
 
     function initMap() {
-    var myLatlng = new google.maps.LatLng(50.1076061,18.5471027);
+    var myLatlng = new google.maps.LatLng({!! $form->place_longitude !!}, {!! $form->place_latitude !!});
 
 var mapOptions = {
     zoom: 13,

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\volunteer;
 
+use App\Models\User;
 use App\Models\Prize;
+use App\Mail\NewOrder;
 use App\Models\Volunteer;
 use App\Models\Order_prize;
 use Illuminate\Http\Request;
@@ -21,7 +23,7 @@ class VPrizesController extends Controller
 
     public function prize($id)
     {
-        $prize = Prize::find($id)->with('prize_translate')->first();
+        $prize = Prize::where('id', $id)->with('prize_translate')->first();
         $points = Volunteer::where('user_id', Auth::id())->pluck('points')->first();
 
         return view('volunteer.prizes.prize', ['prize' => $prize, 'points' => $points]);
@@ -59,20 +61,20 @@ class VPrizesController extends Controller
 
             $datam = array(
                 'name' => 'test',
+                'link' => route('c.prize.order', [$order->id]),
             );
 
-            Mail::to('denis@mosir.rybnik.pl')->send(new NewVolunteerMail($datam));
+            Mail::to(User::where('role', 'coordinator')->get()->pluck('email'))->send(new NewOrder($datam));
 
             return redirect(route('v.prize', [$id]))->with(['order' => true]);
         } else {
             return redirect(route('v.prize', [$id]))->with(['points_order' => false]);
         }
-
     }
 
     public function orders()
     {
-        $orders = Order_prize::where('volunteer_id', Auth::id())->with(['d_prize', 'prize'])->get();
+        $orders = Order_prize::where('volunteer_id', Auth::id())->with(['d_prize', 'prize'])->orderBy('id', 'DESC')->get();
         return view('volunteer.prizes.orders', ['orders' => $orders]);
     }
 }

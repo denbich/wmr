@@ -136,6 +136,7 @@ return [
     */
 
     'recaptcha' => 'reCaptcha is required',
+    'old_password' => 'Old password is incorrect',
 
     'custom' => [
         'attribute-name' => [

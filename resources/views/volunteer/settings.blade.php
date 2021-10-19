@@ -107,6 +107,30 @@
               </div>
             </div>
             <div class="card-body">
+                @if (session('change') == true)
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="alert-text"><strong>Sukces!</strong> Zmiana hasła przebiegła pomyślnie!</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @if (session('password_err') == true)
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span class="alert-text"><strong>Błąd!</strong> Stare hasło jest nieprawidłowe!</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                 <div class="light-style flex-grow-1 container-p-y">
 
                     <div class=" overflow-hidden">
@@ -124,26 +148,42 @@
                             @csrf
                           <div class="tab-content">
 
-                            <div class="tab-pane fade active show"" id="account-change-password">
-                              <div class="card-body pb-2">
+                            <div class="tab-pane fade active show" id="account-change-password">
+                                <div class="card-body pb-2">
 
-                                <div class="form-group">
-                                  <label class="form-label">Aktualne hasło</label>
-                                  <input type="password" name="old_password" class="form-control">
+                                  <div class="form-group">
+                                    <label class="form-label">Aktualne hasło</label>
+                                    <div class="input-group-alternative">
+                                    <input type="password" name="old_password" class="form-control">
+                                    </div>
+                                    @error('old_password')
+                                      <span class="text-danger small" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label class="form-label">Nowe hasło</label>
+                                    <div class="input-group-alternative">
+                                    <input type="password" name="password" class="form-control">
+                                    </div>
+                                    @error('password')
+                                      <span class="text-danger small" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label class="form-label">Powtórz nowe hasło</label>
+                                    <div class="input-group-alternative">
+                                    <input type="password" name="password_confirmation" class="form-control">
+                                    </div>
+                                  </div>
+
                                 </div>
-
-                                <div class="form-group">
-                                  <label class="form-label">Nowe hasło</label>
-                                  <input type="password" name="new_password1" class="form-control">
-                                </div>
-
-                                <div class="form-group">
-                                  <label class="form-label">Powtórz nowe hasło</label>
-                                  <input type="password" name="new_password2" class="form-control">
-                                </div>
-
                               </div>
-                            </div>
 
                             <div class="tab-pane fade" id="account-connections">
 
@@ -157,39 +197,6 @@
                             </div>
                             <div class="tab-pane fade" id="account-notifications">
                               <div class="card-body pb-2">
-
-                                <!--<h6 class="mb-4">Activity</h6>
-
-                                <div class="form-group">
-                                  <label class="switcher">
-                                    <input type="checkbox" class="switcher-input" checked="">
-                                    <span class="switcher-indicator">
-                                      <span class="switcher-yes"></span>
-                                      <span class="switcher-no"></span>
-                                    </span>
-                                    <span class="switcher-label">Email me when someone comments on my article</span>
-                                  </label>
-                                </div>
-                                <div class="form-group">
-                                  <label class="switcher">
-                                    <input type="checkbox" class="switcher-input" checked="">
-                                    <span class="switcher-indicator">
-                                      <span class="switcher-yes"></span>
-                                      <span class="switcher-no"></span>
-                                    </span>
-                                    <span class="switcher-label">Email me when someone answers on my forum thread</span>
-                                  </label>
-                                </div>
-                                <div class="form-group">
-                                  <label class="switcher">
-                                    <input type="checkbox" class="switcher-input">
-                                    <span class="switcher-indicator">
-                                      <span class="switcher-yes"></span>
-                                      <span class="switcher-no"></span>
-                                    </span>
-                                    <span class="switcher-label">Email me when someone follows me</span>
-                                  </label>
-                                </div>-->
                                 <div class='onesignal-customlink-container'></div>
                               </div>
                             </div>

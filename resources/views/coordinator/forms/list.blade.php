@@ -141,7 +141,7 @@
                                                 <img src="{{ $form->icon_src }}">
                                                 </a>
                                                 <div class="media-body">
-                                                    <span class="name mb-0 text-sm">{{ $form->form_translate->first()->title  }}</span>
+                                                    <span class="name mb-0 text-sm">{{ $form->form_translate->title  }}</span>
                                                 </div>
                                             </div>
                                         </th>

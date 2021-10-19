@@ -56,13 +56,13 @@ class CPostsController extends Controller
 
     public function show($id)
     {
-        $post = Post::find($id)->with(['post_translate', 'author', 'd_form'])->first();
+        $post = Post::where('id', $id)->with(['post_translate', 'author', 'd_form'])->first();
         return view('coordinator.posts.show', ['post' => $post]);
     }
 
     public function edit($id)
     {
-        $post = Post::find($id)->with(['post_translate'])->first();
+        $post = Post::where('id', $id)->with(['post_translate'])->first();
         return view('coordinator.posts.edit', ['post' => $post]);
     }
 
@@ -72,8 +72,8 @@ class CPostsController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
         ]);
-        
-        $post = Translate_post::find($id);
+
+        $post = Translate_post::where('id', $id);
         $post->fill([
             'title' => $request->title,
             'content' => $request->content,

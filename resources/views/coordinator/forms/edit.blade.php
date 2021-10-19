@@ -265,8 +265,6 @@
       $("[name='place_longitude']").val(marker.getPosition().lat());
       $("[name='place_latitude']").val(marker.getPosition().lng());
   }, 5);
-
-
   }
 
   </script>
@@ -319,7 +317,7 @@
       font_formats: "Nunito-nunito",
       setup: function (editor) {
       editor.on('init', function (e) {
-        editor.setContent("{!! str_replace('"', "'", $form->form_translate->description) !!}");
+        editor.setContent("{!!str_replace('"', "'", str_replace(PHP_EOL, '', $form->form_translate->description)) !!}");
       });
     }
     });

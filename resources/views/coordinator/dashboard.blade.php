@@ -1,7 +1,7 @@
 @extends('layouts.coordinator')
 
 @section('title')
-{{ __('index.dashboard.title') }}
+{{ __('Panel koordynatora') }}
 @endsection
 
 @section('content')
@@ -95,7 +95,7 @@
             </div>
             <div class="col-xl-3 col-md-6 h-100">
               <div class="card card-stats">
-                <div class="card-body">
+                <div class="card-body my-3">
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Liczba wolontariuszy</h5>
@@ -107,7 +107,7 @@
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
+                  <p class="mt-3 mb-0 text-sm d-none">
                     <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{ $count['volunteers_p'] }}</span>
                     <span class="text-nowrap">Od ostatniego miesiąca</span>
                   </p>
@@ -133,7 +133,7 @@
             </div>
             <div class="col-xl-3 col-md-6 h-100">
               <div class="card card-stats">
-                <div class="card-body">
+                <div class="card-body my-3">
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Nagrody</h5>
@@ -145,7 +145,7 @@
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
+                  <p class="mt-3 mb-0 text-sm d-none">
                     <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{ $count['prizes_p'] }}</span>
                     <span class="text-nowrap">Od ostatniego miesiąca</span>
                   </p>
@@ -166,20 +166,13 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h5 class="h3 mb-0">Statystyki zamówień</h5>
-                </div>
-                <div class="col">
-                  <ul class="nav nav-pills justify-content-end">
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark"
-                    data-update='{"data":{"datasets":[{"data":[0, 20]}]}}' data-suffix="k">
-                    </li>
-                  </ul>
+                  <h5 class="h3 mb-0">Statystyki rejestracji (beta)</h5>
                 </div>
               </div>
             </div>
             <div class="card-body">
               <div class="chart">
-                <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
+                <canvas id="signinchart" class="chart-canvas"></canvas>
               </div>
             </div>
           </div>
@@ -189,13 +182,45 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h5 class="h3 mb-0">Statystyki rejestracji</h5>
+                  <h5 class="h3 mb-0">Urodziny wolontariuszy</h5>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <div class="chart">
-                <canvas id="chart-bars" class="chart-canvas"></canvas>
+              <div class="chart overflow-auto">
+                  <ul>
+                    @foreach ($volunteers as $volunteer)
+                    @php
+                    $v_birthday = date ('m-d', strtotime($volunteer->birth));
+                    $uro0 = date('m-d');
+                    $uro1 = date( 'm-d', strtotime( date( 'Y-m-d', strtotime( date( 'Y-m-d') .' +1 day'))));
+                    $uro2 = date( 'm-d', strtotime( date( 'Y-m-d', strtotime( date( 'Y-m-d') .' +2 day'))));
+                    $uro3 = date( 'm-d', strtotime( date( 'Y-m-d', strtotime( date( 'Y-m-d') .' +3 day'))));
+                    $uro4 = date( 'm-d', strtotime( date( 'Y-m-d', strtotime( date( 'Y-m-d') .' +4 day'))));
+                    $uro5 = date( 'm-d', strtotime( date( 'Y-m-d', strtotime( date( 'Y-m-d') .' +5 day'))));
+
+                    if ($uro0 == $v_birthday)
+                    {
+                        $tekst_li = "ma <b class='cz'>dziś</b>";
+                    } elseif ($uro1 == $v_birthday) {
+                        $tekst_li = "ma<b class='gr'> jutro</b>";
+                    }elseif ($uro2 == $v_birthday) {
+                        $tekst_li = "ma za<b> 2 dni</b>";
+                    }elseif ($uro3 == $v_birthday) {
+                        $tekst_li = "ma za<b> 3 dni</b>";
+                    }elseif ($uro4 == $v_birthday) {
+                        $tekst_li = "ma za<b> 4 dni</b>";
+                    }elseif ($uro5 == $v_birthday) {
+                        $tekst_li = "ma za<b> 5 dni</b>";
+                    }
+
+                    if ($v_birthday >= $uro0 && $v_birthday <= $uro5)
+                    {
+                        echo "<li><p>".$volunteer->user->firstname." ".$volunteer->user->lastname." (".$volunteer->user->name.") ".$tekst_li." urodziny!</p></li>";
+                    }
+                    @endphp
+                    @endforeach
+                  </ul>
               </div>
             </div>
           </div>
@@ -288,7 +313,7 @@
                     src="https://panel.wolontariat.rybnik.pl/assets/img/undraw_delivery_address_03n0.svg" alt="">
                   </div>
                 <p>Jeśli masz probem, propozycję bądź pytanie to śmiało pisz na adres:
-                    <a target="_blank" rel="nofollow" href="mailto:admin@wolontariat.rybnik.pl">admin@wolontariat.rybnik.pl</a>
+                    <a target="_blank" rel="nofollow" href="mailto:administrator@wolontariat.rybnik.pl">administrator@wolontariat.rybnik.pl</a>
                 </p>
                 <!--<a target="_blank" rel="nofollow" href="#"><i class="far fa-question-circle"></i> Centrum pomocy</a>-->
               </div>
@@ -308,3 +333,59 @@
   </div>
 
 @endsection
+
+@section('script')
+<script>
+
+var timeFormat = 'MM/YYYY';
+
+var config = {
+    type:    'bar',
+    data:    {
+        datasets: [
+            {
+                label: "Liczba rejestracji",
+
+                data: [
+                    @foreach ($stats as $stat)
+                    {x: "{{ date( 'm/Y', strtotime($stat->created_at)) }}", y: 100},
+                    @endforeach
+                ],
+                fill: true,
+                borderColor: 'red'
+            },
+        ]
+    },
+    options: {
+        responsive: true,
+        scales:     {
+            xAxes: [{
+                type:       "time",
+
+                time:       {
+                    unit: 'month',
+                    format: timeFormat,
+                    tooltipFormat: 'll'
+                },
+                scaleLabel: {
+                    display:     true,
+                    labelString: 'Date'
+                }
+            }],
+            yAxes: [{
+                scaleLabel: {
+                    display:     true,
+                    labelString: 'value'
+                }
+            }]
+        }
+    }
+};
+
+window.onload = function () {
+    var ctx = document.getElementById("signinchart").getContext("2d");
+    window.myLine = new Chart(ctx, config);
+};
+    </script>
+@endsection
+

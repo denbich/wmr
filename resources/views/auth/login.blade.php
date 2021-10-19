@@ -99,14 +99,14 @@ class="bg-default"
                           </div>
                         </form>
 
-                        <table class="w-100">
+                        <table class="w-100 d-none">
                             <tbody><tr>
                               <td><hr></td>
                               <td style="width:1px; padding: 0 10px; white-space: nowrap;">LUB</td>
                               <td><hr></td>
                             </tr>
                           </tbody></table>
-                          <div class="btn-wrapper text-center pb-3">
+                          <div class="btn-wrapper text-center pb-3 d-none">
                             <button href="#" class="btn btn-neutral btn-icon"><!--  disabled -->
                               <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
                               <span class="btn-inner--text">Zaloguj się za pomocą Google</span>

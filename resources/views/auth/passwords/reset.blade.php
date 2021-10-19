@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('index.login.title') }}
+{{ __('Resetowanie Hasła') }}
 @endsection
 
 @section('body')

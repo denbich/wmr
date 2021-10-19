@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('index.login.title') }}
+{{ __('Zweryfikuj adres email') }}
 @endsection
 
 @section('body')
@@ -39,7 +39,7 @@ class="bg-default"
                 <div class="col-lg-6">
                     <div class="zdjecie-login w-100 h-100" style="margin-left:20px;"></div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 my-5">
                     <div class="card-header bg-transparent text-center">
                         <a href="http://wmr.local/login"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
                         <div class="mt-2 h2">{{ __('Zanim przejdziesz dalej, sprawdź pocztę e-mail pod kątem linku weryfikacyjnego.') }}</div>
@@ -52,14 +52,14 @@ class="bg-default"
                         @endif
                         <form class="user mt-3" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('kliknij tutaj, jeśli nie dostałeś emaila') }}</button>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('Wyślij emaila z linkiem ponownie') }}</button>
                         </form>
                         <form class="user mt-3" method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('Wyloguj się') }}</button>
                         </form>
                           <hr class="my-2">
-                          <div class="text-center py-2">
+                          <div class="text-center py-2 d-none">
                             <h2><strong>Wybierz język</strong></h2>
                             <div class="row mb-3">
                                 <div class="col">
@@ -74,10 +74,10 @@ class="bg-default"
                                     </span>
 
                                 </div>
-                                <div class="col d-none">
+                                <div class="col">
                                     <a href="/language/de"><img src="{{ URL::asset('lang/208-germany.svg') }}" alt="" class="w-75"></a>
                                 </div>
-                                <div class="col d-none">
+                                <div class="col">
                                     <a href="/language/ua"><img src="{{ URL::asset('lang/198-ukraine.svg') }}" alt="" class="w-75"></a>
                                 </div>
                             </div>

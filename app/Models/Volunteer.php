@@ -30,4 +30,9 @@ class Volunteer extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function signed_form()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

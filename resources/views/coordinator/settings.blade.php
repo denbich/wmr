@@ -108,13 +108,151 @@
                   </div>
                 </div>
               </div>
-              <div class="row justify-content-center">
-                  <div class="col-lg-9">
+                <div class="card-body">
                     <div class="card-body">
-                        <a href="" class="btn btn-danger">Połącz konto z kontem Google</a>
-                      </div>
-                  </div>
-              </div>
+                        @if (session('change') == true)
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="alert-text"><strong>Sukces!</strong> Zmiana hasła przebiegła pomyślnie!</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @if (session('password_err') == true)
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span class="alert-text"><strong>Błąd!</strong> Stare hasło jest nieprawidłowe!</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        <div class="light-style flex-grow-1 container-p-y">
+
+                            <div class=" overflow-hidden">
+                              <div class="row no-gutters row-bordered row-border-light">
+                                <div class="col-lg-3 pt-0">
+                                  <div class="list-group list-group-flush account-settings-links border-bottom">
+                                    <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-change-password">Zmień hasło</a>
+                                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-connections">Logowanie</a>
+                                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Powiadomienia</a>
+                                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#rodo">RODO</a>
+                                  </div>
+                                </div>
+                                <div class="col-lg-9">
+                                <form method="post" action="{{ route('c.settings') }}">
+                                    @csrf
+                                  <div class="tab-content">
+
+                                    <div class="tab-pane fade active show" id="account-change-password">
+                                      <div class="card-body pb-2">
+
+                                        <div class="form-group">
+                                          <label class="form-label">Aktualne hasło</label>
+                                          <div class="input-group-alternative">
+                                          <input type="password" name="old_password" class="form-control">
+                                          </div>
+                                          @error('old_password')
+                                            <span class="text-danger small" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label class="form-label">Nowe hasło</label>
+                                          <div class="input-group-alternative">
+                                          <input type="password" name="password" class="form-control">
+                                          </div>
+                                          @error('password')
+                                            <span class="text-danger small" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label class="form-label">Powtórz nowe hasło</label>
+                                          <div class="input-group-alternative">
+                                          <input type="password" name="password_confirmation" class="form-control">
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="account-connections">
+
+                                        <div class="card-body pb-2">
+                                            <h4>Logowanie dwupoziomowe - <b>Wkrótce!</b></h4>
+                                            <a class="btn btn-danger text-white">Połącz konto z google - <b>Wkrótce!</b></a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="account-notifications">
+                                      <div class="card-body pb-2">
+
+                                        <!--<h6 class="mb-4">Activity</h6>
+
+                                        <div class="form-group">
+                                          <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" checked="">
+                                            <span class="switcher-indicator">
+                                              <span class="switcher-yes"></span>
+                                              <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Email me when someone comments on my article</span>
+                                          </label>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" checked="">
+                                            <span class="switcher-indicator">
+                                              <span class="switcher-yes"></span>
+                                              <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Email me when someone answers on my forum thread</span>
+                                          </label>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="switcher">
+                                            <input type="checkbox" class="switcher-input">
+                                            <span class="switcher-indicator">
+                                              <span class="switcher-yes"></span>
+                                              <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Email me when someone follows me</span>
+                                          </label>
+                                        </div>-->
+                                        <div class='onesignal-customlink-container'></div>
+                                      </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="rodo">
+                                      <div class="card-body pb-2">
+                                          <a class="btn btn-primary" href="">Generuj raport twoich danych w PDF <i>Wkrótce!</i></a>
+                                          </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="text-right mt-3">
+                              <button type="submit" class="btn btn-primary">Zapisz zmiany</button>&nbsp;
+                              </form>
+                              <a href="{{ route('c.settings') }}" class="btn btn-danger">Anuluj</a>
+                            </div>
+
+                          </div>
+                    </div>
+                </div>
             </div>
 
         @yield('coordinator.include.footer')

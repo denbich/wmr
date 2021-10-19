@@ -124,6 +124,7 @@ return [
     'uuid'                 => 'Pole :attribute musi być poprawnym identyfikatorem UUID.',
 
     'recaptcha' => 'reCaptcha jest wymagane',
+    'old_password' => 'Stare hasło jest nieprawidłowe',
 
     'custom'               => [
         'attribute-name' => [

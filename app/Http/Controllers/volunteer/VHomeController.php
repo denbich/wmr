@@ -41,6 +41,29 @@ class VHomeController extends Controller
         return view('volunteer.settings');
     }
 
+    public function save_settings(Request $request)
+    {
+
+        if ($request->old_password != null && $request->password != null)
+        {
+            $validated = $request->validate([
+                'old_password' => ['nullable', 'required_with:password'],
+                'password' => ['string', 'min:8', 'confirmed', 'required_with:old_password', 'different:old_password'],
+            ]);
+
+            $user = User::where('id', Auth::id())->first();
+            if (Hash::check($request->old_password, Auth::user()->password)) {
+                $user->fill(['password' => Hash::make($request->password)])->save();
+                return redirect(route('c.settings'))->with(['change' => true]);
+            } else {
+                return redirect(route('c.settings'))->with(['password_err' => true]);
+            }
+        } else {
+            return redirect(route('c.settings'))->with(['password_err' => true]);
+        }
+
+    }
+
     public function calendar()
     {
         return view('volunteer.calendar');

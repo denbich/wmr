@@ -121,6 +121,7 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light text-center">
                                 <tr>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Imię i nazwisko (login)</th>
                                     <th scope="col">Nazwa nagrody</th>
                                     <th scope="col">Data zamówienia</th>
@@ -130,6 +131,9 @@
                             <tbody class="list">
                                 @forelse ($orders as $order)
                                     <tr class="text-center">
+                                        <td class="text-center">
+                                            <span class="name mb-0 text-sm">#{{ $order->id }}</span>
+                                        </td>
                                         <th scope="row">
                                             <div class="media align-items-center">
                                                 <a href="#" class="avatar rounded-circle mr-3">

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\coordinator;
 
 use App\Models\User;
 use App\Models\Volunteer;
+use App\Models\Signed_form;
 use Illuminate\Http\Request;
+use Elibyy\TCPDF\Facades\TCPDF;
 use App\Mail\VolunteerActivation;
 use App\Mail\VolunteerDeactivation;
 use App\Http\Controllers\Controller;
@@ -24,7 +26,8 @@ class CVolunteerController extends Controller
     public function volunteer($id)
     {
         $volunteer = Volunteer::where('id', $id)->with('user')->first();
-        return view('coordinator.volunteers.volunteer', ['volunteer' => $volunteer]);
+        $singed = Signed_form::where('volunteer_id', $id)->get()->count();
+        return view('coordinator.volunteers.volunteer', ['volunteer' => $volunteer, 'signed' => $singed]);
     }
 
     public function search()
@@ -33,13 +36,49 @@ class CVolunteerController extends Controller
         {
             $q = $_GET['q'];
             $volunteers = Volunteer::with('user')->whereHas('user', function ($query) use ($q){
-                $query->where('name', 'like', '%'.$q.'%')->orwhere('firstname', 'like', '%'.$q.'%')->orwhere('lastname', 'like', '%'.$q.'%')->orwhere('email', 'like', '%'.$q.'%');})->orWhere('telephone', 'like', '%'.$q.'%')->orWhere('school', 'like', '%'.$q.'%')->get();
+                $query->where('name', 'like', '%'.$q.'%')->orwhere('firstname', 'like', '%'.$q.'%')->orwhere('lastname', 'like', '%'.$q.'%')->orwhere('email', 'like', '%'.$q.'%')->orWhere('telephone', 'like', '%'.$q.'%');})->orWhere('school', 'like', '%'.$q.'%')->get();
                 return view('coordinator.volunteers.search', ['volunteers' => $volunteers]);
         } else {
             return view('coordinator.volunteers.search');
         }
+    }
 
+    public function pdf_list()
+    {
+        $volunteers = Volunteer::with('user')->get();
+        $pdf = new TCPDF();
+        $pdf::SetTitle('Lista wolontariuszy');
+        $pdf::AddPage("L");
+        $lg['a_meta_charset'] = 'UTF-8';
+        $pdf::setLanguageArray($lg);
+        $pdf::SetFont('dejavusans','b',15);
 
+        $pdf::Cell(0, 15, 'Lista wolontariuszy - WMR na dzień '.date('d.m.Y'), 0, '1', 'C', 0, '', 0, false, 'M', 'M');
+
+        $pdf::SetFont('dejavusans','b',10);
+
+        $pdf::cell('15','10','ID','1','0','C');
+        $pdf::cell('40','10','Login','1','0','C');
+        $pdf::cell('45','10','Imię','1','0','C');
+        $pdf::cell('45','10','Nazwisko','1','0','C');
+        $pdf::cell('45','10','Nr telefonu','1','0','C');
+        $pdf::cell('55','10','email','1','0','C');
+        $pdf::cell('30','10','Roz. koszulki','1','1','C');
+
+        $pdf::SetFont('dejavusans','',10);
+
+        foreach ($volunteers as $volunteer)
+        {
+            $pdf::cell('15','10', $volunteer->id,'1','0','C');
+            $pdf::cell('40','10', $volunteer->user->name,'1','0','C');
+            $pdf::cell('45','10', $volunteer->user->firstname,'1','0','C');
+            $pdf::cell('45','10', $volunteer->user->lastname,'1','0','C');
+            $pdf::cell('45','10' ,$volunteer->user->telephone,'1','0','C');
+            $pdf::cell('55','10', $volunteer->user->email,'1','0','C');
+            $pdf::cell('30','10', $volunteer->tshirt_size,'1','1','C');
+        }
+
+        $pdf::Output( 'lista_wolontariuszy.pdf');
     }
 
     public function active()
@@ -72,9 +111,27 @@ class CVolunteerController extends Controller
             'condition' => 1,
         ]);
 
+        switch ($request->reason) {
+            case 1:
+                $text = "Brak przedziału od kiedy można wykonywać wolontariat.";
+                break;
+            case 2:
+                $text = "Wysłany plik to nie jest wypełniona zgoda.";
+                break;
+            case 3:
+                $text = "Zgoda jest niewyraźna.";
+                break;
+            case 4:
+                $text = "Brak podpisu rodzica/opiekuna prawnego.";
+                break;
+            case 5:
+                $text = "Źle wypełniona zgoda.";
+                break;
+        }
+
         $datam = array(
             'name' => $user->name,
-            'reason' => 'Zła zgoda'
+            'reason' => $text,
     );
         Mail::to($user->email)->send(new VolunteerDeactivation($datam));
         return redirect(route('c.v.active'))->with(['deactivation' => true]);

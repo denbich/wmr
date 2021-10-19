@@ -216,7 +216,7 @@
                                                                       <a href="{{ route('c.v.agreement', [$code]) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Zobacz zgodę</a>
                                                                   </div>
                                                                   <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                                                                     <button type="submit" class="btn btn-primary">Zatwierdź</button>
                                                                   </div>
                                                             </form>
@@ -245,8 +245,12 @@
                                                                     <div class="form-group">
                                                                         <div class="input-group input-group-merge input-group-alternative">
                                                                             <select name="reason" id="" class="form-control">
-                                                                                <option value="1">Zła zgoda</option>
-                                                                                <option value="other">Inny...</option>
+                                                                                <option value="1">Brak przedziału od kiedy można wykonywać wolontariat</option>
+                                                                                <option value="2">Wysłany plik to nie jest wypełniona zgoda</option>
+                                                                                <option value="3">Zgoda jest niewyraźna</option>
+                                                                                <option value="4">Brak podpisu rodzica/opiekuna prawnego</option>
+                                                                                <option value="5">Źle wypełniona zgoda</option>
+
                                                                             </select>
                                                                         </div>
                                                                       </div>

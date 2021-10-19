@@ -14,6 +14,7 @@ class Signed_form extends Model
         'form_id',
         'volunteer_id',
         'position_id',
+        'feedback',
         'condition',
         'created_at',
         'updated_at',
@@ -27,6 +28,11 @@ class Signed_form extends Model
     public function volunteer()
     {
         return $this->hasOne(User::class, 'id', 'volunteer_id');
+    }
+
+    public function volun()
+    {
+        return $this->hasOne(Volunteer::class, 'user_id', 'volunteer_id');
     }
 
     public function position()

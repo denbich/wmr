@@ -136,7 +136,7 @@
 
                     <div class="table-responsive"> <!--  data-toggle="list" data-list-values='["name", "firstlastname", "points"]' -->
                         <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
+                            <thead class="thead-light text-center">
                                 <tr>
                                     <th scope="col">Login</th>
                                     <th scope="col">Imię i nazwisko</th>
@@ -146,7 +146,7 @@
                                     <th scope="col">Opcje</th>
                                 </tr>
                             </thead>
-                            <tbody class="list">
+                            <tbody class="list text-center">
                                 @forelse ($volunteers as $volunteer)
                                     <tr>
                                         <th scope="row">
@@ -160,15 +160,11 @@
                                             </div>
                                         </th>
                                         <td>{{ $volunteer->user->firstname }} {{ $volunteer->user->lastname }}</td>
-                                        <td>{{ $volunteer->telephone }}</td>
+                                        <td>{{ $volunteer->user->telephone }}</td>
                                         <td>
                                             <a href="mailto:{{ $volunteer->user->email }}">{{ $volunteer->user->email }}</a>
                                         </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <span class="completion mr-2">{{ $volunteer->points }}</span>
-                                            </div>
-                                        </td>
+                                        <td><span class="name mb-0 text-sm">{{ $volunteer->points }}</span></td>
                                         <td class="text-center">
                                             <a href=""></a>
                                             <a class="btn" href="/coordinator/volunteer/id/{{ $volunteer->id }}">

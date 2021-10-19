@@ -46,6 +46,13 @@ return [
             'visibility' => 'private',
         ],
 
+        'files' => [
+            'driver' => 'local',
+            'root' => storage_path('app/files'),
+            'url' => env('APP_URL').'/files',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -76,6 +83,7 @@ return [
         public_path('agreements') => storage_path('app/agreements'),
         public_path('forms') => storage_path('app/forms'),
         public_path('prizes') => storage_path('app/prizes'),
+        public_path('files') => storage_path('app/files'),
         //public_path('profiles') => storage_path('app/public/profiles'),
     ],
 

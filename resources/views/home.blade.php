@@ -177,7 +177,7 @@
 		<div class=" bd-socialicons-2 bd-no-margins">
 
         <a target="_blank" data-social-url data-path-to-root="." class=" bd-socialicon-19 bd-socialicon"
-   href="//www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fwolontariat.rybnik">
+   href="https://www.facebook.com/wolontariat.rybnik">
     <span class="bd-icon"></span><span></span>
 </a>
 
@@ -186,7 +186,7 @@
 
 
         <a target="_blank" data-social-url data-path-to-root="." class=" bd-socialicon-24 bd-socialicon"
-   href="//instagram.com/wolontariat.rybnik">
+   href="https://instagram.com/wolontariat.rybnik">
     <span class="bd-icon"></span><span></span>
 </a>
 
@@ -311,12 +311,12 @@
 		<div class=" bd-spacer-6 clearfix"></div>
 
 		<a
- href="https://wolontariat.rybnik.pl/pliki/kodeks_wolontariuszy_MOSiR_Rybnik.pdf" class="bd-linkbutton-28 bd-no-margins  bd-button-25  bd-own-margins bd-content-element"    >
+ href="{{ url('/files/kodeks_wolontariuszy_MOSiR_Rybnik.pdf') }}" class="bd-linkbutton-28 bd-no-margins  bd-button-25  bd-own-margins bd-content-element"    >
     Kodeks Wolontariusza
 </a>
 
 		<a
- href="https://wolontariat.rybnik.pl/pliki/regulamin_wolontariatu_MOSiR_Rybnik.pdf" class="bd-linkbutton-29 bd-no-margins  bd-button-26  bd-own-margins bd-content-element"    >
+ href="{{ url('/files/regulamin_wolontariatu_MOSiR_Rybnik.pdf') }}" class="bd-linkbutton-29 bd-no-margins  bd-button-26  bd-own-margins bd-content-element"    >
     Regulamin wolontariatu
 </a></div></div>
 </div>
@@ -488,7 +488,7 @@
 		<div class=" bd-socialicons-3">
 
         <a target="_blank" data-social-url data-path-to-root="." class=" bd-socialicon-30 bd-socialicon"
-   href="//www.facebook.com/sharer.php?u=https%3A%2F%2Ffacebook.com%2FBiegWiosny">
+   href="https://www.facebook.com/BiegWiosny">
     <span class="bd-icon"></span><span></span>
 </a>
 
@@ -530,7 +530,7 @@
 		<div class=" bd-socialicons-7">
 
         <a target="_blank" data-social-url data-path-to-root="." class=" bd-socialicon-78 bd-socialicon"
-   href="//www.facebook.com/sharer.php?u=https%3A%2F%2Ffacebook.com%2Fpolmaratonksiezycowy">
+   href="https://www.facebook.com/polmaratonksiezycowy">
     <span class="bd-icon"></span><span></span>
 </a>
 
@@ -582,7 +582,7 @@
 		<div class=" bd-socialicons-9">
 
         <a target="_blank" data-social-url data-path-to-root="." class=" bd-socialicon-100 bd-socialicon"
-   href="//www.facebook.com/sharer.php?u=https%3A%2F%2Ffacebook.com%2FKamienExtreme">
+   href="https://www.facebook.com/KamienExtreme">
     <span class="bd-icon"></span><span></span>
 </a>
 
@@ -626,7 +626,7 @@
 		<div class=" bd-socialicons-11">
 
         <a target="_blank" data-social-url data-path-to-root="." class=" bd-socialicon-122 bd-socialicon"
-   href="//www.facebook.com/sharer.php?u=https%3A%2F%2Ffacebook.com%2FBiegBarborkowy">
+   href="https://www.facebook.com/BiegBarborkowy">
     <span class="bd-icon"></span><span></span>
 </a>
 
@@ -673,17 +673,17 @@
 		<div class=" bd-spacer-28 clearfix"></div>
 
 		<a
- href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_niepelnoletni.pdf" class="bd-linkbutton-25 bd-no-margins  bd-button-22  bd-own-margins bd-content-element"    >
+ href="{{ url('/files/zgoda_wolontariat_niepelnoletni.pdf') }}" class="bd-linkbutton-25 bd-no-margins  bd-button-22  bd-own-margins bd-content-element"    >
     ZGODA NA WOLONTARIAT (NIEPEŁNOLETNI)
 </a>
 
 		<a
- href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_pelnoletni.pdf" class="bd-linkbutton-33 bd-no-margins  bd-button-30  bd-own-margins bd-content-element"    >
+ href="{{ url('/files/zgoda_wolontariat_pelnoletni.pdf') }}" class="bd-linkbutton-33 bd-no-margins  bd-button-30  bd-own-margins bd-content-element"    >
     ZGODA NA WOLONTARIAT (PEŁNOLETNI)
 </a>
 
 		<a
- href="https://wolontariat.rybnik.pl/pliki/oswiadczenie_covid.pdf" class="bd-linkbutton-31 bd-no-margins  bd-button-28  bd-own-margins bd-content-element"    >
+ href="{{ url('/files/oswiadczenie_covid.pdf') }}" class="bd-linkbutton-31 bd-no-margins  bd-button-28  bd-own-margins bd-content-element"    >
     OŚWIADCZENIE COVID-19
 </a>
     </div>
@@ -789,16 +789,7 @@
 
 </footer>
 
-<div class="alert alert-dismissible text-center cookiealert" role="alert">
-    <div class="cookiealert-container">
-        <b>Ta strona korzysta z ciasteczek.</b> &#x1F36A; Dalsze korzystanie ze strony oznacza, że zgadzasz się na ich użycie.
-
-        <button type="button" class="btn btn-primary przycisk btn-sm acceptcookies" style="background-color: #5e72e4" aria-label="Close">
-            Zgadzam się
-        </button>
-  <a href="https://wolontariat.rybnik.pl/pliki/polityka_prywatnosci.pdf" target="_blank" style="text-decoration:none; background-color: #5e72e4" class="btn btn-primary przycisk btn-sm acceptcookies">Polityka prywatności</a>
-    </div>
-  </div>
+@include('cookies')
 
   <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
 

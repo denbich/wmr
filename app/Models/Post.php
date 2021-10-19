@@ -19,7 +19,7 @@ class Post extends Model
 
     public function post_translate()
     {
-        return $this->hasOne(Translate_post::class);
+        return $this->hasOne(Translate_post::class, 'post_id', 'id');
     }
 
     public function d_form()

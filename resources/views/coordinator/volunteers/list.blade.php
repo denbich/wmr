@@ -96,7 +96,7 @@
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
+              <a href="{{ route('c.form.create') }}" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
             </div>
           </div>
         </div>
@@ -111,6 +111,9 @@
                 <div class="row align-items-center">
                   <div class="col-8">
                     <h3 class="mb-0">Lista wolontariuszy </h3>
+                  </div>
+                  <div class="col-4 text-right">
+                    <a href="{{ route('c.v.pdflist') }}" class="btn btn-sm btn-primary">Generuj listę PDF</a>
                   </div>
                 </div>
               </div>

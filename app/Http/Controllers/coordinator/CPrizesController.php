@@ -138,19 +138,19 @@ class CPrizesController extends Controller
 
     public function orders()
     {
-        $orders = Order_prize::with(['volunteer', 'd_prize', 'prize'])->get();
+        $orders = Order_prize::with(['volunteer', 'd_prize', 'prize'])->orderBy('id', 'DESC')->get();
         return view('coordinator.prizes.orders', ['orders' => $orders]);
     }
 
     public function order($id)
     {
-        $order = Order_prize::find($id)->with(['volunteer', 'd_prize', 'prize'])->first();
+        $order = Order_prize::where('id', $id)->with(['volunteer', 'd_prize', 'prize'])->first();
         return view('coordinator.prizes.order', ['order' => $order]);
     }
 
     public function change_status(Request $request, $id)
     {
-        $order = Order_prize::find($id);
+        $order = Order_prize::where('id', $id)->first();
         switch ($order->condition)
         {
             case 0:
