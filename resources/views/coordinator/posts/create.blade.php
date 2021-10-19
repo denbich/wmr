@@ -10,7 +10,7 @@
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
         <a class="mt-2" href="javascript:void(0)">
-          <img src="https://panel.wolontariat.rybnik.pl/assets/img/logo-wmr2.svg" class="h-100" alt="...">
+          <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -191,7 +191,7 @@
 @endsection
 
 @section('style')
-<script src="https://cdn.tiny.cloud/1/d3kpibmpyvl6vumytfhhsj052p2i3op69hki3vyeqclmdec5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/{{ env('TINYMCE') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
     tinymce.init({

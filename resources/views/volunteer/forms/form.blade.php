@@ -10,7 +10,7 @@
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
         <a class="mt-2" href="javascript:void(0)">
-          <img src="https://panel.wolontariat.rybnik.pl/assets/img/logo-wmr2.svg" class="h-100" alt="...">
+          <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -235,6 +235,18 @@
                         @break
 
                     @case(3)
+                    @if(session('feedback') == true)
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="alert-text"><strong>Sukces!</strong> Twoja opinia została wysłana!</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                         <div class="text-center">
                             @if (Auth::user()->gender == 'm')
                                 <h2>Dziękujemy za twoją obecność!</h2>
@@ -243,6 +255,38 @@
                                 <h2>Dziękujemy za twoją obecność!</h2>
                                 <h3 class="text-success">Otrzymałaś punkty za tą akcję!</h3>
                             @endif
+                            @if ($form->signed_form->feedback == null)
+                            <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#feedbackmodal">
+                                Podziel się opinią dot. imprezy
+                              </button>
+
+                              <div class="modal fade" id="feedbackmodal" tabindex="-1" role="dialog" aria-labelledby="feedbackLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <form action="{{ route('v.form.feedback', [$form->id]) }}" method="post">
+                                      @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="feedbackLabel">Podziel się opinią na temat imprezy {{ $form->form_translate->title }}</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <h3 class="text-center">Dla nas twoja opinia jest bardzo ważna! Podziel się nią</h3>
+                                          <textarea id="info" class="form-control" style="resize: none;" name="info" cols="50" rows="3" maxlength="255" required></textarea>
+                                            <p id="info_count" class="text-sm">0 / 255 znaków</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                                          <button type="submit" class="btn btn-primary">Zapisz</button>
+                                        </div>
+                                      </div>
+                                  </form>
+                                </div>
+                              </div>
+                            @endif
+
+
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
@@ -306,5 +350,19 @@ var marker = new google.maps.Marker({
 
 }
 </script>
+
+@if ($form->signed_form->feedback == null)
+
+<script>
+    $(document).ready(function() {
+
+        $('#info').on('keyup propertychange paste', function(){
+            var chars = $('#info').val().length;
+            $('#info_count').html(chars +' / 255 znaków');
+        });
+        });
+</script>
+
+@endif
 
 @endsection

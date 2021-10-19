@@ -10,7 +10,7 @@
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
         <a class="mt-2" href="javascript:void(0)">
-          <img src="https://panel.wolontariat.rybnik.pl/assets/img/logo-wmr2.svg" class="h-100" alt="...">
+          <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -176,7 +176,7 @@
                                       <label for="upload_image" class="w-100">
                                           <a class="btn btn-primary btn-icon w-100 text-white">
                                               <span class="btn-inner--icon"><i class="far fa-images"></i></span>
-                                              <span class="btn-inner--text">Dodaj ikonę formularza</span>
+                                              <span class="btn-inner--text">Dodaj ikonę nagrody</span>
                                           </a>
                                           <input type="file" name="image" class="image d-none" id="upload_image" accept="image/*">
                                           <input type="hidden" name="icon" id="icon_photo" value="">
@@ -297,7 +297,7 @@
 
 </style>
 
-<script src="https://cdn.tiny.cloud/1/d3kpibmpyvl6vumytfhhsj052p2i3op69hki3vyeqclmdec5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/{{ env('TINYMCE') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
     tinymce.init({

@@ -43,7 +43,7 @@ Route::middleware('setlocale')->group(function () {
     Route::middleware(['auth', 'coordinatorcheck', 'verified'])->group(function () {
 
         Route::get('/test', [VFormsController::class, 'test']);
-        
+
         Route::prefix('command')->group(function () {
             Route::get('/migrate', function () { $code = Artisan::call('migrate', [ '--force' => true]); echo $code; });
             Route::get('/migrate-rollback', function () { $code = Artisan::call('migrate:rollback', [ '--force' => true]); echo $code; });
@@ -147,6 +147,7 @@ Route::middleware('setlocale')->group(function () {
                 Route::post('/id/{id}', [VFormsController::class, 'signto']);
                 Route::post('/delete/{id}', [VFormsController::class, 'unsign'])->name('v.form.unsign');
                 Route::post('/certificate', [VFormsController::class, 'certificate'])->name('v.form.certificate');
+                Route::post('/feedback/{id}', [VFormsController::class, 'feedback'])->name('v.form.feedback');
             });
 
             Route::prefix('/prizes')->group(function() {

@@ -10,7 +10,7 @@
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
         <a class="mt-2" href="javascript:void(0)">
-          <img src="https://panel.wolontariat.rybnik.pl/assets/img/logo-wmr2.svg" class="h-100" alt="...">
+          <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
       <div class="navbar-inner">

@@ -137,4 +137,15 @@ class VFormsController extends Controller
         $pdf::Output('zaswiadczenie.pdf');
     }
 
+    public function feedback(Request $request, $id)
+    {
+        $validated = $request->validate(['info' => 'required|max:255']);
+
+        $feedback = Signed_form::where([['volunteer_id', Auth::id()], ['form_id', $id]])->first();
+        $feedback->feedback = $request->info;
+        $feedback->save();
+
+        return redirect(route('v.form.show', [$id]))->with(['feedback' => true]);
+    }
+
 }
