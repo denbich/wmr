@@ -41,7 +41,7 @@ class="bg-default"
                 </div>
                 <div class="col-lg-6">
                     <div class="card-header bg-transparent text-center">
-                        <a href="http://wmr.local/login"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
+                        <a href="{{ route('home') }}"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
                         <div class="mt-2 h2">{{ __('index.password.email.title') }}</div>
                         <div> {{ __('index.password.email.text') }}</div>
                       </div>
@@ -63,7 +63,7 @@ class="bg-default"
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                
+
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('index.password.email.button') }}</button>
                             <a href="{{ route('login') }}" class="btn btn-outline-primary btn-user btn-block">{{ __('index.password.email.login') }}</a>

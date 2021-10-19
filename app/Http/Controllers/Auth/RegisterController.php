@@ -101,7 +101,7 @@ class RegisterController extends Controller
             'name' => $username,
         );
 
-        Mail::to('denis@mosir.rybnik.pl')->send(new NewVolunteer($datam));
+        Mail::to(User::where('role', 'coordinator')->get()->pluck('email'))->send(new NewVolunteer($datam));
 
         return $user;
     }

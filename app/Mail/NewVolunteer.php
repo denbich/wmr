@@ -20,6 +20,6 @@ class NewVolunteer extends Mailable
 
     public function build()
     {
-        return $this->subject('Nowy wolontariusz')->view('mail.newvolunteer')->with('data', $this->datam); //->from(env('MAIL_USERNAME'))
+        return $this->subject('Nowy wolontariusz '.$this->datam['name'])->view('mail.newvolunteer')->with('data', $this->datam); //->from(env('MAIL_USERNAME'))
     }
 }

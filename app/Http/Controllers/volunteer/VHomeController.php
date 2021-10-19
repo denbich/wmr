@@ -13,6 +13,7 @@ use App\Models\Signed_form;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class VHomeController extends Controller
@@ -36,6 +37,46 @@ class VHomeController extends Controller
         return view('volunteer.profile', ['volunteer' => $volunteer]);
     }
 
+    public function save_profile(Request $request)
+    {
+        $validated = $request->validate([
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'telephone' => ['required', 'max:255'],
+            'school' => ['required', 'string', 'max:255'],
+            'ice' => ['required', 'max:255'],
+            'street' =>['required', 'string', 'max:255'],
+            'house_number' =>['required', 'string', 'max:255'],
+            'city' =>['required', 'string', 'max:255'],
+            'tshirt_size' => ['required'],
+        ]);
+
+        $count = User::where([['id', '!=', Auth::id()], ['email', $request->email]])->get()->count();
+        if ($count == 0)
+        {
+            $user = User::where('id', Auth::id())->first();
+            $user->firstname = $request->firstname;
+            $user->lastname = $request->lastname;
+            $user->email = $request->email;
+            $user->telephone = $request->telephone;
+            $user->save();
+
+            $volunteer = Volunteer::where('user_id', Auth::id())->first();
+            $volunteer->school = $request->school;
+            $volunteer->ice = $request->ice;
+            $volunteer->street = $request->street;
+            $volunteer->house_number = $request->house_number;
+            $volunteer->city = $request->city;
+            $volunteer->tshirt_size = $volunteer->tshirt_size;
+            $volunteer->save();
+
+            return redirect(route('v.profile'))->with(['change' => true]);
+        } else {
+            return redirect(route('v.profile'))->withErrors(['email' => __('validation.unique', ['attribute' => 'email'])]);
+        }
+    }
+
     public function settings()
     {
         return view('volunteer.settings');
@@ -54,12 +95,12 @@ class VHomeController extends Controller
             $user = User::where('id', Auth::id())->first();
             if (Hash::check($request->old_password, Auth::user()->password)) {
                 $user->fill(['password' => Hash::make($request->password)])->save();
-                return redirect(route('c.settings'))->with(['change' => true]);
+                return redirect(route('v.settings'))->with(['change' => true]);
             } else {
-                return redirect(route('c.settings'))->with(['password_err' => true]);
+                return redirect(route('v.settings'))->with(['password_err' => true]);
             }
         } else {
-            return redirect(route('c.settings'))->with(['password_err' => true]);
+            return redirect(route('v.settings'))->with(['password_err' => true]);
         }
 
     }

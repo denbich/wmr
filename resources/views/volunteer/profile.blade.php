@@ -113,12 +113,24 @@
                     <h3 class="mb-0">Edytuj profil </h3>
                   </div>
                   <div class="col-4 text-right">
-                    <a href="#!" class="btn btn-sm btn-primary">Ustawienia</a>
+                    <a href="{{ route('v.settings') }}" class="btn btn-sm btn-primary">Ustawienia</a>
                   </div>
                 </div>
               </div>
               <div class="card-body">
-                <form method="POST" action="">
+                @if (session('change') == true)
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <span class="alert-text"><strong>Sukces!</strong> Edycja profilu zakończyła się pomyślnie!</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                <form method="POST" action="{{ route('v.profile') }}">
                     @csrf
                   <h6 class="heading-small text-muted mb-4">Podstawowe informacje</h6>
                   <div class="pl-lg-4">
@@ -126,13 +138,23 @@
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label class="form-control-label" for="input-first-name">Imię</label>
-                            <input type="text" id="input-first-name" class="form-control" placeholder="First name" name="firstname" value="{{ Auth::user()->firstname }}">
+                            <input type="text" id="input-first-name" class="form-control" placeholder="First name" name="firstname" value="{{ Auth::user()->firstname }}" required>
+                            @error('firstname')
+                                      <span class="text-danger small" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label class="form-control-label" for="input-last-name">Nazwisko</label>
-                            <input type="text" id="input-last-name" class="form-control" placeholder="Last name" name="lastname" value="{{ Auth::user()->lastname }}">
+                            <input type="text" id="input-last-name" class="form-control" placeholder="Last name" name="lastname" value="{{ Auth::user()->lastname }}" required>
+                            @error('lastname')
+                                      <span class="text-danger small" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
                           </div>
                         </div>
                       </div>
@@ -141,18 +163,68 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="input-telephone">Numer telefonu</label>
-                          <input type="text" id="input-telephone" class="form-control" placeholder="telephone" name="telephone" value="{{ Auth::user()->telephone }}">
+                          <input type="text" id="input-telephone" class="form-control" placeholder="telephone" name="telephone" value="{{ Auth::user()->telephone }}" required>
+                          @error('telephone')
+                                      <span class="text-danger small" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-email">Adres email</label>
-                          <input type="email" id="input-email" class="form-control" placeholder="{{ Auth::user()->email }}">
-                        </div>
+                            <label class="form-control-label" for="input-email">Adres email</label>
+                            <input type="email" id="input-email" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
+                            @error('email')
+                                          <span class="text-danger small" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                                      @enderror
+                          </div>
                       </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-ice">Numer ICE</label>
+                              <input type="tel" id="input-ice" class="form-control" name="ice" value="{{ $volunteer->ice }}" required>
+                              @error('ice')
+                                          <span class="text-danger small" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                                      @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-school">Szkoła</label>
+                              <input type="text" id="input-school" class="form-control" name="school" value="{{ $volunteer->school }}" required>
+                              @error('school')
+                                          <span class="text-danger small" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                                      @enderror
+                            </div>
+                        </div>
+                    </div>
 
-                  </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-school">Rozmiar koszulki</label>
+                        <select class="form-control" id="tshirt_size" name="tshirt_size" required>
+                            <option value="XS" @if ($volunteer->tshirt_size == "XS") selected @endif>XS</option>
+                            <option value="S" @if ($volunteer->tshirt_size == "S") selected @endif>S</option>
+                            <option value="M" @if ($volunteer->tshirt_size == "M") selected @endif>M</option>
+                            <option value="L" @if ($volunteer->tshirt_size == "L") selected @endif>L</option>
+                            <option value="XL" @if ($volunteer->tshirt_size == "XL") selected @endif>XL</option>
+                            <option value="XXL" @if ($volunteer->tshirt_size == "XXL") selected @endif>XXL</option>
+                        </select>
+                            @error('tshirt_size')
+                                <span class="text-danger small" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
+                    </div>
+                </div>
                   <hr class="my-4" />
                   <!-- Address -->
                   <h6 class="heading-small text-muted mb-4">Adres zamieszkania</h6>
@@ -161,13 +233,23 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="input-address">Ulica</label>
-                          <input id="input-address" class="form-control" placeholder="Home Address" value="{{ $volunteer->street }}" type="text">
+                          <input id="input-address" class="form-control" placeholder="Home Address" name="street" value="{{ $volunteer->street }}" type="text" required>
+                          @error('street')
+                                      <span class="text-danger small" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-country">Numer domu / mieszkania</label>
-                          <input type="text" id="input-postal-code" class="form-control" value="{{ $volunteer->house_number }}">
+                          <label class="form-control-label" for="input-house-number">Numer domu / mieszkania</label>
+                          <input type="text" id="input-house-number" class="form-control" name="house_number" value="{{ $volunteer->house_number }}" required>
+                          @error('house_number')
+                                      <span class="text-danger small" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
                         </div>
                       </div>
                     </div>
@@ -175,23 +257,22 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="form-control-label" for="input-city">Miasto</label>
-                          <input type="text" id="input-city" class="form-control" placeholder="City" value="{{ $volunteer->city }}">
+                          <input type="text" id="input-city" class="form-control" placeholder="City" name="city" value="{{ $volunteer->city }}" required>
+                          @error('city')
+                                      <span class="text-danger small" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
                         </div>
                       </div>
 
                     </div>
                   </div>
-                  <hr class="my-4" />
-                  <!-- Description -->
-                  <h6 class="heading-small text-muted mb-4">O mnie</h6>
-                  <div class="pl-lg-4">
-                    <div class="form-group">
-                      <label class="form-control-label">O mnie</label>
-                      <textarea rows="4" class="form-control" placeholder="A few words about you ...">
-
-                      </textarea>
+                  <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <button type="submit" class="btn btn-primary w-100">Zapisz zmiany</button>
                     </div>
-                  </div>
+                </div>
                 </form>
               </div>
             </div>

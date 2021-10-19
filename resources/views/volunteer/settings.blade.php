@@ -144,7 +144,7 @@
                           </div>
                         </div>
                         <div class="col-lg-9">
-                        <form method="post" action="">
+                        <form method="post" action="{{ route('v.settings') }}">
                             @csrf
                           <div class="tab-content">
 

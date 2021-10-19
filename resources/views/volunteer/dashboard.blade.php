@@ -73,7 +73,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Twoje ID</h5>
-                      <span class="h2 font-weight-bold mb-0">{{ Auth::user()->id }}</span>
+                      <span class="h2 font-weight-bold mb-0">{{ $volunteer->id }}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -123,7 +123,7 @@
                 <div class="card-body my-3">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Liczba aktywnych formularzy</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Liczba formularzy</h5>
                       <span class="h2 font-weight-bold mb-0">{{ $count['forms'] }}</span>
                     </div>
                     <div class="col-auto">
@@ -301,10 +301,10 @@
               <div class="card-body">
                 <div class="text-center">
                     <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                    src="https://panel.wolontariat.rybnik.pl/assets/img/undraw_delivery_address_03n0.svg" alt="">
+                    src="/img/undraw_delivery_address_03n0.svg" alt="">
                   </div>
                 <p>Jeśli masz probem, propozycję bądź pytanie to śmiało pisz na adres:
-                    <a target="_blank" rel="nofollow" href="mailto:admin@wolontariat.rybnik.pl">admin@wolontariat.rybnik.pl</a>
+                    <a target="_blank" rel="nofollow" href="mailto:administrator@wolontariat.rybnik.pl">administrator@wolontariat.rybnik.pl</a>
                 </p>
                 <!--<a target="_blank" rel="nofollow" href="#"><i class="far fa-question-circle"></i> Centrum pomocy</a>-->
               </div>
