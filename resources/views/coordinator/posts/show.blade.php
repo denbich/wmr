@@ -34,7 +34,7 @@
             @include('coordinator.include.forms')
             @include('coordinator.include.prizes')
             <li class="nav-item active">
-                <a class="nav-link collapsed" href="#posts" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="posts">
+                <a class="nav-link collapsed active" href="#posts" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="posts">
                   <i class="fas fa-table text-primary"></i>
                   <span class="nav-link-text">Posty</span>
                 </a>

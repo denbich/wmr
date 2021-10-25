@@ -33,7 +33,7 @@
           <ul class="navbar-nav">
             @include('coordinator.include.forms')
             <li class="nav-item active">
-                <a class="nav-link" href="#prizes" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="prizes">
+                <a class="nav-link active" href="#prizes" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="prizes">
                   <i class="fas fa-award text-primary"></i>
                   <span class="nav-link-text">Nagrody</span>
                 </a>

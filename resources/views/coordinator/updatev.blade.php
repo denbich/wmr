@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('Informacje') }}
-@endsection
-
-@section('meta')
-<meta name="link" content="calendar">
+{{ __('Aktualizacja') }}
 @endsection
 
 @section('content')
@@ -46,32 +42,7 @@
           </h6>
 
           <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('c.calendar') }}">
-                    <i class="far fa-calendar text-primary"></i>
-                    <span class="nav-link-text">Kalendarz</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('c.settings') }}">
-                    <i class="fas fa-cog text-primary"></i>
-                    <span class="nav-link-text">Ustawienia</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ route('c.info') }}">
-                    <i class="fas fa-info-circle text-primary"></i>
-                    <span class="nav-link-text">Informacje</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt text-primary"></i>
-                    <span class="nav-link-text">Wyloguj się</span>
-                </a>
-            </li>
-
-
+              @include('coordinator.include.other')
           </ul>
         </div>
       </div>
@@ -86,16 +57,16 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Informacje</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Update</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('c.dashboard') }}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('c.info') }}">Informacje</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('c.info') }}">Aktualizacja wolontariusza</a></li>
                 </ol>
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-                <a href="{{ route('c.form.create') }}" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
+                <a href="#" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> Nowy formularz</a>
               </div>
           </div>
         </div>
@@ -109,11 +80,32 @@
               <div class="card-header">
                 <div class="row align-items-center">
                   <div class="col-8">
-                    <h3 class="mb-0">Informacje </h3>
+                    <h3 class="mb-0">Zaaktualizuj wolontariusza </h3>
                   </div>
                 </div>
               </div>
                 <div class="card-body">
+                    @if (session('v') == true)
+                    <h1 class="text-success">OK</h1>
+                    @endif
+                    <form action="" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label class="required" for="title">ID wolontariusza</label>
+                            <input class="form-control" type="number" name="id" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="title">Zgoda</label>
+                            <input class="form-control" type="file" name="agreement" accept=".pdf">
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="title">Zdjęcie profilowe</label>
+                            <input class="form-control" type="file" name="profile" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Wyślij</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 

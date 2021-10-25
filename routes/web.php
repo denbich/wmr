@@ -38,7 +38,11 @@ Route::middleware('setlocale')->group(function () {
         Route::post('/new-agreement', [HomeController::class, 'update_agreement']);
     });
 
-    Route::middleware(['auth', 'admincheck'])->group(function () {Route::prefix('admin')->group(function () {});});
+    Route::middleware(['auth', 'admincheck'])->group(function () {
+        Route::prefix('admin')->group(function () {
+            Route::get('/', [AHomeController::class, 'dashboard'])->name('a.dashboard');
+        });
+    });
 
     Route::middleware(['auth', 'coordinatorcheck', 'verified'])->group(function () {
 
@@ -56,10 +60,14 @@ Route::middleware('setlocale')->group(function () {
             Route::post('/settings', [CHomeController::class, 'save_settings']);
             Route::get('/profile', [CHomeController::class, 'profile'])->name('c.profile');
             Route::post('/profile', [CHomeController::class, 'update_profile']);
+            Route::post('/change-photo', [CHomeController::class, 'change_photo'])->name('c.change.profile');
             Route::get('/calendar', [CHomeController::class, 'calendar'])->name('c.calendar');
             Route::get('/load-events', [CHomeController::class, 'load_events'])->name('c.loadevents');
             Route::get('/info', [CHomeController::class, 'info'])->name('c.info');
             Route::get('/maps', [CHomeController::class, 'maps'])->name('c.maps');
+
+            Route::get('/update-volunteer', [CHomeController::class, 'update_v'])->name('c.update.v');
+            Route::post('/update-volunteer', [CHomeController::class, 'update_volunteer']);
 
             Route::prefix('chat')->group(function() {
                 Route::get('/', [CChatController::class, 'chat'])->name('c.chat');
@@ -124,6 +132,7 @@ Route::middleware('setlocale')->group(function () {
             Route::post('/settings', [VHomeController::class, 'save_settings']);
             Route::get('/profile', [VHomeController::class, 'profile'])->name('v.profile');
             Route::post('/profile', [VHomeController::class, 'save_profile']);
+            Route::post('/change-photo', [VHomeController::class, 'change_photo'])->name('v.change.profile');
             Route::get('/calendar', [VHomeController::class, 'calendar'])->name('v.calendar');
             Route::get('/load-events', [VHomeController::class, 'load_events'])->name('v.loadevents');
             Route::get('/info', [VHomeController::class, 'info'])->name('v.info');

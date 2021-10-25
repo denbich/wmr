@@ -32,8 +32,8 @@
             @include('volunteer.include.posts')
             @include('volunteer.include.forms')
 
-            <li class="nav-item active">
-                <a class="nav-link collapsed" href="#prizes" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="prizes">
+            <li class="nav-item">
+                <a class="nav-link collapsed active" href="#prizes" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="prizes">
                   <i class="fas fa-award text-primary"></i>
                   <span class="nav-link-text">Nagrody</span>
                 </a>

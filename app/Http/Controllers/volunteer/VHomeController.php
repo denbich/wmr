@@ -10,11 +10,13 @@ use App\Models\Calendar;
 use App\Models\Volunteer;
 use App\Mail\NewVolunteer;
 use App\Models\Signed_form;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class VHomeController extends Controller
 {
@@ -35,6 +37,28 @@ class VHomeController extends Controller
     {
         $volunteer = Volunteer::where('user_id', Auth::id())->first();
         return view('volunteer.profile', ['volunteer' => $volunteer]);
+    }
+
+    public function change_photo(Request $request)
+    {
+        $validated = $request->validate(['profile' => 'required']);
+
+        $image_64 = $request->profile;
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+        $image = str_replace($replace, '', $image_64);
+        $image = str_replace(' ', '+', $image);
+
+        Storage::disk('profiles')->delete(substr(Auth::user()->photo_src, 10));
+
+        $imageName = Str::random(100).time().'.'.$extension;
+        Storage::disk('profiles')->put($imageName, base64_decode($image));
+
+        $user = User::where('id', Auth::id())->first();
+        $user->photo_src = '/profiles/'.$imageName;
+        $user->save();
+
+        return redirect(route('v.profile'))->with(['change_profile' => true]);
     }
 
     public function save_profile(Request $request)

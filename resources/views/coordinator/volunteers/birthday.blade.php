@@ -24,7 +24,7 @@
         </h6>
           <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#volunteer" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="volunteer">
+                <a class="nav-link active" href="#volunteer" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="volunteer">
                   <i class="fas fa-user text-primary"></i>
                   <span class="nav-link-text">Wolontariusz</span>
                 </a>

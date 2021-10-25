@@ -32,7 +32,7 @@
         </h6>
           <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#forms" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="forms">
+                <a class="nav-link active" href="#forms" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="forms">
                   <i class="fas fa-clipboard-list text-primary"></i>
                   <span class="nav-link-text">Formularze</span>
                 </a>
@@ -226,7 +226,7 @@
                         <tbody class="list text-center">
                             @foreach ($form_positions as $position)
                             <tr>
-                                <td>{{ $position->translate_form_position->first()->title }}</td>
+                                <td>{{ $position->translate_form_position->title }}</td>
                                 <td>{{ $position->points }}</td>
                                 <td>{{ $position->max_volunteer }}</td>
                                 <td>{{ $position->signed_form_count }}</td>

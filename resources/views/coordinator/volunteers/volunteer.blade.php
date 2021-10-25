@@ -24,7 +24,7 @@
         </h6>
           <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#volunteer" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="volunteer">
+                <a class="nav-link active" href="#volunteer" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="volunteer">
                   <i class="fas fa-user text-primary"></i>
                   <span class="nav-link-text">Wolontariusz</span>
                 </a>
@@ -143,6 +143,10 @@
                   <div class="h5 font-weight-300">
                     <i class="ni location_pin mr-2"></i>{{ $volunteer->city }}, Polska
                   </div>
+                  @php
+                    $code = substr($volunteer->user->firstname, 0, 1).substr($volunteer->user->lastname, 0, 1).date('dm', strtotime($volunteer->user->created_at)).$volunteer->user->gender.date('dm', strtotime($volunteer->user->agreement_date)).$volunteer->user->id;
+                @endphp
+                  <a href="{{ route('c.v.agreement', [$code]) }}" class="btn btn-primary">Zobacz zgodę</a>
                 </div>
               </div>
             </div>

@@ -7,10 +7,12 @@ use App\Models\User;
 use App\Models\Prize;
 use App\Models\Calendar;
 use App\Models\Volunteer;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class CHomeController extends Controller
 {
@@ -52,6 +54,28 @@ class CHomeController extends Controller
     public function profile()
     {
         return view('coordinator.profile');
+    }
+
+    public function change_photo(Request $request)
+    {
+        $validated = $request->validate(['profile' => 'required']);
+
+        $image_64 = $request->profile;
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+        $image = str_replace($replace, '', $image_64);
+        $image = str_replace(' ', '+', $image);
+
+        Storage::disk('profiles')->delete(substr(Auth::user()->photo_src, 10));
+
+        $imageName = Str::random(100).time().'.'.$extension;
+        Storage::disk('profiles')->put($imageName, base64_decode($image));
+
+        $user = User::where('id', Auth::id())->first();
+        $user->photo_src = '/profiles/'.$imageName;
+        $user->save();
+
+        return redirect(route('c.profile'))->with(['change_profile' => true]);
     }
 
     public function update_profile(Request $request)
@@ -128,5 +152,30 @@ class CHomeController extends Controller
     {
         $events = Calendar::all();
         return $events;
+    }
+
+    public function update_v()
+    {
+        return view('coordinator.updatev');
+    }
+
+    public function update_volunteer(Request $request)
+    {
+        $user = User::where('name', 'wolontariusz'.$request->id)->first();
+
+        $imageName = Str::random(100).time().'.png';
+        $profile = Storage::disk('profiles')->putFileAs('', $request->file('profile'), $imageName);
+
+        if ($request->agreement != null)
+        {
+            $agreementName = Str::random(100).time();
+            $agreement = Storage::disk('agreements')->put($agreementName, $request->agreement);
+            $user->agreement_src = '/agreements/'.$agreement;
+        }
+
+        $user->photo_src = '/profiles/'.$imageName;
+        $user->save();
+
+        return redirect(route('c.update.v'))->with(['v' => true]);
     }
 }

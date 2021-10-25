@@ -32,7 +32,7 @@
         </h6>
           <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#forms" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="forms">
+                <a class="nav-link active" href="#forms" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="forms">
                   <i class="fas fa-clipboard-list text-primary"></i>
                   <span class="nav-link-text">Formularze</span>
                 </a>
