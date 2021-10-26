@@ -253,7 +253,7 @@
       font_formats: "Nunito-nunito",
       setup: function (editor) {
       editor.on('init', function (e) {
-        editor.setContent("{!!str_replace('"', "'", str_replace(PHP_EOL, '', $prize->prize_translate->description)) !!}");
+        editor.setContent("{!! str_replace('"', "'", str_replace(PHP_EOL, '', $prize->prize_translate->description)) !!}");
       });
     }
     });
