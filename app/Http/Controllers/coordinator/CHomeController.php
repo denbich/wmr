@@ -161,6 +161,7 @@ class CHomeController extends Controller
 
     public function update_volunteer(Request $request)
     {
+        dd($request->all());
         $user = User::where('name', 'wolontariusz'.$request->id)->first();
 
         $imageName = Str::random(100).time().'.png';
