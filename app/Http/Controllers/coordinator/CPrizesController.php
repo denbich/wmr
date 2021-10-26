@@ -73,7 +73,7 @@ class CPrizesController extends Controller
     public function edit($id)
     {
         $prize = Prize::where('id', $id)->with('prize_translate')->first();
-
+        dd(str_replace('"', "'", str_replace(PHP_EOL, '', $prize->prize_translate->description)));
         return view('coordinator.prizes.edit', ['prize' => $prize]);
     }
 
