@@ -142,7 +142,7 @@
                       <a href="{{ route('c.prize.show', [$prize->id]) }}">
                           <div class="card">
                               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                  <img class="w-100 h-auto" src="https://panel.wolontariat.rybnik.pl/zdjecia/nag/KZpPxSIT0XdFFqII5iEtA0c5PwQUqukbzMkXY9lkGOuZSTVdiBAvkfMfs86kB0Imo6d6Q8pkmyqYYuu1xPEGbTMSkt3WwdCQK92B1612354027.png" alt="Card image cap">
+                                  <img class="w-100 h-auto" src="{{ $prize->icon_src }}" alt="Card image cap">
                               </div>
 
                               <div class="card-body">
