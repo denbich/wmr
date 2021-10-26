@@ -58,6 +58,33 @@ class HomeController extends Controller
             return redirect(route('new.agreement'))->with(['agreement_err' => true]);
         }
 
+    }
 
+    public function volunteer($volunteer)
+    {
+        $code = [
+            substr($volunteer, 0, 1), //firstname
+            substr($volunteer, 1, 1), //lastname
+            substr($volunteer, 2, 4), //created_at
+            substr($volunteer, 6, 1), //gender
+            substr($volunteer, 7, 4), //agreement_src
+            substr($volunteer, 11), //ID
+        ];
+
+        $volunteer = User::where('id', $code[5])->first();
+        $ok = true;
+
+        if ($code[0] != substr($volunteer->firstname, 0, 1)) $ok = false;
+        if ($code[1] != substr($volunteer->lastname, 0, 1)) $ok = false;
+        if ($code[2] != date('dm', strtotime($volunteer->created_at))) $ok = false;
+        if ($code[3] != $volunteer->gender) $ok = false;
+        if ($code[4] != date('dm', strtotime($volunteer->agreement_date))) $ok = false;
+
+        if ($ok == true)
+        {
+            return "work";
+        } else {
+            return "dont work";
+        }
     }
 }

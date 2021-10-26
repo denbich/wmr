@@ -88,7 +88,7 @@
                         @php
                             $code = substr(Auth::user()->firstname, 0, 1).substr(Auth::user()->lastname, 0, 1).date('dm', strtotime(Auth::user()->created_at)).Auth::user()->gender.date('dm', strtotime(Auth::user()->agreement_date)).Auth::user()->id;
                         @endphp
-                        <img class='w-75 align-content-center m-auto d-block' src='https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://api.wolontariat.rybnik.pl/id/{{ $code }}'>
+                        <img class='w-75 align-content-center m-auto d-block' src='https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://wolontariat.rybnik.pl/volunteer-id/{{ $code }}'>
                     </div>
                     <div class="col-lg-6">
                         <div class="w-100">

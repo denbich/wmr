@@ -29,6 +29,7 @@ Route::get('language/{locale}', function($locale) {
 Route::middleware('setlocale')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/volunteer-id/{volunteer}', [HomeController::class, 'volunteer'])->name('volunteer.id');
 
     Auth::routes(['verify' => true]);
 

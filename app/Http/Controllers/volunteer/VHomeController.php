@@ -156,18 +156,4 @@ class VHomeController extends Controller
         $events = Calendar::all();
         return $events;
     }
-
-    public function mailtest()
-    {
-        $datam = array(
-            'name' => 'test',
-        );
-
-        //dd(User::where('role', 'volunteer')->pluck('email'));
-
-        //$mail = Mail::to(['denis@mosir.rybnik.pl', 'denis.bichler9@gmail.com'])->send(new NewVolunteer($datam));
-        $mail = Mail::bcc(User::where('role', 'volunteer')->pluck('email'))->send(new NewVolunteer($datam));
-
-        dd($mail);
-    }
 }

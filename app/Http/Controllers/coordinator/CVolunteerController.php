@@ -112,21 +112,11 @@ class CVolunteerController extends Controller
         ]);
 
         switch ($request->reason) {
-            case 1:
-                $text = "Brak przedziału od kiedy można wykonywać wolontariat.";
-                break;
-            case 2:
-                $text = "Wysłany plik to nie jest wypełniona zgoda.";
-                break;
-            case 3:
-                $text = "Zgoda jest niewyraźna.";
-                break;
-            case 4:
-                $text = "Brak podpisu rodzica/opiekuna prawnego.";
-                break;
-            case 5:
-                $text = "Źle wypełniona zgoda.";
-                break;
+            case 1: $text = "Brak przedziału od kiedy można wykonywać wolontariat."; break;
+            case 2: $text = "Wysłany plik to nie jest wypełniona zgoda."; break;
+            case 3: $text = "Zgoda jest niewyraźna."; break;
+            case 4: $text = "Brak podpisu rodzica/opiekuna prawnego."; break;
+            case 5: $text = "Źle wypełniona zgoda."; break;
         }
 
         $datam = array(
@@ -152,7 +142,6 @@ class CVolunteerController extends Controller
             substr($volunteer, 6, 1), //gender
             substr($volunteer, 7, 4), //agreement_src
             substr($volunteer, 11), //ID
-
         ];
 
         $volunteer_agreement = User::where('id', $code[5])->first();
