@@ -309,7 +309,7 @@
       font_formats: "Nunito-nunito",
       setup: function (editor) {
       editor.on('init', function (e) {
-        editor.setContent("{!! str_replace('"', "'", str_replace(PHP_EOL, '', old('description', ''))) !!}");
+        editor.setContent("{!! str_replace('"', "'", str_replace('\r\n', '', old('description', ''))) !!}");
       });
     }
     });

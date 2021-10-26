@@ -106,7 +106,7 @@ class CFormsController extends Controller
             'form_id' => $form->id,
             'locale' => 'pl',
             'title' => $request->pl_title,
-            'description' => str_replace('"', "'", str_replace(PHP_EOL, '', $request->pl_description)),
+            'description' => str_replace('"', "'", str_replace("\r\n", '', $request->pl_description)),
         ]);
 
         for ($i = 1; $i <= $request->positions_count; $i++)
@@ -184,7 +184,7 @@ class CFormsController extends Controller
         $translate_form = Translate_form::where('form_id', $id)->first();
         $translate_form->fill([
             'title' => $request->title,
-            'description' => str_replace('"', "'", str_replace(PHP_EOL, '', $request->description)),
+            'description' => str_replace('"', "'", str_replace("\r\n", '', $request->description)),
         ])->save();
 
         for ($i = 1; $i <= $request->positions_number; $i++)

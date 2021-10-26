@@ -317,7 +317,7 @@
       font_formats: "Nunito-nunito",
       setup: function (editor) {
       editor.on('init', function (e) {
-        editor.setContent("{!! str_replace('"', "'", str_replace(PHP_EOL, '', $form->form_translate->description)) !!}");
+        editor.setContent("{!! str_replace('"', "'", str_replace('\r\n', '', $form->form_translate->description)) !!}");
       });
     }
     });

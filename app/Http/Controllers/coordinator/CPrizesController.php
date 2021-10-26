@@ -73,7 +73,6 @@ class CPrizesController extends Controller
     public function edit($id)
     {
         $prize = Prize::where('id', $id)->with('prize_translate')->first();
-        dd(str_replace('"', "'", str_replace("\r\n", '', $prize->prize_translate->description)));
         return view('coordinator.prizes.edit', ['prize' => $prize]);
     }
 
@@ -97,7 +96,7 @@ class CPrizesController extends Controller
         $prize_t = Translate_prize::where('prize_id', $prize->id)->first();
         $prize_t->fill([
             'title' => $request->title,
-            'description' => str_replace('"', "'", str_replace(PHP_EOL, '', $request->description)),
+            'description' => str_replace('"', "'", str_replace("\r\n", '', $request->description)),
             'category' => $request->category,
             ]);
         $prize_t->save();

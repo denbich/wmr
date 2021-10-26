@@ -47,7 +47,7 @@ class CPostsController extends Controller
             'post_id' => $post->id,
             'locale' => $request->locale,
             'title' => $request->title,
-            'content' => $request->content,
+            'content' => str_replace('"', "'", str_replace("\r\n", '', $request->content)),
         ]);
 
         return redirect(route('c.post.show', [$post->id]))->with(['created_post' => true]);
@@ -76,7 +76,7 @@ class CPostsController extends Controller
         $post = Translate_post::where('id', $id);
         $post->fill([
             'title' => $request->title,
-            'content' => $request->content,
+            'content' => str_replace('"', "'", str_replace("\r\n", '', $request->content)),
         ]);
         $post->save();
 
