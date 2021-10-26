@@ -129,6 +129,7 @@ class CPrizesController extends Controller
             $q = $_GET['q'];
             $prizes = Prize::with('prize_translate')->whereHas('prize_translate', function ($query) use ($q){
                 $query->where('title', 'like', '%'.$q.'%')->orwhere('category', 'like', '%'.$q.'%');})->get();
+                dd($prizes);
                 return view('coordinator.prizes.search', ['prizes' => $prizes]);
         } else {
             return view('coordinator.prizes.search');
