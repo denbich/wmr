@@ -86,7 +86,7 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Nowa nagroda</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Edycja nagrody</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('c.dashboard') }}"><i class="fas fa-home"></i></a></li>
@@ -188,17 +188,17 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="form-group px-4">
+                                    <div class="form-group px-4 d-none">
                                         <h2 class="w-100 text-center">Ikona</h2>
                                         <a class="btn btn-icon btn-primary w-100 text-white">
                                             <i class="far fa-images"></i>
-                                            <span class="ml-1">Dodaj ikonę nagrody</span>
+                                            <span class="ml-1">Zmień ikonę nagrody</span>
                                         </a>
                                     <input type="file" name="image" class="image d-none" id="upload_image" accept="image/*">
                                     </div>
                                     <hr>
                                     <div class="form-group px-4 w-100">
-                                        <button type="submit" class="btn btn-primary w-100">Stwórz nagrodę</button>
+                                        <button type="submit" class="btn btn-primary w-100">Edytuj nagrodę</button>
                                     </div>
                                 </div>
                             </div>
@@ -253,7 +253,7 @@
       font_formats: "Nunito-nunito",
       setup: function (editor) {
       editor.on('init', function (e) {
-        editor.setContent("{!! $prize->prize_translate->description !!}");
+        editor.setContent("{!!str_replace('"', "'", str_replace(PHP_EOL, '', $prize->prize_translate->description)) !!}");
       });
     }
     });
