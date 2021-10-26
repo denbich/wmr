@@ -44,7 +44,7 @@
                         <span class="sidenav-normal"> Wyszukaj </span>
                       </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                       <a href="{{ route('c.prize.list') }}" class="nav-link">
                         <span class="sidenav-normal"> Lista </span>
                       </a>
@@ -54,7 +54,7 @@
                         <span class="sidenav-normal"> Lista zamówień </span>
                       </a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                       <a href="{{ route('c.prize.create') }}" class="nav-link">
                         <span class="sidenav-normal"> Utwórz nową </span>
                       </a>
@@ -257,8 +257,6 @@
       });
     }
     });
-
-    //str_replace('"', "'", str_replace(PHP_EOL, '', old('description', ''))
 
   </script>
 

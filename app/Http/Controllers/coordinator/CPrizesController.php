@@ -55,7 +55,7 @@ class CPrizesController extends Controller
             'prize_id' => $prize->id,
             'locale' => $request->locale,
             'title' => $request->title,
-            'description' => str_replace('"', "'", str_replace(PHP_EOL, '', $request->description)),
+            'description' => str_replace('"', "'", str_replace('\r\n', '', $request->description)),
             'category' => $request->category,
         ]);
 
