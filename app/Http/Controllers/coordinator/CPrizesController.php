@@ -64,7 +64,7 @@ class CPrizesController extends Controller
 
     public function show($id)
     {
-        $prize = Prize::find($id)->with('prize_translate')->first();
+        $prize = Prize::where('id', $id)->with('prize_translate')->first();
         $orders = Order_prize::where('prize_id', $id)->with('volunteer')->get();
 
         return view('coordinator.prizes.show', ['prize' => $prize, 'orders' => $orders]);
@@ -72,7 +72,7 @@ class CPrizesController extends Controller
 
     public function edit($id)
     {
-        $prize = Prize::find($id)->with('prize_translate')->first();
+        $prize = Prize::where('id', $id)->with('prize_translate')->first();
 
         return view('coordinator.prizes.edit', ['prize' => $prize]);
     }
@@ -116,7 +116,7 @@ class CPrizesController extends Controller
     public function update_quantity(Request $request, $id)
     {
         $validated = $request->validate(['quantity' => 'required|numeric']);
-        $prize = Prize::find($id);
+        $prize = Prize::where('id', $id)->first();
         $prize->fill(['quantity' => $request->quantity]);
         $prize->save();
 
