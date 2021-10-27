@@ -325,7 +325,7 @@
 
 @endsection
 
-@section('script')
+@section('style')
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 <script>
   window.OneSignal = window.OneSignal || [];
@@ -338,18 +338,5 @@
       },
     });
   });
-
-  OneSignal.push(function() {
-          OneSignal.on('subscriptionChange', function(isSubscribed) {
-            if (isSubscribed) {
-              OneSignal.getUserId( function(userId) {
-                  var x = {{ Auth::id() }}
-
-                  OneSignal.sendTag("user_id",x, function(tagsSent)
-                    {});
-              });
-            }
-          });
-        });
 </script>
 @endsection
