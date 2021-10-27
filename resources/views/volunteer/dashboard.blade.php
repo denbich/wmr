@@ -343,7 +343,7 @@
           OneSignal.on('subscriptionChange', function(isSubscribed) {
             if (isSubscribed) {
               OneSignal.getUserId( function(userId) {
-                  var x = {{ Auth::id() }}
+                  var x = {{ Auth::id() }};
 
                   OneSignal.sendTag("user_id",x, function(tagsSent)
                     {});
