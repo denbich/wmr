@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Calendar;
+use App\Models\Signed_form;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,6 +64,7 @@ class HomeController extends Controller
 
     public function volunteer($volunteer)
     {
+
         $code = [
             substr($volunteer, 0, 1), //firstname
             substr($volunteer, 1, 1), //lastname
@@ -72,19 +75,25 @@ class HomeController extends Controller
         ];
 
         $volunteer = User::where('id', $code[5])->first();
-        $ok = true;
 
-        if ($code[0] != substr($volunteer->firstname, 0, 1)) $ok = false;
-        if ($code[1] != substr($volunteer->lastname, 0, 1)) $ok = false;
-        if ($code[2] != date('dm', strtotime($volunteer->created_at))) $ok = false;
-        if ($code[3] != $volunteer->gender) $ok = false;
-        if ($code[4] != date('dm', strtotime($volunteer->agreement_date))) $ok = false;
-
-        if ($ok == true)
+        if ($volunteer != null)
         {
-            return "work";
+            $ok = true;
+            if ($code[0] != substr($volunteer->firstname, 0, 1)) $ok = false;
+            if ($code[1] != substr($volunteer->lastname, 0, 1)) $ok = false;
+            if ($code[2] != date('dm', strtotime($volunteer->created_at))) $ok = false;
+            if ($code[3] != $volunteer->gender) $ok = false;
+            if ($code[4] != date('dm', strtotime($volunteer->agreement_date))) $ok = false;
+            if ($ok == true)
+            {
+                $signed = Signed_form::where('volunteer_id', $code[5])->pluck('form_id');
+                $events = Calendar::where('start', '>=', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s')."- 1 day")))->whereIn('form_id', $signed)->get();
+                return view('id')->with(['volunteer' => $volunteer, 'events' => $events]);
+            } else {
+                return view('id')->with(['notexist' => true]);
+            }
         } else {
-            return "dont work";
+            return view('id')->with(['notexist' => true]);
         }
     }
 }
