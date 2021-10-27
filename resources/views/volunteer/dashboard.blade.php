@@ -324,3 +324,32 @@
   </div>
 
 @endsection
+
+@section('script')
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "{{ env('ONESIGNAL_APP_ID') }}",
+      safari_web_id: "{{ env('ONESIGNAL_SAFARI_WEB_ID') }}",
+      notifyButton: {
+        enable: true,
+      },
+    });
+  });
+
+  OneSignal.push(function() {
+          OneSignal.on('subscriptionChange', function(isSubscribed) {
+            if (isSubscribed) {
+              OneSignal.getUserId( function(userId) {
+                  var x = {{ Auth::id() }}
+
+                  OneSignal.sendTag("user_id",x, function(tagsSent)
+                    {});
+              });
+            }
+          });
+        });
+</script>
+@endsection
