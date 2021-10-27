@@ -139,7 +139,7 @@ Route::middleware('setlocale')->group(function () {
             Route::get('/info', [VHomeController::class, 'info'])->name('v.info');
             Route::get('/id', [VHomeController::class, 'id'])->name('v.id');
             Route::get('/maps', [VHomeController::class, 'maps'])->name('v.maps');//mailtest
-            //Route::get('/test', [VHomeController::class, 'mailtest']);
+            Route::get('/search', [VHomeController::class, 'search'])->name('v.search');
 
             Route::prefix('/chat')->group(function() {
                 Route::get('/', [VChatController::class, 'chat'])->name('v.chat');

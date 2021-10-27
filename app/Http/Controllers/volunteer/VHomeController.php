@@ -151,6 +151,27 @@ class VHomeController extends Controller
         return view('volunteer.id', ['events' => $events]);
     }
 
+    public function search()
+    {
+        if (isset($_GET['q']))
+        {
+            $q = $_GET['q'];
+            $forms = Form::with('form_translate')->whereHas('form_translate', function ($query) use ($q){ $query->where('title', 'like', '%'.$q.'%');})->get();
+
+            //$forms_post = Signed_form::where('volunteer_id', Auth::user()->id)->pluck('form_id')->toArray();
+            //array_push($forms_post, 0);
+            //$posts = Post::WhereIn('form_id', $forms_post)->whereHas('post_translate', function ($query) use ($q){ $query->where('title', 'like', '%'.$q.'%');})->with(['post_translate', 'author'])->toSql(); //->orWhereIn('form_id', $forms_post)
+
+            //$posts = Post::with('post_translate')->whereHas('post_translate', function ($query) use ($q){ $query->where('title', 'like', '%'.$q.'%');})->get();
+
+            $prizes = Prize::with('prize_translate')->whereHas('prize_translate', function ($query) use ($q){ $query->where('title', 'like', '%'.$q.'%');})->get();
+
+                return view('volunteer.search', ['forms' => $forms,'prizes' => $prizes]); // 'posts' => $posts,
+        } else {
+            return view('volunteer.search');
+        }
+    }
+
     public function load_events()
     {
         $events = Calendar::all();
