@@ -325,7 +325,7 @@
 
 @endsection
 
-@section('script')
+@section('style')
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 <script>
   window.OneSignal = window.OneSignal || [];
