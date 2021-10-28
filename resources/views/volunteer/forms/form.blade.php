@@ -351,8 +351,6 @@ var marker = new google.maps.Marker({
 }
 </script>
 
-@if ($form->signed_form->feedback == null)
-
 <script>
     $(document).ready(function() {
 
@@ -362,7 +360,5 @@ var marker = new google.maps.Marker({
         });
         });
 </script>
-
-@endif
 
 @endsection
