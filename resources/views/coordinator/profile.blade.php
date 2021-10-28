@@ -157,34 +157,34 @@
                 </div>
               </div>
               <div class="card-body">
-                <form method="POST" action="">
+                @if (session('change') == true)
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <span class="alert-text"><strong>Sukces!</strong> Edycja profilu zakończyła się pomyślnie!</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if (session('change_profile') == true)
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <span class="alert-text"><strong>Sukces!</strong> Zmiana zdjęcia profilowego zakończyła się pomyślnie!</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                <form method="POST" action="{{ route('c.profile') }}">
                     @csrf
                   <h6 class="heading-small text-muted mb-4">Podstawowe informacje</h6>
                   <div class="pl-lg-4">
-                    @if (session('change') == true)
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <span class="alert-text"><strong>Sukces!</strong> Edycja profilu zakończyła się pomyślnie!</span>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    @if (session('change_profile') == true)
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <span class="alert-text"><strong>Sukces!</strong> Zmiana zdjęcia profilowego zakończyła się pomyślnie!</span>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
                     <div class="row">
                         <div class="col-lg-6">
                           <div class="form-group">

@@ -18,7 +18,7 @@ class CreateTranslateFormsTable extends Migration
             $table->unsignedBigInteger('form_id');
             $table->string('locale')->index();
             $table->string('title');
-            $table->string('description');
+            $table->mediumText('description');
             $table->timestamps();
 
             $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
