@@ -255,7 +255,36 @@
                                 <h2>Dziękujemy za twoją obecność!</h2>
                                 <h3 class="text-success">Otrzymałaś punkty za tą akcję!</h3>
                             @endif
-                            
+                            @if ($signed_volunteer->feedback == null)
+                            <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#feedbackmodal">
+                                Podziel się opinią dot. imprezy
+                              </button>
+
+                              <div class="modal fade" id="feedbackmodal" tabindex="-1" role="dialog" aria-labelledby="feedbackLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <form action="{{ route('v.form.feedback', [$form->id]) }}" method="post">
+                                      @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="feedbackLabel">Podziel się opinią na temat imprezy {{ $form->form_translate->title }}</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <h3 class="text-center">Dla nas twoja opinia jest bardzo ważna! Podziel się nią</h3>
+                                          <textarea id="info" class="form-control" style="resize: none;" name="info" cols="50" rows="3" maxlength="255" required></textarea>
+                                            <p id="info_count" class="text-sm">0 / 255 znaków</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                                          <button type="submit" class="btn btn-primary">Zapisz</button>
+                                        </div>
+                                      </div>
+                                  </form>
+                                </div>
+                              </div>
+                            @endif
 
 
                         </div>
