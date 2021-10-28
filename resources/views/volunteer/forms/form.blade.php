@@ -255,7 +255,7 @@
                                 <h2>Dziękujemy za twoją obecność!</h2>
                                 <h3 class="text-success">Otrzymałaś punkty za tą akcję!</h3>
                             @endif
-                            @if ($form->signed_form->feedback == null)
+                            @if ($signed_volunteer->feedback == null)
                             <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#feedbackmodal">
                                 Podziel się opinią dot. imprezy
                               </button>
