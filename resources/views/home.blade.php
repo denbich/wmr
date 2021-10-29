@@ -240,7 +240,7 @@
     <div class="bd-container-inner">
         <a
  href="{{ route('login') }}" class="bd-linkbutton-6 bd-no-margins  bd-button-16  bd-own-margins bd-content-element"    >
-    ZALOUJ SIĘ DO PANELU
+    ZALOGUJ SIĘ DO PANELU
 </a>
     </div>
 </div>
