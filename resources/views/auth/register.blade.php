@@ -34,7 +34,7 @@ class="bg-default"
         <div class="col-lg-7 col-md-8">
           <div class="card bg-secondary border-0">
             <div class="card-header bg-transparent pb-3 text-center">
-                <a href="{{ route('home') }}"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
+                <a href="{{ route('home') }}"><img src="{{ url('/img/mosir-logo1.svg') }}" class="text-center"></a>
                 <div class="mt-2 h1">Zarejestruj się do ISOW!</div>
             </div>
             <div class="card-body px-lg-5 py-lg-5">

@@ -31,7 +31,7 @@ class="bg-gradient-primary"
                         <div class="col-lg-6">
                             <div class="p-4">
                                 <div class="text-center">
-                                    <a href="{{ route('login') }}"><img src="https://panel.wolontariat.rybnik.pl/assets/img/mosir-logo1.svg" class="text-center"></a>
+                                    <a href="{{ route('login') }}"><img src="{{ url('/img/mosir-logo1.svg') }}" class="text-center"></a>
                                   <h1 class="h4 text-gray-900 mb-3 mt-3">{{ __('index.password.reset.title') }}</h1>
                                 </div>
                                 <form class="user mt-3" method="POST" action="{{ route('password.update') }}">
