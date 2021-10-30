@@ -61,9 +61,9 @@ class CVolunteerController extends Controller
         $pdf::cell('40','10','Login','1','0','C');
         $pdf::cell('45','10','Imię','1','0','C');
         $pdf::cell('45','10','Nazwisko','1','0','C');
-        $pdf::cell('45','10','Nr telefonu','1','0','C');
-        $pdf::cell('55','10','email','1','0','C');
-        $pdf::cell('30','10','Roz. koszulki','1','1','C');
+        $pdf::cell('40','10','Nr telefonu','1','0','C');
+        $pdf::cell('70','10','email','1','0','C');
+        $pdf::cell('20','10','Roz. kosz.','1','1','C');
 
         $pdf::SetFont('dejavusans','',10);
 
@@ -73,9 +73,9 @@ class CVolunteerController extends Controller
             $pdf::cell('40','10', $volunteer->user->name,'1','0','C');
             $pdf::cell('45','10', $volunteer->user->firstname,'1','0','C');
             $pdf::cell('45','10', $volunteer->user->lastname,'1','0','C');
-            $pdf::cell('45','10' ,$volunteer->user->telephone,'1','0','C');
-            $pdf::cell('55','10', $volunteer->user->email,'1','0','C');
-            $pdf::cell('30','10', $volunteer->tshirt_size,'1','1','C');
+            $pdf::cell('40','10' ,$volunteer->user->telephone,'1','0','C');
+            $pdf::cell('70','10', $volunteer->user->email,'1','0','C');
+            $pdf::cell('20','10', strtoupper($volunteer->tshirt_size),'1','1','C');
         }
 
         $pdf::Output( 'lista_wolontariuszy.pdf');

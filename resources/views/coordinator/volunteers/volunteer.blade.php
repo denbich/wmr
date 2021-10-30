@@ -133,6 +133,10 @@
                         <span class="heading">{{ $volunteer->points }}</span>
                         <span class="description">Ilość punktów</span>
                       </div>
+                      <div>
+                        <span class="heading">{{ strtoupper($volunteer->tshirt_size) }}</span>
+                        <span class="description">Rozmiar Koszulki</span>
+                      </div>
                     </div>
                   </div>
                 </div>

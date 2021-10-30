@@ -253,7 +253,7 @@ class CFormsController extends Controller
             $pdf::cell('45','10', $sign->volunteer->firstname,'1','0','C');
             $pdf::cell('45','10', $sign->volunteer->lastname,'1','0','C');
             $pdf::cell('35','10' ,$sign->volunteer->telephone,'1','0','C');
-            $pdf::cell('20','10', $sign->volun->tshirt_size,'1','0','C');
+            $pdf::cell('20','10', strtoupper($sign->volun->tshirt_size),'1','0','C');
             $pdf::cell('55','10', $sign->position->title,'1','0','C');
             $pdf::cell('40','10', "",'1','1','C');
         }
