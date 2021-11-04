@@ -222,10 +222,21 @@
                         </div>
                       </div>
 
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <label class="form-control-label">Data urodzenia</label>
+                            <p>{{ $volunteer->birth }}</p>
+                        </div>
+                        <div class="col-lg-6">
+                          <label class="form-control-label">Szkoła</label>
+                            <p>{{ $volunteer->school }}</p>
+                        </div>
+                      </div>
+
                   </div>
                   <hr class="my-4" />
                   <!-- Address -->
-                  <h6 class="heading-small text-muted mb-4">Adres zamieszkania i szkoła</h6>
+                  <h6 class="heading-small text-muted mb-4">Adres zamieszkania</h6>
                   <div class="pl-lg-4">
                     <div class="row">
                       <div class="col-lg-6">
@@ -241,8 +252,6 @@
                         </div>
                       </div>
                     </div>
-                    <label class="form-control-label">Szkoła</label>
-                    <p>{{ $volunteer->school }}</p>
                   </div>
                   <hr class="my-4" />
                   <!-- Description -->
