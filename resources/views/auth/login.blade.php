@@ -113,7 +113,7 @@ class="bg-default"
                             </button>
                           </div>
                           <hr class="my-2">
-                          <div class="text-center py-2 d-none">
+                          <div class="text-center py-2">
                             <h2><strong>{{ __('main.lang') }}</strong></h2>
                             <div class="row mb-3">
                                 <div class="col">
@@ -127,19 +127,18 @@ class="bg-default"
                                         <a href="/language/en"><img src="{{ URL::asset('lang/110-united kingdom.svg') }}"></a>
                                     </span>
                                 </div>
-                                <div class="col">
+                                <div class="col d-none">
                                     <span class="shortcut-media avatar rounded-circle">
                                         <a href="/language/de"><img src="{{ URL::asset('lang/208-germany.svg') }}"></a>
                                     </span>
                                 </div>
-
-                                <div class="col">
+                                <div class="col d-none">
                                     <span class="shortcut-media avatar rounded-circle">
                                         <a href="/language/ua"><img src="{{ URL::asset('lang/198-ukraine.svg') }}"></a>
                                     </span>
                                 </div>
                             </div>
-                            <a class="text-danger" href="">{{ __('main.morelang') }}</a>
+                            <a class="text-primary" href="">{{ __('main.morelang') }}</a>
                         </div>
 
                           <div class="text-center text-sm mt-2">
