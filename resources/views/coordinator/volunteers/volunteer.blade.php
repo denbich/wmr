@@ -113,7 +113,7 @@
               <div class="row justify-content-center">
                 <div class="col-lg-3 order-lg-2">
                   <div class="card-profile-image">
-                    <a href="#">
+                    <a href="#profilemodal" data-toggle="modal" data-target="#profilemodal">
                       <img src="{{ $volunteer->user->photo_src }}" class="rounded-circle">
                     </a>
                   </div>
@@ -265,6 +265,19 @@
 
         @yield('coordinator.include.footer')
       </div>
+  </div>
+
+  <div class="modal fade" id="profilemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+        </button>
+          <img src="{{ $volunteer->user->photo_src }}" class="imagepreview w-100" >
+        </div>
+      </div>
+    </div>
   </div>
 
 @endsection
