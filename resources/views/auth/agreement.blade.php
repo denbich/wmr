@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('Nowa zgoda') }}
+{{ __('index.agreement.title') }}
 @endsection
 
 @section('body')
@@ -42,20 +42,19 @@ class="bg-default"
                 <div class="col-lg-6">
                     <div class="card-header bg-transparent text-center">
                         <a href="{{ route('login') }}"><img src="{{ url('/img/mosir-logo1.svg') }}" class="text-center"></a>
-                        <div class="mt-2 h1">Dodaj zgodę</div>
+                        <div class="mt-2 h1">{{ __('index.agreement.title') }}</div>
                       </div>
                       <div class="card-body pt-lg-3 pb-lg-4 px-lg-5">
-                        <h4>Twoja zgoda <b>straciła ważność</b> lub koordynator <b>nie zatwierdził</b> twojej zgody, dodaj nową zgodę by zalogować się do systemu!</h4>
+                        <h4>{{ __('index.ageement.text.1') }} <b>{{ __('index.ageement.text.2') }}</b> {{ __('index.ageement.text.3') }} <b>{{ __('index.ageement.text.4') }}</b> {{ __('index.ageement.text.5') }}</h4>
                         <form role="form" method="POST" action="{{ route('new.agreement') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mb-2">
-                                <label for="agreement">Zgoda na uczestnicwo w wolontariacie (plik PDF) <br>
-                                    Znajdziesz je tutaj:
-                                    <a href="{{ url('/files/zgoda_wolontariat_pelnoletni.pdf') }}" target="_blank">pełnoletni</a> |
-                                    <a href="{{ url('/files/zgoda_wolontariat_niepelnoletni.pdf') }}" target="_blank">niepełnoletni</a>
+                                <label for="agreement"> {{ __('index.agreement.label1') }} <br> {{ __('index.agreement.label2') }}
+                                    <a href="{{ url('/files/zgoda_wolontariat_pelnoletni.pdf') }}" target="_blank">{{ __('index.agreement.adult') }}</a> |
+                                    <a href="{{ url('/files/zgoda_wolontariat_niepelnoletni.pdf') }}" target="_blank">{{ __('index.agreement.minor') }}</a>
                                 </label>
                                 <input type="file" class="form-control" accept=".pdf" name="agreement" required>
-                                <small>Maksymalny rozmiar pliku: 7MB</small><br>
+                                <small>{{ __('index.agreement.file') }}: 7MB</small><br>
                                 @error('agreement')
                                     <span class="text-danger small" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -63,18 +62,18 @@ class="bg-default"
                                 @enderror
                                 @if (session('agreement_err') == true)
                                     <span class="text-danger small" role="alert">
-                                        <strong>Wystąpił problem techniczny! prosimy spóbować później!</strong>
+                                        <strong>{{ __('index.agreement.err') }}</strong>
                                     </span>
                                 @endif
                             </div>
                           <div class="text-center">
-                            <button type="submit" class="btn btn-primary mt-3 mb-1 w-100">Dodaj zgodę</button>
+                            <button type="submit" class="btn btn-primary mt-3 mb-1 w-100">{{ __('index.agreement.button') }}</button>
                           </div>
                         </form>
                           <div class="w-100 mt-4">
                               <form action="{{ route('logout') }}" method="post">
                                 @csrf
-                                <button type="submit" class="btn btn-primary w-100">Wyloguj się</button>
+                                <button type="submit" class="btn btn-primary w-100">{{ __('main.logout') }}</button>
                             </form>
                           </div>
                       </div>

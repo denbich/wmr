@@ -78,13 +78,27 @@ return [
     'email' => [
         'title' => 'Zanim przejdziesz dalej, sprawdź pocztę e-mail pod kątem linku weryfikacyjnego.',
         'alert' => 'Na Twój adres e-mail został wysłany nowy link weryfikacyjny.',
-        'button' => 'Wyślij emaila z linkiem ponownie',
+        'button' => 'Wyślij maila z linkiem ponownie',
         'logout' => 'Wyloguj się',
 
     ],
 
     'agreement' => [
-
+        'title' => 'Dodaj zgodę',
+        'text' => [
+            '1' => 'Twoja zgoda',
+            '2' => 'straciła ważność',
+            '3' => 'lub koordynator',
+            '4' => 'nie zatwierdził',
+            '5' => 'twojej zgody, dodaj nową zgodę by zalogować się do systemu!',
+        ],
+        'label1' => 'Zgoda na uczestnicwo w wolontariacie (plik PDF)',
+        'label2' => 'Znajdziesz je tutaj:',
+        'adult' => 'pełnoletni',
+        'minor' => 'niepełnoletni',
+        'file' => 'Maksymalny rozmiar pliku',
+        'err' => 'Wystąpił problem techniczny! prosimy spóbować później!',
+        'button' => 'Dodaj zgodę',
     ],
 
     'password' => [
