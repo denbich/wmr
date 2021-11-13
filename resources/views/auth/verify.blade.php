@@ -41,26 +41,26 @@ class="bg-default"
                 </div>
                 <div class="col-lg-6 my-5">
                     <div class="card-header bg-transparent text-center">
-                        <a href="{{ route('home') }}"><img src="{{ url('/img/mosir-logo1.svg') }}" class="text-center"></a>
-                        <div class="mt-2 h2">{{ __('Zanim przejdziesz dalej, sprawdź pocztę e-mail pod kątem linku weryfikacyjnego.') }}</div>
+                        <a href="{{ route('login') }}"><img src="{{ url('/img/mosir-logo1.svg') }}" class="text-center"></a>
+                        <div class="mt-2 h2">{{ __('index.email.title') }}</div>
                       </div>
                       <div class="card-body pt-lg-3 pb-lg-4 px-lg-5">
                         @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('Na Twój adres e-mail został wysłany nowy link weryfikacyjny.') }}
+                            {{ __('index.email.alert') }}
                         </div>
                         @endif
                         <form class="user mt-3" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('Wyślij emaila z linkiem ponownie') }}</button>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('index.email.button') }}</button>
                         </form>
                         <form class="user mt-3" method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('Wyloguj się') }}</button>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('main.logout') }}</button>
                         </form>
                           <hr class="my-2">
                           <div class="text-center py-2 d-none">
-                            <h2><strong>Wybierz język</strong></h2>
+                            <h2><strong>{{ __('main.lang') }}</strong></h2>
                             <div class="row mb-3">
                                 <div class="col">
                                     <span class="shortcut-media avatar rounded-circle">
@@ -81,7 +81,7 @@ class="bg-default"
                                     <a href="/language/ua"><img src="{{ URL::asset('lang/198-ukraine.svg') }}" alt="" class="w-75"></a>
                                 </div>
                             </div>
-                            <a class="text-danger d-none" href="">Więcej języków...</a>
+                            <a class="text-danger d-none" href="">{{ __('main.morelang') }}</a>
                         </div>
                       </div>
                 </div>
@@ -101,30 +101,7 @@ class="bg-default"
     </div>
   </div>
   <!-- Footer -->
-  <footer class="py-5" id="footer-main">
-    <div class="container">
-      <div class="row align-items-center justify-content-xl-between">
-        <div class="col-xl-6">
-          <div class="copyright text-center text-xl-left text-muted">
-            &copy; 2019 - {{ date('Y') }} <a href="https://facebook.com/denis.bichler" class="font-weight-bold ml-1" target="_blank">Denis Bichler for MOSiR Rybnik</a>
-          </div>
-        </div>
-        <div class="col-xl-6">
-          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-            <li class="nav-item">
-                <a href="" class="nav-link" target="_blank">Regulamin wolontariatu</a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link" target="_blank">Kodeks Wolontariuszy</a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link" target="_blank">Polityka Prywatności</a>
-              </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+  @include('auth.footer')
 
 @endsection
 

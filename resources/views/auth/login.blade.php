@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('Zaloguj się') }}
+{{ __('main.login') }}
 @endsection
 
 @section('body')
@@ -38,12 +38,12 @@ class="bg-default"
                 <div class="col-lg-6">
                     <div class="card-header bg-transparent text-center">
                         <a href="{{ route('home') }}"><img src="{{ url('/img/mosir-logo1.svg') }}" class="text-center"></a>
-                        <div class="mt-2 h1">Zaloguj się do ISOW!</div>
+                        <div class="mt-2 h1">{{ __('index.login.title') }}</div>
                       </div>
                       <div class="card-body pt-lg-3 pb-lg-4 px-lg-5">
                           @if (session('agreement'))
                           <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>Sukces!</strong> Zgoda została wysłana pomyślnie! Oczekuj maila z widadomością o aktywacji.</span>
+                            <span class="alert-text"><strong>{{ __('index.login.alerts.success') }}!</strong> {{ __('index.login.alerts.agreement') }}</span>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -84,37 +84,37 @@ class="bg-default"
                             @enderror
                             @if (session('user_check') == true)
                             <span class="text-danger small" role="alert">
-                                <strong>Twoje konto nie jest aktywne! Oczekuj maila o aktywacji lub spróbuj później.</strong>
+                                <strong>{{ __('index.login.alerts.active') }}</strong>
                             </span>
                             @endif
                           </div>
                           <div class="custom-control custom-control-alternative custom-checkbox">
                             <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label class="custom-control-label" for="remember">
-                              <span class="text-muted">Zapamiętaj mnie</span>
+                              <span class="text-muted">{{ __('index.login.rememberme') }}</span>
                             </label>
                           </div>
                           <div class="text-center">
-                            <button type="submit" class="btn btn-primary mt-3 mb-1 w-100">Zaloguj się</button>
+                            <button type="submit" class="btn btn-primary mt-3 mb-1 w-100">{{ __('main.login') }}</button>
                           </div>
                         </form>
 
                         <table class="w-100 d-none">
                             <tbody><tr>
                               <td><hr></td>
-                              <td style="width:1px; padding: 0 10px; white-space: nowrap;">LUB</td>
+                              <td style="width:1px; padding: 0 10px; white-space: nowrap;">{{ __('index.login.or') }}</td>
                               <td><hr></td>
                             </tr>
                           </tbody></table>
                           <div class="btn-wrapper text-center pb-3 d-none">
                             <button href="#" class="btn btn-neutral btn-icon"><!--  disabled -->
                               <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                              <span class="btn-inner--text">Zaloguj się za pomocą Google</span>
+                              <span class="btn-inner--text">{{ __('index.login.google.button') }}</span>
                             </button>
                           </div>
                           <hr class="my-2">
                           <div class="text-center py-2 d-none">
-                            <h2><strong>Wybierz język</strong></h2>
+                            <h2><strong>{{ __('main.lang') }}</strong></h2>
                             <div class="row mb-3">
                                 <div class="col">
                                     <span class="shortcut-media avatar rounded-circle">
@@ -139,12 +139,12 @@ class="bg-default"
                                     </span>
                                 </div>
                             </div>
-                            <a class="text-danger" href="">Więcej języków...</a>
+                            <a class="text-danger" href="">{{ __('main.morelang') }}</a>
                         </div>
 
                           <div class="text-center text-sm mt-2">
-                            <a href="{{ route('password.request') }}" class="mx-2">Zapomniałeś hasła?</a> |
-                            <a href="{{ route('register') }}" class="mx-2">Utwórz nowe konto</a>
+                            <a href="{{ route('password.request') }}" class="mx-2">{{ __('index.footer.rememberpwd') }}</a> |
+                            <a href="{{ route('register') }}" class="mx-2">{{ __('index.footer.createaccount') }}</a>
                           </div>
                       </div>
                 </div>
@@ -153,30 +153,7 @@ class="bg-default"
       </div>
     </div>
   </div>
-  <footer class="py-5" id="footer-main">
-    <div class="container">
-      <div class="row align-items-center justify-content-xl-between">
-        <div class="col-xl-6">
-          <div class="copyright text-center text-xl-left text-muted">
-            &copy; 2019 - {{ date('Y') }} <a href="https://linktr.ee/denis.bichler" class="font-weight-bold ml-1" target="_blank">Denis Bichler for MOSiR Rybnik</a>
-          </div>
-        </div>
-        <div class="col-xl-6">
-          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-            <li class="nav-item">
-                <a href="" class="nav-link" target="_blank">Regulamin wolontariatu</a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link" target="_blank">Kodeks Wolontariuszy</a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link" target="_blank">Polityka Prywatności</a>
-              </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+  @include('auth.footer')
 
 @endsection
 

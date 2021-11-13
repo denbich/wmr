@@ -15,14 +15,11 @@ return [
         'regulations' => 'Regulamin wolontariatu',
         'codex' => 'Kodeks wolontariuszy',
         'privacypolicy' => 'Polityka prywatności',
-        'pick-lang' => 'Wybierz język',
     ],
 
     'login' => [
-        'title' => 'Zaloguj się do ISOW',
-        'important' => 'Ważne informacje',
-        'login' => 'Zaloguj się',
-        'type-login' => 'Wpisz login lub email...',
+        'title' => 'Zaloguj się do ISOW!',
+        'type-login' => 'Wpisz email...',
         'type-password' => "Hasło",
         'rememberme' => 'Zapamiętaj mnie',
         'or' => 'LUB',
@@ -30,11 +27,15 @@ return [
             'button' => 'Zaloguj się za pomocą Google',
             'text' => 'Nigdy nie udostępniamy treści w Twoim imieniu.',
         ],
+        'alerts' => [
+            'success' => 'Sukces!',
+            'active' => 'Twoje konto nie jest aktywne! Oczekuj maila o aktywacji lub spróbuj później.',
+            'agreement' => 'Zgoda została wysłana pomyślnie! Oczekuj maila z widadomością o aktywacji.',
+        ],
     ],
 
     'register' => [
-        'title' => 'Rejestracja ISOW',
-        'title-div' => 'Rejestracja',
+        'title' => 'Zarejestruj się do ISOW!',
         'firstname' => 'Imię',
         'lastname' => 'Nazwisko',
         'email' => 'Adres email',
@@ -43,10 +44,13 @@ return [
         'c-password' => 'Potwierdź hasło',
         'address' => 'Adres zamieszkania (ulica, numer domu/mieszkania, miasto)',
         'school' => 'Nazwa szkoły',
-        'i-school' => 'Jeśli jesteś osobą pracującą/niepracującą, to pozostaw puste pole',
+        'i-school' => "Jeśli jesteś osobą pracującą/niepracującą wpisz 'Brak'",
         'ice' => 'Numer ICE',
         'i-ice' => 'ICE to skrót informujący, do kogo powinno się zadzwonić w razie nagłego wypadku.',
         'tshirt' => 'Rozmiar koszulki',
+        'street' => 'Ulica',
+        'number' => 'Numer domu / mieszkania',
+        'city' => 'Miasto',
         'birth' => 'Data urodzenia',
         'agreement' => [
             'text1' => 'Zgoda na uczestnictwo w wolontariacie (plik PDF)',
@@ -63,13 +67,24 @@ return [
             'modal-h' => 'Wytnij zdjęcie',
             'modal-crop' => 'Wytnij',
             'modal-c' => 'Anuluj',
+            'info' => 'Zdjęcie zostało załadowane',
         ],
 
         'accept' => 'Akceptuję',
         'accept-r' => 'regulamin wolontariatu',
-        'accept-a' => 'i',
         'accept-c' => 'kodeks wolontariuszy',
-        'register' => 'Zarejestruj się',
+    ],
+
+    'email' => [
+        'title' => 'Zanim przejdziesz dalej, sprawdź pocztę e-mail pod kątem linku weryfikacyjnego.',
+        'alert' => 'Na Twój adres e-mail został wysłany nowy link weryfikacyjny.',
+        'button' => 'Wyślij emaila z linkiem ponownie',
+        'logout' => 'Wyloguj się',
+
+    ],
+
+    'agreement' => [
+
     ],
 
     'password' => [

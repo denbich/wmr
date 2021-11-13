@@ -49,7 +49,7 @@ Route::middleware('setlocale')->group(function () {
 
         Route::prefix('command')->group(function () {
             Route::get('/migrate', function () { $code = Artisan::call('migrate', [ '--force' => true]); echo $code; });
-            Route::get('/migrate-rollback', function () { $code = Artisan::call('migrate:rollback', [ '--force' => true]); echo $code; });
+            //Route::get('/migrate-rollback', function () { $code = Artisan::call('migrate:rollback', [ '--force' => true]); echo $code; });
             Route::get('/storage-link', function () { $code = Artisan::call('storage:link', [ '--force' => true]); echo $code; });
         });
 

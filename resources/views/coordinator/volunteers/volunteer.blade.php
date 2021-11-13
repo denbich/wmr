@@ -221,7 +221,6 @@
                           </div>
                         </div>
                       </div>
-
                       <div class="row">
                         <div class="col-lg-6">
                           <label class="form-control-label">Data urodzenia</label>
