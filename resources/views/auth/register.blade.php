@@ -248,8 +248,8 @@ class="bg-default"
                 <div class="form-group">
                     <label for="agreement">{{ __('index.register.agreement.text1') }} <br>
                         {{ __('index.register.agreement.text2') }}:
-                        <a href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_pelnoletni.pdf" target="_blank">{{ __('index.register.agreement.adult') }}</a> |
-                        <a href="https://wolontariat.rybnik.pl/pliki/zgoda_wolontariat_niepelnoletni.pdf" target="_blank">{{ __('index.register.agreement.minor') }}</a>
+                        <a href="{{ url('/files/zgoda_wolontariat_pelnoletni.pdf') }}" target="_blank">{{ __('index.register.agreement.adult') }}</a> |
+                        <a href="{{ url('/files/zgoda_wolontariat_niepelnoletni.pdf') }}" target="_blank">{{ __('index.register.agreement.minor') }}</a>
                     </label>
                     <input type="file" class="form-control" accept=".pdf" name="agreement" required>
                     <small>{{ __('index.register.agreement.size') }}: 7MB</small><br>
