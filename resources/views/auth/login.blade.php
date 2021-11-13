@@ -138,7 +138,7 @@ class="bg-default"
                                     </span>
                                 </div>
                             </div>
-                            <a class="text-primary" href="">{{ __('main.morelang') }}</a>
+                            <a class="text-primary d-none" href="">{{ __('main.morelang') }}</a>
                         </div>
 
                           <div class="text-center text-sm mt-2">
