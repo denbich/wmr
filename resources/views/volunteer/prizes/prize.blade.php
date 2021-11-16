@@ -150,7 +150,7 @@
                             <div class="w-100 text-center my-3">
                                 @if ($prize->quantity > 0)
                                     @if ($prize->points <= $points)
-                                        <b class="text-success">{{ __('volunteer.prizes.prize.text1') }}</b>
+                                        <b class="text-success">{{ __('volunteer.prizes.prize.text1') }}</b><br>
                                         <button type="button" class="btn btn-primary my-2 mt-3" data-toggle="modal" data-target="#prizemodal">
                                             {{ __('volunteer.prizes.prize.button') }}
                                         </button>
