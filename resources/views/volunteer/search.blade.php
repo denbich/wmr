@@ -16,12 +16,7 @@
       <div class="navbar-inner">
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('v.dashboard') }}">
-                    <i class="ni ni-tv-2 "></i>
-                    <span class="nav-link-text">Panel</span>
-                  </a>
-                </li>
+                @include('volunteer.include.dashboard')
             </ul>
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">

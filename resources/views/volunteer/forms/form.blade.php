@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('lista formularzy') }}
+{{ __('volunteer.sidebar.forms') }}
 @endsection
 
 @section('content')
@@ -9,23 +9,18 @@
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
-        <a class="mt-2" href="javascript:void(0)">
+        <a class="mt-2" href="{{ route('v.dashboard') }}">
           <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('v.dashboard') }}">
-                <i class="ni ni-tv-2 "></i>
-                <span class="nav-link-text">Panel</span>
-              </a>
-            </li>
+          @include('volunteer.include.dashboard')
         </ul>
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Ogólne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.general') }}</span>
         </h6>
           <ul class="navbar-nav">
             @include('volunteer.include.chat')
@@ -33,17 +28,15 @@
             <li class="nav-item">
                 <a class="nav-link active" href="{{ route('v.form.list') }}">
                     <i class="fas fa-clipboard-list text-primary"></i>
-                    <span class="nav-link-text">Formularze</span>
+                    <span class="nav-link-text">{{ __('volunteer.sidebar.forms') }}</span>
                 </a>
             </li>
-
             @include('volunteer.include.prizes')
-
           </ul>
 
           <hr class="my-3">
           <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Inne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.other') }}</span>
           </h6>
 
           <ul class="navbar-nav mb-md-3">
@@ -66,7 +59,7 @@
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="{{ route('v.dashboard') }}"><i class="fas fa-home"></i></a></li>
-                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('v.form.list') }}">Formularze</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('v.form.list') }}">{{ __('volunteer.sidebar.forms') }}</a></li>
                     <li class="breadcrumb-item active">{{ $form->id }}</li>
                   </ol>
                 </nav>
@@ -84,7 +77,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Podstawowe informacje </h3>
+                  <h3 class="mb-0">{{ __('volunteer.form.form.main') }}</h3>
                 </div>
               </div>
             </div>
@@ -94,7 +87,7 @@
                     <div class="col-lg-6">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-                            <span class="alert-text"><strong>Sukces!</strong> Zapisanie się przebiegło pomyślnie!</span>
+                            <span class="alert-text"><strong>{{ __('main.success') }}!</strong> {{ __('volunteer.form.form.info1') }}</span>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -107,7 +100,7 @@
                     <div class="col-lg-6">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-                            <span class="alert-text"><strong>Sukces!</strong> Wypisanie się przebiegło pomyślnie!</span>
+                            <span class="alert-text"><strong>{{ __('main.success') }}!</strong> {{ __('volunteer.form.form.info2') }}</span>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -121,7 +114,7 @@
                         <img src="{{ $form->icon_src }}" alt="" class="w-100">
                     </div>
                     <div class="col-md-4">
-                        <h4>Opis stanowisk:</h4>
+                        <h4>{{ __('volunteer.form.form.d-positions') }}:</h4>
                         @foreach ($form_positions as $position)
 
                         <p><b>{{ $position->translate_form_position->title }}:</b><br>{{ $position->translate_form_position->description }}</p>
@@ -139,7 +132,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0"> @if ($signed_volunteer == null) Zapisz się @else Szczegóły uczestnictwa @endif </h3>
+                  <h3 class="mb-0"> @if ($signed_volunteer == null) {{ __('volunteer.form.form.title1') }} @else {{ __('volunteer.form.form.title2') }} @endif </h3>
                 </div>
               </div>
             </div>
@@ -150,7 +143,7 @@
                         <div class="col-lg-6">
                             <div class="alert alert-danger text-center" role="alert">
                                 <span class="alert-icon"><i class="far fa-frown"></i></span>
-                                <span class="alert-text"><strong>Alert!</strong> Zapisy zostały zamknięte!</span>
+                                <span class="alert-text"><strong>{{ __('main.alert') }}!</strong>{{ __('volunteer.form.form.sign.alert') }} </span>
                             </div>
                         </div>
                     </div>
@@ -159,11 +152,11 @@
                         <table class="table align-items-center">
                             <thead class="thead-light">
                                 <tr class="text-center">
-                                    <th scope="col">Nazwa stanowiska</th>
-                                    <th scope="col">Ilość punktów</th>
-                                    <th scope="col">Zapotrzebowanie</th>
-                                    <th scope="col">Ilość zapisanych</th>
-                                    <th>Opcje</th>
+                                    <th scope="col">{{ __('volunteer.form.form.positions.name') }}</th>
+                                    <th scope="col">{{ __('volunteer.form.form.positions.points') }}</th>
+                                    <th scope="col">{{ __('volunteer.form.form.positions.demand') }}</th>
+                                    <th scope="col">{{ __('volunteer.form.form.positions.count') }}</th>
+                                    <th>{{ __('volunteer.form.form.positions.options') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="list text-center">
@@ -177,7 +170,7 @@
                                         <form action="{{ route('v.form.show', [$form->id]) }}" method="post">
                                             @csrf
                                             <input type="hidden" name="position" value="{{ $position->id }}">
-                                            <button class="btn btn-primary">Zapisz się</button>
+                                            <button class="btn btn-primary">{{ __('volunteer.form.form.positions.button') }}</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -192,15 +185,15 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="text-center">
-                                <span class="h2"><strong>Zapisałeś się na stanowisko:</strong> {{ $signed_volunteer->trans_position->title }}</span>
-                                <p><b>Otrzymasz tyle punktów*: </b>{{ $signed_volunteer->post_form->points }}</p>
-                                <p>Czekaj na wiadomość o przydzieleniu stanowiska (dostaniesz maila lub sprawdzaj co jakiś czas).</p>
-                                <p class="text-sm">* - Jeśli będziesz uczestniczyć w tej akcji.</p>
+                                <span class="h2"><strong>{{ __('volunteer.form.form.sign.0.text1') }}:</strong> {{ $signed_volunteer->trans_position->title }}</span>
+                                <p><b>{{ __('volunteer.form.form.sign.0.text2') }}*: </b>{{ $signed_volunteer->post_form->points }}</p>
+                                <p>{{ __('volunteer.form.form.sign.0.text3') }}</p>
+                                <p class="text-sm">* - {{ __('volunteer.form.form.sign.0.text4') }}</p>
                             </div>
                             <form action="{{ route('v.form.unsign', [$form->id]) }}" method="post">
                                 @csrf
                                 <input type="hidden" name="position" value="{{ $signed_volunteer->id }}">
-                                <button type="submit" class="btn btn-danger w-100">Wypisz się</button>
+                                <button type="submit" class="btn btn-danger w-100">{{ __('volunteer.form.form.sign.0.button') }}</button>
                             </form>
                         </div>
                     </div>
@@ -208,28 +201,28 @@
 
                     @case(1)
                         <div class="text-center">
-                            <h1 class="text-success">Stanowiska zostały przydzielone przez koordynatora</h1>
+                            <h1 class="text-success">{{ __('volunteer.form.form.sign.1.header') }}</h1>
                             <span class="h3">
                                 @if (Auth::user()->gender == 'm')
-                                    <b>Zostałeś przydzielony na stanowisko:</b>
+                                    <b>{{ __('volunteer.form.form.sign.1.text-m') }}:</b>
                                 @elseif (Auth::user()->gender == 'f')
-                                    <b>Zostałaś przydzielony na stanowisko:</b>
+                                    <b>{{ __('volunteer.form.form.sign.1.text-f') }}:</b>
                                 @endif
                                 {{ $signed_volunteer->trans_position->title }}
                             </span>
-                            <p><b>Otrzymasz tyle punktów*: </b>{{ $signed_volunteer->post_form->points }}</p>
-                            <p class="text-sm">* - Jeśli będziesz uczestniczyć w tej akcji.</p>
+                            <p><b>{{ __('volunteer.form.form.sign.1.text1') }}*: </b>{{ $signed_volunteer->post_form->points }}</p>
+                            <p class="text-sm">* - {{ __('volunteer.form.form.sign.1.text2') }}</p>
                         </div>
                         @break
 
                     @case(2)
                         <div class="text-center">
                             @if (Auth::user()->gender == 'm')
-                                <h2 class="text-danger">Nie byłeś obecny, więc nie otrzymasz punktów :(</h2>
-                                <p>Jeśli jednak uczesticzyłeś, to zgłoś ten fakt koordynatorowi bądź administratorowi!</p>
+                                <h2 class="text-danger">{{ __('volunteer.form.form.sign.2.header-m') }} :(</h2>
+                                <p>{{ __('volunteer.form.form.sign.2.text-m') }}</p>
                             @elseif (Auth::user()->gender == 'f')
-                                <h2 class="text-danger">Nie byłaś obecna, więc nie otrzymasz punktów :(</h2>
-                                <p>Jeśli jednak uczesticzyłaś, to zgłoś ten fakt koordynatorowi bądź administratorowi!</p>
+                                <h2 class="text-danger">{{ __('volunteer.form.form.sign.2.header-f') }} :(</h2>
+                                <p>{{ __('volunteer.form.form.sign.2.text-f') }}</p>
                             @endif
                         </div>
                         @break
@@ -239,7 +232,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <span class="alert-text"><strong>Sukces!</strong> Twoja opinia została wysłana!</span>
+                                <span class="alert-text"><strong>{{ __('main.success') }}!</strong> {{ __('volunteer.form.form.sign.3.alert') }}</span>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -248,16 +241,15 @@
                     </div>
                     @endif
                         <div class="text-center">
+                            <h2>{{ __('volunteer.form.form.sign.3.header') }}</h2>
                             @if (Auth::user()->gender == 'm')
-                                <h2>Dziękujemy za twoją obecność!</h2>
-                                <h3 class="text-success">Otrzymałeś punkty za tą akcję!</h3>
+                                <h3 class="text-success">{{ __('volunteer.form.form.sign.3.text-m') }}</h3>
                             @elseif (Auth::user()->gender == 'f')
-                                <h2>Dziękujemy za twoją obecność!</h2>
-                                <h3 class="text-success">Otrzymałaś punkty za tą akcję!</h3>
+                                <h3 class="text-success">{{ __('volunteer.form.form.sign.3.text-f') }}</h3>
                             @endif
                             @if ($signed_volunteer->feedback == null)
                             <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#feedbackmodal">
-                                Podziel się opinią dot. imprezy
+                                {{ __('volunteer.form.form.sign.3.button') }}
                               </button>
 
                               <div class="modal fade" id="feedbackmodal" tabindex="-1" role="dialog" aria-labelledby="feedbackLabel" aria-hidden="true">
@@ -266,34 +258,32 @@
                                       @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="feedbackLabel">Podziel się opinią na temat imprezy {{ $form->form_translate->title }}</h5>
+                                          <h5 class="modal-title" id="feedbackLabel">{{ __('volunteer.form.form.sign.3.modal.header') }} {{ $form->form_translate->title }}</h5>
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
                                         </div>
                                         <div class="modal-body">
-                                          <h3 class="text-center">Dla nas twoja opinia jest bardzo ważna! Podziel się nią</h3>
+                                          <h3 class="text-center">{{ __('volunteer.form.form.sign.3.modal.text') }}</h3>
                                           <textarea id="info" class="form-control" style="resize: none;" name="info" cols="50" rows="3" maxlength="255" required></textarea>
-                                            <p id="info_count" class="text-sm">0 / 255 znaków</p>
+                                            <p id="info_count" class="text-sm">0 / 255 {{ __('volunteer.form.form.sign.3.modal.count') }}</p>
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                                          <button type="submit" class="btn btn-primary">Zapisz</button>
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('main.cancel') }}</button>
+                                          <button type="submit" class="btn btn-primary">{{ __('volunteer.form.form.sign.3.modal.send') }}</button>
                                         </div>
                                       </div>
                                   </form>
                                 </div>
                               </div>
                             @endif
-
-
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
                                 <form action="{{ route('v.form.certificate') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="form" value="{{ $form->id }}">
-                                    <button type="submit" class="btn btn-primary w-100">Generuj zaświadczenie</button>
+                                    <button type="submit" class="btn btn-primary w-100">{{ __('volunteer.form.form.sign.3.cert') }}</button>
                                 </form>
                             </div>
                         </div>
@@ -307,7 +297,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Miejsce imprezy </h3>
+                  <h3 class="mb-0">{{ __('volunteer.form.form.map') }}</h3>
                 </div>
               </div>
             </div>
@@ -356,7 +346,7 @@ var marker = new google.maps.Marker({
 
         $('#info').on('keyup propertychange paste', function(){
             var chars = $('#info').val().length;
-            $('#info_count').html(chars +' / 255 znaków');
+            $('#info_count').html(chars +" / 255 {{ __('volunteer.form.form.sign.3.modal.count') }}");
         });
         });
 </script>

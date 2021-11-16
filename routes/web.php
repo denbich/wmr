@@ -23,8 +23,8 @@ App::setLocale(session('locale'));
 Route::get('language/{locale}', function($locale) {
     session(['locale' => $locale]);
         App::setLocale($locale);
-        return redirect('/login');
-});
+        return redirect(url()->previous());
+})->name('language');
 
 Route::middleware('setlocale')->group(function () {
 
@@ -79,7 +79,7 @@ Route::middleware('setlocale')->group(function () {
             Route::prefix('volunteer')->group(function() {
                 Route::get('/', [CVolunteerController::class, 'list'])->name('c.v.list');
                 Route::get('/list', [CVolunteerController::class, 'pdf_list'])->name('c.v.pdflist');
-                Route::get('/id/{id}', [CVolunteerController::class, 'volunteer']);
+                Route::get('/id/{id}', [CVolunteerController::class, 'volunteer'])->name('c.v.volunteer');
                 Route::get('/search', [CVolunteerController::class, 'search'])->name('c.v.search');
                 Route::get('/active', [CVolunteerController::class, 'active'])->name('c.v.active');
                 Route::post('/active', [CVolunteerController::class, 'activation']);
@@ -90,6 +90,7 @@ Route::middleware('setlocale')->group(function () {
 
             Route::get('/forms/archive', [CFormsController::class, 'archive'])->name('c.form.archive');
             Route::get('/forms/list/{id}', [CFormsController::class, 'volunteer_list'])->name('c.form.volunteers');
+            Route::post('/forms/generate/{id}', [CFormsController::class, 'generate_id'])->name('c.form.id');
 
             Route::post('/forms/stop-sign/{id}', [CFormsController::class, 'stop_sign'])->name('c.form.stopsign');
             Route::post('/forms/start-sign/{id}', [CFormsController::class, 'start_sign'])->name('c.form.startsign');

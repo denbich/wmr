@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('Lista twoich zamówień') }}
+{{ __('volunteer.prizes.order.title') }}
 @endsection
 
 @section('content')
@@ -9,23 +9,18 @@
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
-        <a class="mt-2" href="javascript:void(0)">
+        <a class="mt-2" href="{{ route('v.dashboard') }}">
           <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('v.dashboard') }}">
-                <i class="ni ni-tv-2 "></i>
-                <span class="nav-link-text">Panel</span>
-              </a>
-            </li>
+            @include('volunteer.include.dashboard')
         </ul>
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Ogólne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.general') }}</span>
         </h6>
           <ul class="navbar-nav">
             @include('volunteer.include.chat')
@@ -35,18 +30,18 @@
             <li class="nav-item">
                 <a class="nav-link collapsed active" href="#prizes" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="prizes">
                   <i class="fas fa-award text-primary"></i>
-                  <span class="nav-link-text">Nagrody</span>
+                  <span class="nav-link-text">{{ __('volunteer.sidebar.prizes.prizes') }}</span>
                 </a>
                 <div class="collapse show" id="prizes">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
                       <a href="{{ route('v.prize.list') }}" class="nav-link">
-                        <span class="sidenav-normal"> Lista </span>
+                        <span class="sidenav-normal"> {{ __('volunteer.sidebar.prizes.list') }} </span>
                       </a>
                     </li>
                     <li class="nav-item active">
                       <a href="{{ route('v.prize.orders') }}" class="nav-link">
-                        <span class="sidenav-normal"> Twoje zamówienia </span>
+                        <span class="sidenav-normal"> {{ __('volunteer.sidebar.prizes.orders') }} </span>
                       </a>
                     </li>
                   </ul>
@@ -58,7 +53,7 @@
 
           <hr class="my-3">
           <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Inne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.other') }}</span>
           </h6>
 
           <ul class="navbar-nav mb-md-3">
@@ -77,12 +72,12 @@
           <div class="header-body">
             <div class="row align-items-center py-4">
               <div class="col-lg-6 col-7">
-                <h6 class="h2 text-white d-inline-block mb-0">Lista twoich zamówień</h6>
+                <h6 class="h2 text-white d-inline-block mb-0">{{ __('volunteer.prizes.order.title') }}</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="{{ route('v.dashboard') }}"><i class="fas fa-home"></i></a></li>
-                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('v.prize.list') }}">Nagrody</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ route('v.prize.orders') }}">Zamówienia</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('v.prize.list') }}">{{ __('volunteer.sidebar.prizes.prizes') }}</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('v.prize.orders') }}">{{ __('volunteer.prizes.order.orders') }}</a></li>
                   </ol>
                 </nav>
               </div>
@@ -100,7 +95,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Zamówienia </h3>
+                  <h3 class="mb-0">{{ __('volunteer.prizes.order.orders') }}</h3>
                 </div>
               </div>
             </div>
@@ -110,10 +105,10 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light text-center">
                                 <tr>
-                                    <th scope="col">Nazwa nagrody</th>
-                                    <th scope="col">Data zamówienia</th>
-                                    <th scope="col">Informacja</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">{{ __('volunteer.prizes.order.name') }}</th>
+                                    <th scope="col">{{ __('volunteer.prizes.order.date') }}</th>
+                                    <th scope="col">{{ __('volunteer.prizes.order.info') }}</th>
+                                    <th scope="col">{{ __('volunteer.prizes.order.status') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="list">
@@ -133,16 +128,16 @@
                                             <span class="name mb-0 text-sm">{{ $order->created_at }}</span>
                                         </td>
                                         <td class="text-center">{{ $order->info }}</td>
-                                        <td class="text-center">@if ($order->condition == 0) Nieodebrane @else Odebrane @endif</td>
+                                        <td class="text-center">@if ($order->condition == 0) {{ __('volunteer.prizes.order.m') }} @else {{ __('volunteer.prizes.order.r') }} @endif</td>
                                     </tr>
                                 @empty
-                                    <h2 class="text-center text-danger">Brak zamówień!</h2>
+                                    <h2 class="text-center text-danger">{{ __('volunteer.prizes.order.err') }}</h2>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
                     @else
-                    <h2 class="text-center text-danger">Brak zamówień!</h2>
+                    <h2 class="text-center text-danger">{{ __('volunteer.prizes.order.err') }}!</h2>
                     @endif
               </div>
           </div>

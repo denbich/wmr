@@ -8,5 +8,9 @@ return [
     'signin' => 'Sign in',
     'lang' => 'Choose language',
     'morelang' => 'More languages...',
+    'success' => 'Sukces',
+    'cancel' => 'Cancel',
+    'error' => 'Error',
+    'alert' => 'Alert',
 ];
 

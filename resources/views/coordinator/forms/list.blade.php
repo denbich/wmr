@@ -9,7 +9,7 @@
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
-        <a class="mt-2" href="javascript:void(0)">
+        <a class="mt-2" href="{{ route('c.dashboard') }}">
           <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>

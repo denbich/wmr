@@ -115,7 +115,7 @@
                     @endif
                     <hr class="my-2">
                     <a href="{{ route('c.post.create') }}" class="btn btn-primary w-100 my-2">Utwórz post</a>
-                    <button class="btn btn-primary w-100 my-2" disabled>Generator identyfikatorów</button>
+                    <button class="btn btn-primary w-100 my-2" data-toggle="modal" data-target="#idmodal" >Generator identyfikatorów</button>
                     <a href="{{ route('c.form.volunteers', [$form->id]) }}" class="btn btn-primary w-100 my-2">Lista wolontariuszy</a>
                     <hr class="my-2">
                     <a href="{{ url('/coordinator/forms', [$form->id, 'edit']) }}" class="btn btn-success w-100 my-2 text-white">Edytuj formularz</a>
@@ -320,7 +320,6 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
           <button type="submit" class="btn btn-primary">Zatwierdź</button>
         </div>
-
     </form>
       </div>
     </div>
@@ -369,6 +368,77 @@
             <button type="submit" class="btn btn-danger">Usuń</button>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="idmodal" tabindex="-1" role="dialog" aria-labelledby="idModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+      <form action="{{ route('c.form.id', [$form->id]) }}" method="post">
+        @csrf
+        <div class="modal-header">
+          <h5 class="modal-title" id="idModalLabel">Generuj indentyfikatory - BETA</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pt-0">
+            <div class="form-group">
+                <h2 class="text-center">Motyw</h3>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="themelight" name="theme" value="l" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="themelight">Jasny</label>
+                          </div>
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="themedark" name="theme" value="d" class="custom-control-input" disabled>
+                            <label class="custom-control-label" for="themedark">Ciemny</label>
+                          </div>
+                    </div>
+
+                  <h2 class="text-center">Logo</h3>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="logowmr" class="custom-control-input" id="logowmr" checked disabled>
+                            <label class="custom-control-label" for="logowmr">Logo WMR</label>
+                          </div>
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="logomosir" class="custom-control-input" id="logomosir" checked disabled>
+                            <label class="custom-control-label" for="logomosir">Logo MOSiR</label>
+                          </div>
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="logocustom" class="custom-control-input" id="logocustom" disabled>
+                            <label class="custom-control-label" for="logocustom">Dodatkowe logo</label>
+                          </div>
+                    </div>
+                    <h2 class="text-center">Kod QR</h2>
+                    <div class="form-group">
+                        <label class="custom-toggle">
+                            <input type="checkbox" name="qr" checked disabled>
+                            <span class="custom-toggle-slider rounded-circle" data-label-off="Nie" data-label-on="Tak"></span>
+                        </label>
+                    </div>
+                    <h2 class="text-center">Inne opcje</h3>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="showlogin" class="custom-control-input" id="showlogin" disabled>
+                                <label class="custom-control-label" for="showlogin">Pokaż login</label>
+                              </div>
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="showid" class="custom-control-input" id="showid" disabled>
+                                <label class="custom-control-label" for="showid">Pokaż ID</label>
+                              </div>
+                        </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+          <button type="submit" class="btn btn-primary" disabled>Generuj</button>
+        </div>
+    </form>
       </div>
     </div>
   </div>

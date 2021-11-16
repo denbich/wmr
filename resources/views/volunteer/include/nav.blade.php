@@ -7,7 +7,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
-                <input class="form-control" placeholder="Szukaj" type="text" name="q">
+                <input class="form-control" placeholder="{{ __('volunteer.menu.search') }}" type="text" name="q">
               </div>
             </div>
             <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
@@ -139,30 +139,27 @@
               </a>
               <div class="dropdown-menu dropdown-menu-lg  dropdown-menu-right  py-0 overflow-hidden">
                   <div class="w-100 text-center mt-2">
-                      <span class="h4 text-center text-dark w-100">Wybierz język</span>
+                      <span class="h4 text-center text-dark w-100">{{ __('volunteer.menu.lang.choose') }}</span>
                   </div>
                 <div class="row shortcuts px-4 justify-content-center">
-                  <a href="/language/pl" class="col-4 my-2 shortcut-item text-center">
+                  <a href="{{ route('language', ['pl']) }}" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle">
                       <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/pl.svg" alt="">
                     </span>
-                    <small>Polish (Polski)</small>
+                    <small>{{ __('volunteer.menu.lang.polish') }}</small>
                   </a>
-                  <!--<a href="/language/en" class="col-4 my-2 shortcut-item text-center">
+                  <a href="{{ route('language', ['en']) }}" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle">
                       <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/gb.svg" alt="">
                     </span>
-                    <small>English</small>
+                    <small>{{ __('volunteer.menu.lang.english') }}</small>
                   </a>
-                  <a href="/language/ua" class="col-4 my-2 shortcut-item text-center d-none">
+                  <!--<a href="/language/ua" class="col-4 my-2 shortcut-item text-center d-none">
                       <span class="shortcut-media avatar rounded-circle">
                           <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/ua.svg" alt="">
                         </span>
                     <small>Ukraiński</small>
                   </a>-->
-
-
-
                 </div>
               </div>
             </li>
@@ -173,26 +170,26 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg  dropdown-menu-right  py-0 overflow-hidden">
               <div class="w-100 text-center mt-2">
-                  <span class="h4 text-center text-dark w-100">Skróty</span>
+                  <span class="h4 text-center text-dark w-100">{{ __('volunteer.menu.shortcut.shortcut') }}</span>
               </div>
               <div class="row shortcuts px-4 py-2">
                 <a href="{{ route('v.calendar') }}" class="col-4 my-2 shortcut-item text-center">
                   <span class="shortcut-media avatar rounded-circle bg-gradient-red">
                     <i class="far fa-calendar-alt"></i>
                   </span>
-                  <small>Kalendarz</small>
+                  <small>{{ __('volunteer.sidebar.calendar') }}</small>
                 </a>
                 <a href="{{ route('v.maps') }}" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
                         <i class="fas fa-map-marker-alt"></i>
                     </span>
-                    <small>Mapa</small>
+                    <small>{{ __('volunteer.menu.shortcut.map') }}</small>
                   </a>
                 <a href="{{ route('v.chat') }}" class="col-4 my-2 shortcut-item text-center">
                   <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
                     <i class="fas fa-comments"></i>
                   </span>
-                  <small>Czat</small>
+                  <small>{{ __('volunteer.sidebar.chat') }}</small>
                 </a>
                 <!--<a href="#!" class="col-4 my-2 shortcut-item text-center">
                   <span class="shortcut-media avatar rounded-circle bg-gradient-info">
@@ -231,23 +228,23 @@
             </a>
             <div class="dropdown-menu  dropdown-menu-right ">
               <div class="dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Witaj!</h6>
+                <h6 class="text-overflow m-0">{{ __('volunteer.menu.dropdown.hello') }}</h6>
               </div>
               <a href="{{ route('v.profile') }}" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
-                <span>Profil</span>
+                <span>{{ __('volunteer.menu.dropdown.profile') }}</span>
               </a>
               <a href="{{ route('v.settings') }}" class="dropdown-item">
                 <i class="fas fa-cog"></i>
-                <span>Ustawienia</span>
+                <span>{{ __('volunteer.menu.dropdown.settings') }}</span>
               </a>
               <a href="{{ route('v.id') }}" class="dropdown-item">
                 <i class="fas fa-id-card"></i>
-                <span>Identyfikator</span>
+                <span>{{ __('volunteer.menu.dropdown.id') }}</span>
               </a>
               <a href="{{ route('v.info') }}" class="dropdown-item">
                 <i class="fas fa-info-circle"></i>
-                <span>Informacje</span>
+                <span>{{ __('volunteer.sidebar.info') }}</span>
               </a>
               <!--<a href="#!" class="dropdown-item">
                 <i class="ni ni-support-16"></i>
@@ -256,7 +253,7 @@
               <div class="dropdown-divider"></div>
               <a href="" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>
-                <span>Wyloguj się</span>
+                <span>{{ __('main.logout') }}</span>
               </a>
             </div>
           </li>

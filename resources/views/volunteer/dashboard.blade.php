@@ -1,7 +1,7 @@
 @extends('layouts.volunteer')
 
 @section('title')
-{{ __('Panel wolontariusza') }}
+{{ __('volunteer.dashboard.title') }}
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
-        <a class="mt-2" href="javascript:void(0)">
+        <a class="mt-2" href="{{ route('v.dashboard') }}">
           <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
@@ -19,13 +19,13 @@
             <li class="nav-item">
               <a class="nav-link active" href="{{ route('v.dashboard') }}">
                 <i class="ni ni-tv-2 "></i>
-                <span class="nav-link-text">Panel</span>
+                <span class="nav-link-text">{{ __('volunteer.sidebar.dashboard') }}</span>
               </a>
             </li>
         </ul>
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Ogólne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.general') }}</span>
         </h6>
           <ul class="navbar-nav">
             @include('volunteer.include.chat')
@@ -37,7 +37,7 @@
 
           <hr class="my-3">
           <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Inne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.other') }}</span>
           </h6>
 
           <ul class="navbar-nav mb-md-3">
@@ -56,11 +56,11 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Panel wolontariusza</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">{{ __('volunteer.dashboard.title') }}</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('v.dashboard') }}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Panel</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ __('volunteer.sidebar.dashboard') }}</li>
                 </ol>
               </nav>
             </div>
@@ -72,7 +72,7 @@
                 <div class="card-body my-3">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Twoje ID</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">{{ __('volunteer.dashboard.id') }}</h5>
                       <span class="h2 font-weight-bold mb-0">{{ $volunteer->id }}</span>
                     </div>
                     <div class="col-auto">
@@ -89,7 +89,7 @@
                 <div class="card-body my-3">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Punkty</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">{{ __('volunteer.dashboard.points') }}</h5>
                       <span class="h2 font-weight-bold mb-0">{{ $volunteer->points }}</span>
                     </div>
                     <div class="col-auto">
@@ -106,7 +106,7 @@
                 <div class="card-body my-3">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Liczba nagród</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">{{ __('volunteer.dashboard.c-prizes') }}</h5>
                       <span class="h2 font-weight-bold mb-0">{{ $count['prizes'] }}</span>
                     </div>
                     <div class="col-auto">
@@ -123,7 +123,7 @@
                 <div class="card-body my-3">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Liczba formularzy</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">{{ __('volunteer.dashboard.c-forms') }}</h5>
                       <span class="h2 font-weight-bold mb-0">{{ $count['forms'] }}</span>
                     </div>
                     <div class="col-auto">
@@ -149,7 +149,7 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h5 class="h3 mb-0">Najnowsze posty</h5>
+                  <h5 class="h3 mb-0">{{ __('volunteer.dashboard.posts.title') }}</h5>
                 </div>
               </div>
             </div>
@@ -160,9 +160,9 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light text-center">
                                     <tr>
-                                        <th scope="col">Tytuł posta</th>
-                                        <th scope="col">Data opublikowania</th>
-                                        <th scope="col">Opcje</th>
+                                        <th scope="col">{{ __('volunteer.dashboard.posts.post-title') }}</th>
+                                        <th scope="col">{{ __('volunteer.dashboard.posts.date') }}</th>
+                                        <th scope="col">{{ __('volunteer.dashboard.posts.options') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list">
@@ -183,7 +183,7 @@
                             </table>
                         </div>
                     @else
-                        <div class="w-100 text-center"><h2 class="text-danger">Brak postów</h2></div>
+                        <div class="w-100 text-center"><h2 class="text-danger">{{ __('volunteer.dashboard.posts.err') }}</h2></div>
                     @endif
                 </div>
             </div>
@@ -194,7 +194,7 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h5 class="h3 mb-0">Najnowsze imprezy</h5>
+                  <h5 class="h3 mb-0">{{ __('volunteer.dashboard.events.title') }}</h5>
                 </div>
               </div>
             </div>
@@ -207,7 +207,7 @@
                         @endforeach
                     </ul>
                 @else
-                <div class="w-100 text-center"><h2 class="text-danger">Brak najbliższych wydarzeń!</h2></div>
+                <div class="w-100 text-center"><h2 class="text-danger">{{ __('volunteer.dashboard.events.err') }}</h2></div>
                 @endif
               </div>
             </div>
@@ -220,10 +220,10 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Zapełnienie formularzy</h3>
+                  <h3 class="mb-0">{{ __('volunteer.dashboard.forms.title') }}</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="{{ route('v.form.list') }}" class="btn btn-sm btn-primary">Zobacz formularze</a>
+                  <a href="{{ route('v.form.list') }}" class="btn btn-sm btn-primary">{{ __('volunteer.dashboard.forms.button') }}</a>
                 </div>
               </div>
             </div>
@@ -271,7 +271,7 @@
                 @endif
 
                 @empty
-                    <h2 class="text-center text-danger">Brak aktywnych formularzy!</h2>
+                    <h2 class="text-center text-danger">{{ __('volunteer.dashboard.forms.err') }}</h2>
                 @endforelse
             </div>
           </div>
@@ -280,7 +280,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Powiadomienia</h3>
+                  <h3 class="mb-0">{{ __('volunteer.dashboard.notifications.title') }}</h3>
                 </div>
               </div>
             </div>
@@ -294,7 +294,7 @@
               <div class="card-header">
                 <div class="row align-items-center">
                   <div class="col">
-                    <h3 class="mb-0">Pomoc</h3>
+                    <h3 class="mb-0">{{ __('volunteer.dashboard.help.title') }}</h3>
                   </div>
                 </div>
               </div>
@@ -303,7 +303,7 @@
                     <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
                     src="/img/undraw_delivery_address_03n0.svg" alt="">
                   </div>
-                <p>Jeśli masz probem, propozycję bądź pytanie to śmiało pisz na adres:
+                <p>{{ __('volunteer.dashboard.help.text') }}
                     <a target="_blank" rel="nofollow" href="mailto:administrator@wolontariat.rybnik.pl">administrator@wolontariat.rybnik.pl</a>
                 </p>
                 <!--<a target="_blank" rel="nofollow" href="#"><i class="far fa-question-circle"></i> Centrum pomocy</a>-->

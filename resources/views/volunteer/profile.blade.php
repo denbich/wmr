@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('profil') }}
+{{ __('volunteer.profile.title') }}
 @endsection
 
 @section('content')
@@ -9,23 +9,18 @@
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
-        <a class="mt-2" href="javascript:void(0)">
+        <a class="mt-2" href="{{ route('v.dashboard') }}">
           <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('v.dashboard') }}">
-                <i class="ni ni-tv-2 "></i>
-                <span class="nav-link-text">Panel</span>
-              </a>
-            </li>
+            @include('volunteer.include.dashboard')
         </ul>
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Ogólne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.general') }}</span>
         </h6>
           <ul class="navbar-nav">
             @include('volunteer.include.chat')
@@ -37,7 +32,7 @@
 
           <hr class="my-3">
           <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Inne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.other') }}</span>
           </h6>
 
           <ul class="navbar-nav mb-md-3">
@@ -56,11 +51,11 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Profil wolontariusza</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">{{ __('volunteer.profile.title') }}</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('v.dashboard') }}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Profil</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ __('index.register.profile.modal-h') }}</li>
                 </ol>
               </nav>
             </div>
@@ -93,7 +88,7 @@
                         <label for="upload_image" class="w-100">
                             <a class="btn btn-sm btn-primary btn-icon w-100 text-white">
                                 <span class="btn-inner--icon"><i class="fas fa-exchange-alt"></i></span>
-                                <span class="btn-inner--text">Zmień zdjęcie profilowe</span>
+                                <span class="btn-inner--text">{{ __('volunteer.profile.change-profile') }}</span>
                             </a>
                             <input type="file" name="image" class="image d-none" id="upload_image" accept="image/*">
                             <input type="hidden" name="profile" id="profile_photo" value="" required>
@@ -111,10 +106,10 @@
                     {{  Auth::user()->firstname}} {{ Auth::user()->lastname }}<span class="font-weight-light">, 16</span>
                   </h5>
                   <div class="h5 font-weight-300">
-                    <i class="ni location_pin mr-2"></i>{{ $volunteer->city }}, Polska
+                    <i class="ni location_pin mr-2"></i>{{ $volunteer->city }}, {{ __('volunteer.profile.poland') }}
                   </div>
                   <div class="h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Wolontariusz
+                    <i class="ni business_briefcase-24 mr-2"></i>{{ __('volunteer.profile.volunteer') }}
                   </div>
                 </div>
               </div>
@@ -125,10 +120,10 @@
               <div class="card-header">
                 <div class="row align-items-center">
                   <div class="col-8">
-                    <h3 class="mb-0">Edytuj profil </h3>
+                    <h3 class="mb-0">{{ __('volunteer.profile.edit') }} </h3>
                   </div>
                   <div class="col-4 text-right">
-                    <a href="{{ route('v.settings') }}" class="btn btn-sm btn-primary">Ustawienia</a>
+                    <a href="{{ route('v.settings') }}" class="btn btn-sm btn-primary">{{ __('volunteer.menu.dropdown.settings') }}</a>
                   </div>
                 </div>
               </div>
@@ -137,7 +132,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>Sukces!</strong> Edycja profilu zakończyła się pomyślnie!</span>
+                            <span class="alert-text"><strong>{{ __('main.success') }}!</strong> {{ __('volunteer.profile.alert1') }}</span>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -149,7 +144,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>Sukces!</strong> Zmiana zdjęcia profilowego zakończyła się pomyślnie!</span>
+                            <span class="alert-text"><strong>{{ __('main.success') }}!</strong> {{ __('volunteer.profile.alert2') }}</span>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -159,12 +154,12 @@
                 @endif
                 <form method="POST" action="{{ route('v.profile') }}">
                     @csrf
-                  <h6 class="heading-small text-muted mb-4">Podstawowe informacje</h6>
+                  <h6 class="heading-small text-muted mb-4">{{ __('volunteer.profile.main') }}</h6>
                   <div class="pl-lg-4">
                     <div class="row">
                         <div class="col-lg-6">
                           <div class="form-group">
-                            <label class="form-control-label" for="input-first-name">Imię</label>
+                            <label class="form-control-label" for="input-first-name">{{ __('volunteer.profile.options.firstname') }}</label>
                             <input type="text" id="input-first-name" class="form-control" placeholder="First name" name="firstname" value="{{ Auth::user()->firstname }}" required>
                             @error('firstname')
                                       <span class="text-danger small" role="alert">
@@ -175,7 +170,7 @@
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group">
-                            <label class="form-control-label" for="input-last-name">Nazwisko</label>
+                            <label class="form-control-label" for="input-last-name">{{ __('volunteer.profile.options.lastname') }}</label>
                             <input type="text" id="input-last-name" class="form-control" placeholder="Last name" name="lastname" value="{{ Auth::user()->lastname }}" required>
                             @error('lastname')
                                       <span class="text-danger small" role="alert">
@@ -189,7 +184,7 @@
                     <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-telephone">Numer telefonu</label>
+                          <label class="form-control-label" for="input-telephone">{{ __('volunteer.profile.options.telephone') }}</label>
                           <input type="text" id="input-telephone" class="form-control" placeholder="telephone" name="telephone" value="{{ Auth::user()->telephone }}" required>
                           @error('telephone')
                                       <span class="text-danger small" role="alert">
@@ -200,7 +195,7 @@
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-email">Adres email</label>
+                            <label class="form-control-label" for="input-email">{{ __('volunteer.profile.options.email') }}</label>
                             <input type="email" id="input-email" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
                             @error('email')
                                           <span class="text-danger small" role="alert">
@@ -213,7 +208,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                              <label class="form-control-label" for="input-ice">Numer ICE</label>
+                              <label class="form-control-label" for="input-ice">{{ __('volunteer.profile.options.ice') }}</label>
                               <input type="tel" id="input-ice" class="form-control" name="ice" value="{{ $volunteer->ice }}" required>
                               @error('ice')
                                           <span class="text-danger small" role="alert">
@@ -224,7 +219,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                              <label class="form-control-label" for="input-school">Szkoła</label>
+                              <label class="form-control-label" for="input-school">{{ __('volunteer.profile.options.school') }}</label>
                               <input type="text" id="input-school" class="form-control" name="school" value="{{ $volunteer->school }}" required>
                               @error('school')
                                           <span class="text-danger small" role="alert">
@@ -236,7 +231,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-label" for="input-school">Rozmiar koszulki</label>
+                        <label class="form-control-label" for="input-school">{{ __('volunteer.profile.options.tshirst') }}</label>
                         <select class="form-control" id="tshirt_size" name="tshirt_size" required>
                             <option value="XS" @if ($volunteer->tshirt_size == "XS") selected @endif>XS</option>
                             <option value="S" @if ($volunteer->tshirt_size == "S") selected @endif>S</option>
@@ -254,12 +249,12 @@
                 </div>
                   <hr class="my-4" />
                   <!-- Address -->
-                  <h6 class="heading-small text-muted mb-4">Adres zamieszkania</h6>
+                  <h6 class="heading-small text-muted mb-4">{{ __('volunteer.profile.options.tshirst') }}</h6>
                   <div class="pl-lg-4">
                     <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-address">Ulica</label>
+                          <label class="form-control-label" for="input-address">{{ __('volunteer.profile.options.street') }}</label>
                           <input id="input-address" class="form-control" placeholder="Home Address" name="street" value="{{ $volunteer->street }}" type="text" required>
                           @error('street')
                                       <span class="text-danger small" role="alert">
@@ -270,7 +265,7 @@
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-house-number">Numer domu / mieszkania</label>
+                          <label class="form-control-label" for="input-house-number">{{ __('volunteer.profile.options.number') }}</label>
                           <input type="text" id="input-house-number" class="form-control" name="house_number" value="{{ $volunteer->house_number }}" required>
                           @error('house_number')
                                       <span class="text-danger small" role="alert">
@@ -283,7 +278,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-city">Miasto</label>
+                          <label class="form-control-label" for="input-city">{{ __('volunteer.profile.options.city') }}</label>
                           <input type="text" id="input-city" class="form-control" placeholder="City" name="city" value="{{ $volunteer->city }}" required>
                           @error('city')
                                       <span class="text-danger small" role="alert">
@@ -297,7 +292,7 @@
                   </div>
                   <div class="row justify-content-center">
                     <div class="col-lg-5">
-                        <button type="submit" class="btn btn-primary w-100">Zapisz zmiany</button>
+                        <button type="submit" class="btn btn-primary w-100">{{ __('volunteer.profile.save') }}</button>
                     </div>
                 </div>
                 </form>
@@ -314,7 +309,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Wytnij zdjęcie</h5>
+              <h5 class="modal-title">{{ __('volunteer.profile.modal.cut') }}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
               </button>
@@ -332,8 +327,8 @@
               </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="crop" class="btn btn-primary">Wytnij</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('main.cancel') }}</button>
+                <button type="button" id="crop" class="btn btn-primary">{{ __('volunteer.profile.modal.cut') }}</button>
             </div>
       </div>
     </div>

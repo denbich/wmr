@@ -364,4 +364,17 @@ class CFormsController extends Controller
 
         return view('coordinator.forms.viewpresence', ['form' => $form,'form_positions' => $form_positions, 'signed_volunteers' => $signed_volunteers]);
     }
+
+    public function generate_id(Request $request, $id)
+    {
+        dd($request->all());
+        $pdf = new TCPDF();
+        $pdf::SetTitle('Indentyfikatory');
+        $pdf::AddPage("L");
+        $lg['a_meta_charset'] = 'UTF-8';
+        $pdf::setLanguageArray($lg);
+        $pdf::SetFont('dejavusans','b',15);
+
+        $pdf::Output('indetyfikatory.pdf');
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.volunteer')
 
 @section('title')
-{{ __('Identyfikator') }}
+{{ __('volunteer.id.title') }}
 @endsection
 
 @section('content')
@@ -9,23 +9,18 @@
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
-        <a class="mt-2" href="javascript:void(0)">
+        <a class="mt-2" href="{{ route('v.dashboard') }}">
           <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('v.dashboard') }}">
-                    <i class="ni ni-tv-2 "></i>
-                    <span class="nav-link-text">Panel</span>
-                  </a>
-                </li>
+                @include('volunteer.include.dashboard')
             </ul>
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Ogólne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.general') }}</span>
         </h6>
           <ul class="navbar-nav">
             @include('volunteer.include.chat')
@@ -37,7 +32,7 @@
 
           <hr class="my-3">
           <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Inne</span>
+            <span class="docs-normal">{{ __('volunteer.sidebar.other') }}</span>
           </h6>
 
           <ul class="navbar-nav mb-md-3">
@@ -56,11 +51,11 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Identyfikator</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">{{ __('volunteer.menu.dropdown.id') }}</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('v.dashboard') }}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="route('v.id')">Identyfikator</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="route('v.id')">{{ __('volunteer.menu.dropdown.id') }}</a></li>
                 </ol>
               </nav>
             </div>
@@ -77,7 +72,7 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h5 class="h3 mb-0">Identyfikator</h5>
+                  <h5 class="h3 mb-0">{{ __('volunteer.menu.dropdown.id') }}</h5>
                 </div>
               </div>
             </div>
@@ -95,11 +90,11 @@
                             <img class="align-content-center m-auto d-block w-100" style="max-height:250px; max-width:250px" src="{{ Auth::user()->photo_src }}">
                         </div>
                         <div>
-                            <h3>Dane wolontariusza:</h3>
-                            <p><b>Imię wolontariusza: </b>{{ Auth::user()->firstname }}</p>
-                            <p><b>Nazwisko wolontariusza: </b>{{ Auth::user()->lastname }}</p>
+                            <h3>{{ __('volunteer.id.data') }}:</h3>
+                            <p><b>{{ __('volunteer.id.firstname') }}: </b>{{ Auth::user()->firstname }}</p>
+                            <p><b>{{ __('volunteer.id.lastname') }}: </b>{{ Auth::user()->lastname }}</p>
                             <p><b>ID: </b>{{ Auth::user()->id }}</p>
-                            <h3>Akcje w których uczestniczy dziś <br> ({{ date('d-m-Y'); }}):</h3>
+                            <h3>{{ __('volunteer.id.today') }} <br> ({{ date('d-m-Y'); }}):</h3>
                             @php $i = 0 @endphp
                             @if (count($events) > 0)
                             <ul>
@@ -112,12 +107,12 @@
                             </ul>
                             @if ($i == 0)
                                 <div class="w-100">
-                                    <h3 class="text-danger">Dziś wolontariusz nie uczestniczy w żadnej imprezie!</h3>
+                                    <h3 class="text-danger">{{ __('volunteer.id.err') }}</h3>
                                 </div>
                             @endif
                             @else
                             <div class="w-100">
-                                <h3 class="text-danger">Dziś wolontariusz nie uczestniczy w żadnej imprezie!</h3>
+                                <h3 class="text-danger">{{ __('volunteer.id.err') }}</h3>
                             </div>
                             @endif
                         </div>

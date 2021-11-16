@@ -135,7 +135,7 @@
                                     <tr>
                                         <th scope="row">
                                             <div class="media align-items-center">
-                                                <a href="#" class="avatar rounded-circle mr-3">
+                                                <a href="{{ route('c.v.volunteer', [$volunteer->id]) }}" class="avatar rounded-circle mr-3">
                                                 <img alt="Image placeholder" src="{{ $volunteer->user->photo_src }}">
                                                 </a>
                                                 <div class="media-body">
@@ -154,7 +154,7 @@
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            <a href="/coordinator/volunteer/id/{{ $volunteer->id }}">
+                                            <a href="{{ route('c.v.volunteer', [$volunteer->id]) }}">
                                                 <i class="fas fa-search"></i>
                                             </a>
                                         </td>
