@@ -269,15 +269,15 @@ return [
         ],
 
         'order' => [
-            'title' => 'Lista twoich zamówień',
-            'orders' => 'Zamówienia',
-            'name' => 'Nazwa nagrody',
-            'date' => 'Data zamówienia',
-            'info' => 'Informacja',
+            'title' => 'List of your orders',
+            'orders' => 'Orders',
+            'name' => 'The name of the award',
+            'date' => 'Date of order',
+            'info' => 'Information',
             'status' => 'Status',
-            'm' => 'Nieodebrane',
-            'r' => 'Odebrane',
-            'err' => 'Brak zamówień!',
+            'm' => 'Did not collected',
+            'r' => 'Collected',
+            'err' => 'No orders!',
         ],
     ],
 
