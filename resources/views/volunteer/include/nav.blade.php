@@ -146,13 +146,22 @@
                     <span class="shortcut-media avatar rounded-circle">
                       <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/pl.svg" alt="">
                     </span>
+                    @if (session('locale') == 'pl')
+                    <small class="font-weight-700">{{ __('volunteer.menu.lang.polish') }}</small>
+                    @else
                     <small>{{ __('volunteer.menu.lang.polish') }}</small>
+                    @endif
                   </a>
                   <a href="{{ route('language', ['en']) }}" class="col-4 my-2 shortcut-item text-center">
                     <span class="shortcut-media avatar rounded-circle">
                       <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/gb.svg" alt="">
                     </span>
+                    @if (session('locale') == 'en')
+                    <small class="font-weight-700">{{ __('volunteer.menu.lang.english') }}</small>
+                    @else
                     <small>{{ __('volunteer.menu.lang.english') }}</small>
+                    @endif
+
                   </a>
                   <!--<a href="/language/ua" class="col-4 my-2 shortcut-item text-center d-none">
                       <span class="shortcut-media avatar rounded-circle">
