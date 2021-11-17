@@ -70,6 +70,8 @@
         </div>
       </div>
 
+      <div class="m-7"></div>
+
     <!-- Page content -->
 
     <div class="container-fluid mt--6">
