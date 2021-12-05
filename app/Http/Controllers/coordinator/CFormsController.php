@@ -367,13 +367,43 @@ class CFormsController extends Controller
 
     public function generate_id(Request $request, $id)
     {
-        dd($request->all());
+        //dd($request->all());
         $pdf = new TCPDF();
         $pdf::SetTitle('Indentyfikatory');
-        $pdf::AddPage("L");
+        $pdf::AddPage("P");
         $lg['a_meta_charset'] = 'UTF-8';
         $pdf::setLanguageArray($lg);
         $pdf::SetFont('dejavusans','b',15);
+
+        //$bMargin = $pdf::getBreakMargin();
+        //$auto_page_break = $pdf::getAutoPageBreak();
+        //$pdf::SetAutoPageBreak(false, 0);
+        $img_file = url('/img/back.png');
+        $pdf::Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+        //$pdf::SetAutoPageBreak($auto_page_break, $bMargin);
+        //$pdf::setPageMark();
+
+        $html1 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                    <h1 style="color:#73b644; text-align:center; width:100%; font-size: 24px;">'."NAZWA EVENTU".'</h1>';
+
+                    //<<<EOD EOD;
+                    $pdf::writeHTMLCell(0, 0, '', '15', $html1, 0, 1, 0, true, '', true);
+
+                    //$pdf::write2DBarcode('https://wolontariat.rybnik.pl/id/', 'QRCODE,Q', 31, 104, 65, 65);
+                    $pdf::image("https://wolontariat.rybnik.pl", '115', '104', '65', '65');
+
+                    $html2 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                    <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                    <p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                    <h1 style="text-align:center">'."IMIE".'</h1>
+                    <p></p><p></p>
+                    <h1 style="text-align:center">'."NAZWISKO".'</h1>
+                    <p></p><p></p>
+                    <h1 style="text-align:center">'."LOGIN".'</h1>
+                    <p></p>
+                    <h1 style="text-align:center; color:#283b9b; font-size:40px;">'."STANOWISKO".'</h1>';
+
+                    $pdf::writeHTMLCell(0, 0, '', '15', $html2, 0, 1, 0, true, '', true);
 
         $pdf::Output('indetyfikatory.pdf');
     }

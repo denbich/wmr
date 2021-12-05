@@ -105,7 +105,7 @@ class VFormsController extends Controller
             $pdf::Image(url('/img/herb.png'), '', '15', '', 17, 'PNG');
             $pdf::Image(url('/img/logowmr.png'), '', '', '', 35, 'PNG', '', '', false, 300, 'C', false, false, 1, false, false, false);
             $pdf::Image(url('/img/logomosir.png'), '', '16', '', 13, 'PNG', '', '', false, 300, 'R', false, false, 1, false, false, false);
-            $html = '
+            $html = '<p></p>
             <p style="text-align:right;">Rybnik, dnia '.date("d.m.Y", strtotime($form->calendar->end)).'r. </p>
             <p style="text-align:right">Zaświadczenie nr '.base_convert($signed->id, 10, 16).'/2021</p>
             <p></p>
