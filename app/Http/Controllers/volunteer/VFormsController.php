@@ -127,7 +127,7 @@ class VFormsController extends Controller
             //<<<EOD EOD;
             $pdf::writeHTML($html, true, false, true, false, '');
 
-            $text1 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>';
+            $text1 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>';
             $text11 = '<p style="font-size:8px; text-align:center;">Zaświadczenie zostało wygenerowane automatycznie.</p>';
             $text2 = '<p style="font-size:8px; text-align:center;">By zweryfikować prawdziwość zaświadczenia, proszę napisać na adres: administrator@wolontariat.rybnik.pl</p>';
             $pdf::writeHTML($text1, true, false, true, false, '');
