@@ -261,6 +261,11 @@ class CFormsController extends Controller
         $pdf::Output( $form->form_translate->title.'_lista_wolontariuszy.pdf');
     }
 
+    public function volunteer_list_excel($id)
+    {
+        phpinfo();
+    }
+
     public function stop_sign(Request $request, $id)
     {
         $form = Form::find($id);

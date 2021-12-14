@@ -12,6 +12,7 @@ use App\Http\Controllers\volunteer\VFormsController;
 use App\Http\Controllers\volunteer\VPostsController;
 use App\Http\Controllers\coordinator\CChatController;
 use App\Http\Controllers\coordinator\CHomeController;
+use App\Http\Controllers\coordinator\CTestController;
 use App\Http\Controllers\volunteer\VPrizesController;
 use App\Http\Controllers\coordinator\CFormsController;
 use App\Http\Controllers\coordinator\CPostsController;
@@ -54,6 +55,12 @@ Route::middleware('setlocale')->group(function () {
         });
 
         Route::prefix('coordinator')->group(function () {
+
+            Route::prefix('test')->group(function() {
+                Route::get('/', [CTestController::class, 'pdf'])->name('c.test.pdf');
+                Route::post('/pdf', [CTestController::class, 'analyse']);
+            });
+
             Route::get('/', [CHomeController::class, 'dashboard'])->name('c.dashboard');
             Route::get('/settings', [CHomeController::class, 'settings'])->name('c.settings');
             Route::post('/settings', [CHomeController::class, 'save_settings']);
@@ -90,6 +97,7 @@ Route::middleware('setlocale')->group(function () {
 
             Route::get('/forms/archive', [CFormsController::class, 'archive'])->name('c.form.archive');
             Route::get('/forms/list/{id}', [CFormsController::class, 'volunteer_list'])->name('c.form.volunteers');
+            Route::get('/forms/list-excel/{id}', [CFormsController::class, 'volunteer_list_excel'])->name('c.form.volunteers.excel');
             Route::post('/forms/generate/{id}', [CFormsController::class, 'generate_id'])->name('c.form.id');
 
             Route::post('/forms/stop-sign/{id}', [CFormsController::class, 'stop_sign'])->name('c.form.stopsign');

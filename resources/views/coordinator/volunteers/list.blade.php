@@ -118,53 +118,62 @@
                 </div>
               </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col" class="sort" data-sort="name">Login</th>
-                                    <th scope="col" class="sort" data-sort="firstlastname">Imię i nazwisko</th>
-                                    <th scope="col">Numer tel.</th>
-                                    <th scope="col">Adres email</th>
-                                    <th scope="col" class="sort" data-sort="completion">Punkty</th>
-                                    <th scope="col">Opcje</th>
-                                </tr>
-                            </thead>
-                            <tbody class="list">
-                                @forelse ($volunteers as $volunteer)
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="media align-items-center">
-                                                <a href="{{ route('c.v.volunteer', [$volunteer->id]) }}" class="avatar rounded-circle mr-3">
-                                                <img alt="Image placeholder" src="{{ $volunteer->user->photo_src }}">
-                                                </a>
-                                                <div class="media-body">
-                                                    <span class="name mb-0 text-sm">{{ $volunteer->user->name }}</span>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <td>{{ $volunteer->user->firstname }} {{ $volunteer->user->lastname }}</td>
-                                        <td>{{ $volunteer->user->telephone }}</td>
-                                        <td>
-                                            <a href="mailto:{{ $volunteer->user->email }}">{{ $volunteer->user->email }}</a>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <span class="completion mr-2">{{ $volunteer->points }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="{{ route('c.v.volunteer', [$volunteer->id]) }}">
-                                                <i class="fas fa-search"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <h2 class="text-center text-danger">Brak wolontariuszy!</h2>
-                                @endforelse
-                            </tbody>
-                        </table>
+                  <form action="" method="post">
+                      <div class="form-group d-none">
+                        <select class="input-group-alternative form-control" name="" id="">
+                            <option value="">Generuj listę PDF</option>
+                        </select>
                     </div>
+                    <div class="table-responsive">
+                      <table class="table align-items-center table-flush">
+                          <thead class="thead-light">
+                              <tr>
+                                  <!--<th><input type="checkbox" name="" id="checkAll"></th>-->
+                                  <th scope="col" class="sort" data-sort="name">Login</th>
+                                  <th scope="col" class="sort" data-sort="firstlastname">Imię i nazwisko</th>
+                                  <th scope="col">Numer tel.</th>
+                                  <th scope="col">Adres email</th>
+                                  <th scope="col" class="sort" data-sort="completion">Punkty</th>
+                                  <th scope="col">Opcje</th>
+                              </tr>
+                          </thead>
+                          <tbody class="list">
+                              @forelse ($volunteers as $volunteer)
+                                  <tr>
+                                      <!--<th><input type="checkbox" name="" id=""></th>-->
+                                      <th scope="row">
+                                          <div class="media align-items-center">
+                                              <a href="{{ route('c.v.volunteer', [$volunteer->id]) }}" class="avatar rounded-circle mr-3">
+                                              <img alt="Image placeholder" src="{{ $volunteer->user->photo_src }}">
+                                              </a>
+                                              <div class="media-body">
+                                                  <span class="name mb-0 text-sm">{{ $volunteer->user->name }}</span>
+                                              </div>
+                                          </div>
+                                      </th>
+                                      <td>{{ $volunteer->user->firstname }} {{ $volunteer->user->lastname }}</td>
+                                      <td>{{ $volunteer->user->telephone }}</td>
+                                      <td>
+                                          <a href="mailto:{{ $volunteer->user->email }}">{{ $volunteer->user->email }}</a>
+                                      </td>
+                                      <td>
+                                          <div class="d-flex align-items-center">
+                                              <span class="completion mr-2">{{ $volunteer->points }}</span>
+                                          </div>
+                                      </td>
+                                      <td class="text-center">
+                                          <a href="{{ route('c.v.volunteer', [$volunteer->id]) }}">
+                                              <i class="fas fa-search"></i>
+                                          </a>
+                                      </td>
+                                  </tr>
+                              @empty
+                                  <h2 class="text-center text-danger">Brak wolontariuszy!</h2>
+                              @endforelse
+                          </tbody>
+                      </table>
+                  </div>
+                  </form>
                 </div>
             </div>
 
@@ -176,4 +185,18 @@
 
 @section('script')
 <script src="/assets/vendor/list.js/dist/list.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $("#checkAll").click(function() {
+    $("input[type=checkbox]").prop("checked", $(this).prop("checked"));
+  });
+
+  $("input[type=checkbox]").click(function() {
+    if (!$(this).prop("checked")) {
+      $("#checkAll").prop("checked", false);
+    }
+  });
+});
+</script>
 @endsection

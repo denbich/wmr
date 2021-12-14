@@ -116,7 +116,9 @@
                     <hr class="my-2">
                     <a href="{{ route('c.post.create') }}" class="btn btn-primary w-100 my-2">Utwórz post</a>
                     <button class="btn btn-primary w-100 my-2" data-toggle="modal" data-target="#idmodal" >Generator identyfikatorów</button>
-                    <a href="{{ route('c.form.volunteers', [$form->id]) }}" class="btn btn-primary w-100 my-2">Lista wolontariuszy</a>
+                    <hr class="my-2">
+                    <a href="{{ route('c.form.volunteers', [$form->id]) }}" class="btn btn-primary w-100 my-2">Lista wolontariuszy (PDF)</a>
+                    <a href="{{ route('c.form.volunteers.excel', [$form->id]) }}" class="btn btn-primary w-100 my-2">Lista wolontariuszy (Excel)</a>
                     <hr class="my-2">
                     <a href="{{ url('/coordinator/forms', [$form->id, 'edit']) }}" class="btn btn-success w-100 my-2 text-white">Edytuj formularz</a>
                     <button class="btn btn-danger w-100 my-2" data-toggle="modal" data-target="#deletemodal">Usuń formularz</button>
