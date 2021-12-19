@@ -113,7 +113,7 @@
                     <h3 class="mb-0">Lista wolontariuszy </h3>
                   </div>
                   <div class="col-4 text-right">
-                    <a href="{{ route('c.v.pdflist') }}" class="btn btn-sm btn-primary">Generuj listę PDF</a>
+                    <a href="#generatemodal" data-toggle="modal" data-target="#generatemodal" class="btn btn-sm btn-primary">Generuj listę</a>
                   </div>
                 </div>
               </div>
@@ -179,6 +179,45 @@
 
         @yield('coordinator.include.footer')
       </div>
+  </div>
+
+  <div class="modal fade" id="generatemodal" tabindex="-1" role="dialog" aria-labelledby="generatemodalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="generatemodalLabel">Generuj listę wolontariuszy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{ route('c.v.exportlist') }}" method="post">
+        <div class="modal-body pt-1">
+          <h2 class="text-center mb-5">Wybierz typ pliku</h2>
+              @csrf
+              <div class="form-group">
+                  <div class="form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="pdftype" name="filetype" value="pdf" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="pdftype">Plik PDF (.pdf)</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="exceltype" name="filetype" value="excel" class="custom-control-input">
+                        <label class="custom-control-label" for="exceltype">Excel (.xlsx)</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="htmltype" name="filetype" value="html" class="custom-control-input">
+                        <label class="custom-control-label" for="htmltype">HTML (.html)</label>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+          <button type="submit" class="btn btn-primary">Generuj</button>
+        </div>
+        </form>
+      </div>
+    </div>
   </div>
 
 @endsection

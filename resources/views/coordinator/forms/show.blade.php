@@ -106,6 +106,7 @@
                             @if ($count['o'] > 0)
                                 <a href="{{ route('c.form.positions', [$form->id]) }}" class="btn btn-primary w-100 my-2">Przydziel stanowiska</a>
                                 <a href="{{ route('c.form.presence', [$form->id]) }}" class="btn btn-primary w-100 my-2">Przydziel obecność</a>
+                                <a href="{{ route('c.form.sign', [$form->id]) }}" class="btn btn-primary w-100 my-2">Zapisz obecność (BETA)</a>
                             @else
                             <a href="{{ route('c.form.viewpresence', [$form->id]) }}" class="btn btn-primary w-100 my-2">Sprawdź obecność</a>
                             @endif
@@ -116,9 +117,7 @@
                     <hr class="my-2">
                     <a href="{{ route('c.post.create') }}" class="btn btn-primary w-100 my-2">Utwórz post</a>
                     <button class="btn btn-primary w-100 my-2" data-toggle="modal" data-target="#idmodal" >Generator identyfikatorów</button>
-                    <hr class="my-2">
-                    <a href="{{ route('c.form.volunteers', [$form->id]) }}" class="btn btn-primary w-100 my-2">Lista wolontariuszy (PDF)</a>
-                    <a href="{{ route('c.form.volunteers.excel', [$form->id]) }}" class="btn btn-primary w-100 my-2">Lista wolontariuszy (Excel)</a>
+                    <a href="#generatemodal" data-toggle="modal" data-target="#generatemodal" class="btn btn-primary w-100 my-2">Generuj listę wolontariuszy</a>
                     <hr class="my-2">
                     <a href="{{ url('/coordinator/forms', [$form->id, 'edit']) }}" class="btn btn-success w-100 my-2 text-white">Edytuj formularz</a>
                     <button class="btn btn-danger w-100 my-2" data-toggle="modal" data-target="#deletemodal">Usuń formularz</button>
@@ -441,6 +440,45 @@
           <button type="submit" class="btn btn-primary">Generuj</button>
         </div>
     </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="generatemodal" tabindex="-1" role="dialog" aria-labelledby="generatemodalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="generatemodalLabel">Generuj listę wolontariuszy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{ route('c.form.volunteers', [$form->id]) }}" method="post">
+        <div class="modal-body pt-1">
+          <h2 class="text-center mb-5">Wybierz typ pliku</h2>
+              @csrf
+              <div class="form-group">
+                  <div class="form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="pdftype" name="filetype" value="pdf" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="pdftype">Plik PDF (.pdf)</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="exceltype" name="filetype" value="excel" class="custom-control-input">
+                        <label class="custom-control-label" for="exceltype">Excel (.xlsx)</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="htmltype" name="filetype" value="html" class="custom-control-input">
+                        <label class="custom-control-label" for="htmltype">HTML (.html)</label>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+          <button type="submit" class="btn btn-primary">Generuj</button>
+        </div>
+        </form>
       </div>
     </div>
   </div>

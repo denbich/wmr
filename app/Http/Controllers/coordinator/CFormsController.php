@@ -7,16 +7,18 @@ use App\Models\User;
 use App\Mail\NewForm;
 use App\Models\Calendar;
 use App\Models\Volunteer;
+use App\Mail\SetPositions;
 use App\Models\Signed_form;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 use App\Models\Position_form;
 use App\Models\Translate_form;
 use Elibyy\TCPDF\Facades\TCPDF;
 use App\Http\Controllers\Controller;
-use App\Mail\SetPositions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Exports\SignedVolunteerExport;
 use App\Models\Translate_position_form;
 use Illuminate\Support\Facades\Storage;
 
@@ -216,54 +218,63 @@ class CFormsController extends Controller
         return redirect(route('c.form.list'))->with(['delete_form' => true]);
     }
 
-    public function volunteer_list($id)
+    public function volunteer_list(Request $request, Excel $excel, $id)
     {
         $form = Form::where('id', $id)->with('form_translate')->first();
-        $form_positions = Position_form::where('form_id', $id)->with('translate_form_position')->withCount('signed_form')->get();
-        $signed_volunteers = Signed_form::where('form_id', $id)->with(['volunteer', 'position', 'volun'])->get();
-
-        $pdf = new TCPDF();
-        $pdf::SetTitle('Lista wolontariuszy');
-        $pdf::AddPage("L");
-        $lg['a_meta_charset'] = 'UTF-8';
-        $pdf::setLanguageArray($lg);
-        $pdf::SetFont('dejavusans','b',15);
-
-        $pdf::Cell(0, 15, $form->form_translate->title.' - Lista zapisanych wolontariuszy', 0, '1', 'C', 0, '', 0, false, 'M', 'M');
-
-        $pdf::SetFont('dejavusans','',10);
-        $pdf::Cell(0, 10, 'Podpisując się niżej, oświadczasz iż jesteś zdrowy/a (w dniu imprezy nie wykazuję/ą objawów infekcji oraz objawów chorobowych sugerujących chorobę zakaźną) ', 0, '1', 'C', 0, '', 0, false, 'M', 'M');
-        $pdf::Cell(0, 10, 'oraz w okresie 14 dni przed imprezą nie przebywałem/am/ali z osobą na kwarantannie oraz nie miałem/am/mieli kontaktu z osobą podejrzaną o zakażenie.', 0, '1', 'C', 0, '', 0, false, 'M', 'M');
-
-        $pdf::SetFont('dejavusans','b',10);
-
-        $pdf::cell('35','10','Login','1','0','C');
-        $pdf::cell('45','10','Imię','1','0','C');
-        $pdf::cell('45','10','Nazwisko','1','0','C');
-        $pdf::cell('35','10','Nr telefonu','1','0','C');
-        $pdf::cell('20','10','Koszulka','1','0','C');
-        $pdf::cell('55','10','Stanowisko','1','0','C');
-        $pdf::cell('40','10','Podpis','1','1','C');
-
-        $pdf::SetFont('dejavusans','',10);
-
-        foreach ($signed_volunteers as $sign)
+        switch ($request->filetype)
         {
-            $pdf::cell('35','10', $sign->volunteer->name,'1','0','C');
-            $pdf::cell('45','10', $sign->volunteer->firstname,'1','0','C');
-            $pdf::cell('45','10', $sign->volunteer->lastname,'1','0','C');
-            $pdf::cell('35','10' ,$sign->volunteer->telephone,'1','0','C');
-            $pdf::cell('20','10', strtoupper($sign->volun->tshirt_size),'1','0','C');
-            $pdf::cell('55','10', $sign->position->title,'1','0','C');
-            $pdf::cell('40','10', "",'1','1','C');
+            case 'pdf':
+                $form_positions = Position_form::where('form_id', $id)->with('translate_form_position')->withCount('signed_form')->get();
+                $signed_volunteers = Signed_form::where('form_id', $id)->with(['volunteer', 'position', 'volun'])->get();
+
+                $pdf = new TCPDF();
+                $pdf::SetTitle('Lista wolontariuszy');
+                $pdf::AddPage("L");
+                $lg['a_meta_charset'] = 'UTF-8';
+                $pdf::setLanguageArray($lg);
+                $pdf::SetFont('dejavusans','b',15);
+
+                $pdf::Cell(0, 15, $form->form_translate->title.' - Lista zapisanych wolontariuszy', 0, '1', 'C', 0, '', 0, false, 'M', 'M');
+
+                $pdf::SetFont('dejavusans','',10);
+                $pdf::Cell(0, 10, 'Podpisując się niżej, oświadczasz iż jesteś zdrowy/a (w dniu imprezy nie wykazuję/ą objawów infekcji oraz objawów chorobowych sugerujących chorobę zakaźną) ', 0, '1', 'C', 0, '', 0, false, 'M', 'M');
+                $pdf::Cell(0, 10, 'oraz w okresie 14 dni przed imprezą nie przebywałem/am/ali z osobą na kwarantannie oraz nie miałem/am/mieli kontaktu z osobą podejrzaną o zakażenie.', 0, '1', 'C', 0, '', 0, false, 'M', 'M');
+
+                $pdf::SetFont('dejavusans','b',10);
+
+                $pdf::cell('35','10','Login','1','0','C');
+                $pdf::cell('45','10','Imię','1','0','C');
+                $pdf::cell('45','10','Nazwisko','1','0','C');
+                $pdf::cell('35','10','Nr telefonu','1','0','C');
+                $pdf::cell('20','10','Koszulka','1','0','C');
+                $pdf::cell('55','10','Stanowisko','1','0','C');
+                $pdf::cell('40','10','Podpis','1','1','C');
+
+                $pdf::SetFont('dejavusans','',10);
+
+                foreach ($signed_volunteers as $sign)
+                {
+                    $pdf::cell('35','10', $sign->volunteer->name,'1','0','C');
+                    $pdf::cell('45','10', $sign->volunteer->firstname,'1','0','C');
+                    $pdf::cell('45','10', $sign->volunteer->lastname,'1','0','C');
+                    $pdf::cell('35','10' ,$sign->volunteer->telephone,'1','0','C');
+                    $pdf::cell('20','10', strtoupper($sign->volun->tshirt_size),'1','0','C');
+                    $pdf::cell('55','10', $sign->position->title,'1','0','C');
+                    $pdf::cell('40','10', "",'1','1','C');
+                }
+
+                $pdf::Output( $form->form_translate->title.'_lista_wolontariuszy.pdf');
+            break;
+
+            case 'excel':
+                return $excel->download(new SignedVolunteerExport($id), $form->form_translate->title.'_lista_wolontariuszy.xlsx');
+            break;
+
+            case 'html':
+                return $excel->download(new SignedVolunteerExport($id), $form->form_translate->title.'_lista_wolontariuszy.html');
+            break;
         }
 
-        $pdf::Output( $form->form_translate->title.'_lista_wolontariuszy.pdf');
-    }
-
-    public function volunteer_list_excel($id)
-    {
-        phpinfo();
     }
 
     public function stop_sign(Request $request, $id)
@@ -359,6 +370,15 @@ class CFormsController extends Controller
 
         return redirect(route('c.form.show', [$id]))->with(['succes_presence' => true]);
 
+    }
+
+    public function sign($id)
+    {
+        $form = Form::where('id', $id)->with('form_translate')->first();
+        $form_positions = Position_form::where('form_id', $id)->with('translate_form_position')->withCount('signed_form')->get();
+        $signed_volunteers = Signed_form::where('form_id', $id)->with(['volunteer', 'position'])->get();
+
+        return view('coordinator.forms.sign', ['form' => $form,'form_positions' => $form_positions, 'signed_volunteers' => $signed_volunteers]);
     }
 
     public function view_presence($id)

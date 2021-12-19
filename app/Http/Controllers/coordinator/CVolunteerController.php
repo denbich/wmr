@@ -6,7 +6,9 @@ use App\Models\User;
 use App\Models\Volunteer;
 use App\Models\Signed_form;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 use Elibyy\TCPDF\Facades\TCPDF;
+use App\Exports\VolunteerExport;
 use App\Mail\VolunteerActivation;
 use App\Mail\VolunteerDeactivation;
 use App\Http\Controllers\Controller;
@@ -43,42 +45,56 @@ class CVolunteerController extends Controller
         }
     }
 
-    public function pdf_list()
+    public function export_list(Request $request, Excel $excel)
     {
-        $volunteers = Volunteer::with('user')->get();
-        $pdf = new TCPDF();
-        $pdf::SetTitle('Lista wolontariuszy');
-        $pdf::AddPage("L");
-        $lg['a_meta_charset'] = 'UTF-8';
-        $pdf::setLanguageArray($lg);
-        $pdf::SetFont('dejavusans','b',15);
-
-        $pdf::Cell(0, 15, 'Lista wolontariuszy - WMR na dzień '.date('d.m.Y'), 0, '1', 'C', 0, '', 0, false, 'M', 'M');
-
-        $pdf::SetFont('dejavusans','b',10);
-
-        $pdf::cell('15','10','ID','1','0','C');
-        $pdf::cell('40','10','Login','1','0','C');
-        $pdf::cell('45','10','Imię','1','0','C');
-        $pdf::cell('45','10','Nazwisko','1','0','C');
-        $pdf::cell('40','10','Nr telefonu','1','0','C');
-        $pdf::cell('70','10','email','1','0','C');
-        $pdf::cell('20','10','Roz. kosz.','1','1','C');
-
-        $pdf::SetFont('dejavusans','',10);
-
-        foreach ($volunteers as $volunteer)
+        switch ($request->filetype)
         {
-            $pdf::cell('15','10', $volunteer->id,'1','0','C');
-            $pdf::cell('40','10', $volunteer->user->name,'1','0','C');
-            $pdf::cell('45','10', $volunteer->user->firstname,'1','0','C');
-            $pdf::cell('45','10', $volunteer->user->lastname,'1','0','C');
-            $pdf::cell('40','10' ,$volunteer->user->telephone,'1','0','C');
-            $pdf::cell('70','10', $volunteer->user->email,'1','0','C');
-            $pdf::cell('20','10', strtoupper($volunteer->tshirt_size),'1','1','C');
+            case 'pdf':
+                $volunteers = Volunteer::with('user')->get();
+                $pdf = new TCPDF();
+                $pdf::SetTitle('Lista wolontariuszy');
+                $pdf::AddPage("L");
+                $lg['a_meta_charset'] = 'UTF-8';
+                $pdf::setLanguageArray($lg);
+                $pdf::SetFont('dejavusans','b',15);
+
+                $pdf::Cell(0, 15, 'Lista wolontariuszy - WMR na dzień '.date('d.m.Y'), 0, '1', 'C', 0, '', 0, false, 'M', 'M');
+
+                $pdf::SetFont('dejavusans','b',10);
+
+                $pdf::cell('15','10','ID','1','0','C');
+                $pdf::cell('40','10','Login','1','0','C');
+                $pdf::cell('45','10','Imię','1','0','C');
+                $pdf::cell('45','10','Nazwisko','1','0','C');
+                $pdf::cell('40','10','Nr telefonu','1','0','C');
+                $pdf::cell('70','10','email','1','0','C');
+                $pdf::cell('20','10','Roz. kosz.','1','1','C');
+
+                $pdf::SetFont('dejavusans','',10);
+
+                foreach ($volunteers as $volunteer)
+                {
+                    $pdf::cell('15','10', $volunteer->id,'1','0','C');
+                    $pdf::cell('40','10', $volunteer->user->name,'1','0','C');
+                    $pdf::cell('45','10', $volunteer->user->firstname,'1','0','C');
+                    $pdf::cell('45','10', $volunteer->user->lastname,'1','0','C');
+                    $pdf::cell('40','10' ,$volunteer->user->telephone,'1','0','C');
+                    $pdf::cell('70','10', $volunteer->user->email,'1','0','C');
+                    $pdf::cell('20','10', strtoupper($volunteer->tshirt_size),'1','1','C');
+                }
+
+                $pdf::Output('lista_wolontariuszy.pdf');
+            break;
+
+            case 'excel':
+                return $excel->download(new VolunteerExport, 'wolontariusze_'.date('d.m.Y H.i').'.xlsx');
+            break;
+
+            case 'html':
+                return $excel->download(new VolunteerExport, 'wolontariusze_'.date('d.m.Y H.i').'.html');
+            break;
         }
 
-        $pdf::Output( 'lista_wolontariuszy.pdf');
     }
 
     public function active()

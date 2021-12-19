@@ -85,7 +85,7 @@ Route::middleware('setlocale')->group(function () {
 
             Route::prefix('volunteer')->group(function() {
                 Route::get('/', [CVolunteerController::class, 'list'])->name('c.v.list');
-                Route::get('/list', [CVolunteerController::class, 'pdf_list'])->name('c.v.pdflist');
+                Route::post('/list', [CVolunteerController::class, 'export_list'])->name('c.v.exportlist');
                 Route::get('/id/{id}', [CVolunteerController::class, 'volunteer'])->name('c.v.volunteer');
                 Route::get('/search', [CVolunteerController::class, 'search'])->name('c.v.search');
                 Route::get('/active', [CVolunteerController::class, 'active'])->name('c.v.active');
@@ -96,8 +96,7 @@ Route::middleware('setlocale')->group(function () {
             });
 
             Route::get('/forms/archive', [CFormsController::class, 'archive'])->name('c.form.archive');
-            Route::get('/forms/list/{id}', [CFormsController::class, 'volunteer_list'])->name('c.form.volunteers');
-            Route::get('/forms/list-excel/{id}', [CFormsController::class, 'volunteer_list_excel'])->name('c.form.volunteers.excel');
+            Route::post('/forms/list/{id}', [CFormsController::class, 'volunteer_list'])->name('c.form.volunteers');
             Route::post('/forms/generate/{id}', [CFormsController::class, 'generate_id'])->name('c.form.id');
 
             Route::post('/forms/stop-sign/{id}', [CFormsController::class, 'stop_sign'])->name('c.form.stopsign');
@@ -108,6 +107,7 @@ Route::middleware('setlocale')->group(function () {
 
             Route::get('/forms/presence/{id}', [CFormsController::class, 'presence'])->name('c.form.presence');
             Route::post('/forms/presence/{id}', [CFormsController::class, 'save_presence']);
+            Route::get('/forms/sign/{id}', [CFormsController::class, 'sign'])->name('c.form.sign');
             Route::get('/forms/view-presence/{id}', [CFormsController::class, 'view_presence'])->name('c.form.viewpresence');
 
             Route::resource('/forms', CFormsController::class, ['names' => [
