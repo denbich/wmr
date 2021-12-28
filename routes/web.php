@@ -21,7 +21,7 @@ use App\Http\Controllers\coordinator\CVolunteerController;
 
 App::setLocale(session('locale'));
 
-Route::domain('subdoamin.'.env('APP_URL'))->group(function () {
+Route::domain('subdoamin.'.env('APP_LINK'))->group(function () {
     Route::get('/', function(){
         dd("Reserved For subdoamin.wolontariat.rybnik.pl Site") ;
     });
