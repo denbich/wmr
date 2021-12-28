@@ -19,9 +19,9 @@
 
             <h6 class="text-small text-right mr-2">
                 @if ($message->condition == 0)
-                {{ "wysłano:" }} {{ date('H:i', strtotime($message->created_at)) }}
+                {{ "wysłano:" }} {{ date('d.m.Y H:i', strtotime($message->created_at)) }}
             @else
-                {{ "przeczytano:" }} {{ date('H:i', strtotime($message->updated_at)) }}
+                {{ "przeczytano:" }} {{ date('d.m.Y H:i', strtotime($message->updated_at)) }}
             @endif
              </h6>
         </div>

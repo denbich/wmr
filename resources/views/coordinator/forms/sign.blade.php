@@ -101,64 +101,21 @@
                 </div>
               </div>
             </div>
-            <div class="card-body">
-                <div id="sidebar">
-                    <div class="toolsButtons" id="toolsButtons">
-                        <h3>Tools</h3>
-                        <button id="clear" class="btn btn-danger"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <canvas id="canvas" width="600" height="300" style="z-index: 8; position: absolute; border: 1px solid;"></canvas>
-                <form action="{{ route('c.form.presence', [$form->id]) }}" method="post">
-                    @csrf
-                    <div class="text-right w-100 mb-3">
-                        <button type="submit" class="btn btn-primary">Zatwierdź</button>
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table align-items-center">
-                            <thead class="thead-light">
-                                <tr class="text-center">
-                                    <th scope="col">Login</th>
-                                    <th scope="col">Imię i Nazwisko</th>
-                                    <th scope="col">Zapisane stanowisko</th>
-                                    <th scope="col">Obecność</th>
-                                </tr>
-                            </thead>
-                            <tbody class="list text-center">
+            <div class="card-body" style="min-height: 500px">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <select class="form-control">
                                 @foreach ($signed_volunteers as $sign)
-                                <tr>
-                                    <td>{{ $sign->volunteer->name }}</td>
-                                    <td>{{ $sign->volunteer->firstname }} {{ $sign->volunteer->lastname }}</td>
-                                    <td>{{ $sign->position->title }}</td>
-                                    <td>
-                                        <a href="#signmodal{{ $sign->id }}" data-toggle="modal" data-target="#signmodal{{ $sign->id }}" class="btn btn-primary">Podpis</a>
-                                    </td>
-                                </tr>
-                                <div class="modal fade" id="signmodal{{ $sign->id }}" tabindex="-1" role="dialog" aria-labelledby="signmodal{{ $sign->id }}Label" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="signmodal{{ $sign->id }}Label">Podpis</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <h2>Podpis</h2>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                                          <button type="button" class="btn btn-primary">Zatwierdź</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                    <option value="">{{ $sign->volunteer->name }}</option>
                                 @endforeach
-                            </tbody>
-                        </table>
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn btn-primary" type="subuttonbmit" id="button-accept">Zatwierdź</button>
+                            <button class="btn btn-info" type="button" id="clear">Resetuj</button>
+                        </div>
                     </div>
-                </form>
+                    <div id="toolsButtons"></div>
             </div>
           </div>
 
@@ -166,6 +123,19 @@
       </div>
   </div>
 
+@endsection
+
+@section('script')
+
+<script>
+    $( document ).ready(function() {
+        $("#button-accept").click(function() {
+            alert( "Handler for .click() called." );
+        });
+    });
+</script>
+
+@foreach ($signed_volunteers as $signed)
   <script>
     // SETTING ALL VARIABLES
 
@@ -265,7 +235,7 @@
       store()
   }
 </script>
-
+  @endforeach
 @endsection
 
 

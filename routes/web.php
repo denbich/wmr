@@ -21,6 +21,13 @@ use App\Http\Controllers\coordinator\CVolunteerController;
 
 App::setLocale(session('locale'));
 
+Route::domain('subdoamin.'.env('APP_URL'))->group(function () {
+    Route::get('/', function(){
+        dd("Reserved For subdoamin.wolontariat.rybnik.pl Site") ;
+    });
+  }
+);
+
 Route::get('language/{locale}', function($locale) {
     session(['locale' => $locale]);
         App::setLocale($locale);
@@ -96,7 +103,7 @@ Route::middleware('setlocale')->group(function () {
             });
 
             Route::get('/forms/archive', [CFormsController::class, 'archive'])->name('c.form.archive');
-            Route::post('/forms/list/{id}', [CFormsController::class, 'volunteer_list'])->name('c.form.volunteers');
+            Route::post('/forms/list/{id}', [CFormsController::class, 'generate_list'])->name('c.form.volunteers');
             Route::post('/forms/generate/{id}', [CFormsController::class, 'generate_id'])->name('c.form.id');
 
             Route::post('/forms/stop-sign/{id}', [CFormsController::class, 'stop_sign'])->name('c.form.stopsign');

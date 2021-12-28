@@ -218,7 +218,7 @@ class CFormsController extends Controller
         return redirect(route('c.form.list'))->with(['delete_form' => true]);
     }
 
-    public function volunteer_list(Request $request, Excel $excel, $id)
+    public function generate_list(Request $request, Excel $excel, $id)
     {
         $form = Form::where('id', $id)->with('form_translate')->first();
         switch ($request->filetype)

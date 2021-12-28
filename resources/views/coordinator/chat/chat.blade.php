@@ -91,7 +91,7 @@
               </div>
                 <div class="card-body">
                     <h1 class="text-center text-danger">Czat jest niedostępny! Spróbuj później</h1>
-                        <div class="row no-gutters d-none">
+                        <div class="row no-gutters">
                           <div class="col-md-4 border-right" >
                             <div class="settings-tray">
                               <img class="profile-image" src="{{ Auth::user()->photo_src }}" alt="Profile img">
@@ -116,59 +116,6 @@
                                   </div>
                                   <hr>
                                 @endforeach
-                                <div class="friend-drawer friend-drawer--onhover">
-                                    <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="">
-                                    <div class="text">
-                                      <h6>Robo Cop</h6>
-                                      <p class="text-muted">Hey, you're arrested!</p>
-                                    </div>
-                                    <span class="time text-muted small">13:21</span>
-                                  </div>
-                                  <hr>
-                                  <div class="friend-drawer friend-drawer--onhover">
-                                    <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/optimus-prime.jpeg" alt="">
-                                    <div class="text">
-                                      <h6>Optimus</h6>
-                                      <p class="text-muted">Wanna grab a beer?</p>
-                                    </div>
-                                    <span class="time text-muted small">00:32</span>
-                                  </div>
-                                  <hr>
-                                  <div class="friend-drawer friend-drawer--onhover ">
-                                    <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/real-terminator.png" alt="">
-                                    <div class="text">
-                                      <h6>Skynet</h6>
-                                      <p class="text-muted">Seen that canned piece of s?</p>
-                                    </div>
-                                    <span class="time text-muted small">13:21</span>
-                                  </div>
-                                  <hr>
-                                  <div class="friend-drawer friend-drawer--onhover">
-                                    <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/termy.jpg" alt="">
-                                    <div class="text">
-                                      <h6>Termy</h6>
-                                      <p class="text-muted">Im studying spanish...</p>
-                                    </div>
-                                    <span class="time text-muted small">13:21</span>
-                                  </div>
-                                  <hr>
-                                  <div class="friend-drawer friend-drawer--onhover">
-                                    <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/rick.jpg" alt="">
-                                    <div class="text">
-                                      <h6>Richard</h6>
-                                      <p class="text-muted">I'm not sure...</p>
-                                    </div>
-                                    <span class="time text-muted small">13:21</span>
-                                  </div>
-                                  <hr>
-                                  <div class="friend-drawer friend-drawer--onhover">
-                                    <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/rachel.jpeg" alt="">
-                                    <div class="text">
-                                      <h6>XXXXX</h6>
-                                      <p class="text-muted">Hi, wanna see something?</p>
-                                    </div>
-                                    <span class="time text-muted small">13:21</span>
-                                  </div>
                             </div>
 
                           </div>
