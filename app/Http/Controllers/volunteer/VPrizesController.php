@@ -33,7 +33,7 @@ class VPrizesController extends Controller
     {
         $validated = $request->validate(['info' => 'max:255']);
         $volunteer = Volunteer::where('user_id', Auth::id())->first();
-        $prize = Prize::find($id)->first();
+        $prize = Prize::where('id', $id)->first();
 
         if ($request->info == null)
         {
