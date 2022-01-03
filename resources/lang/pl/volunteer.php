@@ -268,7 +268,7 @@ return [
             ],
             'text2' => 'Twoja ilość punktów nie pozwala na odbiór nagrody!',
             'text3' => 'Wyczerpała się liczba nagród!',
-            'info' => 'Remember, Volunteer! When you are in the process of claiming a prize, write your chosen prize option in the summary. Failure to do so will give you a random prize option!',
+            'info' => 'Pamiętaj, Wolontariuszu! Kiedy jesteś w trakcie odbierania nagrody, wpisz wybraną opcję nagrody w podsumowaniu. Jeśli tego nie zrobisz, otrzymasz losową opcję nagrody!',
         ],
 
         'order' => [
