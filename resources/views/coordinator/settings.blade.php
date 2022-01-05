@@ -43,6 +43,12 @@
 
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('c.mail') }}">
+                    <i class="fas fa-paper-plane text-primary"></i>
+                    <span class="nav-link-text">Wyślij maila</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('c.calendar') }}">
                     <i class="far fa-calendar text-primary"></i>
                     <span class="nav-link-text">Kalendarz</span>
@@ -81,7 +87,7 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Panel koordynatora</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Ustawienia</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('c.dashboard') }}"><i class="fas fa-home"></i></a></li>

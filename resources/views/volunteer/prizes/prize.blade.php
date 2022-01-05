@@ -193,7 +193,6 @@
                             <p class="w-100 text-center">{{ __('volunteer.prizes.prize.info') }}</p>
                     </div>
                 </div>
-
             </div>
           </div>
 

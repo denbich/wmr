@@ -47,6 +47,12 @@
 
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('c.mail') }}">
+                    <i class="fas fa-paper-plane text-primary"></i>
+                    <span class="nav-link-text">Wyślij maila</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('c.calendar') }}">
                     <i class="far fa-calendar text-primary"></i>
                     <span class="nav-link-text">Kalendarz</span>

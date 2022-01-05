@@ -9,9 +9,12 @@ use App\Models\Calendar;
 use App\Models\Volunteer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Elibyy\TCPDF\Facades\TCPDF;
+use App\Mail\CoordinatorMessage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class CHomeController extends Controller
@@ -177,5 +180,27 @@ class CHomeController extends Controller
         $user->save();
 
         return redirect(route('c.update.v'))->with(['v' => true]);
+    }
+
+    public function mail()
+    {
+        return view('coordinator.sendmail');
+    }
+
+    public function send_mail(Request $request)
+    {
+        $validate = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+
+        $datam = array(
+            'title' => $request->title,
+            'content' => str_replace('"', "'", str_replace("\r\n", '', $request->content)),
+        );
+
+        Mail::bcc(User::where('role', 'volunteer')->pluck('email'))->send(new CoordinatorMessage($datam));
+
+        return redirect()->route('c.mail')->with('succes', true);
     }
 }

@@ -78,6 +78,8 @@ Route::middleware('setlocale')->group(function () {
             Route::get('/load-events', [CHomeController::class, 'load_events'])->name('c.loadevents');
             Route::get('/info', [CHomeController::class, 'info'])->name('c.info');
             Route::get('/maps', [CHomeController::class, 'maps'])->name('c.maps');
+            Route::get('/send-mail', [CHomeController::class, 'mail'])->name('c.mail');
+            Route::post('/send-mail', [CHomeController::class, 'send_mail']);
 
             Route::get('/update-volunteer', [CHomeController::class, 'update_v'])->name('c.update.v');
             Route::post('/update-volunteer', [CHomeController::class, 'update_volunteer']);

@@ -27,7 +27,7 @@ class="bg-default"
         </svg>
       </div>
     </div>
-    <!-- Page content -->
+
     <div class="container mt--8 pb-5">
       <div class=""> <!-- row justify-content-center col-lg-5 col-md-7 -->
           <div class="card bg-secondary border-0 mb-0">
@@ -35,7 +35,7 @@ class="bg-default"
                 <div class="col-lg-6">
                     <div class="zdjecie-login w-100 h-100" style="margin-left:20px;"></div>
                 </div>
-                <div class="col-lg-6">
+                  <div class="col-lg-6">
                     <div class="card-header bg-transparent text-center">
                         <a href="{{ route('home') }}"><img src="{{ url('/img/mosir-logo1.svg') }}" class="text-center"></a>
                         <div class="mt-2 h1">{{ __('index.login.title') }}</div>
