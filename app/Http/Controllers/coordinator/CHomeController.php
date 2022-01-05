@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Elibyy\TCPDF\Facades\TCPDF;
 use App\Mail\CoordinatorMessage;
 use App\Http\Controllers\Controller;
+use App\Models\Sent_mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -200,6 +201,12 @@ class CHomeController extends Controller
         );
 
         Mail::bcc(User::where('role', 'volunteer')->pluck('email'))->send(new CoordinatorMessage($datam));
+
+        Sent_mail::create([
+            'sender_id' => Auth::user()->id,
+            'title' => $request->title,
+            'content' => str_replace('"', "'", str_replace("\r\n", '', $request->content))
+        ]);
 
         return redirect()->route('c.mail')->with('succes', true);
     }

@@ -61,6 +61,7 @@ return array(
     'App\\Models\\Position_form' => $baseDir . '/app/Models/Position_form.php',
     'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
     'App\\Models\\Prize' => $baseDir . '/app/Models/Prize.php',
+    'App\\Models\\Sent_mail' => $baseDir . '/app/Models/Sent_mail.php',
     'App\\Models\\Signed_form' => $baseDir . '/app/Models/Signed_form.php',
     'App\\Models\\Translate_form' => $baseDir . '/app/Models/Translate_form.php',
     'App\\Models\\Translate_position_form' => $baseDir . '/app/Models/Translate_position_form.php',
