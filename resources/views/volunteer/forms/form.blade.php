@@ -248,7 +248,7 @@
                                 <h3 class="text-success">{{ __('volunteer.form.form.sign.3.text-f') }}</h3>
                             @endif
                             @if ($signed_volunteer->feedback == null)
-                            <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#feedbackmodal">
+                            <button type="button" class="btn btn-primary my-2 w-100" data-toggle="modal" data-target="#feedbackmodal">
                                 {{ __('volunteer.form.form.sign.3.button') }}
                               </button>
 
