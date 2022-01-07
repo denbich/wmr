@@ -108,14 +108,14 @@ class VFormsController extends Controller
             $pdf::Image(url('/img/logowmr.png'), '', '', '', 35, 'PNG', '', '', false, 300, 'C', false, false, 1, false, false, false);
             $pdf::Image(url('/img/logomosir.png'), '', '16', '', 13, 'PNG', '', '', false, 300, 'R', false, false, 1, false, false, false);
             $html = '<p></p><p></p><p></p><p></p><p></p>
-            <p style="text-align:right;">Rybnik, dnia '.date("d.m.Y", strtotime($form->calendar->end)).'r. </p>
+            <p style="text-align:right;">Rybnik, dnia '.date("d.m.Y", strtotime($form->calendar->end)).' r. </p>
             <p style="text-align:right">Zaświadczenie nr '.base_convert($signed->id, 10, 16).'/2021</p>
             <p></p>
             <p style="text-align:center">Zaświadcza się, że</p>
             <p></p>
             <p style="text-align:center; font-weight:bold">'.Auth::user()->firstname.' '.Auth::user()->lastname.'</p>
             <p></p>
-            <p style="text-align:center">'.$p[0].' wolontariat w dniu '.date("d.m.Y", strtotime($form->calendar->end)).'r. w trakcie organizacji</p>
+            <p style="text-align:center">'.$p[0].' wolontariat w dniu '.date("d.m.Y", strtotime($form->calendar->end)).' r. w trakcie organizacji</p>
             <p></p>
             <p style="text-align:center; font-weight:bold">'.$form->form_translate->title.'</p>
             <p></p>
