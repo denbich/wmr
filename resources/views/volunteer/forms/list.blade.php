@@ -86,7 +86,11 @@
                       <span class="btn-inner--icon"><i class="fas fa-archive"></i></span>
                       <span class="btn-inner--text">{{ __('volunteer.form.list.button') }}</span>
                   </a>
-                  @if (count($forms) > 0)
+                  @php $formcount = 0; @endphp
+                    @foreach ($forms as $form)
+                        @if (date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime($form->calendar->end . " + 7 days"))) @php $formcount++; @endphp @endif
+                    @endforeach
+                  @if (count($forms) > 0 && $formcount > 0)
                   <div class="table-responsive">
                       <table class="table align-items-center table-flush">
                           <thead class="thead-light text-center">
@@ -99,40 +103,39 @@
                           </thead>
                           <tbody class="list">
                               @forelse ($forms as $form)
-                                  <tr>
-                                      <th scope="row">
-                                          <div class="media align-items-center">
-                                              <a href="{{ route('v.form.show', [$form->id]) }}" class="avatar rounded-circle mr-3">
-                                              <img src="{{ $form->icon_src }}">
-                                              </a>
-                                              <div class="media-body">
-                                                <a href="{{ route('v.form.show', [$form->id]) }}"><span class="name mb-0 text-sm">{{ $form->form_translate->title  }}</span></a>
-                                              </div>
-                                          </div>
-                                      </th>
-                                      <td class="text-center">
-                                          <span class="name mb-0 text-sm">{{ $form->expiration }}</span>
-                                      </td>
-                                      <td class="text-center">
-                                          <span class="name mb-0 text-sm badge badge-primary">{{ $form->signed_form_count }}</span>
-                                      </td>
-                                      <td class="text-center">
-                                          <h4>
-                                              <a class="mx-1" href="{{ route('v.form.show', [$form->id]) }}">
-                                                  <i class="fas fa-search"></i>
-                                              </a>
-                                          </h4>
-                                      </td>
-                                  </tr>
-                              @empty
-                                  <h2 class="text-center text-danger">{{ __('volunteer.form.list.err') }}</h2>
-                              @endforelse
+                              @if (date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime($form->calendar->end . " + 7 days")))
+                              <tr>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <a href="{{ route('v.form.show', [$form->id]) }}" class="avatar rounded-circle mr-3">
+                                        <img src="{{ $form->icon_src }}">
+                                        </a>
+                                        <div class="media-body">
+                                          <a href="{{ route('v.form.show', [$form->id]) }}"><span class="name mb-0 text-sm">{{ $form->form_translate->title  }}</span></a>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td class="text-center">
+                                    <span class="name mb-0 text-sm">{{ $form->expiration }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="name mb-0 text-sm badge badge-primary">{{ $form->signed_form_count }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <h4>
+                                        <a class="mx-1" href="{{ route('v.form.show', [$form->id]) }}">
+                                            <i class="fas fa-search"></i>
+                                        </a>
+                                    </h4>
+                                </td>
+                            </tr>
+                              @endif
+
+                              @empty <h2 class="text-center text-danger">{{ __('volunteer.form.list.err') }}</h2> @endforelse
                           </tbody>
                       </table>
                   </div>
-                  @else
-                  <h2 class="text-center text-danger">{{ __('volunteer.form.list.err') }}</h2>
-                  @endif
+                  @else <h2 class="text-center text-danger">{{ __('volunteer.form.list.err') }}</h2> @endif
               </div>
           </div>
 
