@@ -160,7 +160,7 @@ class VFormsController extends Controller
             $pdf::Image(url('/img/logowmr.png'), '', '', '', 35, 'PNG', '', '', false, 300, 'C', false, false, 1, false, false, false);
             $pdf::Image(url('/img/logomosir.png'), '', '16', '', 13, 'PNG', '', '', false, 300, 'R', false, false, 1, false, false, false);
             $html = '<p></p><p></p><p></p><p></p><p></p>
-            <p style="text-align:right;">Rybnik, date '.date("F j, Y", strtotime($form->calendar->end)).' </p>
+            <p style="text-align:right;">Rybnik, Poland '.date("F j, Y", strtotime($form->calendar->end)).' </p>
             <p style="text-align:right">Certificate No. '.base_convert($signed->id, 10, 16).'/2021</p>
             <p></p>
             <p style="text-align:center">It is hereby certified that,</p>
