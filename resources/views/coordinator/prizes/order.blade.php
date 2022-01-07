@@ -9,7 +9,7 @@
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
-        <a class="mt-2" href="javascript:void(0)">
+        <a class="mt-2" href="{{ route('c.dashboard') }}">
           <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
@@ -139,7 +139,7 @@
                     <div class="row my-3">
                         <div class="col-md-6">
                             <span>Imię i nazwisko zamawiającego:</span><br>
-                            <b>{{ $order->volunteer->firstname." ".$order->volunteer->lastname." (".$order->volunteer->name.")" }}</b>
+                            <a href="{{ route('c.v.volunteer', [$user->id]) }}"><b>{{ $order->volunteer->firstname." ".$order->volunteer->lastname." (".$order->volunteer->name.")" }}</b></a>
                         </div>
                         <div class="col-md-6">
                             <span>Nazwa nagrody:</span><br>
@@ -154,6 +154,12 @@
                         <div class="col-md-6">
                             <span>status:</span><br>
                             <b> @if ($order->condition == 0) Nieodebrane @else Odebrane @endif </b>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-12">
+                            <span>Dodatkowe informacje:</span><br>
+                            <b>@if ($order->info == null) Brak dodatkowych informacji @else {{ $order->info }} @endif</b>
                         </div>
                     </div>
                 </div>

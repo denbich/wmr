@@ -9,7 +9,7 @@
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header mt-2 align-items-center w-100">
-        <a class="mt-2" href="javascript:void(0)">
+        <a class="mt-2" href="{{ route('c.dashboard') }}">
           <img src="/img/logo-wmr2.svg" class="h-100" alt="...">
         </a>
       </div>
@@ -125,6 +125,7 @@
                                     <th scope="col">Imię i nazwisko (login)</th>
                                     <th scope="col">Nazwa nagrody</th>
                                     <th scope="col">Data zamówienia</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Opcje</th>
                                 </tr>
                             </thead>
@@ -149,6 +150,9 @@
                                         </td>
                                         <td class="text-center">
                                             <span class="name mb-0 text-sm">{{ $order->created_at }}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <b> @if ($order->condition == 0) Nieodebrane @else Odebrane @endif </b>
                                         </td>
                                         <td class="text-center">
                                             <h4>

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Translate_form;
 use App\Models\Translate_prize;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Volunteer;
 use Illuminate\Support\Facades\Storage;
 
 class CPrizesController extends Controller
@@ -144,7 +146,8 @@ class CPrizesController extends Controller
     public function order($id)
     {
         $order = Order_prize::where('id', $id)->with(['volunteer', 'd_prize', 'prize'])->first();
-        return view('coordinator.prizes.order', ['order' => $order]);
+        $user = Volunteer::where('user_id', $order->volunteer_id)->first();
+        return view('coordinator.prizes.order', ['order' => $order, 'user' => $user]);
     }
 
     public function change_status(Request $request, $id)
