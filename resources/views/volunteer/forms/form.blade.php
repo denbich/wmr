@@ -247,7 +247,16 @@
                             @elseif (Auth::user()->gender == 'f')
                                 <h3 class="text-success">{{ __('volunteer.form.form.sign.3.text-f') }}</h3>
                             @endif
-                            @if ($signed_volunteer->feedback == null)
+
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <form action="{{ route('v.form.certificate') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="form" value="{{ $form->id }}">
+                                    <button type="submit" class="btn btn-primary w-100">{{ __('volunteer.form.form.sign.3.cert') }}</button>
+                                </form>
+                                @if ($signed_volunteer->feedback == null)
                             <button type="button" class="btn btn-primary my-2 w-100" data-toggle="modal" data-target="#feedbackmodal">
                                 {{ __('volunteer.form.form.sign.3.button') }}
                               </button>
@@ -277,14 +286,6 @@
                                 </div>
                               </div>
                             @endif
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6">
-                                <form action="{{ route('v.form.certificate') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="form" value="{{ $form->id }}">
-                                    <button type="submit" class="btn btn-primary w-100">{{ __('volunteer.form.form.sign.3.cert') }}</button>
-                                </form>
                             </div>
                         </div>
                         @break
