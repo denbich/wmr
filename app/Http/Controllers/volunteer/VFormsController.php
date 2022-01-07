@@ -115,7 +115,7 @@ class VFormsController extends Controller
             <p></p>
             <p style="text-align:center; font-weight:bold">'.Auth::user()->firstname.' '.Auth::user()->lastname.'</p>
             <p></p>
-            <p style="text-align:center">'.$p[0].' wolontariat w dniu w trakcie organizacji</p>
+            <p style="text-align:center">'.$p[0].' wolontariat w dniu '.date("d.m.Y", strtotime($form->calendar->end)).'r. w trakcie organizacji</p>
             <p></p>
             <p style="text-align:center; font-weight:bold">'.$form->form_translate->title.'</p>
             <p></p>
