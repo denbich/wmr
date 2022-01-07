@@ -175,6 +175,7 @@ return [
             'count' => 'Number of entries',
             'options' => 'Options',
             'button' => 'Archives',
+            'err' => 'No active forms!',
         ],
         'archive' => [
             'button' => 'Back to the list',
