@@ -89,7 +89,59 @@ class VFormsController extends Controller
             ['volunteer_id', Auth::id()]
         ])->first();
 
-        $pdf = new TCPDF();
+        if (session('locale') == 'pl')
+        {
+            $pdf = new TCPDF();
+            $pdf::SetTitle('Zaświadczenie');
+            $pdf::AddPage("P");
+            $lg['a_meta_charset'] = 'UTF-8';
+            $pdf::setLanguageArray($lg);
+            $pdf::SetFont('dejavusans', '', 12, '', true);
+
+            if (Auth::user()->gender == "f")
+                {
+                    $p = array("Odbyła", "realizowała", "jej", "Wykazała", "przyczyniła");
+                } else if (Auth::user()->gender = "m")
+                {
+                    $p = array("Odbył", "realizował", "mu", "Wykazał", "przyczynił");
+                }
+
+                $pdf::Image(url('/img/herb.png'), '', '15', '', 17, 'PNG');
+                $pdf::Image(url('/img/logowmr.png'), '', '', '', 35, 'PNG', '', '', false, 300, 'C', false, false, 1, false, false, false);
+                $pdf::Image(url('/img/logomosir.png'), '', '16', '', 13, 'PNG', '', '', false, 300, 'R', false, false, 1, false, false, false);
+                $html = '<p></p><p></p><p></p><p></p><p></p>
+                <p style="text-align:right;">Rybnik, dnia '.date("d.m.Y", strtotime($form->calendar->end)).' r. </p>
+                <p style="text-align:right">Zaświadczenie nr '.base_convert($signed->id, 10, 16).'/2021</p>
+                <p></p>
+                <p style="text-align:center">Zaświadcza się, że</p>
+                <p></p>
+                <p style="text-align:center; font-weight:bold">'.Auth::user()->firstname.' '.Auth::user()->lastname.'</p>
+                <p></p>
+                <p style="text-align:center">'.$p[0].' wolontariat w dniu '.date("d.m.Y", strtotime($form->calendar->end)).' r. w trakcie organizacji</p>
+                <p></p>
+                <p style="text-align:center; font-weight:bold">'.$form->form_translate->title.'</p>
+                <p></p>
+                <p style="text-align:center;">'.Auth::user()->firstname.' '.$p[1].' powierzone '.$p[2].' powierzone zadania z należytą starannością i zaangażowaniem. '.$p[3].' się również otwartością oraz umiejętnością współpracy w zespole, czym '.$p[4].' się do sukcesu imprezy. </p>
+                <p></p><p></p><p></p>
+                <table style="width: 100%;">
+                <tr style="font-weight:bold;"><td>Administrator systemu</td><td style="text-align:right;">Dział organizacji imprez</td></tr>
+                <tr><td></td></tr>
+                <tr><td>Denis Bichler</td><td style="text-align:right;">Wiktoria Wistuba</td></tr>
+                </table>';
+                //<<<EOD EOD;
+                $pdf::writeHTML($html, true, false, true, false, '');
+
+                $text1 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>';
+                $text11 = '<p style="font-size:8px; text-align:center;">Zaświadczenie zostało wygenerowane automatycznie.</p>';
+                $text2 = '<p style="font-size:8px; text-align:center;">By zweryfikować prawdziwość zaświadczenia, proszę napisać na adres: administrator@wolontariat.rybnik.pl</p>';
+                $pdf::writeHTML($text1, true, false, true, false, '');
+                $pdf::writeHTML($text11, true, false, true, false, '');
+                $pdf::writeHTML($text2, true, false, true, false, '');
+
+            $pdf::Output('zaswiadczenie.pdf');
+        } else if (session('locale') == 'en')
+        {
+            $pdf = new TCPDF();
         $pdf::SetTitle('Zaświadczenie');
         $pdf::AddPage("P");
         $lg['a_meta_charset'] = 'UTF-8';
@@ -98,31 +150,31 @@ class VFormsController extends Controller
 
         if (Auth::user()->gender == "f")
             {
-                $p = array("Odbyła", "realizowała", "jej", "Wykazała", "przyczyniła");
+                $p = array("She", "Her");
             } else if (Auth::user()->gender = "m")
             {
-                $p = array("Odbył", "realizował", "mu", "Wykazał", "przyczynił");
+                $p = array("He", "Him");
             }
 
             $pdf::Image(url('/img/herb.png'), '', '15', '', 17, 'PNG');
             $pdf::Image(url('/img/logowmr.png'), '', '', '', 35, 'PNG', '', '', false, 300, 'C', false, false, 1, false, false, false);
             $pdf::Image(url('/img/logomosir.png'), '', '16', '', 13, 'PNG', '', '', false, 300, 'R', false, false, 1, false, false, false);
             $html = '<p></p><p></p><p></p><p></p><p></p>
-            <p style="text-align:right;">Rybnik, dnia '.date("d.m.Y", strtotime($form->calendar->end)).' r. </p>
-            <p style="text-align:right">Zaświadczenie nr '.base_convert($signed->id, 10, 16).'/2021</p>
+            <p style="text-align:right;">Rybnik, date '.date("F j, Y", strtotime($form->calendar->end)).' </p>
+            <p style="text-align:right">Certificate No. '.base_convert($signed->id, 10, 16).'/2021</p>
             <p></p>
-            <p style="text-align:center">Zaświadcza się, że</p>
+            <p style="text-align:center">It is hereby certified that,</p>
             <p></p>
             <p style="text-align:center; font-weight:bold">'.Auth::user()->firstname.' '.Auth::user()->lastname.'</p>
             <p></p>
-            <p style="text-align:center">'.$p[0].' wolontariat w dniu '.date("d.m.Y", strtotime($form->calendar->end)).' r. w trakcie organizacji</p>
+            <p style="text-align:center"> took part in voluntary work on '.date("F j, Y", strtotime($form->calendar->end)).' during the organization of</p>
             <p></p>
             <p style="text-align:center; font-weight:bold">'.$form->form_translate->title.'</p>
             <p></p>
-            <p style="text-align:center;">'.Auth::user()->firstname.' '.$p[1].' powierzone '.$p[2].' powierzone zadania z należytą starannością i zaangażowaniem. '.$p[3].' się również otwartością oraz umiejętnością współpracy w zespole, czym '.$p[4].' się do sukcesu imprezy. </p>
+            <p style="text-align:center;">'.Auth::user()->firstname.' carried out the tasks entrusted to '.$p[1].' with due diligence and commitment. '.$p[0].' also showed openness and the ability to work in a team, which contributed to the success of the event.</p>
             <p></p><p></p><p></p>
             <table style="width: 100%;">
-            <tr style="font-weight:bold;"><td>Administrator systemu</td><td style="text-align:right;">Dział organizacji imprez</td></tr>
+            <tr style="font-weight:bold;"><td>System administrator</td><td style="text-align:right;">Party organization department</td></tr>
             <tr><td></td></tr>
             <tr><td>Denis Bichler</td><td style="text-align:right;">Wiktoria Wistuba</td></tr>
             </table>';
@@ -130,13 +182,16 @@ class VFormsController extends Controller
             $pdf::writeHTML($html, true, false, true, false, '');
 
             $text1 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>';
-            $text11 = '<p style="font-size:8px; text-align:center;">Zaświadczenie zostało wygenerowane automatycznie.</p>';
-            $text2 = '<p style="font-size:8px; text-align:center;">By zweryfikować prawdziwość zaświadczenia, proszę napisać na adres: administrator@wolontariat.rybnik.pl</p>';
+            $text11 = '<p style="font-size:8px; text-align:center;">The certificate has been generated automatically.</p>';
+            $text2 = '<p style="font-size:8px; text-align:center;">To verify the authenticity of the certificate, please write to: administrator@wolontariat.rybnik.pl</p>';
             $pdf::writeHTML($text1, true, false, true, false, '');
             $pdf::writeHTML($text11, true, false, true, false, '');
             $pdf::writeHTML($text2, true, false, true, false, '');
 
         $pdf::Output('zaswiadczenie.pdf');
+        }
+
+
     }
 
     public function feedback(Request $request, $id)
