@@ -92,7 +92,7 @@ class VFormsController extends Controller
         if (session('locale') == 'pl')
         {
             $pdf = new TCPDF();
-            $pdf::SetTitle('Zaświadczenie');
+            $pdf::SetTitle('Zaświadczenie nr '.base_convert($signed->id, 10, 16));
             $pdf::AddPage("P");
             $lg['a_meta_charset'] = 'UTF-8';
             $pdf::setLanguageArray($lg);
@@ -138,11 +138,11 @@ class VFormsController extends Controller
                 $pdf::writeHTML($text11, true, false, true, false, '');
                 $pdf::writeHTML($text2, true, false, true, false, '');
 
-            $pdf::Output('zaswiadczenie.pdf');
+            $pdf::Output('zaswiadczenie_nr_'.base_convert($signed->id, 10, 16).'.pdf');
         } else if (session('locale') == 'en')
         {
             $pdf = new TCPDF();
-        $pdf::SetTitle('Zaświadczenie');
+        $pdf::SetTitle('Certificate No. '.base_convert($signed->id, 10, 16));
         $pdf::AddPage("P");
         $lg['a_meta_charset'] = 'UTF-8';
         $pdf::setLanguageArray($lg);
@@ -188,7 +188,7 @@ class VFormsController extends Controller
             $pdf::writeHTML($text11, true, false, true, false, '');
             $pdf::writeHTML($text2, true, false, true, false, '');
 
-        $pdf::Output('zaswiadczenie.pdf');
+        $pdf::Output('Certificate_no_'.base_convert($signed->id, 10, 16).'.pdf');
         }
 
 
