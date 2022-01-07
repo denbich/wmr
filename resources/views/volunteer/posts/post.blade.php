@@ -74,8 +74,6 @@
     <!-- Page content -->
 
     <div class="container-fluid mt--6">
-
-
           <div class="card">
             <div class="card-header">
               <div class="row align-items-center">
@@ -92,7 +90,7 @@
                             @if ($post->form_id == 0)
                             {{ __('volunteer.posts.post.general') }}</p>
                             @else
-                            <a href="{{ route('c.form.show', [$post->form_id]) }}">{{ __('volunteer.posts.post.form') }} #{{ $post->form_id }}</a></p>
+                            <a href="{{ route('v.form.show', [$post->form_id]) }}">{{ __('volunteer.posts.post.form') }} #{{ $post->form_id }}</a></p>
                             @endif
                     </div>
                 <hr>

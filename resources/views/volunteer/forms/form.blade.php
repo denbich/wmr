@@ -143,7 +143,7 @@
                         <div class="col-lg-6">
                             <div class="alert alert-danger text-center" role="alert">
                                 <span class="alert-icon"><i class="far fa-frown"></i></span>
-                                <span class="alert-text"><strong>{{ __('main.alert') }}!</strong>{{ __('volunteer.form.form.sign.alert') }} </span>
+                                <span class="alert-text"><strong>{{ __('main.alert') }}!</strong> {{ __('volunteer.form.form.sign.alert') }} </span>
                             </div>
                         </div>
                     </div>
