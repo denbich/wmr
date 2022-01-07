@@ -139,7 +139,7 @@ return [
     'info' => [
         'covid' => [
             'title' => 'COVID-19',
-            'text1' => 'W zwiąsku z zagrożeniem epidemiologicznym wywołanemu koronawirusem SARS-CoV-2 prosimy o przestrzeganie zasad reżimu sanitarnego, częste mycie rąk oraz noszenie maseczek w przypadku gdy nie można zachować dystansu od innych osób.',
+            'text1' => 'W związku z zagrożeniem epidemiologicznym wywołanemu koronawirusem SARS-CoV-2 prosimy o przestrzeganie zasad reżimu sanitarnego, częste mycie rąk oraz noszenie maseczek w przypadku gdy nie można zachować dystansu od innych osób.',
             'text2' => 'Każdy wolontariusz musi posiadać oświadczenie COVID-19 (bądź zostanie wypisane na miejscu akcji).
             Wolontariuszu, pamiętaj! Jeśli źle się czujesz, masz objawy COVID-19 zostań w domu! Zdrowie jest najważniejsze!',
         ],
