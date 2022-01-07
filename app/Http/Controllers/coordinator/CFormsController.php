@@ -26,9 +26,10 @@ class CFormsController extends Controller
 {
     public function index()
     {
-        $forms = Form::with(['form_translate'])->whereHas('calendar', function ($query) {
-            return $query->where('end', '>', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' - 7 days')));
-        })->withCount('signed_form')->get();
+        //$forms = Form::with(['form_translate'])->whereHas('calendar', function ($query) {
+            //return $query->where('end', '>', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' - 7 days')));
+        //})->withCount('signed_form')->get();
+        $forms = Form::with(['form_translate', 'calendar'])->withCount('signed_form')->get();
 
         return view('coordinator.forms.list', ['forms' => $forms]);
     }
@@ -288,9 +289,11 @@ class CFormsController extends Controller
 
     public function archive()
     {
-        $forms = Form::with(['form_translate'])->whereHas('calendar', function ($query) {
-            return $query->where('end', '>', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' + 7 days')));
-        })->withCount('signed_form')->get();
+        //$forms = Form::with(['form_translate'])->whereHas('calendar', function ($query) {
+            //return $query->where('end', '>', date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' + 7 days')));
+        //})->withCount('signed_form')->get();
+
+        $forms = Form::with(['form_translate', 'calendar'])->withCount('signed_form')->get();
 
         return view('coordinator.forms.archive', ['forms' => $forms]);
     }
