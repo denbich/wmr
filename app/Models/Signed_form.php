@@ -25,6 +25,12 @@ class Signed_form extends Model
         return $this->hasOne(Form::class, 'id', 'form_id');
     }
 
+    public function trans_form()
+    {
+        return $this->hasOneThrough(Translate_form::class, Form::class, 'id', 'form_id', 'form_id');
+        //return $this->hasOne(Form::class, 'id', 'form_id');
+    }
+
     public function volunteer()
     {
         return $this->hasOne(User::class, 'id', 'volunteer_id');

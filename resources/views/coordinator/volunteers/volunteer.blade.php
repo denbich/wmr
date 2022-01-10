@@ -126,7 +126,7 @@
                   <div class="col">
                     <div class="card-profile-stats d-flex justify-content-center">
                       <div>
-                        <span class="heading">{{ $signed }}</span>
+                        <span class="heading">{{ count($signed) }}</span>
                         <span class="description">Ilość akcji</span>
                       </div>
                       <div>
@@ -154,6 +154,27 @@
                 </div>
               </div>
             </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                      <div class="col-8">
+                        <h3 class="mb-0">Imprezy, w których wolontariusz uczestniczył: </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                        @if (count($signed) > 0)
+
+                        <ul>
+                            @foreach ($signed as $sign)
+                                <li>{{ $sign->trans_form->title }} - {{ $sign->position->title }}</li>
+                            @endforeach
+                        </ul>
+
+                        @else <p class="text-center text-danger">Wolontariusz nie uczestniczył w żadnej imprezie!</p> @endif
+                  </div>
+            </div>
+
           </div>
           <div class="col-xl-8 order-xl-1">
             <div class="card">

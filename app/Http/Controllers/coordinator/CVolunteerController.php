@@ -28,9 +28,9 @@ class CVolunteerController extends Controller
     public function volunteer($id)
     {
         $volunteer = Volunteer::where('id', $id)->with('user')->first();
-        $singed = Signed_form::where('volunteer_id', $volunteer->user_id)->get()->count();
+        $signed = Signed_form::where('volunteer_id', $volunteer->user_id)->with('trans_form', 'position')->get();
 
-        return view('coordinator.volunteers.volunteer', ['volunteer' => $volunteer, 'signed' => $singed]);
+        return view('coordinator.volunteers.volunteer', ['volunteer' => $volunteer, 'signed' => $signed]);
     }
 
     public function search()
