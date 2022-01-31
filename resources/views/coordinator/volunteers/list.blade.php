@@ -284,7 +284,7 @@
         $('#modalreset-footer').addClass('d-none');
         $('#resetpoints-progresbar').removeClass('d-none');
 
-        var vcount = 3;
+        var vcount = {{ count($volunteers) }};
         var precentpoint = 100 / vcount;
         var precent = 0;
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
