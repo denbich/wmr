@@ -95,7 +95,7 @@ Route::middleware('setlocale')->group(function () {
             Route::prefix('volunteer')->group(function() {
                 Route::get('/', [CVolunteerController::class, 'list'])->name('c.v.list');
                 Route::post('/list', [CVolunteerController::class, 'export_list'])->name('c.v.exportlist');
-                Route::post('/reset-points', [CVolunteerController::class, 'reset_points'])->name('c.v.reset_points');
+                Route::get('/reset-points', [CVolunteerController::class, 'reset_points'])->name('c.v.reset_points');
                 Route::get('/id/{id}', [CVolunteerController::class, 'volunteer'])->name('c.v.volunteer');
                 Route::get('/search', [CVolunteerController::class, 'search'])->name('c.v.search');
                 Route::get('/active', [CVolunteerController::class, 'active'])->name('c.v.active');

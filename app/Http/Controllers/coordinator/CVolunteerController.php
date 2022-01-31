@@ -26,18 +26,21 @@ class CVolunteerController extends Controller
         return view('coordinator.volunteers.list', ['volunteers' => $volunteers]);
     }
 
-    public function reset_points(Request $request)
+    public function reset_points()
     {
-        $volunteer = Volunteer::where('id', $request->vid)->first();
-        $points = $volunteer->points;
-        $volunteer->points = 0;
-        $volunteer->save();
+        for ($i = 12; $i <= 47; $i++)
+        {
+            $volunteer = Volunteer::where('id', $i)->first();
+            $points = $volunteer->points;
+            $volunteer->points = 0;
+            $volunteer->save();
 
-        $datam = array('points' => $points);
+            $datam = array('points' => $points);
 
-        Mail::to(User::where('id', $volunteer->user_id)->pluck('email'))->send(new ResetPoints($datam));
+            Mail::to(User::where('id', $volunteer->user_id)->pluck('email'))->send(new ResetPoints($datam));
+        }
 
-        return $request->vid;
+        return $i;
     }
 
     public function volunteer($id)
