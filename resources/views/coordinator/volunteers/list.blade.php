@@ -288,14 +288,9 @@
         var precentpoint = 100 / vcount;
         var precent = 0;
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        for (var i = 1; i <= vcount; i++) {
-            precent = precent + precentpoint;
-            $("#pointprogresbar").css({ width: precent+'%' });
-            $('#pointprecent').html(Math.floor(precent)+"%");
-            console.log(precent);
-        }
 
         for (var i = 1; i <= vcount; i++) {
+            precent = precent + precentpoint;
             $.ajax({
                 url: '{{ route("c.v.reset_points") }}',
                 type: 'POST',
@@ -303,15 +298,10 @@
                 dataType: 'JSON',
                 success: function (data) {
                     console.log(data);
-                    //$("#pointprogresbar").css({ width: precent+'%' });
-                    //$('#pointprecent').html(Math.floor(precent)+"%");
+                    $("#pointprogresbar").css({ width: precent+'%' });
+                    $('#pointprecent').html(Math.floor(precent)+"%");
                 }
             });
-
-            if (i == vcount)
-            {
-                setTimeout(location.reload(), 5000);
-            }
         }
 });
 </script>
