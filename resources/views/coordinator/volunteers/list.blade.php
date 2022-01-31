@@ -113,7 +113,8 @@
                     <h3 class="mb-0">Lista wolontariuszy </h3>
                   </div>
                   <div class="col-4 text-right">
-                    <a href="#generatemodal" data-toggle="modal" data-target="#generatemodal" class="btn btn-sm btn-primary">Generuj listę</a>
+                    <a href="#generatemodal" data-toggle="modal" data-target="#generatemodal" class="btn btn-sm btn-primary"><i class="fas fa-clipboard-list"></i> Generuj listę</a>
+                    <a href="#resetpointsmodal" data-toggle="modal" data-target="#resetpointsmodal" class="btn btn-sm btn-primary"><i class="fas fa-times-circle"></i> Resetuj punkty</a>
                   </div>
                 </div>
               </div>
@@ -220,6 +221,42 @@
     </div>
   </div>
 
+  <div class="modal fade" id="resetpointsmodal" tabindex="-1" role="dialog" aria-labelledby="resetpointsmodalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="resetpointsmodalLabel">Resetuj punkty</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pt-1">
+          <div id="resetpoints-header">
+            <h2 class="text-center">Czy jesteś pewien, że chcesz zresetować wszystkim wolontariuszom punkty?</h2>
+            <h4 class="text-center text-danger">Tego procesu nie da się cofnąć!</h4>
+          </div>
+
+          <div id="resetpoints-progresbar" class="d-none">
+            <h2 class="text-center">Trwa resetowanie punktów</h2>
+            <h4 class="text-center text-danger">Nie zamykaj okna przeglądarki!</h4>
+            <div class="text-center" id="pointprecent">0%</div>
+            <div class="progress-wrapper">
+                <div class="progress">
+                  <div class="progress-bar bg-primary" id="pointprogresbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                </div>
+              </div>
+              <p class="text-sm text-center">Gdy proces się zakończy strona odświeży się automatycznie</p>
+          </div>
+
+        </div>
+        <div class="modal-footer" id="modalreset-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+          <button id="btn-reset-points" class="btn btn-danger">Resetuj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 @endsection
 
 @section('script')
@@ -236,6 +273,46 @@
       $("#checkAll").prop("checked", false);
     }
   });
+});
+</script>
+
+<script>
+
+
+    $('#btn-reset-points').click(function () {
+        $('#resetpoints-header').addClass('d-none');
+        $('#modalreset-footer').addClass('d-none');
+        $('#resetpoints-progresbar').removeClass('d-none');
+
+        var vcount = 3;
+        var precentpoint = 100 / vcount;
+        var precent = 0;
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        for (var i = 1; i <= vcount; i++) {
+            precent = precent + precentpoint;
+            $("#pointprogresbar").css({ width: precent+'%' });
+            $('#pointprecent').html(Math.floor(precent)+"%");
+            console.log(precent);
+        }
+
+        for (var i = 1; i <= vcount; i++) {
+            $.ajax({
+                url: '{{ route("c.v.reset_points") }}',
+                type: 'POST',
+                data: {_token: CSRF_TOKEN, vid: i},
+                dataType: 'JSON',
+                success: function (data) {
+                    console.log(data);
+                    //$("#pointprogresbar").css({ width: precent+'%' });
+                    //$('#pointprecent').html(Math.floor(precent)+"%");
+                }
+            });
+
+            if (i == vcount)
+            {
+                setTimeout(location.reload(), 5000);
+            }
+        }
 });
 </script>
 @endsection

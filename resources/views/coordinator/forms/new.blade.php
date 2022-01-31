@@ -739,9 +739,3 @@ function counter_desc_position_pl_pol(count)
 </script>
 
 @endsection
-
-
-
-
-
-

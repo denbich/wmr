@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\coordinator;
 
 use App\Models\User;
+use App\Mail\ResetPoints;
 use App\Models\Volunteer;
 use App\Models\Signed_form;
 use Illuminate\Http\Request;
@@ -23,6 +24,20 @@ class CVolunteerController extends Controller
         //$volunteers = User::where('role', 'volunteer')->with('volunteer')->get();
         $volunteers = Volunteer::with('user')->get();
         return view('coordinator.volunteers.list', ['volunteers' => $volunteers]);
+    }
+
+    public function reset_points(Request $request)
+    {
+        $volunteer = Volunteer::where('id', $request->vid)->first();
+        $points = $volunteer->points;
+        $volunteer->points = 0;
+        $volunteer->save();
+
+        $datam = array('points' => $points);
+
+        Mail::to(User::where('id', $volunteer->user_id)->pluck('email'))->send(new ResetPoints($datam));
+
+        return $request->vid;
     }
 
     public function volunteer($id)
