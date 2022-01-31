@@ -302,6 +302,11 @@
                     $('#pointprecent').html(Math.floor(precent)+"%");
                 }
             });
+
+            if (i == vcount)
+            {
+                setTimeout(location.reload(), 5000);
+            }
         }
 });
 </script>
