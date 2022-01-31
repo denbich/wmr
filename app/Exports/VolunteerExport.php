@@ -33,8 +33,8 @@ class VolunteerExport implements FromCollection, ShouldAutoSize, WithMapping, Wi
             $volunteer->street,
             $volunteer->house_number,
             $volunteer->city,
-            $volunteer->points,
             $volunteer->ice,
+            $volunteer->points,
         ];
     }
 
