@@ -28,7 +28,7 @@ class CVolunteerController extends Controller
 
     public function reset_points()
     {
-        for ($i = 12; $i <= 47; $i++)
+        for ($i = 33; $i <= 47; $i++)
         {
             $volunteer = Volunteer::where('id', $i)->first();
             $points = $volunteer->points;
