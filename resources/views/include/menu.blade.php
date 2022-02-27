@@ -1,7 +1,7 @@
 @guest
     <li class="nav-item">
         <a href="{{ route('login') }}" class="nav-link text-center">
-            <span class="nav-link-inner--text">{{ __('Zaloguj się') }}</span>
+            <span class="nav-link-inner--text">{{ __('main.login') }}</span>
         </a>
     </li>
 @endguest
@@ -9,7 +9,7 @@
     @switch(Auth::user()->role)
         @case('volunteer')
             <li class="nav-item">
-                <a href="{{ route('a.dashboard') }}" class="nav-link text-center">
+                <a href="{{ route('v.dashboard') }}" class="nav-link text-center">
                     <span class="nav-link-inner--text">{{ __('Lista Irganizacji') }}</span>
                 </a>
             </li>
@@ -23,7 +23,7 @@
         @break
         @case('admin')
             <li class="nav-item">
-                <a href="" class="nav-link text-center">
+                <a href="{{ route('a.dashboard') }}" class="nav-link text-center">
                     <span class="nav-link-inner--text">{{ __('Panel Administratora') }}</span>
                 </a>
             </li>
@@ -31,7 +31,7 @@
     @endswitch
     <li class="nav-item">
         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link text-center">
-            <span class="nav-link-inner--text">{{ __('Wyloguj się') }}</span>
+            <span class="nav-link-inner--text">{{ __('main.logout') }}</span>
         </a>
     </li>
 @endauth
