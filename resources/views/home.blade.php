@@ -12,7 +12,7 @@ class="bg-default"
 <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light ">
     <div class="container">
       <a class="navbar-brand" href="{{ route('home') }}">
-        <img class="h-25" style="max-height: 110px" src="/img/logowmr.svg">
+        <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmr.svg') }}">
       </a>
       <a class="navbar-brand" href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
@@ -25,7 +25,7 @@ class="bg-default"
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="{{ route('home') }}">
-                <img class="h-100" style="max-height: 110px; min-height:100px;" src="/img/logowmr.svg">
+                <img class="h-100" style="max-height: 110px; min-height:100px;" src="{{ url('/img/logowmr.svg') }}">
 
               </a>
               <a href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
