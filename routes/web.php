@@ -40,6 +40,7 @@ Route::middleware('setlocale')->group(function () {
     Route::get('/volunteer-id/{volunteer}', [HomeController::class, 'volunteer'])->name('volunteer.id');
 
     Auth::routes(['verify' => true]);
+    Route::get('/test/reg', [HomeController::class, 'testregistration']);
 
     Route::middleware('auth')->group(function () {
         Route::get('/login-auth', [HomeController::class, 'loginauth']);

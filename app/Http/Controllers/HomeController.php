@@ -96,4 +96,9 @@ class HomeController extends Controller
             return view('id')->with(['notexist' => true]);
         }
     }
+
+    public function testregistration()
+    {
+        return view('auth.test');
+    }
 }
