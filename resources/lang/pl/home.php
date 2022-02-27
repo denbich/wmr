@@ -8,6 +8,7 @@ return [
         'instagram' => 'Instagram',
     ],
     'header' => 'Wolontariat MOSiR Rybnik',
+    'text' => 'Kliknij tutaj by dołączyć do akcji #PomagamUkrainie',
     'loginbutton' => 'Zaloguj się do panelu',
     'section1' => [
         'header' => 'Czym się zajmujemy?',

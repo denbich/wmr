@@ -12,5 +12,19 @@ return [
     'cancel' => 'Anuluj',
     'error' => 'Błąd',
     'alert' => 'Alert',
+
+    'langlist' => [
+        'current' => [
+            'polish' => 'Polski',
+            'english' => 'Angielski',
+            'ukrainian' => 'Ukraiński',
+        ],
+
+        'foreign' => [
+            'polish' => 'Polski',
+            'english' => 'English',
+            'ukrainian' => 'Yкраїнський',
+        ],
+    ],
 ];
 

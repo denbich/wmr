@@ -1,4 +1,4 @@
-<li class="nav-item dropdown text-center" data-toggle="tooltip" data-placement="top" title="{{ __('main.lang') }}">
+<li class="nav-item dropdown text-center" data-toggle="tooltip" data-placement="top" title="">
     <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-language text-lg"></i>
       <span class="nav-link-inner--text d-lg-none">{{ __('main.lang') }}</span>
@@ -13,11 +13,11 @@
           <span class="shortcut-media avatar rounded-circle">
             <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/pl.svg" alt="">
           </span>
-          <p>
+          <p class="mb-1">
             @if (session('locale') == 'pl')
-            <small class="font-weight-700">{{ __('Polski') }}</small>
+            <small class="font-weight-700">{{ __('main.langlist.current.polish') }}</small>
             @else
-            <small>{{ __('Polski') }}</small>
+            <small>{{ __('main.langlist.current.polish') }} ({{ __('main.langlist.foreign.polish') }})</small>
             @endif
           </p>
 
@@ -26,23 +26,23 @@
           <span class="shortcut-media avatar rounded-circle">
             <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/gb.svg" alt="">
           </span>
-          <p>
+          <p class="mb-1">
             @if (session('locale') == 'en')
-            <small class="font-weight-700">{{ __('Angielski') }}</small>
+            <small class="font-weight-700">{{ __('main.langlist.current.english') }}</small>
             @else
-            <small>{{ __('Angielski') }}</small>
+            <small>{{ __('main.langlist.current.english') }} ({{ __('main.langlist.foreign.english') }})</small>
             @endif
           </p>
         </a>
-        <a href="{{ route('language', ['ua']) }}" class="col-4 my-2 shortcut-item text-center d-none">
+        <a href="{{ route('language', ['uk']) }}" class="col-4 my-2 shortcut-item text-center d-none">
             <span class="shortcut-media avatar rounded-circle">
               <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/ua.svg" alt="">
             </span>
-            <p>
-              @if (session('locale') == 'ua')
-              <small class="font-weight-700">{{ __('Ukraiński') }}</small>
+            <p class="mb-1">
+              @if (session('locale') == 'uk')
+              <small class="font-weight-700">{{ __('main.langlist.current.ukrainian') }}</small>
               @else
-              <small>{{ __('Ukraiński') }}</small>
+              <small>{{ __('main.langlist.current.ukrainian') }} ({{ __('main.langlist.foreign.ukrainian') }})</small>
               @endif
             </p>
           </a>

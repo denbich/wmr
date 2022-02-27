@@ -11,28 +11,31 @@ class="bg-default"
 @section('content')
 <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light ">
     <div class="container">
-      <a class="navbar-brand" href="{{ route('home') }}">
-        <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmr1.svg') }}">
-      </a>
-      <a class="navbar-brand" href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
-      </a>
+        <div class="navbar-brand">
+            <a class="" href="{{ route('home') }}">
+                <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmr1.svg') }}">
+              </a>
+              <a class="" href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
+              </a>
+        </div>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
         <div class="navbar-collapse-header">
           <div class="row">
-            <div class="col-6 collapse-brand">
+            <div class="col-8 collapse-brand text-center mx-auto">
               <a href="{{ route('home') }}">
-                <img class="h-100" style="max-height: 110px; min-height:100px;" src="{{ url('/img/logowmr1.svg') }}">
+                <img class="h-100" style="max-height: 110px; min-height:100px;" src="{{ url('/img/logowmr1.svg') }}" alt="wmr logo">
 
               </a>
-              <a href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
+              <a href="https://pomagamukrainie.gov.pl/" class="w-100 text-center mx-auto" target="_blank" rel="noopener noreferrer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" class="text-center mx-auto my-2" alt="Ukraine flag">
             </a>
             </div>
-            <div class="col-6 collapse-close">
+            <div class="col-4 collapse-close">
               <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
@@ -73,7 +76,7 @@ class="bg-default"
           <li class="nav-item d-lg-block ml-lg-4 text-center">
             <a href="{{ route('register') }}" class="btn btn-neutral btn-icon text-center">
               <span class="btn-inner--icon">
-                <i class="fas fa-laptop mr-2"></i>
+                <i class="fas fa-handshake mr-2"></i>
               </span>
               <span class="nav-link-inner--text">{{ __('main.signin') }}</span>
             </a>
@@ -89,13 +92,15 @@ class="bg-default"
           <div class="header-body text-center mb-6">
             <div class="row justify-content-center">
               <div class="col-xl-8 col-lg-8 col-md-8 px-5">
-                <h1 class="display-1 text-white font-weight-700">{{ Str::upper(__('home.header')) }}</h1>
-                <a href="{{ route('login') }}" class="btn btn-neutral btn-icon text-center btn-lg">
+                <h1 class="display-1 text-white mt-3 font-weight-700">{{ Str::upper(__('home.header')) }}</h1>
+
+                <a href="{{ route('login') }}" class="btn btn-neutral btn-icon text-center btn-lg mt-2">
                     <span class="btn-inner--icon">
-                      <i class="fas fa-laptop mr-2"></i>
+                      <i class="fas fa-sign-in-alt mr-2"></i>
                     </span>
                     <span class="nav-link-inner--text">{{ Str::upper(__('home.loginbutton')) }}</span>
-                  </a>
+                  </a><br>
+                  <a href="https://pomagamukrainie.gov.pl/" class="btn btn-neutral mt-2 text-lg" target="_blank" rel="noopener noreferrer">{{ __('home.text') }}</a>
               </div>
             </div>
           </div>
@@ -117,8 +122,8 @@ class="bg-default"
                             <h3 class="text-primary italic">{{ __('home.section1.text') }}</h3>
                             <br>
                             <p class="text-dark font-weight-500">{{ __('home.section1.article.part1') }} <a href="https://vol4life.aiij.org/" target="_blank" rel="noopener noreferrer">"Volunteering Sporty and Healthy Life"</a> ({{ __('home.section1.article.part2') }}: "Vol4Life"). </p>
-                            <a href="{{ url('/files/kodeks_wolontariuszy_MOSiR_Rybnik.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">{{ Str::upper(__('index.footer.codex')) }}</a>
-                            <a href="{{ url('/files/regulamin_wolontariatu_MOSiR_Rybnik.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">{{ Str::upper(__('index.footer.regulations')) }}</a>
+                            <a href="{{ url('/files/kodeks_wolontariuszy_MOSiR_Rybnik.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary my-1">{{ Str::upper(__('index.footer.codex')) }}</a>
+                            <a href="{{ url('/files/regulamin_wolontariatu_MOSiR_Rybnik.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary my-1">{{ Str::upper(__('index.footer.regulations')) }}</a>
                         </div>
                         <div class="col-lg-6">
                             <img src="{{ url('img/volunteers.jpg') }}" alt="" class="w-100 my-1">
@@ -133,7 +138,7 @@ class="bg-default"
                     <div class="text-center">
                         <h1>{{ Str::upper(__('home.section2.header')) }}</h1>
                         <h3>{{ __('home.section2.text') }}</h3>
-                        <ol style="list-style-position: inside;" class="my-4">
+                        <ol style="list-style-position: inside;" class="my-4 p-0">
                             <li>{{ __('home.section2.point1') }}</li>
                             <li>{{ __('home.section2.point2') }}</li>
                             <li>{{ __('home.section2.point3') }}</li>

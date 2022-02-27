@@ -10,23 +10,99 @@ class="bg-default"
 
 @section('content')
 
-  <div class="main-content">
-    <div class="header bg-gradient-primary py-5 py-lg-6 pt-lg-7">
-      <div class="container">
-        <div class="header-body text-center mb-7">
-          <div class="row justify-content-center">
-            <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+<nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light ">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="" href="{{ route('home') }}">
+                <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmr1.svg') }}">
+              </a>
+              <a class="" href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
+              </a>
+        </div>
 
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-8 collapse-brand text-center mx-auto">
+              <a href="{{ route('home') }}">
+                <img class="h-100" style="max-height: 110px; min-height:100px;" src="{{ url('/img/logowmr1.svg') }}" alt="wmr logo">
+
+              </a>
+              <a href="https://pomagamukrainie.gov.pl/" class="w-100 text-center mx-auto" target="_blank" rel="noopener noreferrer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" class="text-center mx-auto my-2" alt="Ukraine flag">
+            </a>
+            </div>
+            <div class="col-4 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+              </button>
             </div>
           </div>
         </div>
-      </div>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a href="{{ route('home') }}" class="nav-link text-center">
+                <span class="nav-link-inner--text">{{ __('home.title') }}</span>
+              </a>
+            </li>
+            <li class="nav-item">
+                <li class="nav-item text-center">
+                    <div class="dropdown">
+                      <a class="nav-link dropdown-toggle text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('home.socialmedia.title')}}</a>
+
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item d-none" href=""><i class="fas fa-info-circle"></i> O nas</a>
+                        <a class="dropdown-item" href="https://facebook.com/wolontariat.rybnik" target="_blank"><i class="fab fa-facebook-square"></i> {{ __('home.socialmedia.facebook') }}</a>
+                        <a class="dropdown-item" href="https://instagram.com/wolontariat.rybnik" target="_blank"><i class="fab fa-instagram"></i> {{ __('home.socialmedia.instagram') }}</a>
+                      </div>
+                    </div>
+                  </li>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('login') }}" class="nav-link text-center font-weight-900">
+                    <span class="nav-link-inner--text">{{ __('main.login') }}</span>
+                </a>
+            </li>
+
+          </ul>
+        <hr class="d-lg-none" />
+        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+          @include('include.lang')
+
+          <li class="nav-item d-lg-block ml-lg-4 text-center">
+            <a href="{{ route('register') }}" class="btn btn-neutral btn-icon text-center">
+              <span class="btn-inner--icon">
+                <i class="fas fa-handshake mr-2"></i>
+              </span>
+              <span class="nav-link-inner--text">{{ __('main.signin') }}</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="header bg-gradient-primary py-8 py-lg-8 pt-lg-9">
+        <div class="container">
+          <div class="header-body text-center mb-6">
+            <div class="row justify-content-center">
+              <div class="col-xl-8 col-lg-8 col-md-8 px-5">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="separator separator-bottom separator-skew zindex-100">
+          <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+          </svg>
+        </div>
+      </div>
 
     <div class="container mt--8 pb-5">
       <div class=""> <!-- row justify-content-center col-lg-5 col-md-7 -->
@@ -118,23 +194,18 @@ class="bg-default"
                             <div class="row mb-3">
                                 <div class="col">
                                     <span class="shortcut-media avatar rounded-circle">
-                                        <a href="/language/pl"><img src="{{ URL::asset('lang/165-poland.svg') }}"></a>
+                                        <a href="{{ route('language', ['pl']) }}"><img src="{{ URL::asset('lang/165-poland.svg') }}"></a>
                                     </span>
 
                                 </div>
                                 <div class="col">
                                     <span class="shortcut-media avatar rounded-circle">
-                                        <a href="/language/en"><img src="{{ URL::asset('lang/110-united kingdom.svg') }}"></a>
+                                        <a href="{{ route('language', ['en']) }}"><img src="{{ URL::asset('lang/110-united kingdom.svg') }}"></a>
                                     </span>
                                 </div>
                                 <div class="col d-none">
                                     <span class="shortcut-media avatar rounded-circle">
-                                        <a href="/language/de"><img src="{{ URL::asset('lang/208-germany.svg') }}"></a>
-                                    </span>
-                                </div>
-                                <div class="col d-none">
-                                    <span class="shortcut-media avatar rounded-circle">
-                                        <a href="/language/ua"><img src="{{ URL::asset('lang/198-ukraine.svg') }}"></a>
+                                        <a href="{{ route('language', ['uk']) }}"><img src="{{ URL::asset('lang/198-ukraine.svg') }}"></a>
                                     </span>
                                 </div>
                             </div>

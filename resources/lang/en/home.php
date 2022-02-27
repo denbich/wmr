@@ -8,6 +8,7 @@ return [
         'instagram' => 'Instagram',
     ],
     'header' => 'Volunteering at MOSiR Rybnik',
+    'text' => 'Click here to join the #PomagamUkrainie campaign',
     'loginbutton' => 'Log in to the dashboard',
     'section1' => [
         'header' => 'What we do?',

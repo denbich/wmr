@@ -64,21 +64,18 @@ class="bg-default"
                             <div class="row mb-3">
                                 <div class="col">
                                     <span class="shortcut-media avatar rounded-circle">
-                                        <a href="/language/pl"><img src="{{ URL::asset('lang/165-poland.svg') }}"></a>
+                                        <a href="{{ route('language', ['pl']) }}"><img src="{{ URL::asset('lang/165-poland.svg') }}"></a>
                                     </span>
 
                                 </div>
                                 <div class="col">
                                     <span class="shortcut-media avatar rounded-circle">
-                                        <a href="/language/en"><img src="{{ URL::asset('lang/110-united kingdom.svg') }}"></a>
+                                        <a href="{{ route('language', ['en']) }}"><img src="{{ URL::asset('lang/110-united kingdom.svg') }}"></a>
                                     </span>
 
                                 </div>
                                 <div class="col">
-                                    <a href="/language/de"><img src="{{ URL::asset('lang/208-germany.svg') }}" alt="" class="w-75"></a>
-                                </div>
-                                <div class="col">
-                                    <a href="/language/ua"><img src="{{ URL::asset('lang/198-ukraine.svg') }}" alt="" class="w-75"></a>
+                                    <a href="{{ route('language', ['uk']) }}"><img src="{{ URL::asset('lang/198-ukraine.svg') }}" alt="" class="w-75"></a>
                                 </div>
                             </div>
                             <a class="text-danger d-none" href="">{{ __('main.morelang') }}</a>
