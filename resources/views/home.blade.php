@@ -42,7 +42,7 @@ class="bg-default"
         </div>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a href="{{ route('home') }}" class="nav-link text-center">
+              <a href="{{ route('home') }}" class="nav-link text-center font-weight-900">
                 <span class="nav-link-inner--text">{{ __('home.title') }}</span>
               </a>
             </li>
@@ -60,7 +60,7 @@ class="bg-default"
                   </li>
             </li>
             <li class="nav-item">
-                <a href="{{ route('login') }}" class="nav-link text-center font-weight-900">
+                <a href="{{ route('login') }}" class="nav-link text-center">
                     <span class="nav-link-inner--text">{{ __('main.login') }}</span>
                 </a>
             </li>
