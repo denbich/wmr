@@ -21,13 +21,6 @@ use App\Http\Controllers\coordinator\CVolunteerController;
 
 App::setLocale(session('locale'));
 
-Route::domain('subdoamin.'.env('APP_LINK'))->group(function () {
-    Route::get('/', function(){
-        dd("Reserved For subdoamin.wolontariat.rybnik.pl Site") ;
-    });
-  }
-);
-
 Route::get('language/{locale}', function($locale) {
     session(['locale' => $locale]);
         App::setLocale($locale);
@@ -37,10 +30,11 @@ Route::get('language/{locale}', function($locale) {
 Route::middleware('setlocale')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/regulations', [HomeController::class, 'regulations'])->name('regulations');
+    Route::get('/codex', [HomeController::class, 'codex'])->name('codex');
     Route::get('/volunteer-id/{volunteer}', [HomeController::class, 'volunteer'])->name('volunteer.id');
 
     Auth::routes(['verify' => true]);
-    Route::get('/test/reg', [HomeController::class, 'testregistration']);
 
     Route::middleware('auth')->group(function () {
         Route::get('/login-auth', [HomeController::class, 'loginauth']);

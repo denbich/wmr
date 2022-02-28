@@ -44,4 +44,23 @@ return [
     'section4' => [
         'header' => 'Nasi partnerzy',
     ],
+
+    'codex' => [
+        '1' => 'Jesteśmy zaangażowani,',
+        '2' => 'Słuchamy siebie nawzajem,',
+        '3' => 'Przychodzimy z pozytywnym nastawieniem,',
+        '4' => 'Jesteśmy pomocni i pracowici',
+        '5' => 'Nie ma głupich pytań, czasem nawet warto zapytać o to samo dwa razy,',
+        '6' => 'Słuchamy organizatorów,',
+        '7' => 'Jesteśmy komunikatywni,',
+        '8' => 'Nie wstydzimy się mówić otwarcie,',
+        '9' => 'Wywiązujemy sie ze swoich obowiązków,',
+        '10' => 'Jesteśmy punktualni - nie spóźniamy się!',
+        '11' => 'Przestrzegamy zasad bezpieczeństwa i higieny,',
+        '12' => 'Chętnie ze sobą współpracujemy,',
+        '13' => 'Chętnie nawiązujemy nowe znajomości,',
+        '14' => 'Zawsze dajemy z siebie 100%,',
+        '15' => 'Zachęcamy innych do pomocy.',
+        'text' => 'Każdy może być wolontariuszem!',
+    ],
 ];

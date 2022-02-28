@@ -44,4 +44,23 @@ return [
     'section4' => [
         'header' => 'Our partners',
     ],
+
+    'codex' => [
+        '1' => 'We are involved,',
+        '2' => 'We listen to each other,',
+        '3' => 'We come with a positive attitude,',
+        '4' => 'We are helpful and hardworking',
+        '5' => "No stupid questions, sometimes it's even worth asking the same question twice,",
+        '6' => 'We are listening to the organizers,',
+        '7' => 'We are communicative,',
+        '8' => 'We are not ashamed to speak openly,',
+        '9' => 'We fulfill our obligations,',
+        '10' => 'We are punctual - we are not late!',
+        '11' => 'We follow the rules of safety and hygiene,',
+        '12' => 'We are happy to cooperate with each other,',
+        '13' => 'We are happy to make new friends,',
+        '14' => 'We always give 100% of ourselves,',
+        '15' => 'We encourage others to help.',
+        'text' => 'Everyone Can Be Volunteer!',
+    ],
 ];

@@ -18,6 +18,15 @@ class HomeController extends Controller
         //return view('oldhome');
     }
 
+    public function regulations()
+    {
+        return view('regulations');
+    }
+    public function codex()
+    {
+        return view('codex');
+    }
+
     public function loginauth()
     {
         switch (Auth::user()->role) {
