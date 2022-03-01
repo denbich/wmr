@@ -23,6 +23,13 @@
   <script src="/js/maps.js"></script>
   <script src="{{ asset('js/main.js') }}"></script>
 
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ env('GOOGLE_ANALYTICS_KEY') }}');
+  </script>
 
 <style>
     .zdjecie-login{

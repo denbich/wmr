@@ -32,6 +32,14 @@
     }
 </style>
 
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ env('GOOGLE_ANALYTICS_KEY') }}');
+  </script>
+
 @yield('style')
 
 </head>
