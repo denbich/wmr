@@ -88,11 +88,11 @@ return [
     'agreement' => [
         'title' => 'Upload agreement',
         'text' => [
-            '1' => 'Your agreement',
-            '2' => 'has expired',
-            '3' => 'or coordinator',
-            '4' => 'did not approved',
-            '5' => 'your agreement, upload a new agreement to log into ISOW!',
+            'text1' => 'Your agreement',
+            'text2' => 'has expired',
+            'text3' => 'or coordinator',
+            'text4' => 'did not approved',
+            'text5' => 'your agreement, upload a new agreement to log into ISOW!',
         ],
         'label1' => 'Agreement to participate in volunteering (PDF file)',
         'label2' => 'You can find them here:',

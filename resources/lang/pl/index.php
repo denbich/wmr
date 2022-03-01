@@ -90,11 +90,11 @@ return [
     'agreement' => [
         'title' => 'Dodaj zgodę',
         'text' => [
-            '1' => 'Twoja zgoda',
-            '2' => 'straciła ważność',
-            '3' => 'lub koordynator',
-            '4' => 'nie zatwierdził',
-            '5' => 'twojej zgody, dodaj nową zgodę by zalogować się do ISOW!',
+            'text1' => 'Twoja zgoda',
+            'text2' => 'straciła ważność',
+            'text3' => 'lub koordynator',
+            'text4' => 'nie zatwierdził',
+            'text5' => 'twojej zgody, dodaj nową zgodę by zalogować się do ISOW!',
         ],
         'label1' => 'Zgoda na uczestnicwo w wolontariacie (plik PDF)',
         'label2' => 'Znajdziesz je tutaj:',
