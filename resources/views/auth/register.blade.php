@@ -123,7 +123,7 @@ class="bg-default"
                     <input class="form-control" placeholder="{{ __('index.register.firstname') }}" type="text" name="firstname" value="{{ old('firstname', '') }}" max="255" required>
                   </div>
                 @error('firstname')
-                    <span class="text-danger small" role="alert">
+                    <span class="text-danger" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -136,7 +136,7 @@ class="bg-default"
                       <input class="form-control" placeholder="{{ __('index.register.lastname') }}" type="text" name="lastname" value="{{ old('lastname', '') }}" max="255" required>
                     </div>
                     @error('lastname')
-                    <span class="text-danger small" role="alert">
+                    <span class="text-danger" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -149,7 +149,7 @@ class="bg-default"
                     <input class="form-control" placeholder="{{ __('index.register.password') }}" type="password" name="password" max="255" required>
                   </div>
                   @error('password')
-                    <span class="text-danger small" role="alert">
+                    <span class="text-danger" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -165,7 +165,7 @@ class="bg-default"
                       <input class="form-control" placeholder="{{ __('index.register.c-password') }}" type="password" name="password_confirmation" max="255" required>
                     </div>
                     @error('repeat_password')
-                    <span class="text-danger small" role="alert">
+                    <span class="text-danger" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -179,7 +179,7 @@ class="bg-default"
                       <input class="form-control" placeholder="{{ __('index.register.email') }}" type="email" name="email" value="{{ old('email', '') }}" max="255" >
                     </div>
                     @error('email')
-                    <span class="text-danger small" role="alert">
+                    <span class="text-danger" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -192,7 +192,7 @@ class="bg-default"
                       <input class="form-control" placeholder="{{ __('index.register.phone') }}" type="tel" name="telephone" value="{{ old('telephone', '') }}" max="255" required>
                     </div>
                     @error('telephone')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -206,7 +206,7 @@ class="bg-default"
                     </div>
                     <p class="text-center"><small>{{ __('index.register.i-school') }}</small></p>
                     @error('school')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -227,7 +227,7 @@ class="bg-default"
                           <input class="form-control" placeholder="{{ __('index.register.street') }}" type="text" name="street" value="{{ old('street', '') }}" max="255" required>
                         </div>
                         @error('street')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -237,7 +237,7 @@ class="bg-default"
                           <input class="form-control" placeholder="{{ __('index.register.number') }}" type="text" name="house_number" value="{{ old('house_number', '') }}" max="255" required>
                         </div>
                         @error('house_number')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -251,14 +251,14 @@ class="bg-default"
                       <input class="form-control" placeholder="{{ __('index.register.city') }}" type="text" name="city" value="{{ old('city', '') }}" max="255" required>
                     </div>
                     @error('city')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                   </div>
                   <hr>
                   <div class="form-group">
-                    <label for="tshirt_size">{{ __('index.register.tshirt') }}</label>
+                    <label for="tshirt_size">{{ __('index.register.tshirt') }} <span class="text-danger" role="alert">{{ __('index.register.required') }}</span></label>
                       <div class="input-group input-group-merge input-group-alternative mb-3">
                         <select class="form-control" id="tshirt_size" name="tshirt_size" required>
                             <option value="XS">XS</option>
@@ -270,24 +270,24 @@ class="bg-default"
                         </select>
                       </div>
                       @error('tshirt_size')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="birth">{{ __('index.register.birth') }}</label>
+                    <label for="birth">{{ __('index.register.birth') }} <span class="text-danger" role="alert">{{ __('index.register.required') }}</span></label>
                     <div class="input-group input-group-merge input-group-alternative mb-3">
                         <input type="date" class="form-control" name="birth" value="{{ old('birth', '') }}" required>
                       </div>
                       @error('birth')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="Gender">{{ __('index.register.gender') }}</label><br>
+                    <label for="Gender">{{ __('index.register.gender') }}  <span class="text-danger" role="alert">{{ __('index.register.required') }}</span></label><br>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="gender_f" name="gender" class="custom-control-input" value="f" required>
                         <label class="custom-control-label" for="gender_f">{{ __('index.register.gender-f') }}</label>
@@ -299,12 +299,14 @@ class="bg-default"
                 </div>
                 <div class="form-group">
                     @error('gender')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="upload_image" class="mb-2">{{ __('index.register.profile.text') }} <span class="text-danger" role="alert">{{ __('index.register.required') }}</span></label>
+
                     <label for="upload_image" class="w-100">
                         <a class="btn btn-info text-dark btn-icon w-100">
                             <span class="btn-inner--icon"><i class="fas fa-camera"></i></span>
@@ -315,13 +317,13 @@ class="bg-default"
                     </label>
                     <p class="text-success text-center" id="text-photo"></p>
                     @error('profile')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="agreement">{{ __('index.register.agreement.text1') }} <br>
+                    <label for="agreement">{{ __('index.register.agreement.text1') }} <span class="text-danger" role="alert">{{ __('index.register.required') }}</span> <br>
                         {{ __('index.register.agreement.text2') }}:
                         <a class="font-weight-800" href="{{ url('/files/zgoda_wolontariat_pelnoletni.pdf') }}" target="_blank">{{ __('index.register.agreement.adult') }}</a> |
                         <a class="font-weight-800" href="{{ url('/files/zgoda_wolontariat_niepelnoletni.pdf') }}" target="_blank">{{ __('index.register.agreement.minor') }}</a><br>
@@ -331,7 +333,7 @@ class="bg-default"
                     <small>{{ __('index.register.agreement.size') }}: 7MB</small><br>
 
                     @error('agreement')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -346,7 +348,7 @@ class="bg-default"
                     </div>
                   </div>
                   @error('terms')
-                        <span class="text-danger small" role="alert">
+                        <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -354,7 +356,7 @@ class="bg-default"
                 <div class="text-center mt-4">
                     <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
                     @error('g-recaptcha-response')
-                        <span class="text-danger small text-left" role="alert">
+                        <span class="text-danger text-left" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror

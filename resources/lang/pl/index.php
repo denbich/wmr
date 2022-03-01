@@ -36,6 +36,7 @@ return [
     ],
 
     'register' => [
+        'required' => 'Wymagane',
         'title' => 'Zarejestruj się do ISOW!',
         'firstname' => 'Imię',
         'lastname' => 'Nazwisko',
@@ -67,6 +68,7 @@ return [
         'gender-f' => 'Kobieta',
         'profile' => [
             'button' => 'Dodaj zdjęcie profilowe',
+            'text' => 'Zdjęcie profilowe',
             'modal-h' => 'Wytnij zdjęcie',
             'modal-crop' => 'Wytnij',
             'modal-c' => 'Anuluj',

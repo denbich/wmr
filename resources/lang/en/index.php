@@ -36,6 +36,7 @@ return [
     ],
 
     'register' => [
+        'required' => 'Required',
         'title' => 'Register into ISOW',
         'firstname' => 'Firstname',
         'lastname' => 'Lastname',
@@ -66,6 +67,7 @@ return [
         'gender-f' => 'Female',
         'profile' => [
             'button' => 'Add profile photo',
+            'text' => 'Profile photo',
             'modal-h' => 'Crop a photo',
             'modal-crop' => 'Crop',
             'modal-c' => 'Cancel',
