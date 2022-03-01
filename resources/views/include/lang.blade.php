@@ -1,7 +1,6 @@
 <li class="nav-item dropdown text-center" data-toggle="tooltip" data-placement="top" title="">
     <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-language text-lg"></i>
-      <span class="nav-link-inner--text d-lg-none">{{ __('main.lang') }}</span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-lg  dropdown-menu-right  py-0 overflow-hidden">

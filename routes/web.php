@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\admin\AHomeController;
 use App\Http\Controllers\volunteer\VChatController;
 use App\Http\Controllers\volunteer\VHomeController;
 use App\Http\Controllers\volunteer\VFormsController;

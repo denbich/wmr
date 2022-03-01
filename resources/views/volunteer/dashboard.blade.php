@@ -76,7 +76,7 @@
                       <span class="h2 font-weight-bold mb-0">{{ $volunteer->id }}</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                      <div class="icon icon-shape bg-info text-white rounded-circle shadow">
                         <i class="fas fa-id-card-alt"></i>
                       </div>
                     </div>
@@ -93,7 +93,7 @@
                       <span class="h2 font-weight-bold mb-0">{{ $volunteer->points }}</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                      <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
                         <i class="fas fa-star"></i>
                       </div>
                     </div>
@@ -110,7 +110,7 @@
                       <span class="h2 font-weight-bold mb-0">{{ $count['prizes'] }}</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
+                      <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
                         <i class="fas fa-award"></i>
                       </div>
                     </div>
@@ -127,7 +127,7 @@
                       <span class="h2 font-weight-bold mb-0">{{ $count['forms'] }}</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                      <div class="icon icon-shape bg-green text-white rounded-circle shadow">
                         <i class="fas fa-clipboard-list"></i>
                       </div>
                     </div>

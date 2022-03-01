@@ -165,6 +165,7 @@ trait AuthenticatesUsers
      */
     public function logout(Request $request)
     {
+        $locale = session('locale');
         $this->guard()->logout();
 
         $request->session()->invalidate();
@@ -175,6 +176,7 @@ trait AuthenticatesUsers
             return $response;
         }
 
+        session(['locale' => $locale]);
         return $request->wantsJson()
             ? new JsonResponse([], 204)
             : redirect('/');
