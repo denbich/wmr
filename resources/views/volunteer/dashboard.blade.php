@@ -65,8 +65,24 @@
               </nav>
             </div>
           </div>
-          <div class="row" style="display: flex;
-          flex-wrap: wrap;">
+          <div class="row" style="display: flex; flex-wrap: wrap;">
+          <div class="col-xl-3 col-md-6 h-100">
+            <div class="card card-stats bg-info">
+              <div class="card-body my-3">
+                <div class="row">
+                  <div class="col">
+                    <h3 class="card-title text-uppercase text-secondary mb-0 font-weight-900">{{ __('volunteer.dashboard.headerukraine') }}</h3>
+                    <span class="h2 font-weight-bold mb-0"><a class="btn btn-primary mt-2" href="{{ route('v.form.show', [4]) }}">{{ __('volunteer.dashboard.textukraine') }}</a></span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
             <div class="col-xl-3 col-md-6 h-100">
               <div class="card card-stats">
                 <div class="card-body my-3">
@@ -101,23 +117,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6 h-100">
-              <div class="card card-stats">
-                <div class="card-body my-3">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">{{ __('volunteer.dashboard.c-prizes') }}</h5>
-                      <span class="h2 font-weight-bold mb-0">{{ $count['prizes'] }}</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
-                        <i class="fas fa-award"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
             <div class="col-xl-3 col-md-6 h-100">
               <div class="card card-stats">
                 <div class="card-body my-3">

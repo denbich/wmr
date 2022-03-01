@@ -35,6 +35,8 @@ return [
         'title' => 'Panel wolontariusza',
         'id' => 'Twoje ID',
         'points' => 'Punkty',
+        'headerukraine' => 'Akcja #PomagamUkrainie',
+        'textukraine' => 'Kliknij tutaj by zapisać się!',
         'c-prizes' => 'Liczba nagród',
         'c-forms' => 'Liczba formularzy',
         'posts' => [

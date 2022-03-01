@@ -35,6 +35,8 @@ return [
         'title' => 'Volunteer panel',
         'id' => 'Your ID',
         'points' => 'Points',
+        'headerukraine' => '#PomagamUkrainie capaign',
+        'textukraine' => 'Click here to sign up!',
         'c-prizes' => 'Number of prizes',
         'c-forms' => 'Number of forms',
         'posts' => [
