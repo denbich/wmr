@@ -142,7 +142,7 @@ Route::middleware('setlocale')->group(function () {
         });
     });
 
-    Route::middleware(['auth', 'volunteercheck', 'verified', 'agreementcheck'])->group(function () {
+    Route::middleware(['auth', 'volunteercheck', 'agreementcheck'])->group(function () { // 'verified',
         Route::prefix('volunteer')->group(function () {
             Route::get('/', [VHomeController::class, 'dashboard'])->name('v.dashboard');
             Route::get('/settings', [VHomeController::class, 'settings'])->name('v.settings');
