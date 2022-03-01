@@ -34,6 +34,8 @@ Route::middleware('setlocale')->group(function () {
     Route::get('/codex', [HomeController::class, 'codex'])->name('codex');
     Route::get('/volunteer-id/{volunteer}', [HomeController::class, 'volunteer'])->name('volunteer.id');
 
+    //Route::get('/hometest', [HomeController::class, 'hometest'])->name('hometest');
+
     Auth::routes(['verify' => true]);
 
     Route::middleware('auth')->group(function () {

@@ -12,10 +12,10 @@ return [
     'loginbutton' => 'Zaloguj się do panelu',
     'section1' => [
         'header' => 'Czym się zajmujemy?',
-        'text' => 'Ponad 4 lata doświadczenia',
+        'text' => 'Ponad 5 lat doświadczenia',
         'article' => [
-            'part1' => 'Wolontariusze MOSiR Rybnik to aktywna społeczność, która angażuje się w organizację wydarzeń na terenie całego Rybnika organizowanych przez Miejski ośrodek sportu i rekreacji w Rybniku! MOSiR Rybnik uczestniczy w międzynarodowym programie Erasmus+ Sport',
-            'part2' => 'skrót',
+            'part1' => 'Wolontariusze MOSiR Rybnik to aktywna społeczność, która angażuje się w organizację wydarzeń na terenie całego Rybnika organizowanych przez Miejski Ośrodek Sportu i Rekreacji w Rybniku! W ramach wolontariatu braliśmy udział w 3 projektach europejskich Erasmus + Sport:',
+            'part2' => 'W naszej grupie możesz zdobyć nowe umiejętności, doświadczenie i po prostu świetnie się bawić :) ',
         ],
     ],
     'section2' => [

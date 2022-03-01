@@ -10,11 +10,11 @@ class="bg-default"
 
 @section('content')
 
-<nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light ">
-    <div class="container">
+<nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
+    <div class="container text-primary">
         <div class="navbar-brand">
             <a class="" href="{{ route('home') }}">
-                <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmr1.svg') }}">
+                <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmrwhite.svg') }}">
               </a>
               <a class="" href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
@@ -22,7 +22,7 @@ class="bg-default"
         </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fas fa-bars"></i>
       </button>
       <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
         <div class="navbar-collapse-header">
@@ -75,7 +75,7 @@ class="bg-default"
           @include('include.lang')
 
           <li class="nav-item d-lg-block ml-lg-4 text-center">
-            <a href="{{ route('register') }}" class="btn btn-neutral btn-icon text-center">
+            <a href="{{ route('register') }}" class="btn btn-info btn-icon text-center text-dark">
               <span class="btn-inner--icon">
                 <i class="fas fa-handshake mr-2"></i>
               </span>
@@ -306,7 +306,7 @@ class="bg-default"
                 </div>
                 <div class="form-group">
                     <label for="upload_image" class="w-100">
-                        <a class="btn btn-primary btn-icon w-100 text-white">
+                        <a class="btn btn-info text-dark btn-icon w-100">
                             <span class="btn-inner--icon"><i class="fas fa-camera"></i></span>
                             <span class="btn-inner--text">{{ __('index.register.profile.button') }}</span>
                         </a>
@@ -390,7 +390,7 @@ class="bg-default"
               </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="crop" class="btn btn-primary">{{ __('index.register.profile.modal-crop') }}</button>
+                <button type="button" id="crop" class="btn btn-info text-dark">{{ __('index.register.profile.modal-crop') }}</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('index.register.profile.modal-c') }}</button>
             </div>
       </div>

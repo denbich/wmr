@@ -12,10 +12,10 @@ return [
     'loginbutton' => 'Log in to the dashboard',
     'section1' => [
         'header' => 'What we do?',
-        'text' => 'Over 4 years of experience',
+        'text' => 'Over 5 years of experience',
         'article' => [
-            'part1' => 'Volunteers of MOSiR Rybnik are an active community that is involved in the organization of events throughout Rybnik organized by the City Sports and Leisure Centre in Rybnik! MOSiR Rybnik participates in the international Erasmus + Sport program',
-            'part2' => 'abbreviation',
+            'part1' => 'Volunteers of MOSiR Rybnik is an active community that is involved in the organization of events throughout Rybnik organized by the City Sports and Leisure Centre in Rybnik! As part of our volunteering program, we took part in 3 Erasmus + Sport European projects:',
+            'part2' => 'In our group you can gain new skills, experience and just have a great time :)',
         ],
     ],
     'section2' => [

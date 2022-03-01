@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.test')
 
 @section('title')
 {{ __('home.title') }}
@@ -178,15 +178,15 @@
             <div class="card-body">
                     <div class="text-center">
                     <h1>{{ Str::upper(__('home.section4.header')) }}</h1>
-                        <div class="row mt-4">
-                            <div class="col-sm-4">
-                                <a href="https://www.facebook.com/zolty.mlynek.klubokawiarnia/" target="_blank" rel="noopener noreferrer"><img src="{{ url('img/zoltymlynek.jpg') }}" alt="" class="w-50"></a>
+                        <div class="row mt-4 px-8">
+                            <div class="col-lg-4 px-7">
+                                <a href="https://www.facebook.com/zolty.mlynek.klubokawiarnia/" target="_blank" rel="noopener noreferrer"><img src="{{ url('img/zoltymlynek.jpg') }}" alt="" class="w-100 p-5"></a>
                             </div>
-                            <div class="col-sm-4">
-                                <a href="https://mosir.rybnik.pl" target="_blank" rel="noopener noreferrer"><img src="{{ url('img/mosirrybnik.png') }}" alt="" class="w-50"></a>
+                            <div class="col-lg-4 px-7">
+                                <a href="https://mosir.rybnik.pl" target="_blank" rel="noopener noreferrer"><img src="{{ url('img/mosirrybnik.png') }}" alt="" class="w-100 p-5"></a>
                             </div>
-                            <div class="col-sm-4">
-                                <a href="https://rybnik.eu" target="_blank" rel="noopener noreferrer"><img src="{{ url('img/rybnik.png') }}" alt="" class="w-50"></a>
+                            <div class="col-lg-4 px-7">
+                                <a href="https://rybnik.eu" target="_blank" rel="noopener noreferrer"><img src="{{ url('img/rybnik.png') }}" alt="" class="w-100 p-5"></a>
                             </div>
                         </div>
                     </div>

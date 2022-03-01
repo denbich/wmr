@@ -106,8 +106,8 @@ class HomeController extends Controller
         }
     }
 
-    public function testregistration()
+    public function hometest()
     {
-        return view('auth.test');
+        return view('hometest');
     }
 }

@@ -12,6 +12,83 @@ class="bg-default"
 
 <!-- Navbar -->
 
+<nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
+    <div class="container text-primary">
+        <div class="navbar-brand">
+            <a class="" href="{{ route('home') }}">
+                <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmrwhite.svg') }}">
+              </a>
+              <a class="" href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
+              </a>
+        </div>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-8 collapse-brand text-center mx-auto">
+              <a href="{{ route('home') }}">
+                <img class="h-100" style="max-height: 110px; min-height:100px;" src="{{ url('/img/logowmr1.svg') }}" alt="wmr logo">
+
+              </a>
+              <a href="https://pomagamukrainie.gov.pl/" class="w-100 text-center mx-auto" target="_blank" rel="noopener noreferrer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" class="text-center mx-auto my-2" alt="Ukraine flag">
+            </a>
+            </div>
+            <div class="col-4 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a href="{{ route('home') }}" class="nav-link text-center">
+                <span class="nav-link-inner--text">{{ __('home.title') }}</span>
+              </a>
+            </li>
+            <li class="nav-item">
+                <li class="nav-item text-center">
+                    <div class="dropdown">
+                      <a class="nav-link dropdown-toggle text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('home.socialmedia.title')}}</a>
+
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item d-none" href=""><i class="fas fa-info-circle"></i> O nas</a>
+                        <a class="dropdown-item" href="https://facebook.com/wolontariat.rybnik" target="_blank"><i class="fab fa-facebook-square"></i> {{ __('home.socialmedia.facebook') }}</a>
+                        <a class="dropdown-item" href="https://instagram.com/wolontariat.rybnik" target="_blank"><i class="fab fa-instagram"></i> {{ __('home.socialmedia.instagram') }}</a>
+                      </div>
+                    </div>
+                  </li>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('login') }}" class="nav-link text-center">
+                    <span class="nav-link-inner--text">{{ __('main.login') }}</span>
+                </a>
+            </li>
+
+          </ul>
+        <hr class="d-lg-none" />
+        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+          @include('include.lang')
+
+          <li class="nav-item d-lg-block ml-lg-4 text-center">
+            <a href="{{ route('register') }}" class="btn btn-info btn-icon text-center text-dark">
+              <span class="btn-inner--icon">
+                <i class="fas fa-handshake mr-2"></i>
+              </span>
+              <span class="nav-link-inner--text">{{ __('main.signin') }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <!-- Main content -->
   <div class="main-content">
     <!-- Header -->

@@ -19,12 +19,6 @@ return [
 
     'menu' => [
         'search' => 'Szukaj',
-        'lang' => [
-            'choose' => 'Wybierz język',
-            'polish' => 'Polski',
-            'english' => 'English (Angielski)',
-            'ukrainian' => 'Yкраїнський (Ukraiński)',
-        ],
         'shortcut' => [
             'shortcut' => 'Skróty',
             'map' => 'Mapa',
@@ -35,12 +29,6 @@ return [
             'id' => 'Identyfikator',
             'settings' => 'Ustawienia',
         ],
-    ],
-
-    'footer' => [
-        'regulations' => 'Regulamin wolontariatu',
-        'codex' => 'Kodeks wolontariusza',
-        'privacy-policy' => 'Polityka prywatności',
     ],
 
     'dashboard' => [

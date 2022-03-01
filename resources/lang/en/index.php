@@ -27,10 +27,11 @@ return [
             'button' => 'Log in with Google',
             'text' => 'We never share content on your behalf.',
         ],
+        'facebook' => 'Log in with Facebook',
         'alerts' => [
             'success' => 'Sukces!',
-            'active' => 'Twoje konto nie jest aktywne! Oczekuj maila o aktywacji lub spróbuj później.',
-            'agreement' => 'Zgoda została wysłana pomyślnie! Oczekuj maila z widadomością o aktywacji.',
+            'active' => 'Your account is not active! Wait for an email about activation or try again later.',
+            'agreement' => 'The consent has been sent successfully! Wait for an email with a message about activation.',
         ],
     ],
 
@@ -81,13 +82,13 @@ return [
     ],
 
     'agreement' => [
-        'title' => 'Add agreement',
+        'title' => 'Upload agreement',
         'text' => [
             '1' => 'Your agreement',
             '2' => 'has expired',
             '3' => 'or coordinator',
-            '4' => 'nie zatwierdził',
-            '5' => 'your agreement, add a new agreement to log into the system!',
+            '4' => 'did not approved',
+            '5' => 'your agreement, upload a new agreement to log into ISOW!',
         ],
         'label1' => 'Agreement to participate in volunteering (PDF file)',
         'label2' => 'You can find them here:',
@@ -95,7 +96,7 @@ return [
         'minor' => 'minor',
         'file' => 'Maximum file size',
         'err' => 'There is a technical problem! please try again later!',
-        'button' => 'Add agreement',
+        'button' => 'Upload agreement',
     ],
 
     'password' => [
@@ -109,14 +110,14 @@ return [
         'email' => [
             'title' => 'Reset password',
             'text' => 'If you forgot password, you can reset it here! Just type your email.',
-            'email' => 'E-mail address',
+            'email' => 'Email address',
             'button' => 'Send password reset link',
             'login' => 'Go back to login page',
         ],
 
         'reset' => [
             'title' => 'Reset password',
-            'email' => 'E-mail address',
+            'email' => 'Email address',
             'password' => 'New password',
             'c-password' => 'Confirm new password',
             'button' => 'Reset password',

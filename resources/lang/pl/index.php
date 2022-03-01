@@ -27,10 +27,11 @@ return [
             'button' => 'Zaloguj się za pomocą Google',
             'text' => 'Nigdy nie udostępniamy treści w Twoim imieniu.',
         ],
+        'facebook' => 'Zaloguj się za pomocą Facebooka',
         'alerts' => [
             'success' => 'Sukces!',
             'active' => 'Twoje konto nie jest aktywne! Oczekuj maila o aktywacji lub spróbuj później.',
-            'agreement' => 'Zgoda została wysłana pomyślnie! Oczekuj maila z widadomością o aktywacji.',
+            'agreement' => 'Zgoda została wysłana pomyślnie! Oczekuj maila z wiadomością o aktywacji.',
         ],
     ],
 
@@ -79,7 +80,6 @@ return [
         'title' => 'Zanim przejdziesz dalej, sprawdź pocztę e-mail pod kątem linku weryfikacyjnego.',
         'alert' => 'Na Twój adres e-mail został wysłany nowy link weryfikacyjny.',
         'button' => 'Wyślij maila z linkiem ponownie',
-        'logout' => 'Wyloguj się',
 
     ],
 
@@ -90,7 +90,7 @@ return [
             '2' => 'straciła ważność',
             '3' => 'lub koordynator',
             '4' => 'nie zatwierdził',
-            '5' => 'twojej zgody, dodaj nową zgodę by zalogować się do systemu!',
+            '5' => 'twojej zgody, dodaj nową zgodę by zalogować się do ISOW!',
         ],
         'label1' => 'Zgoda na uczestnicwo w wolontariacie (plik PDF)',
         'label2' => 'Znajdziesz je tutaj:',

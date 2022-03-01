@@ -19,12 +19,6 @@ return [
 
     'menu' => [
         'search' => 'Search',
-        'lang' => [
-            'choose' => 'Choose language',
-            'polish' => 'Polish (Polski)',
-            'english' => 'English',
-            'ukrainian' => 'Yкраїнський (Ukrainian)',
-        ],
         'shortcut' => [
             'shortcut' => 'Shortcuts',
             'map' => 'Map',
@@ -35,12 +29,6 @@ return [
             'id' => 'Volunteer ID',
             'settings' => 'Settings',
         ],
-    ],
-
-    'footer' => [
-        'regulations' => 'Volunteering regulations',
-        'codex' => 'Volunteer codex',
-        'privacy-policy' => 'Privacy policy',
     ],
 
     'dashboard' => [

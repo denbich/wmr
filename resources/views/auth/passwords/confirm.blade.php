@@ -12,11 +12,11 @@ class="bg-default"
 
 <!-- Navbar -->
 
-<nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light ">
-    <div class="container">
+<nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
+    <div class="container text-primary">
         <div class="navbar-brand">
             <a class="" href="{{ route('home') }}">
-                <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmr1.svg') }}">
+                <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmrwhite.svg') }}">
               </a>
               <a class="" href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
@@ -24,7 +24,7 @@ class="bg-default"
         </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fas fa-bars"></i>
       </button>
       <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
         <div class="navbar-collapse-header">
@@ -77,7 +77,7 @@ class="bg-default"
           @include('include.lang')
 
           <li class="nav-item d-lg-block ml-lg-4 text-center">
-            <a href="{{ route('register') }}" class="btn btn-neutral btn-icon text-center">
+            <a href="{{ route('register') }}" class="btn btn-info btn-icon text-center text-dark">
               <span class="btn-inner--icon">
                 <i class="fas fa-handshake mr-2"></i>
               </span>
@@ -139,7 +139,7 @@ class="bg-default"
                             </div>
 
                                 <div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('index.password.confirm.button') }}</button>
+                                    <button type="submit" class="btn btn-info text-dark btn-user btn-block">{{ __('index.password.confirm.button') }}</button>
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">

@@ -76,24 +76,7 @@
                 </a>
               </li>
 
-              <li class="nav-item dropdown">
-                  <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-globe"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-lg  dropdown-menu-right  py-0 overflow-hidden">
-                      <div class="w-100 text-center mt-2">
-                          <span class="h4 text-center text-dark w-100">Wybierz język</span>
-                      </div>
-                    <div class="row shortcuts px-4 justify-content-center">
-                      <a href="/language/pl" class="col-4 my-2 shortcut-item text-center">
-                        <span class="shortcut-media avatar rounded-circle">
-                          <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/pl.svg" alt="">
-                        </span>
-                        <small>Polish (Polski)</small>
-                      </a>
-                    </div>
-                  </div>
-                </li>
+              @include('include.lang')
 
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
