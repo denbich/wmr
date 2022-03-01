@@ -174,6 +174,7 @@
                           </tbody>
                       </table>
                   </div>
+                  {!! $volunteers->links() !!}
                   </form>
                 </div>
             </div>

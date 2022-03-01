@@ -22,15 +22,16 @@ class CVolunteerController extends Controller
     public function list()
     {
         //$volunteers = User::where('role', 'volunteer')->with('volunteer')->get();
-        $volunteers = Volunteer::with('user')->get();
+        $volunteers = Volunteer::with('user')->paginate(15);
         return view('coordinator.volunteers.list', ['volunteers' => $volunteers]);
     }
 
     public function reset_points()
     {
-        for ($i = 33; $i <= 47; $i++)
+        $i = 1;
+        $volunteers = Volunteer::all();
+        foreach($volunteers as $volunteer)
         {
-            $volunteer = Volunteer::where('id', $i)->first();
             $points = $volunteer->points;
             $volunteer->points = 0;
             $volunteer->save();
@@ -38,6 +39,7 @@ class CVolunteerController extends Controller
             $datam = array('points' => $points);
 
             Mail::to(User::where('id', $volunteer->user_id)->pluck('email'))->send(new ResetPoints($datam));
+            $i++;
         }
 
         return $i;
