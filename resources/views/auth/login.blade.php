@@ -106,7 +106,7 @@ class="bg-default"
       </div>
 
     <div class="container mt--8 pb-5">
-      <div class="row justify-content-center "> <!-- row justify-content-center col-lg-5 col-md-7 -->
+      <div class="row justify-content-center px-2"> <!-- row justify-content-center col-lg-5 col-md-7 -->
           <div class="card bg-secondary border-0 mb-0 col-lg-5 col-md-7">
             <div class="">
                   <div class="">

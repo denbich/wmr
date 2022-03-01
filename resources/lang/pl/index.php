@@ -59,6 +59,8 @@ return [
             'adult' => 'pełnoletni',
             'minor' => 'niepełnoletni',
             'size' => 'Maksymalny rozmiar pliku',
+            'instruction1' => 'Instrukcja: wydrukuj zgodę, podpisz ją i wykonaj skan lub zdjęcie zgody (Do pliku PDF) albo podpisz',
+            'instruction2' => 'podpisem zaufanym',
         ],
         'gender' => 'Płeć',
         'gender-m' => 'Mężczyzna',

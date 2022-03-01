@@ -323,11 +323,13 @@ class="bg-default"
                 <div class="form-group">
                     <label for="agreement">{{ __('index.register.agreement.text1') }} <br>
                         {{ __('index.register.agreement.text2') }}:
-                        <a href="{{ url('/files/zgoda_wolontariat_pelnoletni.pdf') }}" target="_blank">{{ __('index.register.agreement.adult') }}</a> |
-                        <a href="{{ url('/files/zgoda_wolontariat_niepelnoletni.pdf') }}" target="_blank">{{ __('index.register.agreement.minor') }}</a>
+                        <a class="font-weight-800" href="{{ url('/files/zgoda_wolontariat_pelnoletni.pdf') }}" target="_blank">{{ __('index.register.agreement.adult') }}</a> |
+                        <a class="font-weight-800" href="{{ url('/files/zgoda_wolontariat_niepelnoletni.pdf') }}" target="_blank">{{ __('index.register.agreement.minor') }}</a><br>
+                        <span>{{ __('index.register.agreement.instruction1') }} <a class="font-weight-800" href="https://moj.gov.pl/nforms/signer/upload?xFormsAppName=SIGNER" target="_blank">{{ __('index.register.agreement.instruction2') }}</a></span>
                     </label>
                     <input type="file" class="form-control" accept=".pdf" name="agreement" required>
                     <small>{{ __('index.register.agreement.size') }}: 7MB</small><br>
+
                     @error('agreement')
                         <span class="text-danger small" role="alert">
                             <strong>{{ $message }}</strong>

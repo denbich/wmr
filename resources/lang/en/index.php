@@ -58,6 +58,8 @@ return [
             'adult' => 'adult',
             'minor' => 'minor',
             'size' => 'Maximum file size',
+            'instruction1' => 'Instruction: print the agreement, sign it and make a scan or photo of the agreement (PDF file) or sign it with a',
+            'instruction2' => 'trusted signature (podpis zaufany)',
         ],
         'gender' => 'Gender',
         'gender-m' => 'Male',
