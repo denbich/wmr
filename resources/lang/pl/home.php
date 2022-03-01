@@ -63,4 +63,20 @@ return [
         '15' => 'Zachęcamy innych do pomocy.',
         'text' => 'Każdy może być wolontariuszem!',
     ],
+
+    'ukraine' => [
+        'header' => 'Chcesz pomóc w adaptacji osób z Ukrainy w Rybniku?',
+        'button' => 'Dołącz do nas i zarejestruj się!',
+        'text1' => 'Budujemy bazę osób chcącym pomóc przybyłym uchodźcom z Ukrainy!',
+        'text2' => 'Jeżeli jesteś dyspozycyjny, posiadasz telefon z translatorem lub umiesz porozumiewać się w języku ukraińskim i masz otwarte serce na pomoc potrzebującym, to czekamy właśnie na CIEBIE!!',
+        'text3' => 'Jakie będą zadania?',
+        'list1' => 'Pomoc w zakupach,',
+        'list2' => 'wizyty u lekarza,',
+        'list3' => 'dostarczenie potrzebnych artykułów z magazynu,',
+        'list4' => 'pokazanie miasta,',
+        'list5' => 'pomoc w załatwieniu spraw w urzędach,',
+        'list6' => 'i wiele innych :)',
+        'age' => 'Minimum: 16 lat',
+        'questions' => 'Jeśli masz pytania pisz na adres:',
+    ],
 ];

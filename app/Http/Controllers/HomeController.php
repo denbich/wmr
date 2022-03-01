@@ -27,6 +27,11 @@ class HomeController extends Controller
         return view('codex');
     }
 
+    public function help_ukraine()
+    {
+        return view('ukraine');
+    }
+
     public function loginauth()
     {
         switch (Auth::user()->role) {

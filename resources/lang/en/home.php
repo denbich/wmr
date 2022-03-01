@@ -63,4 +63,20 @@ return [
         '15' => 'We encourage others to help.',
         'text' => 'Everyone Can Be Volunteer!',
     ],
+
+    'ukraine' => [
+        'header' => 'Do you want to help adapt people from Ukraine in Rybnik?',
+        'button' => 'Join us and register!',
+        'text1' => 'We are building a database of people who want to help refugees from Ukraine!',
+        'text2' => 'If you are available, you have a telephone with a translator or you can communicate in Ukrainian and you have an open heart to help those in need, we are waiting for YOU !!',
+        'text3' => 'What will the tasks be?',
+        'list1' => 'Help with shopping,',
+        'list2' => 'visits to the doctor,',
+        'list3' => 'delivery of necessary articles from warehouse,',
+        'list4' => 'show city,',
+        'list5' => 'assistance in dealing with matters in offices,',
+        'list6' => 'and more :)',
+        'age' => 'Minimum: 16 years old',
+        'questions' => 'If you have any questions, write to:',
+    ],
 ];

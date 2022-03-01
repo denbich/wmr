@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('Zweryfikuj adres email') }}
+#PomagamUkrainie
 @endsection
 
 @section('body')
@@ -9,16 +9,13 @@ class="bg-default"
 @endsection
 
 @section('content')
-
-<!-- Navbar -->
-
 <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
     <div class="container text-primary">
         <div class="navbar-brand">
             <a class="" href="{{ route('home') }}">
                 <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmrwhite.svg') }}">
               </a>
-              <a class="" href="{{ route('help_ukraine') }}" rel="noopener noreferrer">
+              <a class="" href="{{ route('help_ukraine') }}" target="_blank" rel="noopener noreferrer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
               </a>
         </div>
@@ -34,7 +31,7 @@ class="bg-default"
                 <img class="h-100" style="max-height: 110px; min-height:100px;" src="{{ url('/img/logowmr1.svg') }}" alt="wmr logo">
 
               </a>
-              <a href="{{ route('help_ukraine') }}" class="w-100 text-center mx-auto" rel="noopener noreferrer">
+              <a href="{{ route('help_ukraine') }}" class="w-100 text-center mx-auto" target="_blank" rel="noopener noreferrer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" class="text-center mx-auto my-2" alt="Ukraine flag">
             </a>
             </div>
@@ -89,95 +86,64 @@ class="bg-default"
     </div>
   </nav>
 
-  <!-- Main content -->
   <div class="main-content">
-    <!-- Header -->
-    <div class="header bg-gradient-primary py-5 py-lg-6 pt-lg-7">
-      <div class="container">
-        <div class="header-body text-center mb-7">
-          <div class="row justify-content-center">
-            <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+    <div class="header bg-gradient-primary py-8 py-lg-8 pt-lg-9">
+        <div class="container-fluid">
+          <div class="header-body text-center mb-6">
+            <div class="row justify-content-center">
+              <div class="col-xl-8 col-lg-8 col-md-8 px-5">
+                <h1 class="display-1 text-white mt-3 font-weight-700">{{ Str::upper(__('home.ukraine.header')) }}</h1>
+                <a href="{{ route('register') }}" class="btn btn-success text-lg">{{ __('home.ukraine.button') }}</a> <br><br>
+              @switch(session('locale'))
+                  @case('pl')
+                  <a href="{{ route('language', ['en']) }}" class="btn btn-info text-dark">Change language to english</a>
+                      @break
 
+                  @case('en')
+                  <a href="{{ route('language', ['pl']) }}" class="btn btn-info text-dark">Zmień język na polski</a>
+                  @break
+
+              @endswitch
+            </div>
             </div>
           </div>
         </div>
+        <div class="separator separator-bottom separator-skew zindex-100">
+          <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+          </svg>
+        </div>
       </div>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
-    </div>
-    <!-- Page content -->
-    <div class="container mt--8 pb-5">
-      <div class=""> <!-- row justify-content-center col-lg-5 col-md-7 -->
-          <div class="card bg-secondary border-0 mb-0">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="zdjecie-login w-100 h-100" style="margin-left:20px;"></div>
-                </div>
-                <div class="col-lg-6 my-5">
-                    <div class="card-header bg-transparent text-center">
-                        <a href="{{ route('login') }}"><img src="{{ url('/img/mosir-logo1.svg') }}" class="text-center"></a>
-                        <div class="mt-2 h2">{{ __('index.email.title') }}</div>
-                      </div>
-                      <div class="card-body pt-lg-3 pb-lg-4 px-lg-5">
-                        @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('index.email.alert') }}
-                        </div>
-                        @endif
-                        <form class="user mt-3" method="POST" action="{{ route('verification.resend') }}">
-                            @csrf
-                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('index.email.button') }}</button>
-                        </form>
-                        <form class="user mt-3" method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('main.logout') }}</button>
-                        </form>
-                          <hr class="my-2">
-                          <div class="text-center py-2 d-none">
-                            <h2><strong>{{ __('main.lang') }}</strong></h2>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <span class="shortcut-media avatar rounded-circle">
-                                        <a href="{{ route('language', ['pl']) }}"><img src="{{ URL::asset('lang/165-poland.svg') }}"></a>
-                                    </span>
 
-                                </div>
-                                <div class="col">
-                                    <span class="shortcut-media avatar rounded-circle">
-                                        <a href="{{ route('language', ['en']) }}"><img src="{{ URL::asset('lang/110-united kingdom.svg') }}"></a>
-                                    </span>
+    <div class="container mt--8">
 
-                                </div>
-                                <div class="col">
-                                    <a href="{{ route('language', ['uk']) }}"><img src="{{ URL::asset('lang/198-ukraine.svg') }}" alt="" class="w-75"></a>
-                                </div>
-                            </div>
-                            <a class="text-danger d-none" href="">{{ __('main.morelang') }}</a>
-                        </div>
-                      </div>
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center">{{ __('home.ukraine.text1') }}</h1>
+                        <h2 class="text-center">{{ __('home.ukraine.text2') }}</h2>
+                        <h3>{{ __('home.ukraine.text3') }}</h3>
+                        <h3>
+                            <ul>
+                                <li>{{ __('home.ukraine.list1') }}</li>
+                                <li>{{ __('home.ukraine.list2') }}</li>
+                                <li>{{ __('home.ukraine.list3') }}</li>
+                                <li>{{ __('home.ukraine.list4') }}</li>
+                                <li>{{ __('home.ukraine.list5') }}</li>
+                                <li>{{ __('home.ukraine.list6') }}</li>
+                            </ul>
+                        </h3>
+                        <h3 class="text-danger text-center">{{ __('home.ukraine.age') }}</h3>
+                        <h3>{{ __('home.ukraine.questions') }} <a href="mailto:sportkultura.rybnik@gmail.com">sportkultura.rybnik@gmail.com</a></h3>
+                    </div>
+                  </div>
             </div>
-
-
-          </div>
-          <div class="row mt-3">
-            <div class="col-6">
-
-            </div>
-            <div class="col-6 text-right">
-
-            </div>
-          </div>
-      </div>
+        </div>
     </div>
   </div>
-  <!-- Footer -->
+
   @include('auth.footer')
 
 @endsection
-
-
 

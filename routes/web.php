@@ -33,6 +33,7 @@ Route::middleware('setlocale')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/regulations', [HomeController::class, 'regulations'])->name('regulations');
     Route::get('/codex', [HomeController::class, 'codex'])->name('codex');
+    Route::get('/help-ukraine', [HomeController::class, 'help_ukraine'])->name('help_ukraine');
     Route::get('/volunteer-id/{volunteer}', [HomeController::class, 'volunteer'])->name('volunteer.id');
 
     //Route::get('/hometest', [HomeController::class, 'hometest'])->name('hometest');

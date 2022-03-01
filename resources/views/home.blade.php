@@ -11,7 +11,7 @@
             <a class="" href="{{ route('home') }}">
                 <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmrwhite.svg') }}">
               </a>
-              <a class="" href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
+              <a class="" href="{{  route('help_ukraine')  }}" target="_blank" rel="noopener noreferrer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
               </a>
         </div>
@@ -27,7 +27,7 @@
                 <img class="h-100" style="max-height: 110px; min-height:100px;" src="{{ url('/img/logowmr1.svg') }}" alt="wmr logo">
 
               </a>
-              <a href="https://pomagamukrainie.gov.pl/" class="w-100 text-center mx-auto" target="_blank" rel="noopener noreferrer">
+              <a href="{{ route('help_ukraine') }}" class="w-100 text-center mx-auto" target="_blank" rel="noopener noreferrer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" class="text-center mx-auto my-2" alt="Ukraine flag">
             </a>
             </div>
@@ -96,7 +96,7 @@
                     </span>
                     <span class="nav-link-inner--text">{{ Str::upper(__('home.loginbutton')) }}</span>
                   </a><br>
-                  <a href="https://pomagamukrainie.gov.pl/" class="btn btn-neutral mt-2 text-lg" target="_blank" rel="noopener noreferrer">{{ __('home.text') }}</a>
+                  <a href="{{ route('help_ukraine') }}" class="btn btn-neutral mt-2 text-lg" target="_blank" rel="noopener noreferrer">{{ __('home.text') }}</a>
               </div>
             </div>
           </div>

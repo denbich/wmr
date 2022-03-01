@@ -16,7 +16,7 @@ class="bg-default"
             <a class="" href="{{ route('home') }}">
                 <img class="h-25" style="max-height: 110px" src="{{ url('/img/logowmrwhite.svg') }}">
               </a>
-              <a class="" href="https://pomagamukrainie.gov.pl/" target="_blank" rel="noopener noreferrer">
+              <a class="" href="{{ route('help_ukraine') }}" rel="noopener noreferrer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="">
               </a>
         </div>
@@ -32,7 +32,7 @@ class="bg-default"
                 <img class="h-100" style="max-height: 110px; min-height:100px;" src="{{ url('/img/logowmr1.svg') }}" alt="wmr logo">
 
               </a>
-              <a href="https://pomagamukrainie.gov.pl/" class="w-100 text-center mx-auto" target="_blank" rel="noopener noreferrer">
+              <a href="{{ route('help_ukraine') }}" class="w-100 text-center mx-auto" rel="noopener noreferrer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" class="text-center mx-auto my-2" alt="Ukraine flag">
             </a>
             </div>
