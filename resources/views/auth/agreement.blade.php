@@ -122,7 +122,7 @@ class="bg-default"
                         <div class="mt-2 h1">{{ __('index.agreement.title') }}</div>
                       </div>
                       <div class="card-body pt-lg-3 pb-lg-4 px-lg-5">
-                        <h4>{{ __('index.ageement.text.1') }} <b>{{ __('index.ageement.text.2') }}</b> {{ __('index.ageement.text.3') }} <b>{{ __('index.ageement.text.4') }}</b> {{ __('index.ageement.text.5') }}</h4>
+                        <h4>{{ __('index.ageement.text1') }} <b>{{ __('index.ageement.text2') }}</b> {{ __('index.ageement.text3') }} <b>{{ __('index.ageement.text4') }}</b> {{ __('index.ageement.text5') }}</h4>
                         <form role="form" method="POST" action="{{ route('new.agreement') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mb-2">
