@@ -136,6 +136,10 @@ class="bg-default"
                         </h3>
                         <h3 class="text-danger text-center">{{ __('home.ukraine.age') }}</h3>
                         <h3>{{ __('home.ukraine.questions') }} <a href="mailto:sportkultura.rybnik@gmail.com">sportkultura.rybnik@gmail.com</a></h3>
+                        <div class="text-center mt-2">
+                            <a href="{{ route('register') }}" class="btn btn-success text-lg mx-auto">{{ __('home.ukraine.button') }}</a> <br><br>
+                        </div>
+
                     </div>
                   </div>
             </div>
