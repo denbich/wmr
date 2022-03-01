@@ -76,7 +76,7 @@ return [
         'list4' => 'pokazanie miasta,',
         'list5' => 'pomoc w załatwieniu spraw w urzędach,',
         'list6' => 'i wiele innych :)',
-        'age' => 'Minimum: 16 lat',
+        'age' => 'Minimalny wiek: 16 lat',
         'questions' => 'Jeśli masz pytania pisz na adres:',
         'text4' => 'Jak dołączyć?',
         'list11' => 'Kliknij w przycisk poniżej',

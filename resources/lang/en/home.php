@@ -76,7 +76,7 @@ return [
         'list4' => 'show the city of Rybnik,',
         'list5' => 'assistance in dealing with matters in offices,',
         'list6' => 'and more :)',
-        'age' => 'Minimum: 16 years old',
+        'age' => 'Minimum age: 16 years old',
         'questions' => 'If you have any questions, write to:',
         'text4' => 'How to join?',
          'list11' => 'Click the button below',
