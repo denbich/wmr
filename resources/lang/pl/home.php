@@ -78,5 +78,11 @@ return [
         'list6' => 'i wiele innych :)',
         'age' => 'Minimum: 16 lat',
         'questions' => 'Jeśli masz pytania pisz na adres:',
+        'text4' => 'Jak dołączyć?',
+        'list11' => 'Kliknij w przycisk poniżej',
+        'list12' => 'wypełnij forlumarz i prześlij zgodę',
+        'list13' => 'czekaj na zatwierdzenie koordynatora',
+        'list14' => 'zapisz się do formularza (boczne menu -> formularze -> formularz "#Pomagam Ukrainie")',
+
     ],
 ];

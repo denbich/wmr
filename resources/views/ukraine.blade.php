@@ -121,9 +121,9 @@ class="bg-default"
             <div class="col-lg-9">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="text-center">{{ __('home.ukraine.text1') }}</h1>
+                        <h1 class="text-center font-weight-900">{{ __('home.ukraine.text1') }}</h1>
                         <h2 class="text-center">{{ __('home.ukraine.text2') }}</h2>
-                        <h3>{{ __('home.ukraine.text3') }}</h3>
+                        <h3 class="font-weight-900">{{ Str::upper(__('home.ukraine.text3')) }}</h3>
                         <h3>
                             <ul>
                                 <li>{{ __('home.ukraine.list1') }}</li>
@@ -134,6 +134,13 @@ class="bg-default"
                                 <li>{{ __('home.ukraine.list6') }}</li>
                             </ul>
                         </h3>
+                        <h3 class="font-weight-900"> {{ Str::upper(__('home.ukraine.text4')) }}</h3>
+                        <h3><ol>
+                            <li>{{ __('home.ukraine.list11') }}</li>
+                            <li>{{ __('home.ukraine.list12') }}</li>
+                            <li>{{ __('home.ukraine.list13') }}</li>
+                            <li>{{ __('home.ukraine.list14') }}</li>
+                        </ol></h3>
                         <h3 class="text-danger text-center">{{ __('home.ukraine.age') }}</h3>
                         <h3>{{ __('home.ukraine.questions') }} <a href="mailto:sportkultura.rybnik@gmail.com">sportkultura.rybnik@gmail.com</a></h3>
                         <div class="text-center mt-2">

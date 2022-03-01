@@ -78,5 +78,10 @@ return [
         'list6' => 'and more :)',
         'age' => 'Minimum: 16 years old',
         'questions' => 'If you have any questions, write to:',
+        'text4' => 'How to join?',
+         'list11' => 'Click the button below',
+         'list12' => 'fill in the form and submit agreement',
+         'list13' => 'wait for approval of the coordinator',
+         'list14' => 'sign in to the form (side menu -> forms -> "#Pomagam ukrainie" form)',
     ],
 ];
