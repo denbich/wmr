@@ -76,7 +76,7 @@ class="bg-default"
           @include('include.lang')
 
           <li class="nav-item d-lg-block ml-lg-4 text-center">
-            <a href="{{ route('register') }}" class="btn btn-info btn-icon text-center text-dark">
+            <a href="{{ route('register') }}" class="btn btn-neutral btn-icon text-center">
               <span class="btn-inner--icon">
                 <i class="fas fa-handshake mr-2"></i>
               </span>
