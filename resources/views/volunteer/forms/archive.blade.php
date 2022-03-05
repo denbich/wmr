@@ -88,7 +88,7 @@
                           <a href="{{ route('v.form.show', [$form->id]) }}">
                               <div class="card">
                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                      <img class="w-100 h-auto" src="{{ $form->icon_src }}" alt="Card image cap">
+                                      <img class="w-100 h-auto" src="{{ $form->icon_src }}" style="max-width: 300px;" alt="Card image cap">
                                   </div>
 
                                   <div class="card-body">
