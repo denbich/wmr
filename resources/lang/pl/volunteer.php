@@ -167,6 +167,20 @@ return [
             'options' => 'Opcje',
             'button' => 'Archiwum',
             'err' => 'Brak aktywnych formularzy!',
+            'options' => [
+                'positions' => 'Przydzielone stanowisko',
+                'present' => 'Potwierdzona obecność',
+                'f' => [
+                    'unsaved' => 'Niezapisana',
+                    'saved' => 'Zapisana',
+                    'absent' => 'Nieobecna',
+                ],
+                'm' => [
+                    'unsaved' => 'Niezapisany',
+                    'saved' => 'Zapisany',
+                    'absent' => 'Nieobecny',
+                ],
+            ],
         ],
         'archive' => [
             'button' => 'Powrót do listy',

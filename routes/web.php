@@ -167,7 +167,7 @@ Route::middleware('setlocale')->group(function () {
 
             Route::prefix('/forms')->group(function() {
                 Route::get('/', [VFormsController::class, 'list'])->name('v.form.list');
-                //Route::get('/test', [VFormsController::class, 'test']);
+                Route::get('/test', [VFormsController::class, 'test']);
                 Route::get('/archive', [VFormsController::class, 'archive'])->name('v.form.archive');
                 Route::get('/id/{id}', [VFormsController::class, 'form'])->name('v.form.show');
                 Route::post('/id/{id}', [VFormsController::class, 'signto']);

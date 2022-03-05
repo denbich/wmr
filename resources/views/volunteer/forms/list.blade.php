@@ -64,6 +64,9 @@
                 </ol>
               </nav>
             </div>
+            <div class="col-lg-6 col-5 text-right">
+                <a href="{{ route('v.form.archive') }}" class="btn btn-icon btn-neutral"><span class="btn-inner--icon"><i class="fas fa-archive"></i></span><span class="btn-inner--text">{{ __('volunteer.form.list.button') }}</span></a>
+              </div>
           </div>
         </div>
       </div>
@@ -73,71 +76,88 @@
 
     <div class="container-fluid mt--6">
 
-        <div class="card">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-8">
-                  <h3 class="mb-0">{{ __('volunteer.form.list.title') }}</h3>
-                </div>
-              </div>
-            </div>
-              <div class="card-body">
-                  <a class="btn btn-icon btn-primary mb-2" href="{{ route('v.form.archive') }}">
-                      <span class="btn-inner--icon"><i class="fas fa-archive"></i></span>
-                      <span class="btn-inner--text">{{ __('volunteer.form.list.button') }}</span>
-                  </a>
-                  @php $formcount = 0; @endphp
-                    @foreach ($forms as $form)
-                        @if (date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime($form->calendar->end . " + 7 days"))) @php $formcount++; @endphp @endif
-                    @endforeach
-                  @if (count($forms) > 0 && $formcount > 0)
-                  <div class="table-responsive">
-                      <table class="table align-items-center table-flush">
-                          <thead class="thead-light text-center">
-                              <tr>
-                                  <th scope="col">{{ __('volunteer.form.list.name') }}</th>
-                                  <th scope="col">{{ __('volunteer.form.list.date') }}</th>
-                                  <th scope="col">{{ __('volunteer.form.list.count') }}</th>
-                                  <th scope="col">{{ __('volunteer.form.list.options') }}</th>
-                              </tr>
-                          </thead>
-                          <tbody class="list">
-                              @forelse ($forms as $form)
-                              @if (date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime($form->calendar->end . " + 7 days")))
-                              <tr>
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <a href="{{ route('v.form.show', [$form->id]) }}" class="avatar rounded-circle mr-3">
-                                        <img src="{{ $form->icon_src }}">
-                                        </a>
-                                        <div class="media-body">
-                                          <a href="{{ route('v.form.show', [$form->id]) }}"><span class="name mb-0 text-sm">{{ $form->form_translate->title  }}</span></a>
-                                        </div>
-                                    </div>
-                                </th>
-                                <td class="text-center">
-                                    <span class="name mb-0 text-sm">{{ $form->expiration }}</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="name mb-0 text-sm badge badge-primary">{{ $form->signed_form_count }}</span>
-                                </td>
-                                <td class="text-center">
-                                    <h4>
-                                        <a class="mx-1" href="{{ route('v.form.show', [$form->id]) }}">
-                                            <i class="fas fa-search"></i>
-                                        </a>
-                                    </h4>
-                                </td>
-                            </tr>
-                              @endif
+        <div>
 
-                              @empty <h2 class="text-center text-danger">{{ __('volunteer.form.list.err') }}</h2> @endforelse
-                          </tbody>
-                      </table>
-                  </div>
-                  @else <h2 class="text-center text-danger">{{ __('volunteer.form.list.err') }}</h2> @endif
-              </div>
+            @php $formcount = 0; @endphp
+            @foreach ($forms as $form)
+                @if (date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime($form->calendar->end . " + 7 days"))) @php $formcount++; @endphp @endif
+            @endforeach
+          @if (count($forms) > 0 && $formcount > 0)
+          <div class="row">
+                      @forelse ($forms as $form)
+                      @if (date('Y-m-d H:i:s') < date('Y-m-d H:i:s', strtotime($form->calendar->end . " + 7 days")))
+
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4 h-100">
+                            <a href="{{ route('v.form.show', [$form->id]) }}">
+                                <div class="card">
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <img class="w-100 h-auto" src="{{ $form->icon_src }}" alt="Card image cap">
+                                    </div>
+
+                                    <div class="card-body">
+                                    <h3 class="card-title text-primary mb-1">{{ $form->form_translate->title }}</h3>
+                                    <h4><i class="fas fa-users"></i> <span class="name mb-0 text-sm badge badge-primary">{{ $form->signed_form_count }}</span></h4>
+                                    <h4>{{ __('volunteer.form.list.date') }}: {{ $form->expiration }}</h4>
+                                    <h4 class="text-muted text-center">
+                                        @switch(Auth::user()->gender)
+                                            @case('f')
+                                            @if (empty($form->signed_form->condition) != true)
+                                                    @switch($form->signed_form->condition)
+                                                    @case(0)
+                                                    <span class="text-success">{{ __('volunteer.form.list.options.f.saved') }}</span>
+                                                        @break
+                                                    @case(1)
+                                                    {{ __('volunteer.form.list.options.positions') }}
+                                                    @break
+                                                    @case(2)
+                                                    <span class="text-success">{{ __('volunteer.form.list.options.present') }}</span>
+                                                    @break
+                                                    @case(3)
+                                                    <span class="text-danger">{{ __('volunteer.form.list.f.absent') }}</span>
+                                                    @break
+                                                    @default
+                                                    {{ __('volunteer.form.list.options.f.unsaved') }}
+                                                    @endswitch
+                                                @else
+                                                {{ __('volunteer.form.list.options.m.unsaved') }}
+                                                @endif
+                                                @break
+
+                                            @case('m')
+                                            @if (empty($form->signed_form->condition) != true)
+                                                    @switch($form->signed_form->condition)
+                                                    @case(0)
+                                                    <span class="text-success">{{ __('volunteer.form.list.options.m.saved') }}</span>
+                                                        @break
+                                                    @case(1)
+                                                    {{ __('volunteer.form.list.options.positions') }}
+                                                    @break
+                                                    @case(2)
+                                                    <span class="text-success">{{ __('volunteer.form.list.options.present') }}</span>
+                                                    @break
+                                                    @case(3)
+                                                    <span class="text-danger">{{ __('volunteer.form.list.m.absent') }}</span>
+                                                    @break
+                                                    @default
+                                                    {{ __('volunteer.form.list.options.m.unsaved') }}
+                                                    @endswitch
+                                                @else
+                                                {{ __('volunteer.form.list.options.m.unsaved') }}
+                                                @endif
+                                                @break
+                                        @endswitch
+
+                                    </h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                      @endif
+
+                      @empty <h2 class="text-center text-danger">{{ __('volunteer.form.list.err') }}</h2> @endforelse
           </div>
+          @else <h2 class="text-center text-danger">{{ __('volunteer.form.list.err') }}</h2> @endif
+        </div>
 
         @include('volunteer.include.footer')
       </div>

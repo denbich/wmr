@@ -166,6 +166,20 @@ return [
             'options' => 'Options',
             'button' => 'Archives',
             'err' => 'No active forms!',
+            'options' => [
+                'positions' => 'Assigned Position',
+                'present' => 'Confirmed presence',
+                'f' => [
+                    'unsaved' => 'Not singed up',
+                    'saved' => 'Signed up',
+                    'absent' => 'Absent',
+                ],
+                'm' => [
+                    'unsaved' => 'Not singed up',
+                    'saved' => 'Signed up',
+                    'absent' => 'Absent',
+                ],
+            ],
         ],
         'archive' => [
             'button' => 'Back to the list',
