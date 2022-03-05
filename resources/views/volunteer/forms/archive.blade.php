@@ -133,7 +133,7 @@
                                                 <span class="text-success">{{ __('volunteer.form.list.options.present') }}</span>
                                                 @break
                                                 @case(3)
-                                                <span class="text-danger">{{ __('volunteer.form.list.m.absent') }}</span>
+                                                <span class="text-danger">{{ __('volunteer.form.list.options.m.absent') }}</span>
                                                 @break
                                                 @default
                                                 {{ __('volunteer.form.list.options.m.unsaved') }}
