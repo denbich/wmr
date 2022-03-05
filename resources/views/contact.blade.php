@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('index.login.title') }}
+{{ __('Kontakt') }}
 @endsection
 
 @section('body')
@@ -9,9 +9,6 @@ class="bg-default"
 @endsection
 
 @section('content')
-
-<!-- Navbar -->
-
 <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
     <div class="container text-primary">
         <div class="navbar-brand">
@@ -89,14 +86,14 @@ class="bg-default"
     </div>
   </nav>
 
-  <!-- Main content -->
   <div class="main-content">
     <div class="header bg-gradient-primary py-8 py-lg-8 pt-lg-9">
-        <div class="container">
+        <div class="container-fluid">
           <div class="header-body text-center mb-6">
             <div class="row justify-content-center">
               <div class="col-xl-8 col-lg-8 col-md-8 px-5">
-              </div>
+                <h1 class="display-1 text-white mt-3 font-weight-700">{{ Str::upper(__('Kontakt')) }}</h1>
+            </div>
             </div>
           </div>
         </div>
@@ -106,64 +103,69 @@ class="bg-default"
           </svg>
         </div>
       </div>
-    <!-- Page content -->
-    <div class="container mt--8 pb-5">
-      <div class=""> <!-- row justify-content-center col-lg-5 col-md-7 -->
-          <div class="card bg-secondary border-0 mb-0">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="zdjecie-login w-100 h-100" style="margin-left:20px;"></div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card-header bg-transparent text-center">
-                        <a href="{{ route('login') }}"><img src="{{ url('/img/mosir-logo1.svg') }}" class="text-center"></a>
-                        <div class="mt-2 h2">{{ __('index.password.email.title') }}</div>
-                        <div> {{ __('index.password.email.text') }}</div>
-                      </div>
-                      <div class="card-body pt-lg-3 pb-lg-4 px-lg-5">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                             </div>
-                        @endif
-                        <form class="user mt-3" method="POST" action="{{ route('password.email') }}">
-                            @csrf
-                            <label for="email">{{ __('index.password.email.email') }}</label>
-                            <div class="form-group">
-                                <div class="input-group input-group-merge input-group-alternative">
-                                <input id="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                </div>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
 
+    <div class="container mt--8">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mapouter"><div class="gmap_canvas w-100"><iframe width="600" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=Municipal%20Sports%20and%20Recreation%20in%20Rybnik%20gliwicka%2072&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;}</style><a href="https://www.embedgooglemap.net"></a><style>.gmap_canvas {overflow:hidden;background:none!important;}</style></div></div>
                             </div>
-                            <button type="submit" class="btn btn-info text-dark btn-user btn-block">{{ __('index.password.email.button') }}</button>
-                            <a href="{{ route('login') }}" class="btn btn-outline-info text-dark btn-user btn-block">{{ __('index.password.email.login') }}</a>
-                        </form>
-                      </div>
-                </div>
+                            <div class="col-lg-6">
+                                <h2 class="text-center">Wolontariat MOSiR Rybnik w Miejskim Ośrodku Sportu i Rekreacji w Rybniku</h2>
+                                <h3>Adres MOSiR Rybnik</h3>
+                                <p class="text-dark">ul. Gliwicka 72 44-200 Rybnik</p>
+                                <h3>Telefony</h3>
+                                <p class="text-dark"> +48 601 062 746 - Koordynatorka Wiktoria <br> +48 530 403 181 - Administrator Denis</p>
+                                <h3>Email<h3>
+                                <p><a href="mailto:wolontariat.mosirrybnik@gmail.com">wolontariat.mosirrybnik@gmail.com</a> <br>
+                                    <a href="mailto:denis@mosir.rybnik.pl">denis@mosir.rybnik.pl</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="my-2">
+                            <h1 class="text-center">Formularz kontaktowy</h1>
+                            <form action="{{ route('contact') }}" method="post">
+                            @csrf
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="form-group @error('name') has-danger @enderror">
+                                        <label for="name">Imię i Nazwisko</label>
+                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" placeholder="np. Jan Kowalski" autofocus required>
+                                    </div>
+                                    <div class="form-group @error('email') has-danger @enderror">
+                                        <label for="email">Adres email</label>
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email" placeholder="np. imie@example.com" required>
+                                    </div>
+                                    <div class="form-group @error('message') has-danger @enderror">
+                                        <label for="message">Wiadomość</label>
+                                        <textarea name="message" id="message" cols="30" rows="4" style="resize: none" class="form-control @error('email') is-invalid @enderror"></textarea>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1" required>
+                                        <label class="custom-control-label h-auto" for="customCheck1">Oświadczam, że zapoznałem się z zasadami przetwarzania danych osobowych i wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w niniejszym formularzu przez Miejski Ośrodek Sportu i Rekreacji w Rybniku w celu przetworzenia wiadomości napisanej w niniejszym formularzu.</label>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary w-100 mt-3">Wyślij wiadomość</button>
+                                </div>
+                            </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                  </div>
             </div>
-
-
-          </div>
-          <div class="row mt-3">
-            <div class="col-6">
-
-            </div>
-            <div class="col-6 text-right">
-
-            </div>
-          </div>
-      </div>
+        </div>
     </div>
   </div>
-  <!-- Footer -->
+
   @include('auth.footer')
 
 @endsection
-
-
 

@@ -200,7 +200,7 @@ class="bg-default"
                                         <a href="{{ route('language', ['en']) }}"><img src="{{ URL::asset('lang/110-united kingdom.svg') }}"></a>
                                     </span>
                                 </div>
-                                <div class="col d-none">
+                                <div class="col">
                                     <span class="shortcut-media avatar rounded-circle">
                                         <a href="{{ route('language', ['uk']) }}"><img src="{{ URL::asset('lang/198-ukraine.svg') }}"></a>
                                     </span>

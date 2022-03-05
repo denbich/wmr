@@ -7,6 +7,7 @@ use App\Models\Calendar;
 use App\Models\Signed_form;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Contact_message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,6 +31,21 @@ class HomeController extends Controller
     public function help_ukraine()
     {
         return view('ukraine');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function send_message(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string|max:255',
+            'checkbox' => 'required',
+        ]);
     }
 
     public function loginauth()

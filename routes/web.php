@@ -22,11 +22,9 @@ use App\Http\Controllers\coordinator\CVolunteerController;
 
 App::setLocale(session('locale'));
 
-Route::get('language/{locale}', function($locale) {
-    session(['locale' => $locale]);
-        App::setLocale($locale);
-        return redirect(url()->previous());
-})->name('language');
+Route::get('language/{locale}', function($locale) { session(['locale' => $locale]); App::setLocale($locale); return back(); })->name('language');
+Route::get('/pl', function() { session(['locale' => 'pl']); App::setLocale('pl'); return back(); })->name('language.pl');
+Route::get('/en', function() { session(['locale' => 'en']); App::setLocale('en'); return back(); })->name('language.en');
 
 Route::middleware('setlocale')->group(function () {
 
@@ -34,6 +32,7 @@ Route::middleware('setlocale')->group(function () {
     Route::get('/regulations', [HomeController::class, 'regulations'])->name('regulations');
     Route::get('/codex', [HomeController::class, 'codex'])->name('codex');
     Route::get('/help-ukraine', [HomeController::class, 'help_ukraine'])->name('help_ukraine');
+    //Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('/volunteer-id/{volunteer}', [HomeController::class, 'volunteer'])->name('volunteer.id');
 
     //Route::get('/hometest', [HomeController::class, 'hometest'])->name('hometest');
@@ -168,6 +167,7 @@ Route::middleware('setlocale')->group(function () {
 
             Route::prefix('/forms')->group(function() {
                 Route::get('/', [VFormsController::class, 'list'])->name('v.form.list');
+                //Route::get('/test', [VFormsController::class, 'test']);
                 Route::get('/archive', [VFormsController::class, 'archive'])->name('v.form.archive');
                 Route::get('/id/{id}', [VFormsController::class, 'form'])->name('v.form.show');
                 Route::post('/id/{id}', [VFormsController::class, 'signto']);

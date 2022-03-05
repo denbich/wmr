@@ -33,7 +33,7 @@
             @endif
           </p>
         </a>
-        <a href="{{ route('language', ['uk']) }}" class="col-4 my-2 shortcut-item text-center d-none">
+        <a href="{{ route('language', ['uk']) }}" class="col-4 my-2 shortcut-item text-center">
             <span class="shortcut-media avatar rounded-circle">
               <img src="https://cdn.jsdelivr.net/npm/round-flag-icons/flags/ua.svg" alt="">
             </span>

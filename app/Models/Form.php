@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Form extends Model
 {
@@ -57,4 +58,8 @@ class Form extends Model
         return $this->hasMany(Signed_form::class, 'form_id', 'id');
     }
 
+    public function signervolunteer()
+    {
+        return $this->hasOne(Signed_form::class, 'volunteer_id', Auth::id());
+    }
 }

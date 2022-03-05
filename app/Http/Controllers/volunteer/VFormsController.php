@@ -20,7 +20,15 @@ class VFormsController extends Controller
         $forms = Form::with(['form_translate', 'calendar'])->withCount('signed_form')->get();
 
         return view('volunteer.forms.list', ['forms' => $forms]);
+    }
 
+    public function test()
+    {
+        $forms = Form::with(['form_translate', 'calendar', 'signed_form'])
+        //->whereHas('signedform', function($query){ return $query->where('volunteer_id', Auth::id()); })
+        ->withCount('signed_form')->get()->dd();
+
+        return view('volunteer.forms.test', ['forms' => $forms]);
     }
 
     public function form($id)
