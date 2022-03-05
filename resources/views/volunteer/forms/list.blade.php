@@ -99,10 +99,11 @@
                                     <h4><i class="fas fa-users"></i> <span class="name mb-0 text-sm badge badge-primary">{{ $form->signed_form_count }}</span></h4>
                                     <h4>{{ __('volunteer.form.list.date') }}: {{ $form->expiration }}</h4>
                                     <h4 class="text-muted text-center">
+                                        @php $signed = App\Models\Signed_form::where('form_id', $form->id)->where('volunteer_id', Auth::id())->first(); @endphp
                                         @switch(Auth::user()->gender)
                                             @case('f')
-                                            @if (empty($form->signed_form) != true)
-                                                    @switch($form->signed_form->condition)
+                                            @if (empty($signed) != true)
+                                                    @switch($signed->condition)
                                                     @case(0)
                                                     <span class="text-success">{{ __('volunteer.form.list.options.f.saved') }}</span>
                                                         @break
@@ -124,8 +125,8 @@
                                                 @break
 
                                             @case('m')
-                                            @if (empty($form->signed_form) != true)
-                                                    @switch($form->signed_form->condition)
+                                            @if (empty($signed) != true)
+                                                    @switch($signed->condition)
                                                     @case(0)
                                                     <span class="text-success">{{ __('volunteer.form.list.options.m.saved') }}</span>
                                                         @break
