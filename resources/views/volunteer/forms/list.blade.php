@@ -101,7 +101,7 @@
                                     <h4 class="text-muted text-center">
                                         @switch(Auth::user()->gender)
                                             @case('f')
-                                            @if (empty($form->signed_form->condition) != true)
+                                            @if (empty($form->signed_form) != true)
                                                     @switch($form->signed_form->condition)
                                                     @case(0)
                                                     <span class="text-success">{{ __('volunteer.form.list.options.f.saved') }}</span>
@@ -124,7 +124,7 @@
                                                 @break
 
                                             @case('m')
-                                            @if (empty($form->signed_form->condition) != true)
+                                            @if (empty($form->signed_form) != true)
                                                     @switch($form->signed_form->condition)
                                                     @case(0)
                                                     <span class="text-success">{{ __('volunteer.form.list.options.m.saved') }}</span>
