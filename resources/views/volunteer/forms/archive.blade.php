@@ -122,6 +122,7 @@
 
                                         @case('m')
                                         @if (empty($form->signed_form) != true)
+                                        {{ $form->signed_form->condition }}
                                                 @switch($form->signed_form->condition)
                                                 @case(0)
                                                 <span class="text-success">{{ __('volunteer.form.list.options.m.saved') }}</span>
