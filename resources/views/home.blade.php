@@ -125,7 +125,7 @@
                                 <li><a href="https://sport4change.aiij.org/" target="_blank" rel="noopener noreferrer">Sport for Change</a></li>
                             </ul>
                              <p class="text-dark font-weight-500">{{ __('home.section1.article.part2') }}</p>
-                            <a href="{{ url('/files/kodeks_wolontariuszy_MOSiR_Rybnik.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn btn-info text-dark my-1">{{ Str::upper(__('index.footer.codex')) }}</a>
+                            <a href="{{ route('codex') }}" target="_blank" rel="noopener noreferrer" class="btn btn-info text-dark my-1">{{ Str::upper(__('index.footer.codex')) }}</a>
                             <a href="{{ url('/files/regulamin_wolontariatu_MOSiR_Rybnik.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn btn-info text-dark my-1">{{ Str::upper(__('index.footer.regulations')) }}</a>
                         </div>
                         <div class="col-lg-6">
