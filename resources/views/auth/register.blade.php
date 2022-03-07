@@ -343,7 +343,7 @@ class="bg-default"
                     <div class="custom-control custom-control-alternative custom-checkbox">
                       <input class="custom-control-input" id="customCheckRegister" type="checkbox" name="terms" required>
                       <label class="custom-control-label" for="customCheckRegister">
-                        <span class="text-muted">{{ __('index.register.accept') }} <a href="https://wolontariat.rybnik.pl/pliki/regulamin_wolontariatu_MOSiR_Rybnik.pdf" target="_blank">{{ __('index.register.accept-r') }}</a> {{ __('main.and') }} <a href="https://wolontariat.rybnik.pl/pliki/kodeks_wolontariuszy_MOSiR_Rybnik.pdf" target="_blank">{{ __('index.register.accept-c') }}</a></span>
+                        <span class="text-muted">{{ __('index.register.accept') }} <a href="{{ url('/files/regulamin_wolontariatu_MOSiR_Rybnik.pdf') }}" target="_blank">{{ __('index.register.accept-r') }}</a> {{ __('main.and') }} <a href="{{ route('codex') }}" target="_blank">{{ __('index.register.accept-c') }}</a></span>
                       </label>
                     </div>
                   </div>
