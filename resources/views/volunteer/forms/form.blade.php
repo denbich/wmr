@@ -190,7 +190,7 @@
                                 <p>{{ __('volunteer.form.form.sign.0.text3') }}</p>
                                 <p class="text-sm">* - {{ __('volunteer.form.form.sign.0.text4') }}</p>
                             </div>
-                            @if ($form->expiration < date('Y-m-d H:i'))
+                            @if ($form->expiration > date('Y-m-d H:i'))
                             <form action="{{ route('v.form.unsign', [$form->id]) }}" method="post">
                                 @csrf
                                 <input type="hidden" name="position" value="{{ $signed_volunteer->id }}">
