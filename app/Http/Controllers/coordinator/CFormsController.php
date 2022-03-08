@@ -399,7 +399,7 @@ class CFormsController extends Controller
             $file = Storage::disk('forms')->put('sign/'.$imageName, base64_decode($image));
 
             $filepath = '/forms/sign/'.$imageName;
-            $form = Signed_form::where('volunteer_id', $request->volunteer_id)->where('form_id', $request->form_id)->first();
+            $form = Signed_form::where('volunteer_id', $request->volunteer_id)->where('form_id', $request->form_id)->with('post_form')->first();
             Form_signature::create([
                 'form_id' => $request->form_id,
                 'volunteer_id' => $request->volunteer_id,
@@ -407,7 +407,12 @@ class CFormsController extends Controller
                 'sign_path' => $filepath,
             ]);
 
-            $form->condition = 2;
+            $volunteer = Volunteer::where('user_id', $request->volunteer_id)->first();
+            $points = $volunteer->points + $form->post_form->points;
+            $volunteer->points = $points;
+
+            $form->condition = 3;
+            $volunteer->save();
             $form->save();
 
             return true;
@@ -419,7 +424,7 @@ class CFormsController extends Controller
         if($request->ajax())
         {
             $form = Signed_form::where('volunteer_id', $request->volunteer_id)->where('form_id', $request->form_id)->first();
-            $form->condition = 3;
+            $form->condition = 2;
             $form->save();
 
             return true;
