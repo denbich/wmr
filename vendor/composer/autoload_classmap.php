@@ -58,6 +58,7 @@ return array(
     'App\\Models\\Calendar' => $baseDir . '/app/Models/Calendar.php',
     'App\\Models\\Contact_message' => $baseDir . '/app/Models/Contact_message.php',
     'App\\Models\\Form' => $baseDir . '/app/Models/Form.php',
+    'App\\Models\\Form_signature' => $baseDir . '/app/Models/Form_signature.php',
     'App\\Models\\Message' => $baseDir . '/app/Models/Message.php',
     'App\\Models\\Order_prize' => $baseDir . '/app/Models/Order_prize.php',
     'App\\Models\\Position_form' => $baseDir . '/app/Models/Position_form.php',

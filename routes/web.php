@@ -116,6 +116,8 @@ Route::middleware('setlocale')->group(function () {
             Route::get('/forms/presence/{id}', [CFormsController::class, 'presence'])->name('c.form.presence');
             Route::post('/forms/presence/{id}', [CFormsController::class, 'save_presence']);
             Route::get('/forms/sign/{id}', [CFormsController::class, 'sign'])->name('c.form.sign');
+            Route::post('/forms/sign/{id}', [CFormsController::class, 'save_sign']);
+            Route::post('/forms/reject/{id}', [CFormsController::class, 'reject_sign'])->name('c.form.reject');
             Route::get('/forms/view-presence/{id}', [CFormsController::class, 'view_presence'])->name('c.form.viewpresence');
 
             Route::resource('/forms', CFormsController::class, ['names' => [

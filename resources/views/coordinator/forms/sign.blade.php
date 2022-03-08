@@ -102,40 +102,36 @@
               </div>
             </div>
             <div class="card-body" style="min-height: 500px">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <select class="form-control">
+                    <div class="row my-1">
+                        <div class="col-lg-6 my-1">
+                            <select class="form-control" name="volunteer_id" id="volunteer_id">
                                 @foreach ($signed_volunteers as $sign)
-                                    <option value="">{{ $sign->volunteer->name }}</option>
+                                    <option value="{{ $sign->volunteer->id }}">{{ $sign->volunteer->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 my-1">
                             <button class="btn btn-primary" type="subuttonbmit" id="button-accept">Zatwierdź</button>
-                            <button class="btn btn-info" type="button" id="clear">Resetuj</button>
+                            <button class="btn btn-info text-dark" type="button" id="clear">Resetuj</button>
+                            <button class="btn btn-danger" type="button" id="button-reject">Nieobecność</button>
+
                         </div>
                     </div>
-                    <div id="toolsButtons"></div>
+                    <div class="justify-content-center">
+                        <div id="toolsButtons"></div>
+                    </div>
             </div>
           </div>
 
         @yield('coordinator.include.footer')
       </div>
   </div>
+</form>
 
 @endsection
 
 @section('script')
 
-<script>
-    $( document ).ready(function() {
-        $("#button-accept").click(function() {
-            alert( "Handler for .click() called." );
-        });
-    });
-</script>
-
-@foreach ($signed_volunteers as $signed)
   <script>
     // SETTING ALL VARIABLES
 
@@ -184,13 +180,49 @@
       canvas.width = 600;
       canvas.height = 300;
       canvas.style.zIndex = 8;
-      canvas.style.position = "absolute";
+      //canvas.style.position = "absolute";
       canvas.style.border = "1px solid";
       ctx.fillStyle = currentBg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       //body.appendChild(canvas);
       body.appendChild(canvas);
+      canvas.classList.add("mx-auto");
   }
+
+  function downloadCanvas(link, canvas, filename) {
+			link.href = document.getElementById(canvas).toDataURL();
+			link.download = filename;
+		}
+
+		// SAVE FUNCTION
+
+		function save() {
+			localStorage.removeItem("savedCanvas");
+			localStorage.setItem("savedCanvas", JSON.stringify(linesArray));
+			console.log("Saved canvas!");
+		}
+
+		// LOAD FUNCTION
+
+		function load() {
+			if (localStorage.getItem("savedCanvas") != null) {
+				linesArray = JSON.parse(localStorage.savedCanvas);
+				var lines = JSON.parse(localStorage.getItem("savedCanvas"));
+				for (var i = 1; i < lines.length; i++) {
+					ctx.beginPath();
+					ctx.moveTo(linesArray[i-1].x, linesArray[i-1].y);
+					ctx.lineWidth  = linesArray[i].size;
+					ctx.lineCap = "round";
+					ctx.strokeStyle = linesArray[i].color;
+					ctx.lineTo(linesArray[i].x, linesArray[i].y);
+					ctx.stroke();
+				}
+				console.log("Canvas loaded.");
+			}
+			else {
+				console.log("No canvas in memory!");
+			}
+		}
 
   // GET MOUSE POSITION
 
@@ -228,6 +260,16 @@
       }
   }
 
+  function store(x, y, s, c) {
+			var line = {
+				"x": x,
+				"y": y,
+				"size": s,
+				"color": c
+			}
+			linesArray.push(line);
+		}
+
   // ON MOUSE UP
 
   function mouseup() {
@@ -235,7 +277,60 @@
       store()
   }
 </script>
-  @endforeach
+
+  <script>
+    $( document ).ready(function() {
+        $("#button-accept").click(function() {
+            var signData = canvas.toDataURL('image/png', 1);
+            var vid = $("#volunteer_id option:selected").val();
+            console.log(vid);
+            $.ajax({
+            type: "POST",
+            url: "{{ route('c.form.sign', [$form->id]) }}",
+            data: {
+                sign: signData,
+                form_id: {!! $form->id !!},
+                volunteer_id: vid,
+                _token: $('meta[name="csrf-token"]').attr('content'),
+            },
+            success:function(response){
+                window.location.reload();
+                console.log(response);
+            },
+            error: function(error) {
+            console.log(error);
+            }
+            });
+        });
+
+        $("#button-reject").click(function() {
+            var vid = $("#volunteer_id option:selected").val();
+            $.ajax({
+            type: "POST",
+            url: "{{ route('c.form.reject', [$form->id]) }}",
+            data: {
+                form_id: {!! $form->id !!},
+                volunteer_id: vid,
+                _token: $('meta[name="csrf-token"]').attr('content'),
+            },
+            success:function(response){
+                window.location.reload();
+                console.log(response);
+            },
+            error: function(error) {
+            console.log(error);
+            }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    </script>
 @endsection
 
 

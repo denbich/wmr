@@ -630,6 +630,7 @@ class ComposerStaticInit0a4bc768cacabed2d6aeef532bd8e870
         'App\\Models\\Calendar' => __DIR__ . '/../..' . '/app/Models/Calendar.php',
         'App\\Models\\Contact_message' => __DIR__ . '/../..' . '/app/Models/Contact_message.php',
         'App\\Models\\Form' => __DIR__ . '/../..' . '/app/Models/Form.php',
+        'App\\Models\\Form_signature' => __DIR__ . '/../..' . '/app/Models/Form_signature.php',
         'App\\Models\\Message' => __DIR__ . '/../..' . '/app/Models/Message.php',
         'App\\Models\\Order_prize' => __DIR__ . '/../..' . '/app/Models/Order_prize.php',
         'App\\Models\\Position_form' => __DIR__ . '/../..' . '/app/Models/Position_form.php',

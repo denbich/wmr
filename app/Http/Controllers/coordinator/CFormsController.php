@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
 use App\Models\Position_form;
+use App\Models\Form_signature;
 use App\Models\Translate_form;
 use Elibyy\TCPDF\Facades\TCPDF;
 use App\Http\Controllers\Controller;
@@ -379,9 +380,50 @@ class CFormsController extends Controller
     {
         $form = Form::where('id', $id)->with('form_translate')->first();
         $form_positions = Position_form::where('form_id', $id)->with('translate_form_position')->withCount('signed_form')->get();
-        $signed_volunteers = Signed_form::where('form_id', $id)->with(['volunteer', 'position'])->get();
+        $signed_volunteers = Signed_form::where('form_id', $id)->where('condition', 1)->with(['volunteer', 'position'])->get();
 
         return view('coordinator.forms.sign', ['form' => $form,'form_positions' => $form_positions, 'signed_volunteers' => $signed_volunteers]);
+    }
+
+    public function save_sign(Request $request)
+    {
+        if($request->ajax())
+        {
+            $image_64 = $request->sign;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+
+            $imageName = Str::random(100).time().'.'.$extension;
+            $file = Storage::disk('forms')->put('sign/'.$imageName, base64_decode($image));
+
+            $filepath = '/forms/sign/'.$imageName;
+            $form = Signed_form::where('volunteer_id', $request->volunteer_id)->where('form_id', $request->form_id)->first();
+            Form_signature::create([
+                'form_id' => $request->form_id,
+                'volunteer_id' => $request->volunteer_id,
+                'sign_id' => $form->id,
+                'sign_path' => $filepath,
+            ]);
+
+            $form->condition = 2;
+            $form->save();
+
+            return true;
+        }
+    }
+
+    public function reject_sign(Request $request)
+    {
+        if($request->ajax())
+        {
+            $form = Signed_form::where('volunteer_id', $request->volunteer_id)->where('form_id', $request->form_id)->first();
+            $form->condition = 3;
+            $form->save();
+
+            return true;
+        }
     }
 
     public function view_presence($id)
