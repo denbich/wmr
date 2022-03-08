@@ -454,7 +454,7 @@ class CFormsController extends Controller
         //$auto_page_break = $pdf::getAutoPageBreak();
         //$pdf::SetAutoPageBreak(false, 0);
         $img_file = url('/img/back.png');
-        $pdf::Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+        $pdf::Image($img_file, 0, 100, 210, 297, '', '', '', false, 300, '', false, false, 0);
         //$pdf::SetAutoPageBreak($auto_page_break, $bMargin);
         //$pdf::setPageMark();
 
@@ -465,11 +465,10 @@ class CFormsController extends Controller
                     $pdf::writeHTMLCell(0, 0, '', '15', $html1, 0, 1, 0, true, '', true);
 
                     //$pdf::write2DBarcode('https://wolontariat.rybnik.pl/id/', 'QRCODE,Q', 31, 104, 65, 65);
-                    $pdf::image("https://wolontariat.rybnik.pl", '115', '104', '65', '65');
+                    //$pdf::image("https://wolontariat.rybnik.pl", '115', '104', '65', '65');
 
                     $html2 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
-                    <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
-                    <p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                    <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
                     <h1 style="text-align:center">'."IMIE".'</h1>
                     <p></p><p></p>
                     <h1 style="text-align:center">'."NAZWISKO".'</h1>
