@@ -42,7 +42,7 @@
   <div class="row">
     <div class="col-12">
       <div class="chat-box-tray">
-            <input type="text" class="w-100" id="messageinput" placeholder="Type your message here...">
+            <input type="text" class="w-100 pl-2" id="messageinput" placeholder="Type your message here...">
             <div class="sendbtn" style="cursor: pointer" id="{{ $message->receiver }}"><i class="far fa-paper-plane"></i></div>
             <script>
                 $('.sendbtn').click(function () {

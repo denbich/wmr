@@ -91,7 +91,7 @@
               </div>
                 <div class="card-body">
                     <h1 class="text-center text-danger">Czat jest niedostępny! Spróbuj później</h1>
-                        <div class="row no-gutters">
+                        <div class="row no-gutters d-none">
                           <div class="col-md-4 border-right" >
                             <div class="settings-tray">
                               <img class="profile-image" src="{{ Auth::user()->photo_src }}" alt="Profile img">
