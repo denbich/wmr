@@ -442,42 +442,49 @@ class CFormsController extends Controller
 
     public function generate_id(Request $request, $id)
     {
-        //dd($request->all());
         $pdf = new TCPDF();
         $pdf::SetTitle('Indentyfikatory');
-        $pdf::AddPage("P");
-        $lg['a_meta_charset'] = 'UTF-8';
-        $pdf::setLanguageArray($lg);
-        $pdf::SetFont('dejavusans','b',15);
 
-        //$bMargin = $pdf::getBreakMargin();
-        //$auto_page_break = $pdf::getAutoPageBreak();
-        //$pdf::SetAutoPageBreak(false, 0);
-        $img_file = url('/img/back.png');
-        $pdf::Image($img_file, 0, 100, 210, 297, '', '', '', false, 300, '', false, false, 0);
-        //$pdf::SetAutoPageBreak($auto_page_break, $bMargin);
-        //$pdf::setPageMark();
+        $volunteers = Signed_form::where('form_id', $id)->with('trans_form', 'volunteer', 'position')->get();
 
-        $html1 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
-                    <h1 style="color:#73b644; text-align:center; width:100%; font-size: 24px;">'."NAZWA EVENTU".'</h1>';
+        switch($request->theme)
+        {
+            case('l'):
+                foreach($volunteers as $volunteer)
+                {
+                    $pdf::AddPage("P");
+                    $lg['a_meta_charset'] = 'UTF-8';
+                    $pdf::setLanguageArray($lg);
+                    $pdf::SetFont('dejavusans','b',15);
+                    $bMargin = $pdf::getBreakMargin();
+                    $auto_page_break = $pdf::getAutoPageBreak();
+                    $pdf::SetAutoPageBreak(false, 0);
+                    $img_file = url('/img/INDETYFIKATOR.png');
+                    $pdf::Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+                    $pdf::SetAutoPageBreak($auto_page_break, $bMargin);
+                    $pdf::setPageMark();
 
-                    //<<<EOD EOD;
+                    $html1 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><h1 style="color:#73b644; text-align:center; width:100%; font-size: 24px;">'.$volunteer->trans_form->title.'</h1>';
                     $pdf::writeHTMLCell(0, 0, '', '15', $html1, 0, 1, 0, true, '', true);
 
-                    //$pdf::write2DBarcode('https://wolontariat.rybnik.pl/id/', 'QRCODE,Q', 31, 104, 65, 65);
-                    //$pdf::image("https://wolontariat.rybnik.pl", '115', '104', '65', '65');
+                    $code = substr($volunteer->volunteer->firstname, 0, 1).substr($volunteer->volunteer->lastname, 0, 1).date('dm', strtotime($volunteer->volunteer->created_at)).$volunteer->volunteer->gender.date('dm', strtotime($volunteer->volunteer->agreement_date)).$volunteer->volunteer->id;
 
-                    $html2 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
-                    <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
-                    <h1 style="text-align:center">'."IMIE".'</h1>
-                    <p></p><p></p>
-                    <h1 style="text-align:center">'."NAZWISKO".'</h1>
-                    <p></p><p></p>
-                    <h1 style="text-align:center">'."LOGIN".'</h1>
-                    <p></p>
-                    <h1 style="text-align:center; color:#283b9b; font-size:40px;">'."STANOWISKO".'</h1>';
+                    $pdf::write2DBarcode('https://wolontariat.rybnik.pl/id/'.$code, 'QRCODE,Q', 31, 104, 65, 65);
 
+                    $imageurl = url($volunteer->volunteer->photo_src);
+                    $pdf::image($imageurl, '115', '104', '65', '65');
+
+                    $html2 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                    <h1 style="text-align:center;">'.$volunteer->volunteer->firstname.'</h1>
+                    <p style="font-size:5px;"></p>
+                    <h1 style="text-align:center">'.$volunteer->volunteer->lastname.'</h1>
+                    <p style="font-size:5px;"></p>
+                    <h1 style="text-align:center">'.$volunteer->volunteer->name.'</h1>
+                    <h2 style="text-align:center; color:#283b9b; font-size:40px;">'.$volunteer->position->title.'</h2>';
                     $pdf::writeHTMLCell(0, 0, '', '15', $html2, 0, 1, 0, true, '', true);
+                }
+                break;
+        }
 
         $pdf::Output('indetyfikatory.pdf');
     }
