@@ -480,7 +480,7 @@ class CFormsController extends Controller
                     <h1 style="text-align:center">'.$volunteer->volunteer->lastname.'</h1>
                     <p style="font-size:5px;"></p>
                     <h1 style="text-align:center">'.$volunteer->volunteer->name.'</h1>
-                    <h2 style="text-align:center; color:#283b9b; font-size:40px;">'.$volunteer->position->title.'</h2>';
+                    <h2 style="text-align:center; color:#283b9b; font-size:35px;">'.$volunteer->position->title.'</h2>';
                     $pdf::writeHTMLCell(0, 0, '', '15', $html2, 0, 1, 0, true, '', true);
                 }
                 break;
