@@ -464,7 +464,7 @@ class CFormsController extends Controller
                     $pdf::SetAutoPageBreak($auto_page_break, $bMargin);
                     $pdf::setPageMark();
 
-                    $html1 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><h1 style="color:#73b644; text-align:center; width:100%; font-size: 24px;">'.$volunteer->trans_form->title.'</h1>';
+                    $html1 = '<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><h1 style="color:#73b644; text-align:center; width:100%; font-size: 22px;">'.$volunteer->trans_form->title.'</h1>';
                     $pdf::writeHTMLCell(0, 0, '', '15', $html1, 0, 1, 0, true, '', true);
 
                     $code = substr($volunteer->volunteer->firstname, 0, 1).substr($volunteer->volunteer->lastname, 0, 1).date('dm', strtotime($volunteer->volunteer->created_at)).$volunteer->volunteer->gender.date('dm', strtotime($volunteer->volunteer->agreement_date)).$volunteer->volunteer->id;
