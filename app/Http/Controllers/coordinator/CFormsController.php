@@ -469,7 +469,7 @@ class CFormsController extends Controller
 
                     $code = substr($volunteer->volunteer->firstname, 0, 1).substr($volunteer->volunteer->lastname, 0, 1).date('dm', strtotime($volunteer->volunteer->created_at)).$volunteer->volunteer->gender.date('dm', strtotime($volunteer->volunteer->agreement_date)).$volunteer->volunteer->id;
 
-                    $pdf::write2DBarcode('https://wolontariat.rybnik.pl/id/'.$code, 'QRCODE,Q', 31, 104, 65, 65);
+                    $pdf::write2DBarcode('https://wolontariat.rybnik.pl/volunteer-id/'.$code, 'QRCODE,Q', 31, 104, 65, 65);
 
                     $imageurl = url($volunteer->volunteer->photo_src);
                     $pdf::image($imageurl, '115', '104', '65', '65');
