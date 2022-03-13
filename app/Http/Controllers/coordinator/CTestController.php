@@ -16,4 +16,9 @@ class CTestController extends Controller
     {
         dd($request->all());
     }
+
+    public function info()
+    {
+        phpinfo();
+    }
 }
