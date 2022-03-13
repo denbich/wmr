@@ -60,7 +60,7 @@ Route::middleware('setlocale')->group(function () {
         });
 
         Route::prefix('coordinator')->group(function () {
-            Route::post('/phpinfo', [CTestController::class, 'info']);
+            Route::get('/phpinfo', function(){ phpinfo(); });
             Route::prefix('test')->group(function() {
                 Route::get('/', [CTestController::class, 'pdf'])->name('c.test.pdf');
                 Route::post('/pdf', [CTestController::class, 'analyse']);
